@@ -20,10 +20,12 @@
             Choisir un utilisateur :
             </br>
 
+            <input></input>
+
+
             <select>
             </select>
 
-            <input></input>
 
             </br>
             <!-- Trouver une solution pour faire de l'espace -->
@@ -33,15 +35,16 @@
 
             </br>
 
+            <input></input>
+
             <select>
             </select>
 
-            <input></input>
 
             </br>
-            
+
             Donner l'élaboration du plan-cadre à l'utilisateur : 
-            
+
             <button> Confirmer </button>
 
         </div>
