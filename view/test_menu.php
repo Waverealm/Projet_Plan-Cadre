@@ -1,9 +1,12 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html>
 
 <?php
 include_once("../controller/interface_functions.php");
 ?>
+
 
     <body>
       <head>
@@ -17,7 +20,6 @@ include_once("../controller/interface_functions.php");
       </head>
       
       <div class="container">
-
             <?php
             echo DisplayMenu();
             ?>
