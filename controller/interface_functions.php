@@ -1,7 +1,7 @@
 
 <?php
 
-    function DisplayMenu()
+    function getMenu()
     {
         return '<div class="header"> 
          <h1 class="header-heading">Plan-cadre</h1>
@@ -36,5 +36,7 @@
     </ul>
 </div>';
     }
+
+
 
 ?>
