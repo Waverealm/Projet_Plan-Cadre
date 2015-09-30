@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<body>
+<head>
+   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+   <link rel="stylesheet" href="styles.css">
+</head>
+<div class="container">
+      <div class="header"> 
+         <h1 class="header-heading">Plan-cadre</h1>
+      </div>
+<div class="pure-menu pure-menu-horizontal">
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Accueil</a></li>
+        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
+            <ul class="pure-menu-children">
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Recherche</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Elaboration</a></li>
+            </ul>
+        </li>
+        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            <a href="#" id="menuLink1" class="pure-menu-link">Gestion de l'information</a>
+            <ul class="pure-menu-children">
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Ajouter des competences</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Ajouter des cours</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Ajouter des programme d'etude</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Modifier les instruction des plans-cadres</a></li>
+            </ul>
+        </li>
+        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            <a href="#" id="menuLink1" class="pure-menu-link">Gestion des comptes utilisateurs</a>
+            <ul class="pure-menu-children">
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Creer un compte</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Assigner un plan-cadre</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Liste des membres</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</br>
+
+<fieldset>
+            <legend>Inscription:</legend>
+            </br>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Nom d'usager :</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line" data-val="true" data-val-length="Le champ Nom d&#39;usager doit être une chaîne dont la longueur maximale est de 50." data-val-length-max="50" data-val-regex="Caractères illégaux." data-val-regex-pattern="^((?!^Name$)[-a-zA-Z0-9àâäçèêëéìîïòôöùûüÿñÀÂÄÇÈÊËÉÌÎÏÒÔÖÙÛÜ_])+$" data-val-required="Le champ Nom d&#39;usager est requis." id="UserName" name="UserName" type="text" value="" />
+                </div>
+            </div>
+            </br>
+
+            <div class="form-group ">
+                <label class="control-label col-md-2">Mot de passe :</label>
+                <div class="col-md-2">
+                    <input class="text-box single-line password" data-val="true" data-val-length="Le champ Mot de passe doit être une chaîne dont la longueur maximale est de 50." data-val-length-max="50" data-val-required="Le champ Mot de passe est requis." id="Password" name="Password" type="password" value="" />
+                </div>
+            </div>
+            </br>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Confirmation :</label>
+                <div class="col-md-2">
+                    <input class="text-box single-line password" data-val="true" data-val-length="Le champ Confirmation doit être une chaîne dont la longueur maximale est de 50." data-val-length-max="50" data-val-required="Le champ Confirmation est requis." id="PasswordConfirmation" name="PasswordConfirmation" type="password" value="" />
+                </div>
+            </div>
+            </br>
+            <div class="form-group">
+                <label class="control-label col-md-2">Courriel :</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line" data-val="true" data-val-length-max="50" data-val-required="Le courriel est requis." id="Email" name="Email" type="text" value="" />
+                </div>
+            </div>
+            </br>
+            <div class="col-md-offset-2 col-md-2">
+                <input type="submit" value="Soumettre..." class="btn btn-default" /> <br /><br />
+            </div>
+</fieldset>
+<?php>
+function BTN_Submit_Click() {
+if($password == $password1)_
+{
+	$query = mysql_query("INSERT INTO utilisateurs VALUES ('UserName','Password,'Email')");
+}
+}
+<?>
+</body>
+</html>
+
