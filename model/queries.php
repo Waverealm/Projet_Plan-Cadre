@@ -12,18 +12,47 @@
      }
   }
 
-    function createUser($bdd, $email, $last_name, $first_name, $pass, $user_type)
+  function createUser($UserName, $MotDePasse, $PasswordConfirmation, $Email)
   {
-        $query = $bdd->prepare("CALL INSERT_USER(?,?,?,?,?)");
+      if($UserName && $MotDePasse && $PasswordConfirmation)
+      {
+        $confirmcode = rand();
+        $query = mysql_query("INSERT INTO utilisateurs VALUES ('$UserName','$MotDePasse','1','$confirmcode','0','$Email') ");
 
-        $query->bindParam(1, $email, PDO::PARAM_STR);
-        $query->bindParam(2, $last_name, PDO::PARAM_STR);
-        $query->bindParam(3, $first_name, PDO::PARAM_STR);
-        $query->bindParam(4, $pass, PDO::PARAM_STR);
-        $query->bindParam(5, $user_type, PDO::PARAM_STR);
+        $message = 
+        "
+          Veuillez confirmez votre Courriel 
+          Clicker sur le lien en dessous pour verifier votre compte
+          http://www.plancadre.com/ConfirmationDeCourriel.php?UserName=$UserName&NoUtilisateur=$confirmcode
+        ";
 
-        $query->execute();
-        $query->CloseCursor();
+        mail($email,"Plan-Cadre confirmation de courriel", $message, "From: DoNotReply@plancadre.com");
+
+        echo "Merci, s'il vous plait veuillez confirmez votre adresse courriel"
+      }
   }
+
+function SendConfirmEmail()
+{
+
+  $UserName = $_GET['UserName'];
+  $NoUtilisateur = $_GET['NoUtilisateur'];
+
+  $query = mysql_query("SELECT * FROM 'utilisateurs' WHERE 'UserName'='$UserName'");
+  while($row = mysql_fetch_assoc($query))
+  {
+    $db_NoUtilisateur = $row['NoUtilisateur'];
+  }
+  if ($NoUtilisateur == $db_NoUtilisateur) 
+  {
+    mysql_query("UPDATE 'utilisateur' SET 'Etat'='1' ");
+    mysql_query("UPDATE 'utilisateur' SET 'NoUtilisateur'='0' ");
+  }
+  else
+  {
+    echo "Nom d'usager et le numéro d'utilisateur ne marche pas ensemble"
+  }
+}
+
 
 ?>
