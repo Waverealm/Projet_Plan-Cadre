@@ -32,27 +32,27 @@
       }
   }
 
-function SendConfirmEmail()
-{
+  function SendConfirmEmail()
+  {
 
-  $UserName = $_GET['UserName'];
-  $NoUtilisateur = $_GET['NoUtilisateur'];
+    $UserName = $_GET['UserName'];
+    $NoUtilisateur = $_GET['NoUtilisateur'];
 
-  $query = mysql_query("SELECT * FROM 'utilisateurs' WHERE 'UserName'='$UserName'");
-  while($row = mysql_fetch_assoc($query))
-  {
-    $db_NoUtilisateur = $row['NoUtilisateur'];
+    $query = mysql_query("SELECT * FROM 'utilisateurs' WHERE 'UserName'='$UserName'");
+    while($row = mysql_fetch_assoc($query))
+    {
+      $db_NoUtilisateur = $row['NoUtilisateur'];
+    }
+    if ($NoUtilisateur == $db_NoUtilisateur) 
+    {
+      mysql_query("UPDATE 'utilisateur' SET 'Etat'='1' ");
+      mysql_query("UPDATE 'utilisateur' SET 'NoUtilisateur'='0' ");
+    }
+    else
+    {
+      echo "Nom d'usager et le numéro d'utilisateur ne marche pas ensemble"
+    }
   }
-  if ($NoUtilisateur == $db_NoUtilisateur) 
-  {
-    mysql_query("UPDATE 'utilisateur' SET 'Etat'='1' ");
-    mysql_query("UPDATE 'utilisateur' SET 'NoUtilisateur'='0' ");
-  }
-  else
-  {
-    echo "Nom d'usager et le numéro d'utilisateur ne marche pas ensemble"
-  }
-}
 
 
 ?>
