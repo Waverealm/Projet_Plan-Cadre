@@ -16,9 +16,9 @@ include_once("../controller/interface_functions.php");
       </head>
       
       <div class="container">
-            <?php
-            echo getMenu();
-            ?>
+        <?php
+        echo getMenu();
+        ?>
       <br>
 
       <div>Petit test</div>
