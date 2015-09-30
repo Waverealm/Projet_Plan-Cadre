@@ -75,7 +75,8 @@ Layout styles
 
 .container
 {
-	max-width: 50em;
+	/* Changement apporté */
+	max-width: 75em;
 	margin: 0 auto;
 	background-color: #fff;
 }
