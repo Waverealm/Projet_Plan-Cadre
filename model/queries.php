@@ -29,11 +29,10 @@
 
   function createUser($userName, $pass, $passConfirm, $email)
   {
-    if( strcmp($pass, $passConfirm))
-    {
+
       $typeUser = "elaborateur";
       $etat = "actif";
-      $insert = $bdd->prepare("CALL INSERT_USER(?,?,?,?,?)");
+      $insert = dbConnect()->prepare("CALL INSERT_USER(?,?,?,?,?)");
 
       $insert->bindParam(1, $userName, PDO::PARAM_STR);
       $insert->bindParam(2, $pass, PDO::PARAM_STR);
@@ -41,10 +40,56 @@
       $insert->bindParam(4, $etat, PDO::PARAM_STR);
       $insert->bindParam(5, $email, PDO::PARAM_STR);
 
+      $message = " Confirmation de création de compte. Merci de choisir Projet Plan-Cadre.";
+
+      mail($email,"Plan-Cadre confirmation de courriel", $message, "From: DoNotReply@PlanCadre.com");
+
       $insert->execute();
-    }
+
 
   }
+
+  function createCours($codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $progCours, $dateAjout)
+  {
+      $insert = dbConnect()->prepare("CALL INSERT_COURS(?,?,?,?,?,?,?,?)");
+
+      $insert->bindParam(1, $codeCours, PDO::PARAM_STR);
+      $insert->bindParam(2, $nomCours, PDO::PARAM_STR);
+      $insert->bindParam(3, $typeCours, PDO::PARAM_STR);
+      $insert->bindParam(4, $ponderation, PDO::PARAM_STR);
+      $insert->bindParam(5, $unites, PDO::PARAM_STR);
+      $insert->bindParam(6, $heures, PDO::PARAM_STR);
+      $insert->bindParam(7, $progCours, PDO::PARAM_STR);
+      $insert->bindParam(8, $dateAjout, PDO::PARAM_STR);
+
+      $insert->execute();
+  }
+
+  function createCompetence($codeCompetence, $nomCompetence, $descriptionCompetence, $dateAjoutCompetence)
+  {
+      $insert = dbConnect()->prepare("CALL INSERT_COMPETENCE(?,?,?,?)");
+
+      $insert->bindParam(1, $codeCompetence, PDO::PARAM_STR);
+      $insert->bindParam(2, $nomCompetence, PDO::PARAM_STR);
+      $insert->bindParam(3, $descriptionCompetence, PDO::PARAM_STR);
+      $insert->bindParam(4, $dateAjoutCompetence, PDO::PARAM_STR);
+
+      $insert->execute();
+  }
+
+    function createProgramme($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction, $dateAjoutProgramme)
+  {
+      $insert = dbConnect()->prepare("CALL INSERT_PROGRAMME(?,?,?,?,?)");
+
+      $insert->bindParam(1, $codeProgramme, PDO::PARAM_STR);
+      $insert->bindParam(2, $nomProgramme, PDO::PARAM_STR);
+      $insert->bindParam(3, $typeProgramme, PDO::PARAM_STR);
+      $insert->bindParam(4, $typeSanction, PDO::PARAM_STR);
+      $insert->bindParam(5, $dateAjoutProgramme, PDO::PARAM_STR);
+
+      $insert->execute();
+  }
+  
   /*function createUser($UserName, $MotDePasse, $PasswordConfirmation, $Email)
   {
       if($UserName && $MotDePasse && $PasswordConfirmation)

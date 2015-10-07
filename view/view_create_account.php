@@ -15,7 +15,7 @@
            <link rel="Stylesheet" href="../assets/styles.css">
            <link rel="Stylesheet" href="../assets/others.css">
         </head>
-
+<div class="container">
             <?php
                 showHeader();
                 showAppropriateMenu();
@@ -60,6 +60,7 @@
 
                     </form>    
             </fieldset>
+        </div>
         </div>
     </body>
 </html>
