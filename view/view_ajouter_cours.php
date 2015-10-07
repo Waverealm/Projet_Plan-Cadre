@@ -20,6 +20,9 @@ include_once("../controller/interface_functions.php");
       echo getMenu();
       ?>
       <br>
+      <fieldset>
+                        <legend>Ajout de cours :</legend>
+                        </br>
 <form action="../controller/controller_create_cours.php" method="post">
         <label class="control-label col-md-2">Code du cours :</label>
         <div class="col-md-10">
@@ -68,6 +71,7 @@ include_once("../controller/interface_functions.php");
       </div>
 
      </form> 
+ </fieldset>
     </div>
 
   </body>

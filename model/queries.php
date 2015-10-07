@@ -64,6 +64,18 @@
 
       $insert->execute();
   }
+
+  function createCompetence($codeCompetence, $nomCompetence, $descriptionCompetence, $dateAjoutCompetence)
+  {
+      $insert = dbConnect()->prepare("CALL INSERT_COMPETENCE(?,?,?,?)");
+
+      $insert->bindParam(1, $codeCompetence, PDO::PARAM_STR);
+      $insert->bindParam(2, $nomCompetence, PDO::PARAM_STR);
+      $insert->bindParam(3, $descriptionCompetence, PDO::PARAM_STR);
+      $insert->bindParam(4, $dateAjoutCompetence, PDO::PARAM_STR);
+
+      $insert->execute();
+  }
   
   /*function createUser($UserName, $MotDePasse, $PasswordConfirmation, $Email)
   {
