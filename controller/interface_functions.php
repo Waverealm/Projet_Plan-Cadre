@@ -20,7 +20,7 @@
             <a href="#" id="menuLink1" class="pure-menu-link">Gestion de l\'information</a>
             <ul class="pure-menu-children">
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">Ajouter des compétences</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Ajouter des cours</a></li>
+                <li class="pure-menu-item"><a href="view_ajouter_cours.php" class="pure-menu-link">Ajouter des cours</a></li>
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">Ajouter des programme d\'étude</a></li>
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">Modifier les instruction des plans-cadres</a></li>
             </ul>

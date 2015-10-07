@@ -48,6 +48,23 @@
 
 
   }
+
+  function createCours($codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $progCours, $dateAjout)
+  {
+      $insert = dbConnect()->prepare("CALL INSERT_COURS(?,?,?,?,?,?,?,?)");
+
+      $insert->bindParam(1, $codeCours, PDO::PARAM_STR);
+      $insert->bindParam(2, $nomCours, PDO::PARAM_STR);
+      $insert->bindParam(3, $typeCours, PDO::PARAM_STR);
+      $insert->bindParam(4, $ponderation, PDO::PARAM_STR);
+      $insert->bindParam(5, $unites, PDO::PARAM_STR);
+      $insert->bindParam(6, $heures, PDO::PARAM_STR);
+      $insert->bindParam(7, $progCours, PDO::PARAM_STR);
+      $insert->bindParam(8, $dateAjout, PDO::PARAM_STR);
+
+      $insert->execute();
+  }
+  
   /*function createUser($UserName, $MotDePasse, $PasswordConfirmation, $Email)
   {
       if($UserName && $MotDePasse && $PasswordConfirmation)
