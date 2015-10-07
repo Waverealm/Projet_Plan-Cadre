@@ -20,7 +20,7 @@
                         <legend>Inscription:</legend>
                         </br>
 
-                    <form action="../controller/create_account_controller.php" method="post">
+                    <form action="../controller/controller_create_account.php" method="post">
 
                             <label class="control-label col-md-2">Nom d'usager :</label>
                             <div class="col-md-10">
