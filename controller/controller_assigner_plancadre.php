@@ -21,15 +21,19 @@
 	function fillComboBoxUser()
 	{
 		$array = fetchUserName();
-		$arrayOutput = "<option>-- aucun --</option>";
-		
-
-		while($row = $result)
+		$arrayOutput[0] = "<option>-- aucun --</option>";
+		$i = 0;
+		if(count($array) > 0)
 		{
-
+			$i++;
+			while($row = $array->fetch_assoc())
+			{
+				$arrayOutput[i] = "<option name='option". i  ."' value='". $row["Username"] ."' >" 
+				. $row ."</option>";
+			}
 		}
 
-
+		return $arrayOutput;
 	}
 
 

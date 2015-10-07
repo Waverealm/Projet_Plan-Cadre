@@ -3,6 +3,7 @@
 
   include_once("../controller/interface_functions.php");
   include_once("../controller/pages_access.php");
+  include_once("../controller/controller_assigner_plancadre.php");
 
   verifyAccessPages();
 ?>
@@ -32,6 +33,13 @@
 
 
             <select>
+                <?php
+                    $array = fillComboBoxUser();
+                    for (int i = 0; i < count($array); i++)
+                    {
+                        echo $array[i];
+                    }
+                ?>
             </select>
 
 
