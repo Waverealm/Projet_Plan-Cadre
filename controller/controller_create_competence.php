@@ -22,6 +22,13 @@ if(isset($_POST['CodeCompetence']) && isset($_POST['NomCompetence']) && isset($_
   $descriptionCompetence = $_POST['DescriptionCompetence'];
   $dateAjoutCompetence = $_POST['DateAjoutCompetence'];
 }
+
+// On vérifie si des champs sont vides
+if (empty($codeCompetence) || empty($nomCompetence) || empty($descriptionCompetence) || empty($dateAjoutCompetence))
+{
+  $error_fieldsempty = "Un ou plusieurs champs de texte sont vides. Veuillez les remplir.";
+  $i++;
+}
    
 $bdd = dbConnect();
 

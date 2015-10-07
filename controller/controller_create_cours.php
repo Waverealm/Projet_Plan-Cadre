@@ -31,6 +31,13 @@ if(isset($_POST['CodeCours']) && isset($_POST['NomCours']) && isset($_POST['Type
   $dateAjout = $_POST['DateAjout'];
 }
    
+// On vérifie si des champs sont vides
+if (empty($codeCours) || empty($nomCours) || empty($typeCours) || empty($ponderation) || empty($unites) || empty($heures) || empty($progCours) || empty($dateAjout))
+{
+  $error_fieldsempty = "Un ou plusieurs champs de texte sont vides. Veuillez les remplir.";
+  $i++;
+}
+
 $bdd = dbConnect();
 
 // S'il n'y a aucune erreur

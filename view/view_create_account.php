@@ -12,7 +12,7 @@ session_start();
            <link rel="Stylesheet" href="../assets/pure.css">
            <link rel="Stylesheet" href="../assets/styles.css">
         </head>
-
+<div class="container">
             <?php
              echo getMenu();
             ?>
@@ -56,6 +56,7 @@ session_start();
 
                     </form>    
             </fieldset>
+        </div>
         </div>
     </body>
 </html>
