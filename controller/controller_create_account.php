@@ -1,22 +1,103 @@
 <?php
+// session_start() reprend une session existante si valide ou crée une nouvelle session 
+session_start();
 
-	session_start();
 
-	include_once('../model/queries.php')
+include_once('../model/queries.php')
 
-	$i = 0;
-   $error_emailfree = NULL;
-   $error_emailformat = NULL;
-   $error_passwordconfirm = NULL;
-   $error_passwordtooshort = NULL;
-   $error_fieldsempty = NULL;
-   $crypted_pass = NULL;
+
+// i est un compteur pour le nombre d'erreur
+$i = 0;
+$error_emailfree = NULL;
+$error_emailformat = NULL;
+$error_passwordconfirm = NULL;
+$error_passwordtooshort = NULL;
+$error_fieldsempty = NULL;
+$crypted_pass = NULL;
+
+$userName = NULL;
+$password = NULL;
+$passwordConfirmation = NULL;
+$email = NULL;
+
+//isset($var) vérifie que la variable a été créé et qu'elle n'est pas nulle
+
+if(isset($_POST['UserName']) && isset($_POST['Password'] && isset($_POST['PasswordConfirmation'] 
+&& isset($_POST['Email'])
+{
+  $userName = $_POST['UserName'];
+  $password = $_POST['Password'];
+  $passwordConfirmation = $_POST['PasswordConfirmation'];
+  $email = $_POST['Email'];
+
+}
    
+$bdd = dbConnect();
+
+// Vérification du format de l'adresse email
+if (!preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$#", $email) && !empty($email))
+{
+  $error_emailformat = "Votre adresse courriel n'a pas un format valide";
+  $i++;
+}
+  
+//Vérification du mot de passe
+if ($password != $passwordConfirmation && !strcmp($password, $passwordConfirmation))
+{
+  $error_passwordconfirm = "Votre mot de passe et votre confirmation sont diff&eacuterents.";
+  $i++;
+}
+
+if (strlen($password) < 6 && !empty($password))
+{
+  $error_passwordtooshort = "Votre mot de passe est trop court, il doit contenir au minimum six caractères.";
+  $i++;
+}
+
+// On vérifie si des champs sont vides
+if (empty($userName) || empty($password) || empty($passwordConfirmation) || empty($email))
+{
+  $error_fieldsempty = "Un ou plusieurs champs de texte sont vides. Veuillez les remplir.";
+  $i++;
+}
+
+
+// S'il n'y a aucune erreur
+if ($i == 0)
+{
+  // encryption du mot de pass pour la bd
+  // doit pouvoir le décrypter aussi
+  // 2 fonctions à faire
+  //$crypted_pass = getCryptedPassword($pass);
+
+  //fonction qui permet de créer l'utilisateur
+
+  createUser($userName, $password, $passwordConfirmation, $email);
+
+
+  header('Location: ../view/view_Login.php');
+}
+else 
+{
+  setErrors();
+   header('Location: ../view/view_create_account.php');
+}
+
+function setErrors()
+{
+  global $error_emailfree, $error_emailformat, $error_passwordconfirm, $error_fieldsempty, $error_passwordtooshort;
+    $_SESSION[ 'erreurs_inscription' ] = '<h4>Une ou plusieurs erreurs se sont produites : </h4><p>'.$error_emailfree.'</p>
+    <p>'.$error_emailformat.'</p><p>'.$error_passwordconfirm.'</p><p>'.$error_fieldsempty.'</p>'
+    .'<p>'.$error_passwordtooshort.'</p>';
+}
+
+  /*   
    // On s'assure de l'existence des variables du POST
-   if( isset( $_POST[ 'email_usager' ] ) && isset( $_POST[ 'nom' ] ) && isset( $_POST[ 'prenom' ] ) && isset( $_POST[ 'type_utilisateur' ] ) && isset( $_POST[ 'mot_de_passe' ] )
-       && isset( $_POST[ 'mot_de_passe_confirmation' ]) &&  isset( $_POST[ 'num_ad_stagiaire' ] ) && isset( $_POST[ 'lieu_stage_stagiaire' ] ) &&
-       isset( $_POST[ 'type_resp' ] ))
-    {
+  if( isset( $_POST[ 'email_usager' ] ) && isset( $_POST[ 'nom' ] ) && isset( $_POST[ 'prenom' ] ) 
+  && isset( $_POST[ 'type_utilisateur' ] ) && isset( $_POST[ 'mot_de_passe' ] )
+  && isset( $_POST[ 'mot_de_passe_confirmation' ]) &&  isset( $_POST[ 'num_ad_stagiaire' ] ) 
+  && isset( $_POST[ 'lieu_stage_stagiaire' ] ) && isset( $_POST[ 'type_resp' ] ))
+  {
         // On récupère les attributs du formulaire
          $email = $_POST['email_usager'];
          $last_name = $_POST['nom'];
@@ -32,14 +113,15 @@
          $_SESSION['email'] = $email;
          $_SESSION['last_name'] = $last_name;
          $_SESSION['first_name'] = $first_name;
-    }
+  }
+  */
 
-
-    $bdd = dbConnect();
+    //$bdd = dbConnect();
 
     // Cette fonction retourne si l'adresse email est disponible ou non
-    $email_free = countUsersSpecificEmail($bdd, $email);
+    //$email_free = countUsersSpecificEmail($bdd, $email);
     
+    /*
     // Vérification de la disponibilité de l'adresse email
     if(!$email_free)
     {
@@ -85,7 +167,9 @@
         $error_fieldsempty = "Veuillez spécifier le type de responsable.";
         $i++;
     }
-  
+    */
+
+/*
     // S'il n'y a aucune erreur
    if ($i == 0)
    {
@@ -121,8 +205,9 @@
         header('Location: ../view/registration_view.php');
     }
 
+*/
 
-
+/*
     function setErrors()
     {
       global $error_emailfree, $error_emailformat, $error_passwordconfirm, $error_fieldsempty, $error_passwordtooshort;
@@ -130,5 +215,7 @@
                                             <p>'.$error_emailformat.'</p><p>'.$error_passwordconfirm.'</p><p>'.$error_fieldsempty.'</p>'
                                             .'<p>'.$error_passwordtooshort.'</p>';
     }
+
+    */
 
   ?>

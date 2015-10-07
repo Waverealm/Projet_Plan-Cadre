@@ -26,6 +26,25 @@
       return $result;
   }
 
+
+  function createUser($userName, $pass, $passConfirm, $email)
+  {
+    if( strcmp($pass, $passConfirm))
+    {
+      $typeUser = "elaborateur";
+      $etat = "actif";
+      $insert = $bdd->prepare("CALL INSERT_USER(?,?,?,?,?)");
+
+      $insert->bindParam(1, $userName, PDO::PARAM_STR);
+      $insert->bindParam(2, $pass, PDO::PARAM_STR);
+      $insert->bindParam(3, $typeUser, PDO::PARAM_STR);
+      $insert->bindParam(4, $etat, PDO::PARAM_STR);
+      $insert->bindParam(5, $email, PDO::PARAM_STR);
+
+      $insert->execute();
+    }
+
+  }
   /*function createUser($UserName, $MotDePasse, $PasswordConfirmation, $Email)
   {
       if($UserName && $MotDePasse && $PasswordConfirmation)

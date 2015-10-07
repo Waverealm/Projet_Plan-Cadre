@@ -23,13 +23,13 @@
 		  // $_SESSION[ 'email_usager' ] = $username;
 		  $_SESSION[ 'info_connexion' ] = "Vous avez été correctement identifié.";
 		  $_SESSION[ 'connected' ] = true;
-		  header('Location: ../view/index_view.php');
+		  header('Location: ../view/view_index.php');
 	   }
 	   else
 	   {
 		  // Sinon on avertit l'utilisateur
 	   	  $_SESSION[ 'info_connexion' ] =  "Nom d'utilisateur ou mot de passe invalide.";
-		  header('Location: ../view/login_view.php');
+		  header('Location: ../view/view_Login.php');
 	   }
 	}
 
