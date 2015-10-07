@@ -3,7 +3,7 @@
 session_start();
 
 
-include_once('../model/queries.php')
+include_once('../model/queries.php');
 
 
 // i est un compteur pour le nombre d'erreur
@@ -22,8 +22,7 @@ $email = NULL;
 
 //isset($var) vérifie que la variable a été créé et qu'elle n'est pas nulle
 
-if(isset($_POST['UserName']) && isset($_POST['Password'] && isset($_POST['PasswordConfirmation'] 
-&& isset($_POST['Email'])
+if(isset($_POST['UserName']) && isset($_POST['Password']) && isset($_POST['PasswordConfirmation']) && isset($_POST['Email']))
 {
   $userName = $_POST['UserName'];
   $password = $_POST['Password'];
