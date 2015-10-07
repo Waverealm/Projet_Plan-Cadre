@@ -8,7 +8,7 @@
       </div>
     <div class="pure-menu pure-menu-horizontal">
     <ul class="pure-menu-list">
-        <li class="pure-menu-item pure-menu-selected"><a href="test_menu.php" class="pure-menu-link">Accueil</a></li>
+        <li class="pure-menu-item pure-menu-selected"><a href="index_view.php" class="pure-menu-link">Accueil</a></li>
         <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
             <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
             <ul class="pure-menu-children">

@@ -1,9 +1,12 @@
+<?php
+  session_start();
+
+  include_once("../controller/interface_functions.php");
+?>
+
 <!DOCTYPE html>
 <html>
     <body>
-        <?php
-        include_once("../controller/interface_functions.php");
-        ?>
 
         <head>
            <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
@@ -20,7 +23,7 @@
                     <legend>Login :</legend>
                     </br>
 
-                <form action="../controller/create_account_controller.php" method="post">
+                <form action="../controller/login_controller.php" method="post">
 
                         <label class="control-label col-md-2">Nom d'usager :</label>
                         <div class="col-md-10">
@@ -42,4 +45,17 @@
         </fieldset>
     </body>
 </html>
+
+<?php
+
+   if( isset($_SESSION[ 'info_connexion' ]) )
+   {
+      ?>
+      <script>alert("<?php echo $_SESSION[ 'info_connexion' ]; ?>");</script>
+      <?php
+      unset($_SESSION[ 'info_connexion' ]);
+   }
+
+?>
+
 

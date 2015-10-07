@@ -1,12 +1,11 @@
-﻿
+﻿<?php
+  session_start();
+
+  include_once("../controller/interface_functions.php");
+?>
 
 <!DOCTYPE html>
 <html>
-
-<?php
-include_once("../controller/interface_functions.php");
-?>
-
 
     <body>
       <head>
@@ -27,3 +26,15 @@ include_once("../controller/interface_functions.php");
 
      </body>
 </html>
+
+<?php
+
+   if( isset($_SESSION[ 'info_connexion' ]) )
+   {
+      ?>
+      <script>alert("<?php echo $_SESSION[ 'info_connexion' ]; ?>");</script>
+      <?php
+      unset($_SESSION[ 'info_connexion' ]);
+   }
+
+?>

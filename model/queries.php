@@ -4,7 +4,7 @@
   {
      try
      {
-       return new PDO('mysql:host=localhost;dbname=plancadre', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+       return new PDO('mysql:host=localhost;dbname=plan_cadre', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
      }
      catch (Exception $e)
      {
@@ -12,7 +12,21 @@
      }
   }
 
-  function createUser($UserName, $MotDePasse, $PasswordConfirmation, $Email)
+  function getUser($bdd, $username)
+  {
+      $query = $bdd->prepare("CALL SELECT_USER(?)");
+ 
+      $query->bindParam(1, $username, PDO::PARAM_STR);
+
+      $query->execute();
+      $result = $query->fetchAll();
+
+      $query->closeCursor();
+ 
+      return $result;
+  }
+
+  /*function createUser($UserName, $MotDePasse, $PasswordConfirmation, $Email)
   {
       if($UserName && $MotDePasse && $PasswordConfirmation)
       {
@@ -28,7 +42,7 @@
 
         mail($email,"Plan-Cadre confirmation de courriel", $message, "From: DoNotReply@plancadre.com");
 
-        echo "Merci, s'il vous plait veuillez confirmez votre adresse courriel"
+        echo "Merci, s'il vous plait veuillez confirmez votre adresse courriel";
       }
   }
 
@@ -52,7 +66,7 @@
     {
       echo "Nom d'usager et le numéro d'utilisateur ne marche pas ensemble"
     }
-  }
+  }*/
 
 
 ?>
