@@ -49,7 +49,7 @@ if ($i == 0)
 }
 else 
 {
-  setErrors();
+  //setErrors();
   header('Location: ../view/view_create_account.php');
 }
 ?>

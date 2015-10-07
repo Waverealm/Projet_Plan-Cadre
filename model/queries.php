@@ -76,6 +76,19 @@
 
       $insert->execute();
   }
+
+    function createProgramme($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction, $dateAjoutProgramme)
+  {
+      $insert = dbConnect()->prepare("CALL INSERT_PROGRAMME(?,?,?,?,?)");
+
+      $insert->bindParam(1, $codeProgramme, PDO::PARAM_STR);
+      $insert->bindParam(2, $nomProgramme, PDO::PARAM_STR);
+      $insert->bindParam(3, $typeProgramme, PDO::PARAM_STR);
+      $insert->bindParam(4, $typeSanction, PDO::PARAM_STR);
+      $insert->bindParam(5, $dateAjoutProgramme, PDO::PARAM_STR);
+
+      $insert->execute();
+  }
   
   /*function createUser($UserName, $MotDePasse, $PasswordConfirmation, $Email)
   {
