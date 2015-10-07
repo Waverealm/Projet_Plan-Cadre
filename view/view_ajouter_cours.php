@@ -1,4 +1,3 @@
-
 <?php
   session_start();
 
@@ -19,10 +18,10 @@
     </head>
       
     <div class="container">
-      <?php
-        showHeader();
-        showAppropriateMenu();
-      ?>
+            <?php
+                showHeader();
+                showAppropriateMenu();
+            ?>
       <br>
       <fieldset>
                         <legend>Ajout de cours :</legend>

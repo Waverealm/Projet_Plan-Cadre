@@ -1,22 +1,27 @@
-<!DOCTYPE html>
-<html>
-
 <?php
-include_once("../controller/interface_functions.php");
+  session_start();
+
+  include_once("../controller/interface_functions.php");
+  include_once("../controller/pages_access.php");
+
+  verifyAccessPages();
 ?>
 
-
+<!DOCTYPE html>
+<html>
   <body>
     <head>
       <link rel="Stylesheet" href="../assets/pure.css">
       <link rel="Stylesheet" href="../assets/styles.css">
+      <link rel="Stylesheet" href="../assets/others.css">
          
     </head>
       
     <div class="container">
-      <?php
-      echo getMenu();
-      ?>
+            <?php
+                showHeader();
+                showAppropriateMenu();
+            ?>
       <br>
       <fieldset>
           <legend>Ajout de programme :</legend>

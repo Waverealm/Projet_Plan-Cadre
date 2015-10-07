@@ -7,7 +7,6 @@
   verifyAccessPages();
 ?>
 
-
 <!DOCTYPE html>
 <html>
     <body>
