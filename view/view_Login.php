@@ -23,7 +23,7 @@
                     <legend>Login :</legend>
                     </br>
 
-                <form action="../controller/login_controller.php" method="post">
+                <form action="../controller/controller_login.php" method="post">
 
                         <label class="control-label col-md-2">Nom d'usager :</label>
                         <div class="col-md-10">

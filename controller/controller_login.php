@@ -29,7 +29,7 @@
 	   {
 		  // Sinon on avertit l'utilisateur
 	   	  $_SESSION[ 'info_connexion' ] =  "Nom d'utilisateur ou mot de passe invalide.";
-		  header('Location: ../view/view_Login.php');
+		  header('Location: ../view/view_login.php');
 	   }
 	}
 
