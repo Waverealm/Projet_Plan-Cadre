@@ -1,5 +1,11 @@
 <?php
 
+/* 
+   Nom : password.css
+   Créé par Léa
+   Fonctions pour le mot de passe
+*/
+
 	// Fonction reprise de mon vieux projet.
 	// À AMÉLIORER
 	function getCryptedPassword($pass)

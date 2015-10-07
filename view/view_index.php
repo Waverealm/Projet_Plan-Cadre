@@ -11,13 +11,15 @@
       <head>
          <link rel="Stylesheet" href="../assets/pure.css">
          <link rel="Stylesheet" href="../assets/styles.css">
+         <link rel="Stylesheet" href="../assets/others.css">
          
       </head>
       
       <div class="container">
-        <?php
-        echo getMenu();
-        ?>
+            <?php
+                showHeader();
+                showAppropriateMenu();
+            ?>
       <br>
 
       <div>Petit test</div>
@@ -27,14 +29,4 @@
      </body>
 </html>
 
-<?php
-
-   if( isset($_SESSION[ 'info_connexion' ]) )
-   {
-      ?>
-      <script>alert("<?php echo $_SESSION[ 'info_connexion' ]; ?>");</script>
-      <?php
-      unset($_SESSION[ 'info_connexion' ]);
-   }
-
-?>
+<?php showConnectionAlert(); ?>

@@ -1,20 +1,24 @@
 <?php
-session_start();
+  session_start();
+
+  include_once("../controller/interface_functions.php");
+  include_once("../controller/pages_access.php");
+
+  verifyAccessPages();
 ?>
+
 <!DOCTYPE html>
 <html>
     <body>
-        <?php
-        include_once("../controller/interface_functions.php");
-        ?>
-
         <head>
            <link rel="Stylesheet" href="../assets/pure.css">
            <link rel="Stylesheet" href="../assets/styles.css">
+           <link rel="Stylesheet" href="../assets/others.css">
         </head>
 
             <?php
-             echo getMenu();
+                showHeader();
+                showAppropriateMenu();
             ?>
 
             </br>
