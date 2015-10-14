@@ -96,7 +96,6 @@
 
             <input name=""></input>
 
-
             <select name="CBX_ListeCours">
                 <?php
                     $array = fillComboBoxUser();
@@ -106,7 +105,6 @@
                     }
                 ?>
             </select>
-
 
             </br>
             <!-- Trouver une solution pour faire de l'espace -->
@@ -123,8 +121,6 @@
 
 
             </br>
-
-            Donner l'élaboration du plan-cadre à l'utilisateur : 
 
             <div class="col-md-offset-2 col-md-2">
                         <input type="submit" value="Soumettre..." class="btn btn-default" /> <br /><br />

@@ -7,16 +7,17 @@
 	function fetchUserName()
 	{
 
-		$query = dbConnect()->prepare("CALL SELECT_USERNAME");
+		$bdd = dbConnect();
+		$query = $bdd->prepare("CALL SELECT_USERNAME");
 
 		$query->execute();
-		$result = $query->fetchAll();
 
-
+		$result = $query->fetchAll()
 		$query->closeCursor();
 
 		return $result;
 	}
+
 
 	function fillComboBoxUser()
 	{
@@ -28,8 +29,9 @@
 			$i++;
 			while($row = $array->fetch_assoc())
 			{
-				$arrayOutput[i] = "<option name='option". i  ."' value='". $row["Username"] ."' >" 
-				. $row ."</option>";
+				// possibilité changer pour simplement écrire directement les balises ici ?
+				$arrayOutput[i] = "<option name='option". $array[i]["NoUtilisateur"]  ."' value='". $array[i]["NoUtilisateur"] ."' >" 
+				. $array[i]["Prenom"] . " " . $array[i]["Nom"] . "</option>";
 			}
 		}
 
