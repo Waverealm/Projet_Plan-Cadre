@@ -32,9 +32,9 @@
                             <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                                 <a href="#" id="menuLink1" class="pure-menu-link">Gestion de l\'information</a>
                                 <ul class="pure-menu-children">
-                                    <li class="pure-menu-item"><a href="view_ajouter_competence.php" class="pure-menu-link">Ajouter des compétences</a></li>
-                                    <li class="pure-menu-item"><a href="view_ajouter_cours.php" class="pure-menu-link">Ajouter des cours</a></li>
-                                    <li class="pure-menu-item"><a href="view_ajouter_programme.php" class="pure-menu-link">Ajouter des programme d\'étude</a></li>
+                                    <li class="pure-menu-item"><a href="view_add_competence.php" class="pure-menu-link">Ajouter des compétences</a></li>
+                                    <li class="pure-menu-item"><a href="view_add_class.php" class="pure-menu-link">Ajouter des cours</a></li>
+                                    <li class="pure-menu-item"><a href="view_add_program.php" class="pure-menu-link">Ajouter des programme d\'étude</a></li>
                                     <li class="pure-menu-item"><a href="#" class="pure-menu-link">Modifier les instruction des plans-cadres</a></li>
                                 </ul>
                             </li>
@@ -42,7 +42,7 @@
                                 <a href="#" id="menuLink1" class="pure-menu-link">Gestion des comptes utilisateurs</a>
                                 <ul class="pure-menu-children">
                                     <li class="pure-menu-item"><a href="view_create_account.php" class="pure-menu-link">Créer un compte</a></li>
-                                    <li class="pure-menu-item"><a href="view_assigner_plancadre.php" class="pure-menu-link">Assigner un plan-cadre</a></li>
+                                    <li class="pure-menu-item"><a href="view_assign_user.php" class="pure-menu-link">Assigner un plan-cadre</a></li>
                                     <li class="pure-menu-item"><a href="#" class="pure-menu-link">Liste des membres</a></li>
                                 </ul>
                             </li>
