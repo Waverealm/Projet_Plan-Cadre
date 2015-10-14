@@ -98,7 +98,7 @@
             Choisir un utilisateur :
             <br>
 
-            <input name="">
+            <input name="test" onChange="CBX_Filter(this.value, CBX_ListeCours)">
 
             <select name="CBX_ListeCours">
                 <?php

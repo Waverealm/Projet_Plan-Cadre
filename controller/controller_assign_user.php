@@ -29,7 +29,7 @@
 		{
 			for($i=0; $i < count($array); $i++)
 			{
-				$arrayOutput[$i] = "<option name='option". $array[$i]["NoUtilisateur"]  ."' value='". $array[$i]["NoUtilisateur"] ."' >" 
+				$arrayOutput[$i] = "<option name='". $array[$i]["Prenom"] . " " . $array[$i]["Nom"] ."' value='". $array[$i]["NoUtilisateur"] ."' >" 
 				. $array[$i]["Prenom"] . " " . $array[$i]["Nom"] . "</option>";
 			}
 		}
