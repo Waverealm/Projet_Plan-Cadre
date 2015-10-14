@@ -1,5 +1,6 @@
 <?php
-	session_start();
+	// génère une erreur, suggérer d'appler une seule fois
+	//session_start();
 
 	include_once('../model/queries.php');
 
@@ -8,11 +9,11 @@
 	{
 
 		$bdd = dbConnect();
-		$query = $bdd->prepare("CALL SELECT_USERNAME");
+		$query = $bdd->prepare("CALL SELECT_USERNAME()");
 
 		$query->execute();
 
-		$result = $query->fetchAll()
+		$result = $query->fetchAll();
 		$query->closeCursor();
 
 		return $result;
@@ -22,16 +23,14 @@
 	function fillComboBoxUser()
 	{
 		$array = fetchUserName();
-		$arrayOutput[0] = "<option>-- aucun --</option>";
-		$i = 0;
+		$arrayOutput;
+		//$arrayOutput[0] = "<option>-- aucun --</option>";
 		if(count($array) > 0)
 		{
-			$i++;
-			while($row = $array->fetch_assoc())
+			for($i=0; $i < count($array); $i++)
 			{
-				// possibilité changer pour simplement écrire directement les balises ici ?
-				$arrayOutput[i] = "<option name='option". $array[i]["NoUtilisateur"]  ."' value='". $array[i]["NoUtilisateur"] ."' >" 
-				. $array[i]["Prenom"] . " " . $array[i]["Nom"] . "</option>";
+				$arrayOutput[$i] = "<option name='option". $array[$i]["NoUtilisateur"]  ."' value='". $array[$i]["NoUtilisateur"] ."' >" 
+				. $array[$i]["Prenom"] . " " . $array[$i]["Nom"] . "</option>";
 			}
 		}
 

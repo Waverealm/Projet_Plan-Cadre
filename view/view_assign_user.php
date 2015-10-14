@@ -14,8 +14,9 @@
         <link rel="Stylesheet" href="../assets/pure.css">
         <link rel="Stylesheet" href="../assets/styles.css">
         <link rel="Stylesheet" href="../assets/others.css">
-    </head>
-    <script type="text/javascript">
+
+
+        <script type="text/javascript">
 
         // Author: Justin Whitford
         // Source: www.evolt.org
@@ -79,7 +80,9 @@
             list.selectedIndex = 0;
         }
 
-    </script>
+        </script>
+    </head>
+    
 
     <body>
 
@@ -90,12 +93,12 @@
                 showAppropriateMenu();
             ?>
 
-            </br>
+            <br>
 
             Choisir un utilisateur :
-            </br>
+            <br>
 
-            <input name=""></input>
+            <input name="">
 
             <select name="CBX_ListeCours">
                 <?php
@@ -107,24 +110,26 @@
                 ?>
             </select>
 
-            </br>
+            <br>
             <!-- Trouver une solution pour faire de l'espace -->
-            </br>
+            <br>
 
             Choisir un plan-cadre :
 
-            </br>
+            <br>
 
-            <input></input>
+            <input>
 
             <select>
             </select>
 
 
-            </br>
+            <br>
 
             <div class="col-md-offset-2 col-md-2">
-                        <input type="submit" value="Soumettre..." class="btn btn-default" /> <br /><br />
+                        <input type="submit" value="Soumettre..." class="btn btn-default" /> 
+                        <br>
+                        <br>
             </div>
 
         </div>
