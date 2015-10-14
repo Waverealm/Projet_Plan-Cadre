@@ -100,9 +100,9 @@
             <select name="CBX_ListeCours">
                 <?php
                     $array = fillComboBoxUser();
-                    for (int i = 0; i < count($array); i++)
+                    for ($i = 0; $i < count($array); $i++)
                     {
-                        echo $array[i];
+                        echo $array[$i];
                     }
                 ?>
             </select>
