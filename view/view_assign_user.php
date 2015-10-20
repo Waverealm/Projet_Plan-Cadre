@@ -116,12 +116,15 @@
                 
                 <br>
 
-                <input type="text" name="test" onKeyUp="arrayFilter(this.value, this.form.select_UsersList)" onChange="arrayFilter(this.value, this.form.select_UsersList)">
+                <input type="text" name="search_User" onKeyUp="arrayFilter(this.value, this.form.select_UserList)" onChange="arrayFilter(this.value, this.form.select_UserList)">
 
-                <select name="select_UsersList">
+                <select name="select_UserList">
+                    <!-- on peut enlever l'option vide dans la version finale
+                         pour le moment ça aide avec les tests
+                    -->
                     <option> </option>
                     <?php
-                        $array = fillComboBoxUser();
+                        $array = getArrayUser();
                         for ($i = 0; $i < count($array); $i++)
                         {
                             echo $array[$i];
@@ -136,8 +139,17 @@
 
                 <br>
 
-                <input type="text" name="test" onKeyUp="arrayFilter(this.value, this.form.select_CourseList)" onChange="arrayFilter(this.value, this.form.select_CourseList)">
+                <input type="text" name="search_Course" onKeyUp="arrayFilter(this.value, this.form.select_CourseList)" onChange="arrayFilter(this.value, this.form.select_CourseList)">
                 <select name="select_CourseList">
+                    <option> </option>
+                    <?php
+                    //répétition de code ...
+                        $array = getArrayCourse();
+                        for ($i = 0; $i < count($array); $i++)
+                        {
+                            echo $array[$i];
+                        }
+                    ?>
                 </select>
 
 

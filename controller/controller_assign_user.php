@@ -4,12 +4,11 @@
 
 	include_once('../model/queries.php');
 
-
-	function fetchUserName()
+	function fetchStoredProc($call_Select)
 	{
 
 		$bdd = dbConnect();
-		$query = $bdd->prepare("CALL SELECT_USERS_LIST()");
+		$query = $bdd->prepare($call_Select);
 
 		$query->execute();
 
@@ -19,12 +18,29 @@
 		return $result;
 	}
 
-
-	function fillComboBoxUser()
+	function fetchAllUser()
 	{
-		$array = fetchUserName();
+
+		$bdd = dbConnect();
+		$query = $bdd->prepare("CALL SELECT_USERS_LIST ()");
+
+		$query->execute();
+
+		$result = $query->fetchAll();
+		$query->closeCursor();
+
+		return $result;
+	}
+	function fetchAllCourse()
+	{
+		return fetchStoredProc("CALL SELECT_COURSE_LIST ()");
+	}
+
+
+	function getArrayUser()
+	{
+		$array = fetchAllUser();
 		$arrayOutput;
-		//$arrayOutput[0] = "<option>-- aucun --</option>";
 		if(count($array) > 0)
 		{
 			for($i=0; $i < count($array); $i++)
@@ -36,6 +52,22 @@
 
 		return $arrayOutput;
 	}
+	function getArrayCourse()
+	{
+		$array = fetchAllCourse();
+		$arrayOutput;
+		if(count($array) > 0)
+		{
+			for($i=0; $i < count($array); $i++)
+			{
+				$arrayOutput[$i] = "<option name='". $array[$i]["CodeCours"] . " " . $array[$i]["NomCours"] ."' value='". $array[$i]["CodeCours"] . " " . $array[$i]["NomCours"] ."' >" 
+				. $array[$i]["CodeCours"] . " " . $array[$i]["NomCours"] . "</option>";
+			}
+		}
+
+		return $arrayOutput;
+	}
+
 
 
 
