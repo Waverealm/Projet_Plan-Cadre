@@ -9,7 +9,7 @@
 	{
 
 		$bdd = dbConnect();
-		$query = $bdd->prepare("CALL SELECT_USERNAME()");
+		$query = $bdd->prepare("CALL SELECT_USERS_LIST()");
 
 		$query->execute();
 
@@ -29,7 +29,7 @@
 		{
 			for($i=0; $i < count($array); $i++)
 			{
-				$arrayOutput[$i] = "<option name='". $array[$i]["Prenom"] . " " . $array[$i]["Nom"] ."' value='". $array[$i]["NoUtilisateur"] ."' >" 
+				$arrayOutput[$i] = "<option name='". $array[$i]["Prenom"] . " " . $array[$i]["Nom"] ."' value='". $array[$i]["Prenom"] . " " . $array[$i]["Nom"] ."' >" 
 				. $array[$i]["Prenom"] . " " . $array[$i]["Nom"] . "</option>";
 			}
 		}

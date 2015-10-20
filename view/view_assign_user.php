@@ -23,62 +23,77 @@
         // http://evolt.org/node/55035/
 
         /*
-            CBX_Filter(filter, list)
-            filter : est une chaine de charactère qui va servir de filtre
+            arrayFilter(search, list)
+            search : est une chaine de charactère qui va servir de filtre
             list : est une référence à un objet de type select (ComboBox)
 
             La liste est réorganisée pour que les éléments qui contiennent le filtre se retrouvent
             en haut de la liste.
-
-            exemple : <input type="text" name="uneZoneTexte" onchange="CBX_filter(this.value, this.form.CBX_nom)">
-            <select name="CBX_select">
+			Il est suggérer de l'utiliser pour un select avec un input
+            exemple : <input type="text" name="uneZoneTexte" onchange="arrayFilter(this.value, this.form.CBX_nom)"
+			onKeyUp ="arrayFilter(this.value, this.form.CBX_nom)">
+            <select name="selectName">
             <option></option>
             <option value="valeurVoulue" ><*option>
         */
-        function CBX_Filter(filter, list)
-        {
-            //si on n'a pas déjà un backup de la liste
-            //en faire un maintenant
-            if(!list.backUp)
-            {
-                list.backUp = new Array();
-                for(i = 0; i < list.length; i++)
-                {
-                    list.backUp[list.backUp.length] = new Array(list[i].value, list[i].text);
-                }
-            }
-            match = new Array();
-            nomatch = new Array();
+			function arrayFilter(search, list){
 
-            for(i = 0; i < list.backUp.length; i++)
-            {
-                if(list.backUp[i][1].toLowerCase().indexOf(filter.toLowerCase()) != -1)
-                {
-                    // ajouter l'élément à la fin de l'array
-                    match[match.length] = new Array(list.backUp[i][0], list.backUp[i][1]);
-                }
-                else
-                {
-                    nomatch[nomatch.length] = new Array(list.backUp[i][0], list.backUp[i][1]);
-                }
-            }
 
-            // ajoute les éléments qui contiennent le filtre en premier
-            for(i = 0; i < list.backUp.length; i++)
-            {
-                list[i].value = match[n][0];
-                list[i].text = match[n][1];
-            }
-            // ajoute les éléments qui ne contiennent pas le filtre après ceux qui le contiennent
-            for(i = 0; i < nomatch.length; i++)
-            {
-                list[i+match.length].value = nomatch[n][0];
-                list[i+match.length].text = nomatch[n][1];
-            }
+				//si on n'a pas déjà un backup de la liste
+				//en faire un maintenant
+				if (!list.backUp){
 
-            //pour qu'on voit immédiatement que la liste a été modifiée lorsqu'on utilise le filtre
-            list.selectedIndex = 0;
-        }
+					list.backUp = new Array();
+
+					for (n=0;n<list.length;n++){
+
+						list.backUp[list.backUp.length] = new Array(list[n].value, list[n].text);
+
+					}
+
+				}
+
+				match = new Array();
+
+				nomatch = new Array();
+
+				for (n=0;n<list.backUp.length;n++){
+
+					if(list.backUp[n][1].toLowerCase().indexOf(search.toLowerCase())!=-1){
+
+						// ajouter l'élément à la fin de l'array
+						match[match.length] = new Array(list.backUp[n][0], list.backUp[n][1]);
+
+					}else{
+
+						nomatch[nomatch.length] = new Array(list.backUp[n][0], list.backUp[n][1]);
+
+					}
+
+				}
+
+
+				// ajouter les éléments qui contiennent le filtre en premier
+				for (n=0;n<match.length;n++){
+
+					list[n].value = match[n][0];
+
+					list[n].text = match[n][1];
+
+				}
+
+				  // ajouter les éléments qui ne contiennent pas le filtre après ceux qui le contiennent
+				  for (n=0;n<nomatch.length;n++){
+
+					list[n+match.length].value = nomatch[n][0];
+
+					list[n+match.length].text = nomatch[n][1];
+
+				  }
+
+				//pour qu'on voit immédiatement que la liste a été modifiée et que le filtre a été utilisé
+				list.selectedIndex=0;
+			}
 
         </script>
     </head>
@@ -95,43 +110,48 @@
 
             <br>
 
-            Choisir un utilisateur :
-            <br>
+            <form action="../controller/controller_create_competence.php" method="post">
 
-            <input name="test" onChange="CBX_Filter(this.value, CBX_ListeCours)">
+                Choisir un utilisateur :
+                
+                <br>
 
-            <select name="CBX_ListeCours">
-                <?php
-                    $array = fillComboBoxUser();
-                    for ($i = 0; $i < count($array); $i++)
-                    {
-                        echo $array[$i];
-                    }
-                ?>
-            </select>
+                <input type="text" name="test" onKeyUp="arrayFilter(this.value, this.form.select_UsersList)" onChange="arrayFilter(this.value, this.form.select_UsersList)">
 
-            <br>
-            <!-- Trouver une solution pour faire de l'espace -->
-            <br>
+                <select name="select_UsersList">
+                    <option> </option>
+                    <?php
+                        $array = fillComboBoxUser();
+                        for ($i = 0; $i < count($array); $i++)
+                        {
+                            echo $array[$i];
+                        }
+                    ?>
+                </select>
 
-            Choisir un plan-cadre :
+                <br>
+                <br>
 
-            <br>
+                Choisir un plan-cadre :
 
-            <input>
+                <br>
 
-            <select>
-            </select>
+                <input type="text" name="test" onKeyUp="arrayFilter(this.value, this.form.select_CourseList)" onChange="arrayFilter(this.value, this.form.select_CourseList)">
+                <select name="select_CourseList">
+                </select>
 
 
-            <br>
+                <br>
 
-            <div class="col-md-offset-2 col-md-2">
+                <div class="col-md-offset-2 col-md-2">
                         <input type="submit" value="Soumettre..." class="btn btn-default" /> 
+                        
                         <br>
                         <br>
-            </div>
 
+                </div>
+
+            </form>
         </div>
     </body>
 
