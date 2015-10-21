@@ -116,9 +116,9 @@
   {
     return fetchStoredProc("CALL SELECT_USERS_LIST ()");
   }
-  function fetchAllCourse()
+  function fetchAllClass()
   {
-    return fetchStoredProc("CALL SELECT_COURSE_LIST ()");
+    return fetchStoredProc("CALL SELECT_CLASS_LIST ()");
   }
 
 
