@@ -77,7 +77,7 @@
       $insert->execute();
   }
 
-    function createProgramme($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction, $dateAjoutProgramme)
+  function createProgramme($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction, $dateAjoutProgramme)
   {
       $insert = dbConnect()->prepare("CALL INSERT_PROGRAMME(?,?,?,?,?)");
 
@@ -90,6 +90,40 @@
       $insert->execute();
   }
   
+
+/* 
+   fonction : fetchStoredProc($call_select)
+   Créé par : Simon Roy
+   Prend un string en paramètre, le string représente une procédure stockée 
+   dans la base de données qui serra éxécutée. La valeur de retour est un 
+   array qui contient le résultat du select
+*/
+  function fetchStoredProc($call_select)
+  {
+    $bdd = dbConnect();
+    $query = $bdd->prepare($call_select);
+
+    $query->execute();
+
+    $result = $query->fetchAll();
+    $query->closeCursor();
+
+    return $result;
+  }
+  function fetchAllUser()
+  {
+    return fetchStoredProc("CALL SELECT_USERS_LIST ()");
+  }
+  function fetchAllCourse()
+  {
+    return fetchStoredProc("CALL SELECT_COURSE_LIST ()");
+  }
+
+
+/*
+  fin des fonctions qui appellent fetchStoredProc($call_select)
+*/
+
   /*function createUser($UserName, $MotDePasse, $PasswordConfirmation, $Email)
   {
       if($UserName && $MotDePasse && $PasswordConfirmation)

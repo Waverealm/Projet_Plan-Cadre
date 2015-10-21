@@ -4,39 +4,6 @@
 
 	include_once('../model/queries.php');
 
-	function fetchStoredProc($call_Select)
-	{
-
-		$bdd = dbConnect();
-		$query = $bdd->prepare($call_Select);
-
-		$query->execute();
-
-		$result = $query->fetchAll();
-		$query->closeCursor();
-
-		return $result;
-	}
-
-	function fetchAllUser()
-	{
-
-		$bdd = dbConnect();
-		$query = $bdd->prepare("CALL SELECT_USERS_LIST ()");
-
-		$query->execute();
-
-		$result = $query->fetchAll();
-		$query->closeCursor();
-
-		return $result;
-	}
-	function fetchAllCourse()
-	{
-		return fetchStoredProc("CALL SELECT_COURSE_LIST ()");
-	}
-
-
 	function getArrayUser()
 	{
 		$array = fetchAllUser();
@@ -64,7 +31,6 @@
 				. $array[$i]["CodeCours"] . " " . $array[$i]["NomCours"] . "</option>";
 			}
 		}
-
 		return $arrayOutput;
 	}
 
