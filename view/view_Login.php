@@ -38,7 +38,7 @@
                             data-val-length-max="50" data-val-regex="Caractères illégaux." 
                             data-val-regex-pattern="^((?!^Name$)[-a-zA-Z0-9àâäçèêëéìîïòôöùûüÿñÀÂÄÇÈÊËÉÌÎÏÒÔÖÙÛÜ_])+$" 
                             data-val-required="Le champ Nom d&#39;usager est requis." 
-                            id="UserName" name="UserName" type="text" 
+                            id="UserName" name="UserName" type="text"
                             value="<?php if (isset($_SESSION[ 'username' ])) echo htmlentities(trim($_SESSION[ 'username' ])); ?>" 
                             />
                         </div>
@@ -48,8 +48,8 @@
                         <div class="col-md-2">
                             <input class="text-box single-line password" data-val="true" 
                             data-val-length="Le champ Mot de passe doit être une chaîne dont la longueur maximale est de 20." 
-                            data-val-length-max="50" data-val-required="Le champ Mot de passe est requis." 
-                            id="Password" name="Password" type="password" value="" 
+                            data-val-length-max="50" data-val-required="Le champ Mot de passe est requis."
+                            id="Password" name="Password" type="password" value=""
                             />
                         </div>
                     </br>
