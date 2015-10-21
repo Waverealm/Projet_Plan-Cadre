@@ -73,7 +73,7 @@
 
                         <label class="control-label col-md-2">Type d'utilisateur :</label>
                         <div class="col-md-2">
-                            <select name="TypeUser" >
+                            <select name="UserType" >
                               <option>Elaborateur</option>
                            </select>
                         </div>
