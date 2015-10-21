@@ -7,20 +7,21 @@
  */
 session_start();
 
+//Create File Name
+$myfile = fopen($_POST['sauvergarde'] . ".txt", "w");
+
 include_once('../model/queries.php');
 
 if(isset($_POST['submit']) || isset($_POST['save'])) {
-//Create File Name
-    $myfile = fopen($_POST['sauvergarde'] . ".txt", "w");
 
-//Enter values from website
+    //Enter values from website to variables
     $cours = $_POST['NumeroDeCours'];
     $presentation = $_POST['Presentation'];
     $objectifs = $_POST['Objectifs'];
     $Evaluation = $_POST['Evaluation'];
     $ObjsApprend = $_POST['ObjectifsApprentissage'];
 
-//Write values in file
+    //Write values in file
     fwrite($myfile, $cours . "\n");
     fwrite($myfile, $presentation . "\n");
     fwrite($myfile, $objectifs . "\n");

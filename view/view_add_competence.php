@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: 201087112//AntoineLatendresse
+ * Date: 2015-10-21
+ * Time: 10:48
+ */
   session_start();
 
   include_once("../controller/interface_functions.php");
