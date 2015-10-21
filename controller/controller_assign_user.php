@@ -12,32 +12,17 @@
 
 
 	// Si on a reçu les données d'un formulaire
-	if( isset( $_POST[ '' ] ) && isset( $_POST[ 'Password' ] ) )
+	if( isset( $_POST[ 'search_user_list' ] ) && isset( $_POST[ 'search_class_list' ] ) )
 	{
-	   // On les récupère
-	   $username = $_POST[ 'UserName' ];
-	   $password = $_POST[ 'Password' ]; // À REMPLACER UNE FOIS QUE LA FONCTION SERA AUSSI UTILISÉE DANS LA CRÉATION DU COMPTE :  getCryptedPassword($_POST['Password']);
 
-	   $_SESSION[ 'username' ] = $username;
+		$user = $_POST["search_user_list"];
+		$course = $_POST["search_class_list"];
+		
 
-	   // On teste si les informations sont valides
-	   if( verification( $username, $password ) )
-	   {
-		  unset($_SESSION[ 'username' ]);
-		  $_SESSION[ 'username_usager' ] = $username;
-		  $_SESSION[ 'connection_info' ] = "Vous avez été correctement identifié.";
-		  $_SESSION[ 'connected' ] = true;
-		  header('Location: ../view/view_index.php');
-	   }
-	   else
-	   {
-		  // Sinon on avertit l'utilisateur
-	   	  $_SESSION[ 'connection_info' ] =  "Nom d'utilisateur ou mot de passe invalide.";
-		  header('Location: ../view/view_login.php');
-	   }
+		assignUserPlanCadre($user, $course);
+
+		header('Location: ../view/view_index.php');
 	}
-
-
 
 
 
@@ -60,9 +45,9 @@
 
 		return $arrayOutput;
 	}
-	function getArrayCourse()
+	function getArrayClass()
 	{
-		$array = fetchAllCourse();
+		$array = fetchAllClass();
 		$arrayOutput;
 		if(count($array) > 0)
 		{
