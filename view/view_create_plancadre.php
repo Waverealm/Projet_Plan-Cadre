@@ -87,7 +87,9 @@ verifyAccessPages();
             </br>
 
             <div class="col-md-offset-2 col-md-2">
-                <input type="submit" value="Soumettre..." class="btn btn-default" /> <br /><br />
+                <input name="submit" type="submit" value="Soumettre..." class="btn btn-default" />
+                <input name="save" type="submit" value="Sauvegarder..." class="btn btn-default" />
+                <input name="open" type="submit" value="Ouvrir..." class="btn btn-default" />
             </div>
 
         </form>

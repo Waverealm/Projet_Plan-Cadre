@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: 201087112//AntoineLatendresse
+ * Date: 2015-10-21
+ * Time: 10:48
+ */
 // session_start() reprend une session existante si valide ou crée une nouvelle session 
 session_start();
 
@@ -17,15 +23,19 @@ $crypted_pass = NULL;
 
 $userName = NULL;
 $password = NULL;
+$nom = NULL;
+$prenom = NULL;
 $passwordConfirmation = NULL;
 $email = NULL;
 
 //isset($var) vérifie que la variable a été créé et qu'elle n'est pas nulle
 
-if(isset($_POST['UserName']) && isset($_POST['Password']) && isset($_POST['PasswordConfirmation']) && isset($_POST['Email']))
+if(isset($_POST['UserName']) && isset($_POST['Password']) && ($_POST['Nom']) && isset($_POST['Prenom']) && isset($_POST['PasswordConfirmation']) && isset($_POST['Email']))
 {
   $userName = $_POST['UserName'];
   $password = $_POST['Password'];
+  $nom = $_POST['Nom'];
+  $prenom = $_POST['Prenom'];
   $passwordConfirmation = $_POST['PasswordConfirmation'];
   $email = $_POST['Email'];
 
@@ -54,7 +64,7 @@ if (strlen($password) < 6 && !empty($password))
 }
 
 // On vérifie si des champs sont vides
-if (empty($userName) || empty($password) || empty($passwordConfirmation) || empty($email))
+if (empty($userName) || empty($password) || empty($nom) || empty($prenom) || empty($passwordConfirmation) || empty($email))
 {
   $error_fieldsempty = "Un ou plusieurs champs de texte sont vides. Veuillez les remplir.";
   $i++;
@@ -71,7 +81,7 @@ if ($i == 0)
 
   //fonction qui permet de créer l'utilisateur
 
-  createUser($userName, $password, $passwordConfirmation, $email);
+  createUser($userName, $password, $nom, $prenom, $passwordConfirmation, $email);
 
 
   header('Location: ../view/view_Login.php');

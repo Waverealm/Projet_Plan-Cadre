@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: 201087112//AntoineLatendresse
+ * Date: 2015-10-21
+ * Time: 10:48
+ */
   session_start();
 
   include_once("../controller/interface_functions.php");
@@ -39,6 +45,18 @@
                             <div class="col-md-2">
                                 <input id="Password" name="Password" type="password" value="" class="text-box single-line password" data-val="true" data-val-length="Le champ Mot de passe doit être une chaîne dont la longueur maximale est de 50." data-val-length-max="50" data-val-required="Le champ Mot de passe est requis."  />
                             </div>
+                        </br>
+
+                        <label class="control-label col-md-2">Nom :</label>
+                        <div class="col-md-2">
+                            <input id="Nom" name="Nom" type="text" value="" class="text-box single-line password" data-val="true" data-val-length="Le champ Mot de passe doit être une chaîne dont la longueur maximale est de 50." data-val-length-max="50" data-val-required="Le champ Mot de passe est requis."  />
+                        </div>
+                        </br>
+
+                        <label class="control-label col-md-2">Prenom :</label>
+                        <div class="col-md-2">
+                            <input id="Prenom" name="Prenom" type="text" value="" class="text-box single-line password" data-val="true" data-val-length="Le champ Mot de passe doit être une chaîne dont la longueur maximale est de 50." data-val-length-max="50" data-val-required="Le champ Mot de passe est requis."  />
+                        </div>
                         </br>
 
                             <label class="control-label col-md-2">Confirmation :</label>

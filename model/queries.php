@@ -32,17 +32,19 @@
 
       $typeUser = "elaborateur";
       $etat = "actif";
-      $insert = dbConnect()->prepare("CALL INSERT_USER(?,?,?,?,?)");
+      $insert = dbConnect()->prepare("CALL INSERT_USER(?,?,?,?,?,?,?)");
 
       $insert->bindParam(1, $userName, PDO::PARAM_STR);
       $insert->bindParam(2, $pass, PDO::PARAM_STR);
-      $insert->bindParam(3, $typeUser, PDO::PARAM_STR);
-      $insert->bindParam(4, $etat, PDO::PARAM_STR);
-      $insert->bindParam(5, $email, PDO::PARAM_STR);
+      $insert->bindParam(3, $nom, PDO::PARAM_STR);
+      $insert->bindParam(4, $prenom, PDO::PARAM_STR);
+      $insert->bindParam(5, $typeUser, PDO::PARAM_STR);
+      $insert->bindParam(6, $etat, PDO::PARAM_STR);
+      $insert->bindParam(7, $email, PDO::PARAM_STR);
 
       $message = " Confirmation de création de compte. Merci de choisir Projet Plan-Cadre.";
 
-      mail($email,"Plan-Cadre confirmation de courriel", $message, "From: DoNotReply@PlanCadre.com");
+      //mail($email,"Plan-Cadre confirmation de courriel", $message, "From: DoNotReply@PlanCadre.com");
 
       $insert->execute();
 
