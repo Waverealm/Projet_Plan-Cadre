@@ -143,7 +143,7 @@
                 <br>
                 <br>
 
-                Choisir un plan-cadre :
+                Choisir un cours :
 
                 <br>
 
@@ -168,11 +168,11 @@
                     ?>
                 </select>
 
-
+                <br>
                 <br>
 
                 <div class="col-md-offset-2 col-md-2">
-                        <input type="submit" value="Soumettre..." class="btn btn-default" /> 
+                        <input type="submit" value="Assigner le plan-cadre" class="btn btn-default" /> 
                         
                         <br>
                         <br>

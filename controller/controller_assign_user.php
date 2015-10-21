@@ -17,16 +17,28 @@
 
 		$user = $_POST["search_user_list"];
 		$course = $_POST["search_class_list"];
+
+		//createPlanCadre($course, "elaborateur")
 		
+		//assignUserPlanCadre($user, $course);
 
-		assignUserPlanCadre($user, $course);
-
-		header('Location: ../view/view_index.php');
+		//header('Location: ../view/view_index.php');
 	}
 
 
 
+  	function createPlanCadre($codecours, $etat)
+  	{
+      	$codecours = "elaborateur";
+      	$etat = "elaboration";
+      	$dateajout = "getdate()";
+      	$insert = dbConnect()->prepare("CALL INSERT_PLAN_CADRE(?,?,?)");
 
+      	$insert->bindParam(1, $codecours, PDO::PARAM_STR);
+      	$insert->bindParam(2, $etat, PDO::PARAM_STR);
+      	$insert->bindParam(3, $dateajout, PDO::PARAM_STR);
+      	$insert->execute();
+  	}
 
 
 
@@ -38,7 +50,7 @@
 		{
 			for($i=0; $i < count($array); $i++)
 			{
-				$arrayOutput[$i] = "<option name='". $array[$i]["Prenom"] . " " . $array[$i]["Nom"] ."' value='". $array[$i]["Prenom"] . " " . $array[$i]["Nom"] ."' >" 
+				$arrayOutput[$i] = "<option name='". $array[$i]["NoUtilisateur"] ."' value='". $array[$i]["NoUtilisateur"] ."' >" 
 				. $array[$i]["Prenom"] . " " . $array[$i]["Nom"] . "</option>";
 			}
 		}
@@ -53,7 +65,7 @@
 		{
 			for($i=0; $i < count($array); $i++)
 			{
-				$arrayOutput[$i] = "<option name='". $array[$i]["CodeCours"] . " " . $array[$i]["NomCours"] ."' value='". $array[$i]["CodeCours"] . " " . $array[$i]["NomCours"] ."' >" 
+				$arrayOutput[$i] = "<option name='". $array[$i]["CodeCours"] ."' value='". $array[$i]["CodeCours"] ."' >" 
 				. $array[$i]["CodeCours"] . " " . $array[$i]["NomCours"] . "</option>";
 			}
 		}
