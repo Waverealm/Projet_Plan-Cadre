@@ -110,15 +110,25 @@
 
             <br>
 
-            <form action="../controller/controller_create_competence.php" method="post">
+            <form action="../controller/controller_assign_user.php" method="post">
 
                 Choisir un utilisateur :
                 
                 <br>
 
-                <input type="text" name="search_User" onKeyUp="arrayFilter(this.value, this.form.select_UserList)" onChange="arrayFilter(this.value, this.form.select_UserList)">
+                            <input class="text-box single-line" data-val="true" 
+                            data-val-length="Le champ Nom d&#39;usager doit être une chaîne dont la longueur maximale est de 20 caractères." 
+                            data-val-length-max="50" data-val-regex="Caractères illégaux." 
+                            data-val-regex-pattern="^((?!^Name$)[-a-zA-Z0-9àâäçèêëéìîïòôöùûüÿñÀÂÄÇÈÊËÉÌÎÏÒÔÖÙÛÜ_])+$" 
+                            data-val-required="Le champ Nom d&#39;usager est requis." 
+                            id="UserName" name="UserName" type="text" 
+                            value="<?php if (isset($_SESSION[ 'username' ])) echo htmlentities(trim($_SESSION[ 'username' ])); ?>" 
+                            />
 
-                <select name="select_UserList">
+
+                <input type="text" name="search_user" onKeyUp="arrayFilter(this.value, this.form.select_userList)" onChange="arrayFilter(this.value, this.form.select_userList)">
+
+                <select name="select_userList">
                     <!-- on peut enlever l'option vide dans la version finale
                          pour le moment ça aide avec les tests
                     -->
@@ -139,8 +149,8 @@
 
                 <br>
 
-                <input type="text" name="search_Course" onKeyUp="arrayFilter(this.value, this.form.select_CourseList)" onChange="arrayFilter(this.value, this.form.select_CourseList)">
-                <select name="select_CourseList">
+                <input type="text" name="search_course" onKeyUp="arrayFilter(this.value, this.form.select_course_list)" onChange="arrayFilter(this.value, this.form.select_course_list)">
+                <select name="select_course_list">
                     <option> </option>
                     <?php
                     //répétition de code ...
