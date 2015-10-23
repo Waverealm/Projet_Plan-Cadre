@@ -68,6 +68,15 @@
               <h2 style='float:left; margin-right: 25px;'>Renaud Thibodeau</h2>
           </fieldset>
 
+          <fieldset>
+              <legend>Capture d'écran :</legend>
+              </br>
+
+              <img style='float:left; margin-right: 4px;' src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+
+
+          </fieldset>
+
       </div>
 
      </body>
