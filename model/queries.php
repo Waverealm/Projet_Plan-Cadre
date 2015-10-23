@@ -12,6 +12,8 @@
      }
   }
 
+
+  // modifier pour utiliser fetchStoredProc($call_select) ?
   function getUser($bdd, $username)
   {
       $query = $bdd->prepare("CALL SELECT_USER(?)");
@@ -27,11 +29,21 @@
   }
 
 
+/*
+
+  Les fonctions createSomething sont des insertions dans la base de données
+
+*/
+
+
   function createUser($userName, $pass, $passConfirm, $email)
   {
-
+      // pour le moment ça le type d'utilisateur est limité à élaborateur
+      // une fois le code implémenté le choix sera ajouté
       $typeUser = "elaborateur";
+
       $etat = "actif";
+
       $insert = dbConnect()->prepare("CALL INSERT_USER(?,?,?,?,?,?,?)");
 
       $insert->bindParam(1, $userName, PDO::PARAM_STR);
@@ -91,14 +103,22 @@
 
       $insert->execute();
   }
+
+/*
+  -------------------------------------------------
+    fin des insertions
+  -------------------------------------------------
+*/
   
 
 /* 
+  -------------------------------------------------
    fonction : fetchStoredProc($call_select)
    Créé par : Simon Roy
-   Prend un string en paramètre, le string représente une procédure stockée 
-   dans la base de données qui serra éxécutée. La valeur de retour est un 
-   array qui contient le résultat du select
+   Prend un string en paramètre, le string représente un appel à une procédure stockée 
+   dans la base de données. La procédure doit être l'équivalent d'un select. 
+   La valeur de retour est un array qui contient le résultat du select
+  -------------------------------------------------
 */
   function fetchStoredProc($call_select)
   {
@@ -112,6 +132,8 @@
 
     return $result;
   }
+
+
   function fetchAllUser()
   {
     return fetchStoredProc("CALL SELECT_USERS_LIST ()");
@@ -123,8 +145,11 @@
 
 
 /*
-  fin des fonctions qui appellent fetchStoredProc($call_select)
+  -------------------------------------------------
+    fin des fonctions qui appellent fetchStoredProc($call_select)
+  -------------------------------------------------
 */
+
 
   /*function createUser($UserName, $MotDePasse, $PasswordConfirmation, $Email)
   {
