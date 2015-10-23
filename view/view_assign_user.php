@@ -38,9 +38,7 @@
         */
 			function arrayFilter(search, list){
 
-
-				//si on n'a pas déjà un backup de la liste
-				//en faire un maintenant
+                // si un backup de la liste n'existe pas on en fait un maintenant
 				if (!list.backUp){
 
 					list.backUp = new Array();
@@ -48,9 +46,7 @@
 					for (n=0;n<list.length;n++){
 
 						list.backUp[list.backUp.length] = new Array(list[n].value, list[n].text);
-
 					}
-
 				}
 
 				match = new Array();
@@ -67,9 +63,7 @@
 					}else{
 
 						nomatch[nomatch.length] = new Array(list.backUp[n][0], list.backUp[n][1]);
-
 					}
-
 				}
 
 
@@ -79,7 +73,6 @@
 					list[n].value = match[n][0];
 
 					list[n].text = match[n][1];
-
 				}
 
 				  // ajouter les éléments qui ne contiennent pas le filtre après ceux qui le contiennent
@@ -88,7 +81,6 @@
 					list[n+match.length].value = nomatch[n][0];
 
 					list[n+match.length].text = nomatch[n][1];
-
 				  }
 
 				//pour qu'on voit immédiatement que la liste a été modifiée et que le filtre a été utilisé
