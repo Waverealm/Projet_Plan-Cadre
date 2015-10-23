@@ -64,28 +64,25 @@
   }
 
 
-  function createUser($userName, $pass, $passConfirm, $email)
+  function createUser($bdd, $userName, $pass, $email, $lastName, $firstName, $userType)
   {
+      $state = "Actif";
+      $query = dbConnect()->prepare("CALL INSERT_USER(?,?,?,?,?,?,?)");
 
-      $typeUser = "elaborateur";
-      $etat = "actif";
-      $insert = dbConnect()->prepare("CALL INSERT_USER(?,?,?,?,?,?,?)");
-
-      $insert->bindParam(1, $userName, PDO::PARAM_STR);
-      $insert->bindParam(2, $pass, PDO::PARAM_STR);
-      $insert->bindParam(3, $nom, PDO::PARAM_STR);
-      $insert->bindParam(4, $prenom, PDO::PARAM_STR);
-      $insert->bindParam(5, $typeUser, PDO::PARAM_STR);
-      $insert->bindParam(6, $etat, PDO::PARAM_STR);
-      $insert->bindParam(7, $email, PDO::PARAM_STR);
+      $query->bindParam(1, $userName, PDO::PARAM_STR);
+      $query->bindParam(2, $pass, PDO::PARAM_STR);
+      $query->bindParam(3, $email, PDO::PARAM_STR);
+      $query->bindParam(4, $lastName, PDO::PARAM_STR);
+      $query->bindParam(5, $firstName, PDO::PARAM_STR);
+      $query->bindParam(6, $userType, PDO::PARAM_STR);
+      $query->bindParam(7, $state, PDO::PARAM_STR);
 
       $message = " Confirmation de création de compte. Merci de choisir Projet Plan-Cadre.";
 
       //mail($email,"Plan-Cadre confirmation de courriel", $message, "From: DoNotReply@PlanCadre.com");
 
-      $insert->execute();
-
-
+      $query->execute();
+      $query->CloseCursor();
   }
 
   function createCours($codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $progCours, $dateAjout)
@@ -102,6 +99,7 @@
       $insert->bindParam(8, $dateAjout, PDO::PARAM_STR);
 
       $insert->execute();
+      $insert->CloseCursor();
   }
 
   function createCompetence($codeCompetence, $nomCompetence, $descriptionCompetence, $dateAjoutCompetence)
@@ -114,6 +112,7 @@
       $insert->bindParam(4, $dateAjoutCompetence, PDO::PARAM_STR);
 
       $insert->execute();
+      $insert->CloseCursor();
   }
 
   function createProgramme($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction, $dateAjoutProgramme)
@@ -127,6 +126,7 @@
       $insert->bindParam(5, $dateAjoutProgramme, PDO::PARAM_STR);
 
       $insert->execute();
+      $insert->CloseCursor();
   }
   
 

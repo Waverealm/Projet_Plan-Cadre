@@ -87,6 +87,18 @@
             </fieldset>
         </div>
         </div>
+
+        <center>
+         <?php 
+
+            // On affiche les erreurs s'il y en a
+            if( isset($_SESSION[ 'errors_create_user' ]) )
+            {
+               echo $_SESSION[ 'errors_create_user' ];
+               unset($_SESSION[ 'errors_create_user' ]);
+            }
+         ?>
+      </center>
     </body>
 </html>
 
