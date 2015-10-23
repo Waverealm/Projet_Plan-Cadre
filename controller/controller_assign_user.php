@@ -11,32 +11,21 @@
 	include_once('../model/queries.php');
 
 	// Si on a reçu les données d'un formulaire
-	if( isset( $_POST[ 'search_user_list' ] ) && isset( $_POST[ 'search_class_list' ] ) )
+	if( isset( $_POST[ 'select_user_list' ] ) && isset( $_POST[ 'select_class_list' ] ) )
 	{
 
-		$user = $_POST["search_user_list"];
-		$course = $_POST["search_class_list"];
+		$user = $_POST["select_user_list"];
+		$course = $_POST["select_class_list"];
+		// elaboration contient 11 charatère, la BD n'en prend que 10 pour l'etat d'un plancadre
+		$etat = "elaboratio";
 
-		createPlanCadre($course, "elaborateur");
+		createPlanCadre($course, $etat);
 		
-		//assignUserPlanCadre($user, $course);
+		assignUserPlanCadre($user, $course);
 
-		header('Location: /../view/view_index.php');
+		header('Location: ../view/view_index.php');
 		exit;
 	}
-
-
-
-
-  	function createPlanCadre($codecours, $etat)
-  	{
-      	$insert = dbConnect()->prepare("CALL INSERT_PLAN_CADRE(?,?)");
-
-      	$insert->bindParam(1, $codecours, PDO::PARAM_STR);
-      	$insert->bindParam(2, $etat, PDO::PARAM_STR);
-
-      	$insert->execute();
-  	}
 
 	function getArrayUser()
 	{

@@ -128,7 +128,30 @@
       $insert->execute();
       $insert->CloseCursor();
   }
+
+  // test pour vérifier que ça fonctionne, les autres paramètres seront ajouté plus tard
+  function createPlanCadre($codecours, $etat)
+  {
+      $insert = dbConnect()->prepare("CALL INSERT_PLAN_CADRE(?,?)");
+
+      $insert->bindParam(1, $codecours, PDO::PARAM_STR);
+      $insert->bindParam(2, $etat, PDO::PARAM_STR);
+
+      $insert->execute();
+  }
   
+
+  function assignUserPlanCadre($user, $course)
+  {
+      $insert = dbConnect()->prepare("CALL INSERT_ELABORATEUR_PLAN_CADRE(?,?)");
+
+      $insert->bindParam(1, $user, PDO::PARAM_STR);
+      $insert->bindParam(2, $course, PDO::PARAM_STR);
+
+      $insert->execute();
+  }
+
+
 
 /* 
    fonction : fetchStoredProc($call_select)
