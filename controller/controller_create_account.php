@@ -44,7 +44,7 @@ if(isset($_POST['UserName']) && isset($_POST['Password']) && isset($_POST['Passw
   $userType = $_POST['UserType'];
 
   // On déclare ces variables pour les récupérer dans le formulaire d'inscription en cas d'erreurs.
-  $_SESSION['new_account_username'] = $email;
+  $_SESSION['new_account_username'] = $userName;
   $_SESSION['new_account_email'] = $email;
   $_SESSION['new_account_last_name'] = $lastName;
   $_SESSION['new_account_first_name'] = $firstName;
@@ -79,7 +79,7 @@ if (!preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$#", $email) &&
 }
   
 //Vérification du mot de passe
-if ($password != $passwordConfirmation && !strcmp($password, $passwordConfirmation))
+if ($password != $passwordConfirmation)
 {
   $error_passwordconfirm = "Votre mot de passe et votre confirmation sont diff&eacuterents.";
   $i++;
@@ -107,8 +107,7 @@ if ($i == 0)
   // 2 fonctions à faire
   //$crypted_pass = getCryptedPassword($pass);
 
-  //fonction qui permet de créer l'utilisateur
-
+  // Fonction qui permet de créer l'utilisateur
   createUser($bdd, $userName, $password, $email, $lastName, $firstName, $userType);
 
   // Si on s'est bien inscrit, alors on peut supprimer ces variables de session

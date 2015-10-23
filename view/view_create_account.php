@@ -37,7 +37,7 @@
 
                         <label class="control-label col-md-2">Nom d'usager :</label>
                         <div class="col-md-10">
-                            <input id="UserName" name="UserName" type="text" value="" class="text-box single-line" />
+                            <input id="UserName" name="UserName" type="text" value="<?php if (isset($_SESSION[ 'new_account_username' ])) echo htmlentities(trim($_SESSION[ 'new_account_username' ])); ?>" class="text-box single-line" />
                         </div>
                         </br>
 
@@ -55,26 +55,26 @@
 
                         <label class="control-label col-md-2">Adresse courriel :</label>
                         <div class="col-md-10">
-                            <input id="Email" name="Email" type="text" value="" class="text-box single-line" />
+                            <input id="Email" name="Email" type="text" value="<?php if (isset($_SESSION[ 'new_account_email' ])) echo htmlentities(trim($_SESSION[ 'new_account_email' ])); ?>" class="text-box single-line" />
                         </div>
                         </br>
 
                         <label class="control-label col-md-2">Nom :</label>
                         <div class="col-md-2">
-                            <input id="LastName" name="LastName" type="text" value="" class="text-box single-line" />
+                            <input id="LastName" name="LastName" type="text" value="<?php if (isset($_SESSION[ 'new_account_last_name' ])) echo htmlentities(trim($_SESSION[ 'new_account_last_name' ])); ?>" class="text-box single-line" />
                         </div>
                         </br>
 
                         <label class="control-label col-md-2">Prenom :</label>
                         <div class="col-md-2">
-                            <input id="FirstName" name="FirstName" type="text" value="" class="text-box single-line" />
+                            <input id="FirstName" name="FirstName" type="text" value="<?php if (isset($_SESSION[ 'new_account_first_name' ])) echo htmlentities(trim($_SESSION[ 'new_account_first_name' ])); ?>" class="text-box single-line" />
                         </div>
                         </br>
 
                         <label class="control-label col-md-2">Type d'utilisateur :</label>
                         <div class="col-md-2">
                             <select name="UserType" >
-                              <option>Elaborateur</option>
+                              <option value="Elaborateur">Elaborateur</option>
                            </select>
                         </div>
                         </br>
