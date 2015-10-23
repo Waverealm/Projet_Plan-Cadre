@@ -29,7 +29,8 @@ $email = NULL;
 
 //isset($var) vérifie que la variable a été créé et qu'elle n'est pas nulle
 
-if(isset($_POST['UserName']) && isset($_POST['Password']) && isset($_POST['PasswordConfirmation']) && isset($_POST['Email']) && ($_POST['LastName']) && isset($_POST['FirstName']) && isset($_POST['UserType']))
+if(isset($_POST['UserName']) && isset($_POST['Password']) && isset($_POST['PasswordConfirmation']) && isset($_POST['Email']) && ($_POST['LastName']) 
+  && isset($_POST['FirstName']) && isset($_POST['UserType']))
 {
   $userName = $_POST['UserName'];
   $password = $_POST['Password'];
@@ -48,10 +49,24 @@ if(isset($_POST['UserName']) && isset($_POST['Password']) && isset($_POST['Passw
    
 $bdd = dbConnect();
 
-// FONCTIONS À CODER - Léa JE SUIS RENDUE ICI !!!
-// Cette fonction retourne si l'adresse email est disponible ou non
-$email_free = countUsersSpecificEmail($bdd, $email);
+// Ces fonctions retournent la disponibilité de l'email du nom d'utilisateur
 $username_free = countUsersSpecificUsername($bdd, $userName);
+$email_free = countUsersSpecificEmail($bdd, $email);
+
+// Vérification de la disponibilité du nom d'utilisateur
+if(!$username_free)
+{
+  $error_emailfree = "Ce nom d'utilisateur est d&eacutej&agrave utilisé par un autre utilisateur.";
+  $i++;
+}
+
+// Vérification de la disponibilité de l'adresse email
+if(!$email_free)
+{
+  $error_emailfree = "Cette adresse courriel est d&eacutej&agrave utilisée par un autre utilisateur.";
+  $i++;
+}
+
 
 // Vérification du format de l'adresse email
 if (!preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$#", $email) && !empty($email))

@@ -27,6 +27,43 @@
   }
 
 
+  // Compte le nombre d'utilisateurs avec le nom d'utilisateur envoyé. Le résultait devrait toujours être 0 ou 1
+  // 0 pour nom d'utilisateur disponible
+  // 1 pour nom d'utilisateur déjà utilisé
+  function countUsersSpecificUsername ($bdd, $username)
+  {
+
+      $query = $bdd->prepare("CALL COUNT_USER_SPECIFIC_USERNAME(?)");
+
+      $query->bindParam(1, $username, PDO::PARAM_STR);
+
+      $query->execute();
+      $username_free = ($query->fetchColumn()==0)?1:0;
+
+      $query->closeCursor();
+
+      return $username_free;
+  }
+
+  // Compte le nombre d'utilisateurs avec l'adresse courriel envoyée. Le résultait devrait toujours être 0 ou 1
+  // 0 pour adresse email disponible
+  // 1 pour adresse email déjà utilisée
+  function countUsersSpecificEmail ($bdd, $email)
+  {
+
+      $query = $bdd->prepare("CALL COUNT_USER_SPECIFIC_EMAIL(?)");
+
+      $query->bindParam(1, $email, PDO::PARAM_STR);
+
+      $query->execute();
+      $email_free = ($query->fetchColumn()==0)?1:0;
+
+      $query->closeCursor();
+
+      return $email_free;
+  }
+
+
   function createUser($userName, $pass, $passConfirm, $email)
   {
 
