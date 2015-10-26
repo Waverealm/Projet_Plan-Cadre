@@ -92,4 +92,27 @@
     }
 
 
+
+
+/*
+    buildHTML_OptionSelect($name, $value, $content)
+    Cette fonction retourne une chaine de charactère qui devrait servir 
+    a représenter un tag html <option>. 
+    Par exemple,
+    <select name="select_list" id="select_list">
+    <?php
+    buildHTML_OptionSelect("nom", "valeur", "contenu");
+    ?>
+    </select>
+*/
+    function buildHTML_OptionSelect($name, $value, $content)
+    {
+        return "<option "
+        ."name='".$name."'" 
+        ." value='".$value."'"
+        ." >"
+        .$content
+        ."</option>";
+    }
+
 ?>

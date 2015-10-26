@@ -9,6 +9,7 @@
    	//session_start();
 
 	include_once('../model/queries.php');
+	include_once('../controller/interface_functions.php');
 
 	// Si on a reçu les données d'un formulaire
 	if( isset( $_POST[ 'select_user_list' ] ) && isset( $_POST[ 'select_class_list' ] ) )
@@ -35,10 +36,11 @@
 		{
 			for($i=0; $i < count($array); $i++)
 			{
-				$arrayOutput[$i] = "<option name='". $array[$i]["NoUtilisateur"] 
-				. "' value='" . $array[$i]["NoUtilisateur"] ."' >" 
-				. $array[$i]["Prenom"] . " " . $array[$i]["Nom"] 
-				. "</option>";
+				// le nom et la valeur sont la clé primaire de l'utilisateur
+				// le contenu / texte est le nom de l'utilisateur (prénom + nom)
+				$arrayOutput[$i] = buildHTML_OptionSelect($array[$i]["NoUtilisateur"],
+					$array[$i]["NoUtilisateur"],
+					$array[$i]["Prenom"] . " " . $array[$i]["Nom"]);
 			}
 		}
 
@@ -52,18 +54,14 @@
 		{
 			for($i=0; $i < count($array); $i++)
 			{
-				$arrayOutput[$i] = "<option name='" . $array[$i]["CodeCours"] 
-				."' value='" . $array[$i]["CodeCours"] . "' >" 
-				. $array[$i]["CodeCours"] . " " . $array[$i]["NomCours"] 
-				. "</option>";
+				// le nom de l'option et sa valeur sont le code du cours
+				// le contenu / texte est le code du cours avec le nom du cours
+				$arrayOutput[$i] = buildHTML_OptionSelect($array[$i]["CodeCours"],
+					 $array[$i]["CodeCours"],
+					 $array[$i]["CodeCours"] . " " . $array[$i]["NomCours"]); 
 			}
 		}
 		return $arrayOutput;
 	}
 
-
-
-
-
-	
 ?>

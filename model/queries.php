@@ -158,8 +158,6 @@
       $insert->bindParam(1, $id, PDO::PARAM_STR);
       $insert->bindParam(2, $user, PDO::PARAM_STR);
 
-      echo $user . " " . $id;
-
       $insert->execute();
       $insert->CloseCursor();
   }
