@@ -82,4 +82,5 @@
      </body>
 </html>
 
+<?php showCreateAccountSuccess(); ?>
 <?php showConnectionAlert(); ?>

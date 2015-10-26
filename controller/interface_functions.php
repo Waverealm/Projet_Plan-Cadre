@@ -91,6 +91,18 @@
         }
     }
 
+    function showCreateAccountSuccess()
+    {
+        if (isset($_SESSION[ 'new_account_success' ]))
+        {
+            ?>
+            <script>alert("<?php echo 'Le compte a bien été créé'; ?>");</script>
+            <?php
+
+            unset($_SESSION[ 'new_account_success']);
+        }
+    }
+
 
 
 

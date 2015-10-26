@@ -20,6 +20,7 @@
            <link rel="Stylesheet" href="../assets/pure.css">
            <link rel="Stylesheet" href="../assets/styles.css">
            <link rel="Stylesheet" href="../assets/others.css">
+           <script src="../assets/js_global.js" ></script>
         </head>
 <div class="container">
             <?php
@@ -61,13 +62,13 @@
 
                         <label class="control-label col-md-2">Nom :</label>
                         <div class="col-md-2">
-                            <input id="LastName" name="LastName" type="text" value="<?php if (isset($_SESSION[ 'new_account_last_name' ])) echo htmlentities(trim($_SESSION[ 'new_account_last_name' ])); ?>" class="text-box single-line" />
+                            <input id="LastName" name="LastName" type="text" value="<?php if (isset($_SESSION[ 'new_account_last_name' ])) echo htmlentities(trim($_SESSION[ 'new_account_last_name' ])); ?>" class="text-box single-line" onkeypress="return alphaOnly(event);" />
                         </div>
                         </br>
 
                         <label class="control-label col-md-2">Prenom :</label>
                         <div class="col-md-2">
-                            <input id="FirstName" name="FirstName" type="text" value="<?php if (isset($_SESSION[ 'new_account_first_name' ])) echo htmlentities(trim($_SESSION[ 'new_account_first_name' ])); ?>" class="text-box single-line" />
+                            <input id="FirstName" name="FirstName" type="text" value="<?php if (isset($_SESSION[ 'new_account_first_name' ])) echo htmlentities(trim($_SESSION[ 'new_account_first_name' ])); ?>" class="text-box single-line" onkeypress="return alphaOnly(event);" />
                         </div>
                         </br>
 

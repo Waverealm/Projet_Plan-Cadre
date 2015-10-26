@@ -19,7 +19,8 @@ $error_usernamefree = NULL;
 $error_emailfree = NULL;
 $error_emailformat = NULL;
 $error_passwordconfirm = NULL;
-$error_passwordtooshort = NULL;
+$error_passwordwrongsize = NULL;
+// $error_usernamewrongsize = NULL;
 $error_fieldsempty = NULL;
 // $crypted_pass = NULL;
 
@@ -87,9 +88,18 @@ if ($password != $passwordConfirmation)
 
 if (strlen($password) < 6 && !empty($password))
 {
-  $error_passwordtooshort = "Votre mot de passe est trop court, il doit contenir au minimum six caractères.";
+  $error_passwordwrongsize = "Votre mot de passe doit contenir au minimum six caractères"; //"Votre mot de passe doit contenir entre six et vingt caractères.";
   $i++;
 }
+
+
+// NE MARCHE PAS, À CORRIGER
+/*
+if ((strlen($userName) < 8 ||  strlen($userName > 20)) && !empty($userName))
+{
+  $error_usernamewrongsize = "Votre nom d'utilisateur doit contenir entre huit et vingt caractères.";
+  $i++;
+}*/
 
 // On vérifie si des champs sont vides
 if (empty($userName) || empty($password) || empty($passwordConfirmation) || empty($email) || empty($lastName) || empty($firstName))
@@ -116,7 +126,7 @@ if ($i == 0)
   unset($_SESSION['new_account_last_name']);
   unset($_SESSION['new_account_first_name']);
 
-  $_SESSION[ "created_account_success" ] = true;
+  $_SESSION[ "new_account_success" ] = true;
 
   header('Location: ../view/view_Login.php');
 }
@@ -128,10 +138,10 @@ else
 
 function setErrors()
 {
-  global $error_usernamefree, $error_emailfree, $error_emailformat, $error_passwordconfirm, $error_fieldsempty, $error_passwordtooshort;
+  global $error_usernamefree, $error_emailfree, $error_emailformat, $error_passwordconfirm, $error_fieldsempty, $error_passwordwrongsize, $error_usernamewrongsize;
     $_SESSION[ 'errors_create_user' ] = '<h4>Une ou plusieurs erreurs se sont produites : </h4><p>'.$error_usernamefree.'</p><p>'.$error_emailfree.'</p>
     <p>'.$error_emailformat.'</p><p>'.$error_passwordconfirm.'</p><p>'.$error_fieldsempty.'</p>'
-    .'<p>'.$error_passwordtooshort.'</p>';
+    .'<p>'.$error_passwordwrongsize.'</p>'; //.'<p>'.$error_usernamewrongsize.'</p>';
 }
 
 ?>
