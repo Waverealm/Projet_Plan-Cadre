@@ -15,13 +15,13 @@
 	{
 
 		$user = $_POST["select_user_list"];
-		$course = $_POST["select_class_list"];
+		$codecours = $_POST["select_class_list"];
 		// elaboration contient 11 charatère, la BD n'en prend que 10 pour l'etat d'un plancadre
 		$etat = "elaboratio";
 
-		createPlanCadre($course, $etat);
+		$id = createPlanCadre($codecours, $etat);
 		
-		assignUserPlanCadre($user, $course);
+		assignUserPlanCadre($id, $user);
 
 		header('Location: ../view/view_index.php');
 		exit;
@@ -35,8 +35,10 @@
 		{
 			for($i=0; $i < count($array); $i++)
 			{
-				$arrayOutput[$i] = "<option name='". $array[$i]["NoUtilisateur"] ."' value='". $array[$i]["NoUtilisateur"] ."' >" 
-				. $array[$i]["Prenom"] . " " . $array[$i]["Nom"] . "</option>";
+				$arrayOutput[$i] = "<option name='". $array[$i]["NoUtilisateur"] 
+				. "' value='" . $array[$i]["NoUtilisateur"] ."' >" 
+				. $array[$i]["Prenom"] . " " . $array[$i]["Nom"] 
+				. "</option>";
 			}
 		}
 
@@ -50,8 +52,10 @@
 		{
 			for($i=0; $i < count($array); $i++)
 			{
-				$arrayOutput[$i] = "<option name='". $array[$i]["CodeCours"] ."' value='". $array[$i]["CodeCours"] ."' >" 
-				. $array[$i]["CodeCours"] . " " . $array[$i]["NomCours"] . "</option>";
+				$arrayOutput[$i] = "<option name='" . $array[$i]["CodeCours"] 
+				."' value='" . $array[$i]["CodeCours"] . "' >" 
+				. $array[$i]["CodeCours"] . " " . $array[$i]["NomCours"] 
+				. "</option>";
 			}
 		}
 		return $arrayOutput;

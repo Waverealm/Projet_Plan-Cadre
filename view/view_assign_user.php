@@ -111,14 +111,9 @@
                 <input type="text" name="search_user" 
                 onKeyUp="arrayFilter(this.value, this.form.select_user_list)" 
                 onChange="arrayFilter(this.value, this.form.select_user_list)"
-                data-val="true"
-                data-val-regex="Caractères illégaux." 
-                data-val-regex-pattern="^((?!^Name$)[-a-zA-Z0-9àâäçèêëéìîïòôöùûüÿñÀÂÄÇÈÊËÉÌÎÏÒÔÖÙÛÜ_])+$"
                 >
 
-                <select name="select_user_list" id="select_user_list"
-
-                >
+                <select name="select_user_list" id="select_user_list">
                     <!-- on peut enlever l'option vide dans la version finale
                          pour le moment ça aide avec les tests
                     -->
@@ -142,13 +137,9 @@
                 <input type="text" name="search_class" 
                 onKeyUp="arrayFilter(this.value, this.form.select_class_list)" 
                 onChange="arrayFilter(this.value, this.form.select_class_list)"
-                data-val="true"
-                data-val-regex="Caractères illégaux." 
-                data-val-regex-pattern="^((?!^Name$)[-a-zA-Z0-9àâäçèêëéìîïòôöùûüÿñÀÂÄÇÈÊËÉÌÎÏÒÔÖÙÛÜ_])+$"
                 >
 
-
-                <select name="select_class_list">
+                <select name="select_class_list" id ="select_class_list">
                     <option> </option>
                     <?php
                     //répétition de code ...

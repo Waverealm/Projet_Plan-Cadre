@@ -129,26 +129,39 @@
       $insert->CloseCursor();
   }
 
-  // test pour vérifier que ça fonctionne, les autres paramètres seront ajouté plus tard
   function createPlanCadre($codecours, $etat)
   {
-      $insert = dbConnect()->prepare("CALL INSERT_PLAN_CADRE(?,?)");
+      $connection = dbConnect();
+      $insert = $connection->prepare("CALL INSERT_PLAN_CADRE_TEST(?,?)");
 
       $insert->bindParam(1, $codecours, PDO::PARAM_STR);
       $insert->bindParam(2, $etat, PDO::PARAM_STR);
 
       $insert->execute();
+
+      // faire une procédure/fonction stocké pour ça 
+      $select = $connection->query("SELECT LAST_INSERT_ID()");
+      $id = $select->fetch(PDO::FETCH_NUM);
+      $id = $id[0];
+      //
+
+      $insert->CloseCursor();
+
+      return $id;
   }
   
 
-  function assignUserPlanCadre($user, $course)
+  function assignUserPlanCadre($id, $user)
   {
       $insert = dbConnect()->prepare("CALL INSERT_ELABORATEUR_PLAN_CADRE(?,?)");
 
-      $insert->bindParam(1, $user, PDO::PARAM_STR);
-      $insert->bindParam(2, $course, PDO::PARAM_STR);
+      $insert->bindParam(1, $id, PDO::PARAM_STR);
+      $insert->bindParam(2, $user, PDO::PARAM_STR);
+
+      echo $user . " " . $id;
 
       $insert->execute();
+      $insert->CloseCursor();
   }
 
 
@@ -178,7 +191,7 @@
   }
   function fetchAllClass()
   {
-    return fetchStoredProc("CALL SELECT_CLASS_LIST ()");
+    return fetchStoredProc("CALL SELECT_ALL_CLASS ()");
   }
 
 
