@@ -194,10 +194,24 @@
     return fetchStoredProc("CALL SELECT_ALL_CLASS ()");
   }
 
-
 /*
   fin des fonctions qui appellent fetchStoredProc($call_select)
 */
+
+function fetchPlanCadreElaboration($where_id)
+{
+  $bdd = dbConnect();
+  $query = $bdd->prepare("CALL SELECT_ELABORATION_PLAN_CADRE(?)");
+
+  $insert->bindParam(1, $where_id, PDO::PARAM_STR);
+
+  $query->execute();
+  $result = $query->fetchAll();
+  $query->closeCursor();
+
+  return $result;
+}
+
 
   /*function createUser($UserName, $MotDePasse, $PasswordConfirmation, $Email)
   {

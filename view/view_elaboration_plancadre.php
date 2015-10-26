@@ -47,12 +47,9 @@
                 >
 
                 <select name="select_user_list" id="select_user_list">
-                    <!-- on peut enlever l'option vide dans la version finale
-                         pour le moment ça aide avec les tests
-                    -->
                     <option> </option>
                     <?php
-                        $array = getArrayUser();
+                        $array = getArrayPlanCadre();
                         for ($i = 0; $i < count($array); $i++)
                         {
                             echo $array[$i];
@@ -75,8 +72,7 @@
                 <select name="select_class_list" id ="select_class_list">
                     <option> </option>
                     <?php
-                    //répétition de code ...
-                        $array = getArrayClass();
+                        $array = getArrayPlanCadre();
                         for ($i = 0; $i < count($array); $i++)
                         {
                             echo $array[$i];
