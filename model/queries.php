@@ -201,9 +201,10 @@
 function fetchPlanCadreElaboration($where_id)
 {
   $bdd = dbConnect();
-  $query = $bdd->prepare("CALL SELECT_ELABORATION_PLAN_CADRE(?)");
+  //$query = $bdd->prepare("CALL SELECT_ELABORATION_PLAN_CADRE(?)");
+  $query = $bdd->prepare("CALL SELECT_ELABORATION_PLAN_CADRE()");
 
-  $insert->bindParam(1, $where_id, PDO::PARAM_STR);
+  //$insert->bindParam(1, $where_id, PDO::PARAM_STR);
 
   $query->execute();
   $result = $query->fetchAll();

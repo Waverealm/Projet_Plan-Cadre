@@ -61,6 +61,10 @@
 			$connected = true;
 			$_SESSION['first_name'] = $reponse[0]['Prenom'];
 			$_SESSION['last_name'] = $reponse[0]['Nom'];
+
+			//nécessaire pour montrer à l'usager ses données personnelle et autre.
+			$_SESSION['no_user'] = $reponse[0]['NoUtilisateur'];
+
 			// $_SESSION['user_type'] = $reponse[0]['TypeUtilisateur'];
 		} else {
 			$connected = false;

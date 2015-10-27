@@ -14,39 +14,61 @@
 
 	// mettre dans session le code du cours et prendre le bon id/version du plancadre
 
+	if( isset($_SESSION['no_user']))
+	{
+
+		//prendre la valeur du select dans le $_POST
+
+		//faire un select plancadre where id
+
+		//envoyer les données à view_create_plancadre.php
 
 
 
-	//header('Location: ../view/view_create_plancadre.php');
+		//ajouter une colonne pour chaque section dans la table plancadre
+
+		// le nom des fichiers textes serra :
+		// clé primaire du plancadre + code ou le nom du cours + le nom de la section
+		// exemple : 2_420-EDA-05_PresentationCours.txt
+
+		// créer un dossier spécifique pour ça ?
+		// créer un deuximème dossier pour la version finale ?
+		
+		// une fois accepté le plancadre n'est plus modifiable
+		// donc le path des sections est placé sur le pdf finalisé.
+
+		//dans view_create_plancadre.php placer le texte des fichiers textes dans
+		//la bonne section du plancadre
+
+
+		//header('Location: ../view/view_create_plancadre.php');
+	}
+	else
+	{
+		//header('Location: ../view/view_index.php');
+	}
 
 
 	function getArrayPlanCadre()
 	{
-		$user = $_POST[ 'UserName' ];
+		$id_user = $_SESSION['no_user'];
 
-		$array = fetchPlanCadreElaboration($user);
+		$array = fetchPlanCadreElaboration($id_user);
 		$arrayOutput;
 		if(count($array) > 0)
 		{
 			for($i=0; $i < count($array); $i++)
 			{
-				// le nom et la valeur sont la clé primaire de l'utilisateur
-				// le contenu / texte est le nom de l'utilisateur (prénom + nom)
-				$arrayOutput[$i] = buildHTML_OptionSelect($array[$i]["NoUtilisateur"],
-					$array[$i]["NoUtilisateur"],
-					$array[$i]["Prenom"] . " " . $array[$i]["Nom"]);
+				// le nom et la valeur sont la clé primaire du plancadre
+				// le contenu / texte est le code du cours avec le nom du cours
+				$arrayOutput[$i] = buildHTML_OptionSelect($array[$i]["PlanCadre_VersionPlan"],
+					$array[$i]["PlanCadre_VersionPlan"],
+					$array[$i]["CodeCours"] . " " . $array[$i]["NomCours"]);
 			}
 		}
 
 		return $arrayOutput;
 	}
-
-
-
-
-
-
-
 
 
 

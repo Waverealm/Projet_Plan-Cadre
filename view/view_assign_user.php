@@ -41,11 +41,6 @@
                 
                 <br>
 
-                <input type="text" name="search_user" 
-                onKeyUp="arrayFilter(this.value, this.form.select_user_list)" 
-                onChange="arrayFilter(this.value, this.form.select_user_list)"
-                >
-
                 <select name="select_user_list" id="select_user_list">
                     <!-- on peut enlever l'option vide dans la version finale
                          pour le moment ça aide avec les tests
@@ -60,17 +55,17 @@
                     ?>
                 </select>
 
+                <input type="text" name="search_user" 
+                onKeyUp="arrayFilter(this.value, this.form.select_user_list)" 
+                onChange="arrayFilter(this.value, this.form.select_user_list)"
+                >
+
                 <br>
                 <br>
 
                 Choisir un cours :
 
                 <br>
-
-                <input type="text" name="search_class" 
-                onKeyUp="arrayFilter(this.value, this.form.select_class_list)" 
-                onChange="arrayFilter(this.value, this.form.select_class_list)"
-                >
 
                 <select name="select_class_list" id ="select_class_list">
                     <option> </option>
@@ -83,6 +78,11 @@
                         }
                     ?>
                 </select>
+                
+                <input type="text" name="search_class" 
+                onKeyUp="arrayFilter(this.value, this.form.select_class_list)" 
+                onChange="arrayFilter(this.value, this.form.select_class_list)"
+                >
 
                 <br>
                 <br>

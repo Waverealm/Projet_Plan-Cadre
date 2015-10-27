@@ -37,37 +37,9 @@
 
             <form action="../controller/controller_elaboration_plancadre.php" method="post">
 
-                Choisir un utilisateur :
-                
-                <br>
-
-                <input type="text" name="search_user" 
-                onKeyUp="arrayFilter(this.value, this.form.select_user_list)" 
-                onChange="arrayFilter(this.value, this.form.select_user_list)"
-                >
-
-                <select name="select_user_list" id="select_user_list">
-                    <option> </option>
-                    <?php
-                        $array = getArrayPlanCadre();
-                        for ($i = 0; $i < count($array); $i++)
-                        {
-                            echo $array[$i];
-                        }
-                    ?>
-                </select>
+                Choisir le plan-cadre que vous voulez modifier :
 
                 <br>
-                <br>
-
-                Choisir un cours :
-
-                <br>
-
-                <input type="text" name="search_class" 
-                onKeyUp="arrayFilter(this.value, this.form.select_class_list)" 
-                onChange="arrayFilter(this.value, this.form.select_class_list)"
-                >
 
                 <select name="select_class_list" id ="select_class_list">
                     <option> </option>
@@ -80,15 +52,19 @@
                     ?>
                 </select>
 
+                <input type="text" name="search_class" 
+                onKeyUp="arrayFilter(this.value, this.form.select_class_list)" 
+                onChange="arrayFilter(this.value, this.form.select_class_list)"
+                >
+
                 <br>
                 <br>
 
                 <div class="col-md-offset-2 col-md-2">
-                        <input type="submit" value="Assigner le plan-cadre" class="btn btn-default" /> 
+                        <input type="submit" value="Modifier ce plan-cadre" class="btn btn-default" /> 
                         
                         <br>
                         <br>
-
                 </div>
 
             </form>
