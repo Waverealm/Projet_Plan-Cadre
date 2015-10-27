@@ -198,13 +198,28 @@
   fin des fonctions qui appellent fetchStoredProc($call_select)
 */
 
-function fetchPlanCadreElaboration($where_id)
+function fetchPlanCadreElaboration_User($id_user)
 {
   $bdd = dbConnect();
-  //$query = $bdd->prepare("CALL SELECT_ELABORATION_PLAN_CADRE(?)");
-  $query = $bdd->prepare("CALL SELECT_ELABORATION_PLAN_CADRE()");
+  $query = $bdd->prepare("CALL SELECT_ELABORATION_PLAN_CADRE(?)");
+  //$query = $bdd->prepare("CALL SELECT_ELABORATION_PLAN_CADRE()");
 
-  //$insert->bindParam(1, $where_id, PDO::PARAM_STR);
+  $query->bindParam(1, $id_user, PDO::PARAM_STR);
+
+  $query->execute();
+  $result = $query->fetchAll();
+  $query->closeCursor();
+
+  return $result;
+}
+
+function fetchPlanCadreElaboration_PlanCadre($id_plancadre)
+{
+  $bdd = dbConnect();
+  $query = $bdd->prepare("CALL SELECT_ELABORATION_PLAN_CADRE(?)");
+  //$query = $bdd->prepare("CALL SELECT_ELABORATION_PLAN_CADRE()");
+
+  $query->bindParam(1, $id_plancadre, PDO::PARAM_STR);
 
   $query->execute();
   $result = $query->fetchAll();

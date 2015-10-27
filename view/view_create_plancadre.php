@@ -9,6 +9,7 @@ session_start();
 
 include_once("../controller/interface_functions.php");
 include_once("../controller/pages_access.php");
+include_once("../controller/controller_create_plancadre.php");
 
 verifyAccessPages();
 ?>
@@ -27,6 +28,12 @@ verifyAccessPages();
     <?php
     showHeader();
     showAppropriateMenu();
+
+    if( isset($_SESSION['id_plancadre']) )
+    {
+        $plancadre = getPlanCadre($_SESSION['id_plancadre']);
+    }
+    //placer le texte des fichiers textes dans la bonne section du plancadre
     ?>
 
     </br>

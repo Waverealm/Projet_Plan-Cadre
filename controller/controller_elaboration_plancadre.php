@@ -5,7 +5,10 @@
    Gestion de la vue view_elaboration_plancadre.php
 */
 
-   //session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 
 	include_once('../model/queries.php');
 	include_once('../controller/interface_functions.php');
@@ -14,14 +17,14 @@
 
 	// mettre dans session le code du cours et prendre le bon id/version du plancadre
 
-	if( isset($_SESSION['no_user']) && isset( $_POST[ 'html_select_plancadre' ] ))
+	if( isset( $_POST['html_select_plancadre'] ) )
 	{
 
 		//prendre la valeur du select dans le $_POST
-
 		//envoyer les données à view_create_plancadre.php
-
-		//faire un select plancadre where id
+		$id = $_POST['html_select_plancadre'];
+		//echo $id;
+		$_SESSION['id_plancadre'] = $id;
 
 		//ajouter une colonne pour chaque section dans la table plancadre
 
@@ -35,18 +38,14 @@
 		// une fois accepté le plancadre n'est plus modifiable
 		// donc le path des sections est placé sur le pdf finalisé.
 
-		//dans view_create_plancadre.php placer le texte des fichiers textes dans
-		//la bonne section du plancadre
-
 		header('Location: ../view/view_create_plancadre.php');
 	}
 
 
 	function getArrayPlanCadre()
 	{
-		$id_user = $_SESSION['no_user'];
-
-		$array = fetchPlanCadreElaboration($id_user);
+		$id = $_SESSION['no_user'];
+		$array = fetchPlanCadreElaboration_User($id);
 		$arrayOutput;
 		if(count($array) > 0)
 		{

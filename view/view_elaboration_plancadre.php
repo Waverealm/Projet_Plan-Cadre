@@ -44,11 +44,7 @@
                 <select name="html_select_plancadre" id ="html_select_plancadre">
                     <option> </option>
                     <?php
-                        $array = getArrayPlanCadre();
-                        for ($i = 0; $i < count($array); $i++)
-                        {
-                            echo $array[$i];
-                        }
+                        echoArray(getArrayPlanCadre());
                     ?>
                 </select>
 
