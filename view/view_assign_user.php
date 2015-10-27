@@ -41,7 +41,7 @@
                 
                 <br>
 
-                <select name="select_user_list" id="select_user_list">
+                <select name="html_select_user" id="html_select_plancadre">
                     <!-- on peut enlever l'option vide dans la version finale
                          pour le moment ça aide avec les tests
                     -->
@@ -56,8 +56,8 @@
                 </select>
 
                 <input type="text" name="search_user" 
-                onKeyUp="arrayFilter(this.value, this.form.select_user_list)" 
-                onChange="arrayFilter(this.value, this.form.select_user_list)"
+                onKeyUp="arrayFilter(this.value, this.form.html_select_user)" 
+                onChange="arrayFilter(this.value, this.form.html_select_user)"
                 >
 
                 <br>
@@ -67,7 +67,7 @@
 
                 <br>
 
-                <select name="select_class_list" id ="select_class_list">
+                <select name="html_select_class" id ="html_select_class">
                     <option> </option>
                     <?php
                     //répétition de code ...
@@ -80,8 +80,8 @@
                 </select>
                 
                 <input type="text" name="search_class" 
-                onKeyUp="arrayFilter(this.value, this.form.select_class_list)" 
-                onChange="arrayFilter(this.value, this.form.select_class_list)"
+                onKeyUp="arrayFilter(this.value, this.form.html_select_class)" 
+                onChange="arrayFilter(this.value, this.form.html_select_class)"
                 >
 
                 <br>

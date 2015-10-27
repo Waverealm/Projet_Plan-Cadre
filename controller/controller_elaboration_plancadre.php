@@ -14,16 +14,14 @@
 
 	// mettre dans session le code du cours et prendre le bon id/version du plancadre
 
-	if( isset($_SESSION['no_user']))
+	if( isset($_SESSION['no_user']) && isset( $_POST[ 'html_select_plancadre' ] ))
 	{
 
 		//prendre la valeur du select dans le $_POST
 
-		//faire un select plancadre where id
-
 		//envoyer les données à view_create_plancadre.php
 
-
+		//faire un select plancadre where id
 
 		//ajouter une colonne pour chaque section dans la table plancadre
 
@@ -40,12 +38,7 @@
 		//dans view_create_plancadre.php placer le texte des fichiers textes dans
 		//la bonne section du plancadre
 
-
-		//header('Location: ../view/view_create_plancadre.php');
-	}
-	else
-	{
-		//header('Location: ../view/view_index.php');
+		header('Location: ../view/view_create_plancadre.php');
 	}
 
 

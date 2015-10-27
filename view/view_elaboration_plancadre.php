@@ -41,7 +41,7 @@
 
                 <br>
 
-                <select name="select_class_list" id ="select_class_list">
+                <select name="html_select_plancadre" id ="html_select_plancadre">
                     <option> </option>
                     <?php
                         $array = getArrayPlanCadre();
@@ -53,8 +53,8 @@
                 </select>
 
                 <input type="text" name="search_class" 
-                onKeyUp="arrayFilter(this.value, this.form.select_class_list)" 
-                onChange="arrayFilter(this.value, this.form.select_class_list)"
+                onKeyUp="arrayFilter(this.value, this.form.html_select_plancadre)" 
+                onChange="arrayFilter(this.value, this.form.html_select_plancadre)"
                 >
 
                 <br>

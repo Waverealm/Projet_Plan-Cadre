@@ -132,7 +132,7 @@
   function createPlanCadre($codecours, $etat)
   {
       $connection = dbConnect();
-      $insert = $connection->prepare("CALL INSERT_PLAN_CADRE_TEST(?,?)");
+      $insert = $connection->prepare("CALL INSERT_PLAN_CADRE(?,?)");
 
       $insert->bindParam(1, $codecours, PDO::PARAM_STR);
       $insert->bindParam(2, $etat, PDO::PARAM_STR);
@@ -187,11 +187,11 @@
   }
   function fetchAllUser()
   {
-    return fetchStoredProc("CALL SELECT_USERS_LIST ()");
+    return fetchStoredProc("CALL SELECT_ALL_USERS ()");
   }
   function fetchAllClass()
   {
-    return fetchStoredProc("CALL SELECT_ALL_CLASS ()");
+    return fetchStoredProc("CALL SELECT_ALL_CLASSES ()");
   }
 
 /*
