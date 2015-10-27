@@ -127,4 +127,20 @@
         ."</option>";
     }
 
+
+    /*
+    echoArray($array)
+    Cette fonction utilise echo sur le contenu de chaque index de l'array.
+    Suggestion : appelé cette fonction pour afficher à l'utilisateur le contenu 
+    d'un array
+*/
+    function echoArray($array)
+    {
+        for ($i = 0; $i < count($array); $i++)
+        {
+            echo $array[$i];
+        }
+    }
+
+
 ?>

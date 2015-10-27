@@ -42,16 +42,9 @@
                 <br>
 
                 <select name="html_select_user" id="html_select_plancadre">
-                    <!-- on peut enlever l'option vide dans la version finale
-                         pour le moment ça aide avec les tests
-                    -->
                     <option> </option>
                     <?php
-                        $array = getArrayUser();
-                        for ($i = 0; $i < count($array); $i++)
-                        {
-                            echo $array[$i];
-                        }
+                        echoArray(getArrayUser());
                     ?>
                 </select>
 
@@ -70,12 +63,7 @@
                 <select name="html_select_class" id ="html_select_class">
                     <option> </option>
                     <?php
-                    //répétition de code ...
-                        $array = getArrayClass();
-                        for ($i = 0; $i < count($array); $i++)
-                        {
-                            echo $array[$i];
-                        }
+                        echoArray(getArrayClass());
                     ?>
                 </select>
                 
