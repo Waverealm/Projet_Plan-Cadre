@@ -25,7 +25,7 @@
       <br>
 
           <fieldset>
-              <legend>Accueil :</legend>
+              <legend>Description :</legend>
               </br>
 
               <form>
@@ -53,6 +53,11 @@
                   <td class='developers'><h3>Antoine Latendresse</h3></td>
                   <td class='developers'><h3>Simon Roy</h3></td>
                   <td class='developers'><h3>Léa Kelly</h3></td>
+                </tr>
+                <tr>
+                  <td class='developers'><a href="mailto:antoinelatendresse@gmail.com">antoinelatendresse@gmail.com</a></td>
+                  <td class='developers'><a href="mailto:simon.roy.26@hotmail.com">simon.roy.26@gmail.com</a></td>
+                  <td class='developers'><a href="mailto:kelly.lea56@gmail.com">kelly.lea56@gmail.com</a></td>
                 </tr>
               </table>
 
