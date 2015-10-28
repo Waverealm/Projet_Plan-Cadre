@@ -16,7 +16,7 @@
 	{
 
 		$user = $_POST["html_select_user"];
-		$codecours = $_POST["html_select_classfg"];
+		$codecours = $_POST["html_select_class"];
 		// elaboration contient 11 charatère, la BD n'en prend que 10 pour l'etat d'un plancadre
 		$etat = "elaboratio";
 

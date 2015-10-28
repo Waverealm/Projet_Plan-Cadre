@@ -5,7 +5,7 @@
     {
         ?>
 
-            <div class="header"> 
+            <div class="header">
                 <h1 class="header-heading">PLAN CADRE</h1>
             </div>
 

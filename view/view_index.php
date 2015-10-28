@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 
-    <body>
+    <body >
       <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
@@ -17,7 +17,7 @@
          
       </head>
       
-      <div class="container">
+      <div class="container"  style="background-color: ghostwhite">
             <?php
                 showHeader();
                 showAppropriateMenu();
@@ -45,8 +45,8 @@
 
               <table>
                 <tr>
-                  <td><img class='developers' src="pic_mountain.jpg"></td>
-                  <td><img class='developers' src="pic_mountain.jpg"></td>
+                  <td><img class='developers' src="../images/photo_Antoine.JPG"></td>
+                  <td><img class='developers' src="../images/photo_Simon.JPG"></td>
                   <td><img class='developers' src="../images/photo_lea.png"></td>
                 </tr>
                 <tr>
@@ -70,8 +70,7 @@
           <fieldset>
               <legend>Dédié à :</legend>
               </br>
-              <h3 style='float:left;'>Johanne Raymond</h3>
-              <h3 style='float:left;'>Renaud Thibodeau</h3>
+              <td><h3 style='float:left;'>Johanne Raymond et Renaud Thibodeau</h3></td>
           </fieldset>
 
           <fieldset>
