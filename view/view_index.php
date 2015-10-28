@@ -46,7 +46,7 @@
               <table>
                 <tr>
                   <td class='developers'><img src="../images/photo_Antoine.JPG"></td>
-                  <td class='developers'><img src="../images/photo_Simon.JPG"></td>
+                  <td class='developers'><img src="../images/photo_simon.png"></td>
                   <td class='developers'><img src="../images/photo_lea.png"></td>
                 </tr>
                 <tr>
