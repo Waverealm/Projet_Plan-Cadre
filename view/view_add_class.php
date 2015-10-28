@@ -17,6 +17,8 @@
 <html>
   <body>
     <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      
       <link rel="Stylesheet" href="../assets/pure.css">
       <link rel="Stylesheet" href="../assets/styles.css">
       <link rel="Stylesheet" href="../assets/others.css">

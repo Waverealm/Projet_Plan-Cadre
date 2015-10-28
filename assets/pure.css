@@ -388,7 +388,7 @@ input[type="search"]::-webkit-search-decoration {
 
 fieldset {
   border: 1px solid #c0c0c0;
-  margin: 0 2px;
+  margin: 1.25em;
   padding: 0.35em 0.625em 0.75em;
 }
 
@@ -1226,6 +1226,7 @@ since IE8 won't execute CSS that contains a CSS3 selector.
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    background-color: #C5CEE0;
 }
 
 .pure-menu-fixed {

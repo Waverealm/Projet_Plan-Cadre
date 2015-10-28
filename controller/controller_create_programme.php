@@ -42,12 +42,6 @@ $bdd = dbConnect();
 // S'il n'y a aucune erreur
 if ($i == 0)
 {
-  // encryption du mot de pass pour la bd
-  // doit pouvoir le décrypter aussi
-  // 2 fonctions à faire
-  //$crypted_pass = getCryptedPassword($pass);
-
-  //fonction qui permet de créer l'utilisateur
 
   createProgramme($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction, $dateAjoutProgramme);
 

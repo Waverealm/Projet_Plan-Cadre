@@ -7,7 +7,7 @@ body
 	margin: 0;
 	padding: 0;
 	color: #333;
-	background-color: #eee;
+	background-color: #E3E9FA;
 	font: 1em/1.2 "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
 }
 
@@ -78,13 +78,15 @@ Layout styles
 	/* Changement apporté */
 	max-width: 75em;
 	margin: 0 auto;
+	padding-bottom: 0.25em;
+	margin-bottom: 4em;
 	background-color: #fff;
 }
 
 .header
 {
 	color: #fff;
-	background: #555;
+	background: #6280C4;
 	padding: 1em 1.25em;
 }
 

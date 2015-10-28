@@ -35,35 +35,40 @@
 
             <br>
 
-            <form action="../controller/controller_elaboration_plancadre.php" method="post">
 
-                Choisir le plan-cadre que vous voulez modifier :
+            <fieldset>
 
-                <br>
+                <form action="../controller/controller_elaboration_plancadre.php" method="post">
 
-                <select name="html_select_plancadre" id ="html_select_plancadre">
-                    <option> </option>
-                    <?php
-                        echoArray(getArrayPlanCadre());
-                    ?>
-                </select>
+                    Choisir le plan-cadre que vous voulez modifier :
 
-                <input type="text" name="search_class" 
-                onKeyUp="arrayFilter(this.value, this.form.html_select_plancadre)" 
-                onChange="arrayFilter(this.value, this.form.html_select_plancadre)"
-                >
+                    <br>
 
-                <br>
-                <br>
+                    <select name="html_select_plancadre" id ="html_select_plancadre">
+                        <option> </option>
+                        <?php
+                            echoArray(getArrayPlanCadre());
+                        ?>
+                    </select>
 
-                <div class="col-md-offset-2 col-md-2">
-                        <input type="submit" value="Modifier ce plan-cadre" class="btn btn-default" /> 
-                        
-                        <br>
-                        <br>
-                </div>
+                    <input type="text" name="search_class" 
+                    onKeyUp="arrayFilter(this.value, this.form.html_select_plancadre)" 
+                    onChange="arrayFilter(this.value, this.form.html_select_plancadre)"
+                    >
 
-            </form>
+                    <br>
+                    <br>
+
+                    <div class="col-md-offset-2 col-md-2">
+                            <input type="submit" value="Modifier ce plan-cadre" class="btn btn-default" /> 
+                            
+                            <br>
+                            <br>
+                    </div>
+
+                </form>
+
+            </fieldset>
         </div>
     </body>
 

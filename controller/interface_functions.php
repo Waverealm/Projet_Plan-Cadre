@@ -6,7 +6,7 @@
         ?>
 
             <div class="header"> 
-                <h1 class="header-heading">Plan-cadre</h1>
+                <h1 class="header-heading">PLAN CADRE</h1>
             </div>
 
         <?php
@@ -30,7 +30,7 @@
                                 </ul>
                             </li>
                             <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                                <a href="#" id="menuLink1" class="pure-menu-link">Gestion de l\'information</a>
+                                <a href="#" id="menuLink1" class="pure-menu-link"><?php echo stripslashes("Gestion de l\'information") ?></a>
                                 <ul class="pure-menu-children">
                                     <li class="pure-menu-item"><a href="view_add_competence.php" class="pure-menu-link">Ajouter des compétences</a></li>
                                     <li class="pure-menu-item"><a href="view_add_class.php" class="pure-menu-link">Ajouter des cours</a></li>

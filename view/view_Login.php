@@ -10,22 +10,27 @@
 
 <!DOCTYPE html>
 <html>
+
     <body>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <head>
-           <link rel="Stylesheet" href="../assets/pure.css">
-           <link rel="stylesheet" href="../assets/styles.css">
-           <link rel="Stylesheet" href="../assets/others.css">
-        </head>
+         <link rel="Stylesheet" href="../assets/pure.css">
+         <link rel="Stylesheet" href="../assets/styles.css">
+         <link rel="Stylesheet" href="../assets/others.css">
+         
+      </head>
 
-        <?php
-            showHeader();
-            showAppropriateMenu();
-        ?>
+        <div class="container">
+            <?php
+                showHeader();
+                showAppropriateMenu();
+            ?>
+      <br>
 
         </br>
 
-        <fieldset>
+            <fieldset>
                     <legend>Login :</legend>
                     </br>
 
@@ -59,7 +64,7 @@
                     </div>
 
                 </form>    
-        </fieldset>
+            </fieldset>
     </body>
 </html>
 

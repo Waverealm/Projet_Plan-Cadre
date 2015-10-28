@@ -6,5 +6,14 @@
 
 .login_field {
 	float: right;
-	margin-right: 1em;
+	margin: 0.5em 1.2em 0.5em 0.5em;
+}
+
+.developers {
+	margin: auto;
+	text-align: center;
+}
+
+.field {
+	width: 12em;
 }

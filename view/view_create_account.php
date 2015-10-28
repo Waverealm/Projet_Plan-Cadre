@@ -17,77 +17,78 @@
 <html>
     <body>
         <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            
            <link rel="Stylesheet" href="../assets/pure.css">
            <link rel="Stylesheet" href="../assets/styles.css">
            <link rel="Stylesheet" href="../assets/others.css">
            <script src="../assets/js_global.js" ></script>
         </head>
-<div class="container">
-            <?php
-                showHeader();
-                showAppropriateMenu();
-            ?>
+            <div class="container">
+                <?php
+                    showHeader();
+                    showAppropriateMenu();
+                ?>
 
-            </br>
+                </br>
 
-            <fieldset>
-                        <legend>Inscription:</legend>
-                        </br>
+                <fieldset>
+                            <legend>Créer un compte :</legend>
+                            </br>
 
-                    <form action="../controller/controller_create_account.php" method="post">
+                        <form action="../controller/controller_create_account.php" method="post">
 
-                        <label class="control-label col-md-2">Nom d'usager :</label>
-                        <div class="col-md-10">
-                            <input id="UserName" name="UserName" type="text" value="<?php if (isset($_SESSION[ 'new_account_username' ])) echo htmlentities(trim($_SESSION[ 'new_account_username' ])); ?>" class="text-box single-line" />
-                        </div>
-                        </br>
+                            <label>Nom d'usager :</label>
+                            <div>
+                                <input class="field" id="UserName" name="UserName" type="text" value="<?php if (isset($_SESSION[ 'new_account_username' ])) echo htmlentities(trim($_SESSION[ 'new_account_username' ])); ?>" class="text-box single-line" />
+                            </div>
+                            </br>
 
-                        <label class="control-label col-md-2">Mot de passe :</label>
-                        <div class="col-md-2">
-                            <input id="Password" name="Password" type="password" value="" class="text-box single-line password" />
-                        </div>
-                        </br>
+                            <label>Mot de passe :</label>
+                            <div>
+                                <input class="field" id="Password" name="Password" type="password" value="" class="text-box single-line password" />
+                            </div>
+                            </br>
 
-                        <label class="control-label col-md-2">Confirmer le mot de passe :</label>
-                        <div class="col-md-2">
-                            <input id="PasswordConfirmation" name="PasswordConfirmation" type="password" value="" class="text-box single-line password" />
-                        </div>
-                        </br>
+                            <label>Confirmer le mot de passe :</label>
+                            <div>
+                                <input class="field" id="PasswordConfirmation" name="PasswordConfirmation" type="password" value="" class="text-box single-line password" />
+                            </div>
+                            </br>
 
-                        <label class="control-label col-md-2">Adresse courriel :</label>
-                        <div class="col-md-10">
-                            <input id="Email" name="Email" type="text" value="<?php if (isset($_SESSION[ 'new_account_email' ])) echo htmlentities(trim($_SESSION[ 'new_account_email' ])); ?>" class="text-box single-line" />
-                        </div>
-                        </br>
+                            <label>Adresse courriel :</label>
+                            <div>
+                                <input class="field" id="Email" name="Email" type="text" value="<?php if (isset($_SESSION[ 'new_account_email' ])) echo htmlentities(trim($_SESSION[ 'new_account_email' ])); ?>" class="text-box single-line" />
+                            </div>
+                            </br>
 
-                        <label class="control-label col-md-2">Nom :</label>
-                        <div class="col-md-2">
-                            <input id="LastName" name="LastName" type="text" value="<?php if (isset($_SESSION[ 'new_account_last_name' ])) echo htmlentities(trim($_SESSION[ 'new_account_last_name' ])); ?>" class="text-box single-line" onkeypress="return alphaOnly(event);" />
-                        </div>
-                        </br>
+                            <label>Nom :</label>
+                            <div>
+                                <input class="field" id="LastName" name="LastName" type="text" value="<?php if (isset($_SESSION[ 'new_account_last_name' ])) echo htmlentities(trim($_SESSION[ 'new_account_last_name' ])); ?>" class="text-box single-line" onkeypress="return alphaOnly(event);" />
+                            </div>
+                            </br>
 
-                        <label class="control-label col-md-2">Prenom :</label>
-                        <div class="col-md-2">
-                            <input id="FirstName" name="FirstName" type="text" value="<?php if (isset($_SESSION[ 'new_account_first_name' ])) echo htmlentities(trim($_SESSION[ 'new_account_first_name' ])); ?>" class="text-box single-line" onkeypress="return alphaOnly(event);" />
-                        </div>
-                        </br>
+                            <label>Prenom :</label>
+                            <div>
+                                <input class="field" id="FirstName" name="FirstName" type="text" value="<?php if (isset($_SESSION[ 'new_account_first_name' ])) echo htmlentities(trim($_SESSION[ 'new_account_first_name' ])); ?>" class="text-box single-line" onkeypress="return alphaOnly(event);" />
+                            </div>
+                            </br>
 
-                        <label class="control-label col-md-2">Type d'utilisateur :</label>
-                        <div class="col-md-2">
-                            <select name="UserType" >
-                              <option value="Elaborateur">Elaborateur</option>
-                           </select>
-                        </div>
-                        </br>
+                            <label>Type d'utilisateur :</label>
+                            <div>
+                                <select class="field" name="UserType" >
+                                  <option value="Elaborateur">Elaborateur</option>
+                               </select>
+                            </div>
+                            </br>
 
-                        <div class="col-md-offset-2 col-md-2">
-                            <input type="submit" value="Soumettre..." class="btn btn-default" /> <br /><br />
-                        </div>
+                            <div>
+                                <input type="submit" value="Soumettre..." class="btn btn-default" /> <br /><br />
+                            </div>
 
-                    </form>    
-            </fieldset>
-        </div>
-        </div>
+                        </form>    
+                </fieldset>
+            </div>
 
         <center>
          <?php 
