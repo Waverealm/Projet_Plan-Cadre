@@ -61,7 +61,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
         );
 
 
-    header('Location: ../view/view_createplancadre.php');
+    header('Location: ../view/view_create_plancadre.php');
 }
 else if ( isset($_POST['open']) )
 {

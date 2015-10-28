@@ -182,12 +182,12 @@ function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $co
   $bdd = dbConnect();
   $update = $bdd->prepare("CALL UPDATE_PLAN_CADRE_FICHIERS (?,?,?,?,?,?)");
 
-  $insert->bindParam(1, $presentation, PDO::PARAM_STR);
-  $insert->bindParam(2, $integration, PDO::PARAM_STR);
-  $insert->bindParam(3, $evaluation, PDO::PARAM_STR);
-  $insert->bindParam(4, $competences, PDO::PARAM_STR);
-  $insert->bindParam(5, $apprentissage, PDO::PARAM_STR);
-  $insert->bindParam(6, $id, PDO::PARAM_STR);
+  $update->bindParam(1, $presentation, PDO::PARAM_STR);
+  $update->bindParam(2, $integration, PDO::PARAM_STR);
+  $update->bindParam(3, $evaluation, PDO::PARAM_STR);
+  $update->bindParam(4, $competences, PDO::PARAM_STR);
+  $update->bindParam(5, $apprentissage, PDO::PARAM_STR);
+  $update->bindParam(6, $id, PDO::PARAM_STR);
 
   $update->execute();
 
