@@ -33,6 +33,15 @@ verifyAccessPages();
     {
         $plancadre = getPlanCadre($_SESSION['id_plancadre']);
         $prealable = getPrealableCours($plancadre[0]["CodeCours"]);
+
+        $save_path = "../plancadre/". $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . "_";
+
+        $path_presentation = $save_path . "presentation" . ".txt";
+        $path_integration = $save_path . "integration" .".txt";
+        $path_evalutation = $save_path . "evaluation" . ".txt";
+        $path_competences = $save_path . "competences" . ".txt";
+        $path_apprentissage = $save_path . "apprentissage" . ".txt";
+
     }
     ?>
 
@@ -43,12 +52,13 @@ verifyAccessPages();
         </br>
 
         <form action="../controller/controller_create_plancadre.php" method="post">
+            
             <input type='hidden' name='save_path' value = 
                 <?php 
                     // le nom des fichiers textes serra :
                     // clé primaire du plancadre + code ou le nom du cours + le nom de la section
                     // exemple : 2_420-EDA-05_PresentationCours.txt
-                    echo '\'' . $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . "_" . '\''; 
+                    echo '\'' . $save_path . '\''; 
                 ?> 
             />
             <input type='hidden' name='id_plancadre' value = 
@@ -56,6 +66,7 @@ verifyAccessPages();
                     echo '\'' . $_SESSION['id_plancadre'] . '\''; 
                 ?> 
             />  
+
             <TABLE>
                 <tr>
                     <td>
@@ -150,7 +161,8 @@ verifyAccessPages();
             <div class="col-md-10">
                 <textarea name="Presentation" rows="12" cols="50">
                     <?php
-                        // code pour ouvrir le fichier et le lire
+                        $handle = fopen($path_presentation, "rb");
+                        $text = fread($handle, filesize($path_presentation));
                     ?>
                 </textarea>
             </div>
@@ -159,9 +171,12 @@ verifyAccessPages();
             <label class="control-label col-md-2">Objectifs d'integration : </label>
             </br>
             <div class="col-md-10">
-                <textarea name="ObjectifsIntegration" rows="6" cols="50">
+                <textarea name="ObjectifsIntegration" rows="12" cols="50">
                     <?php
-                        // code pour ouvrir le fichier et le lire
+                        $handle = fopen($path_integration, "rb");
+                        $text = fread($handle, filesize($path_integration));
+                        //fclose($handle);
+
                     ?>
                 </textarea>
             </div>
@@ -172,7 +187,9 @@ verifyAccessPages();
             <div class="col-md-10">
                 <textarea name="Evaluation" rows="12" cols="50">
                     <?php
-                        // code pour ouvrir le fichier et le lire
+                        $handle = fopen($path_evalutation, "rb");
+                        $text = fread($handle, filesize($path_evalutation));
+                        //fclose($handle);
                     ?>
                 </textarea>
             </div>
@@ -183,7 +200,9 @@ verifyAccessPages();
             <div class="col-md-10">
                 <textarea name="Competences" rows="12" cols="50">
                     <?php
-                        // code pour ouvrir le fichier et le lire
+                        $handle = fopen($path_competences, "rb");
+                        $text = fread($handle, filesize($path_competences));
+                        //fclose($handle);
                     ?>
                 </textarea>
             </div>
@@ -194,7 +213,9 @@ verifyAccessPages();
             <div class="col-md-10">
                 <textarea name="ObjectifsApprentissage" rows="12" cols="50">
                     <?php
-                        // code pour ouvrir le fichier et le lire
+                        $handle = fopen($path_apprentissage, "rb");
+                        $text = fread($handle, filesize($path_apprentissage));
+                        //fclose($handle);
                     ?>
                 </textarea>
             </div>
