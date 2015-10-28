@@ -200,13 +200,13 @@ function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $co
 
 
 /* 
-   fonction : fetchStoredProc($call_select)
+   fonction : selectWithNoParam($call_select)
    Créé par : Simon Roy
    Prend un string en paramètre, le string représente une procédure stockée 
    dans la base de données qui serra éxécutée. La valeur de retour est un 
    array qui contient le résultat du select.
 */
-  function fetchStoredProc($call_select)
+  function selectWithNoParam($call_select)
   {
     $bdd = dbConnect();
     $query = $bdd->prepare($call_select);
@@ -220,13 +220,17 @@ function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $co
   }
   function fetchAllUser()
   {
-    return fetchStoredProc("CALL SELECT_ALL_USERS ()");
+    return selectWithNoParam("CALL SELECT_ALL_USERS ()");
   }
   function fetchAllClass()
   {
-    return fetchStoredProc("CALL SELECT_ALL_CLASSES ()");
+    return selectWithNoParam("CALL SELECT_ALL_CLASSES ()");
   }
-
+  // Va sélectionner la liste de stagiaires d'un responsable
+  function selectAllProgramCode($bdd)
+  {
+      return selectWithNoParam("CALL SELECT_ALL_PROGRAMS ()");
+  }
   /*
     fin des fonctions qui appellent fetchStoredProc($call_select)
   */
@@ -257,27 +261,19 @@ function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $co
   {
     return fetchId( $id_user, "CALL SELECT_PLAN_CADRE_ELABORATION_USER(?)" );
   }
-
   function fetchPlanCadreElaboration_PlanCadre($id_plancadre)
   {
     return fetchId( $id_plancadre, "CALL SELECT_PLAN_CADRE_ID(?)" );
   }
-  function fetchPrealableCours_Id($id_plancadre)
+  function fetchPrealableCours_Id($id_cours)
   {
-    return fetchId( $id_plancadre, "CALL SELECT_PREALABLE_COURS_ID(?)" );
+    return fetchId( $id_cours, "CALL SELECT_PREALABLE_COURS_ID(?)" );
   }
 
-  // Va sélectionner la liste de stagiaires d'un responsable
-  function selectAllProgramCode($bdd)
-  {
-      $query = $bdd->prepare("CALL SELECT_ALL_PROGRAMS ()");
 
-      $query->execute();
-      $result = $query->fetchAll();
-      $query->CloseCursor();
 
-      return $result;
-  }
+
+
 
 /*
   fin des fonctions qui appellent fetchId($id, $call_select)
