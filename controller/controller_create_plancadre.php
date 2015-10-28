@@ -80,7 +80,12 @@ function getPrealableCours($id_cours)
     return fetchPrealableCours_Id($id_cours);;
 }
 
-
+function readFrom($path)
+{
+    $handle = fopen($path, "rb");
+    $text = fread($handle, filesize($path));
+    return $text;
+}
 
 
 ?>

@@ -159,12 +159,9 @@ verifyAccessPages();
             <label class="control-label col-md-2">Presentation du cours : </label>
             </br>
             <div class="col-md-10">
-                <textarea name="Presentation" rows="12" cols="50">
-                    <?php
-                        $handle = fopen($path_presentation, "rb");
-                        $text = fread($handle, filesize($path_presentation));
-                    ?>
-                </textarea>
+                <textarea name="Presentation" rows="12" cols="50"><?php
+                        echo readFrom($path_presentation);
+                    ?></textarea>
             </div>
             </br>
 
@@ -173,10 +170,7 @@ verifyAccessPages();
             <div class="col-md-10">
                 <textarea name="ObjectifsIntegration" rows="12" cols="50">
                     <?php
-                        $handle = fopen($path_integration, "rb");
-                        $text = fread($handle, filesize($path_integration));
-                        //fclose($handle);
-
+                        echo readFrom($path_integration);
                     ?>
                 </textarea>
             </div>
@@ -187,9 +181,7 @@ verifyAccessPages();
             <div class="col-md-10">
                 <textarea name="Evaluation" rows="12" cols="50">
                     <?php
-                        $handle = fopen($path_evalutation, "rb");
-                        $text = fread($handle, filesize($path_evalutation));
-                        //fclose($handle);
+                        echo readFrom($path_evalutation);
                     ?>
                 </textarea>
             </div>
@@ -200,9 +192,7 @@ verifyAccessPages();
             <div class="col-md-10">
                 <textarea name="Competences" rows="12" cols="50">
                     <?php
-                        $handle = fopen($path_competences, "rb");
-                        $text = fread($handle, filesize($path_competences));
-                        //fclose($handle);
+                        echo readFrom($path_competences);
                     ?>
                 </textarea>
             </div>
@@ -213,9 +203,7 @@ verifyAccessPages();
             <div class="col-md-10">
                 <textarea name="ObjectifsApprentissage" rows="12" cols="50">
                     <?php
-                        $handle = fopen($path_apprentissage, "rb");
-                        $text = fread($handle, filesize($path_apprentissage));
-                        //fclose($handle);
+                        echo readFrom($path_apprentissage);
                     ?>
                 </textarea>
             </div>
@@ -224,7 +212,6 @@ verifyAccessPages();
             <div class="col-md-offset-2 col-md-2">
                 <input name="submit" type="submit" value="Soumettre..." class="btn btn-default" />
                 <input name="save" type="submit" value="Sauvegarder..." class="btn btn-default" />
-                <input name="open" type="submit" value="Ouvrir..." class="btn btn-default" />
             </div>
 
         </form>
