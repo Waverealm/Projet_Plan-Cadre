@@ -34,7 +34,6 @@ verifyAccessPages();
         $plancadre = getPlanCadre($_SESSION['id_plancadre']);
         $prealable = getPrealableCours($plancadre[0]["CodeCours"]);
     }
-    //placer le texte des fichiers textes dans la bonne section du plancadre
     ?>
 
     </br>
@@ -44,14 +43,19 @@ verifyAccessPages();
         </br>
 
         <form action="../controller/controller_create_plancadre.php" method="post">
-
-            <label class="control-label col-md-2">Nom de la sauvergarde :</label>
-            </br>
-            <div class="col-md-10">
-                <input id="sauvergarde" name="sauvergarde" type="text" value="" class="text-box single-line"/>
-            </div>
-            </br>
-
+            <input type='hidden' name='save_path' value = 
+                <?php 
+                    // le nom des fichiers textes serra :
+                    // clé primaire du plancadre + code ou le nom du cours + le nom de la section
+                    // exemple : 2_420-EDA-05_PresentationCours.txt
+                    echo '\'' . $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . "_" . '\''; 
+                ?> 
+            />
+            <input type='hidden' name='id_plancadre' value = 
+                <?php 
+                    echo '\'' . $_SESSION['id_plancadre'] . '\''; 
+                ?> 
+            />  
             <TABLE>
                 <tr>
                     <td>
@@ -110,8 +114,14 @@ verifyAccessPages();
                                 {
                                     for ($i = 0; $i < count($prealable); $i++)
                                     {
-                                        echo "<ul><li>";
-                                        echo $prealable[0]["Cours_CodeCoursPrealable"] . " " . $prealable[0]["NomCours"];
+                                        echo 
+                                        "<ul>
+                                            <li>" 
+                                                . $prealable[0]["Cours_CodeCoursPrealable"] 
+                                                . " " . $prealable[0]["NomCours"] .
+                                            "li>
+                                        <ul>";
+
                                     }
                                 }
                                 else
@@ -124,14 +134,7 @@ verifyAccessPages();
                 </tr>
             </TABLE>
 
-
-
-
             </br>
-
-            <?php
-                // les autres composants du cours
-            ?>
 
             <label class="control-label col-md-2">Type d'enseignement : </label>
             </br>
@@ -156,7 +159,7 @@ verifyAccessPages();
             <label class="control-label col-md-2">Objectifs d'integration : </label>
             </br>
             <div class="col-md-10">
-                <textarea name="Objectifs" rows="6" cols="50">
+                <textarea name="ObjectifsIntegration" rows="6" cols="50">
                     <?php
                         // code pour ouvrir le fichier et le lire
                     ?>
@@ -171,7 +174,6 @@ verifyAccessPages();
                     <?php
                         // code pour ouvrir le fichier et le lire
                     ?>
-
                 </textarea>
             </div>
             </br>
@@ -183,7 +185,6 @@ verifyAccessPages();
                     <?php
                         // code pour ouvrir le fichier et le lire
                     ?>
-
                 </textarea>
             </div>
             </br>

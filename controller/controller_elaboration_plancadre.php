@@ -26,18 +26,6 @@ if(!isset($_SESSION))
 		//echo $id;
 		$_SESSION['id_plancadre'] = $id;
 
-		//ajouter une colonne pour chaque section dans la table plancadre
-
-		// le nom des fichiers textes serra :
-		// clé primaire du plancadre + code ou le nom du cours + le nom de la section
-		// exemple : 2_420-EDA-05_PresentationCours.txt
-
-		// créer un dossier spécifique pour ça ?
-		// créer un deuximème dossier pour la version finale ?
-		
-		// une fois accepté le plancadre n'est plus modifiable
-		// donc le path des sections est placé sur le pdf finalisé.
-
 		header('Location: ../view/view_create_plancadre.php');
 	}
 

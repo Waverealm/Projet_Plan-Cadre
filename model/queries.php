@@ -166,6 +166,37 @@
       $insert->CloseCursor();
   }
 
+/* 
+  début des updates
+*/
+/* 
+   fonction : fetchStoredProc($call_select)
+   Créé par : Simon Roy
+   Prend un string en paramètre, le string représente une procédure stockée 
+   dans la base de données qui serra éxécutée. La valeur de retour est un 
+   array qui contient le résultat du select.
+*/
+
+function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $competences, $apprentissage, $id)
+{
+  $bdd = dbConnect();
+  $update = $bdd->prepare("CALL UPDATE_PLAN_CADRE_FICHIERS (?,?,?,?,?,?)");
+
+  $insert->bindParam(1, $presentation, PDO::PARAM_STR);
+  $insert->bindParam(2, $integration, PDO::PARAM_STR);
+  $insert->bindParam(3, $evaluation, PDO::PARAM_STR);
+  $insert->bindParam(4, $competences, PDO::PARAM_STR);
+  $insert->bindParam(5, $apprentissage, PDO::PARAM_STR);
+  $insert->bindParam(6, $id, PDO::PARAM_STR);
+
+  $update->execute();
+
+  $update->closeCursor();
+}
+
+/* 
+  fin des updates
+*/
 
 
 /* 
@@ -251,6 +282,16 @@
 /*
   fin des fonctions qui appellent fetchId($id, $call_select)
 */
+
+
+
+
+
+
+
+
+
+
   /*function createUser($UserName, $MotDePasse, $PasswordConfirmation, $Email)
   {
       if($UserName && $MotDePasse && $PasswordConfirmation)
