@@ -45,14 +45,14 @@
 
               <table>
                 <tr>
-                  <td><img class='developers' src="../images/photo_Antoine.JPG"></td>
-                  <td><img class='developers' src="../images/photo_Simon.JPG"></td>
-                  <td><img class='developers' src="../images/photo_lea.png"></td>
+                  <td class='developers'><img src="../images/photo_Antoine.JPG"></td>
+                  <td class='developers'><img src="../images/photo_Simon.JPG"></td>
+                  <td class='developers'><img src="../images/photo_lea.png"></td>
                 </tr>
                 <tr>
-                  <td><h3 class='developers'>Antoine Latendresse</h3></td>
-                  <td><h3 class='developers'>Simon Roy</h3></td>
-                  <td><h3 class='developers'>Léa Kelly</h3></td>
+                  <td class='developers'><h3>Antoine Latendresse</h3></td>
+                  <td class='developers'><h3>Simon Roy</h3></td>
+                  <td class='developers'><h3>Léa Kelly</h3></td>
                 </tr>
               </table>
 
@@ -78,7 +78,6 @@
               </br>
               <tr>
                   <td><img style='float:left; margin-right: 20px' src="../images/create_PC.png"></td>
-                  <td><img style='float:left;' src="../images/index_PC.png"></td>
               </tr>
 
           </fieldset>
