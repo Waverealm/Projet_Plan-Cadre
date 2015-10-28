@@ -76,9 +76,10 @@
           <fieldset>
               <legend>Capture d'écran :</legend>
               </br>
-
-              <img style='float:left;' src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
-
+              <tr>
+                  <td><img style='float:left; margin-right: 20px' src="../images/create_PC.png"></td>
+                  <td><img style='float:left;' src="../images/index_PC.png"></td>
+              </tr>
 
           </fieldset>
 
