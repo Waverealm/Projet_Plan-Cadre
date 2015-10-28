@@ -87,7 +87,7 @@
       $query->CloseCursor();
   }
 
-  function createCours($codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $progCours, $dateAjout)
+  function createClass($bdd, $codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $progCours, $dateAjout)
   {
       $insert = dbConnect()->prepare("CALL INSERT_COURS(?,?,?,?,?,?,?,?)");
 
@@ -104,9 +104,9 @@
       $insert->CloseCursor();
   }
 
-  function createCompetence($codeCompetence, $nomCompetence, $descriptionCompetence, $dateAjoutCompetence)
+  function createCompetence($bdd, $codeCompetence, $nomCompetence, $descriptionCompetence, $dateAjoutCompetence)
   {
-      $insert = dbConnect()->prepare("CALL INSERT_COMPETENCE(?,?,?,?)");
+      $insert = $bdd->prepare("CALL INSERT_COMPETENCE(?,?,?,?)");
 
       $insert->bindParam(1, $codeCompetence, PDO::PARAM_STR);
       $insert->bindParam(2, $nomCompetence, PDO::PARAM_STR);
@@ -117,7 +117,7 @@
       $insert->CloseCursor();
   }
 
-  function createProgramme($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction, $dateAjoutProgramme)
+  function createProgram($bdd, $codeProgramme, $nomProgramme, $typeProgramme, $typeSanction, $dateAjoutProgramme)
   {
       $insert = dbConnect()->prepare("CALL INSERT_PROGRAMME(?,?,?,?,?)");
 
@@ -196,47 +196,57 @@
     return fetchStoredProc("CALL SELECT_ALL_CLASSES ()");
   }
 
-/*
-  fin des fonctions qui appellent fetchStoredProc($call_select)
-*/
+  /*
+    fin des fonctions qui appellent fetchStoredProc($call_select)
+  */
 
-/*
-  fonction : fetchId($call_select, $id)
-  Prend un string en paramètre, le string représente une procédure stockée 
-   dans la base de données qui serra éxécutée. La variable id est pour obtenir 
-   seulement ce résultat là.
-   La valeur de retour est un array qui contient le résultat du select
-*/
+  /*
+    fonction : fetchId($call_select, $id)
+    Prend un string en paramètre, le string représente une procédure stockée 
+     dans la base de données qui serra éxécutée. La variable id est pour obtenir 
+     seulement ce résultat là.
+     La valeur de retour est un array qui contient le résultat du select
+  */
 
-function fetchId($id, $call_select)
-{
-  $bdd = dbConnect();
-  $query = $bdd->prepare($call_select);
+  function fetchId($id, $call_select)
+  {
+    $bdd = dbConnect();
+    $query = $bdd->prepare($call_select);
 
-  $query->bindParam(1, $id, PDO::PARAM_STR);
+    $query->bindParam(1, $id, PDO::PARAM_STR);
 
-  $query->execute();
-  $result = $query->fetchAll();
-  $query->closeCursor();
+    $query->execute();
+    $result = $query->fetchAll();
+    $query->closeCursor();
 
-  return $result;
-}
+    return $result;
+  }
 
-function fetchPlanCadreElaboration_User($id_user)
-{
-  return fetchId( $id_user, "CALL SELECT_PLAN_CADRE_ELABORATION_USER(?)" );
-}
+  function fetchPlanCadreElaboration_User($id_user)
+  {
+    return fetchId( $id_user, "CALL SELECT_PLAN_CADRE_ELABORATION_USER(?)" );
+  }
 
-function fetchPlanCadreElaboration_PlanCadre($id_plancadre)
-{
-  return fetchId( $id_plancadre, "CALL SELECT_PLAN_CADRE_ID(?)" );
-}
-function fetchPrealableCours_Id($id_plancadre)
-{
-  return fetchId( $id_plancadre, "CALL SELECT_PREALABLE_COURS_ID(?)" );
-}
+  function fetchPlanCadreElaboration_PlanCadre($id_plancadre)
+  {
+    return fetchId( $id_plancadre, "CALL SELECT_PLAN_CADRE_ID(?)" );
+  }
+  function fetchPrealableCours_Id($id_plancadre)
+  {
+    return fetchId( $id_plancadre, "CALL SELECT_PREALABLE_COURS_ID(?)" );
+  }
 
+  // Va sélectionner la liste de stagiaires d'un responsable
+  function selectAllProgramCode($bdd)
+  {
+      $query = $bdd->prepare("CALL SELECT_ALL_PROGRAMS ()");
 
+      $query->execute();
+      $result = $query->fetchAll();
+      $query->CloseCursor();
+
+      return $result;
+  }
 
 /*
   fin des fonctions qui appellent fetchId($id, $call_select)

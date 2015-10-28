@@ -1,6 +1,8 @@
 
 <?php
 
+    include_once('../model/queries.php');
+
     function showHeader()
     {
         ?>
@@ -30,11 +32,11 @@
                                 </ul>
                             </li>
                             <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                                <a href="#" id="menuLink1" class="pure-menu-link"><?php echo stripslashes("Gestion de l\'information") ?></a>
+                                <a href="#" id="menuLink1" class="pure-menu-link">Gestion de l'information</a>
                                 <ul class="pure-menu-children">
-                                    <li class="pure-menu-item"><a href="view_add_competence.php" class="pure-menu-link">Ajouter des compétences</a></li>
-                                    <li class="pure-menu-item"><a href="view_add_class.php" class="pure-menu-link">Ajouter des cours</a></li>
-                                    <li class="pure-menu-item"><a href="view_add_program.php" class="pure-menu-link">Ajouter des programme d\'étude</a></li>
+                                    <li class="pure-menu-item"><a href="view_create_competence.php" class="pure-menu-link">Ajouter des compétences</a></li>
+                                    <li class="pure-menu-item"><a href="view_create_class.php" class="pure-menu-link">Ajouter des cours</a></li>
+                                    <li class="pure-menu-item"><a href="view_create_program.php" class="pure-menu-link">Ajouter des programmes d'études</a></li>
                                     <li class="pure-menu-item"><a href="#" class="pure-menu-link">Modifier les instruction des plans-cadres</a></li>
                                 </ul>
                             </li>
@@ -142,5 +144,24 @@
         }
     }
 
+    function showProgramsCode()
+    {
+        $bdd = dbConnect();
+
+        // On va récupérer les stagiaires
+        $list = selectAllProgramCode($bdd);
+
+        echo "<div>";
+            echo "<select name=\"CodeProgramme\">";
+
+        // Affichage de la liste des codes des programmes dans une combo box.
+        foreach ($list as $row)
+        {
+            echo "<option value=\"".$row['CodeProgramme']."\">".$row['CodeProgramme']."</option>";
+        }
+
+            echo "</select>";
+        echo "</div>";
+    }
 
 ?>
