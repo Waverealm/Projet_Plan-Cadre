@@ -32,6 +32,7 @@ verifyAccessPages();
     if( isset($_SESSION['id_plancadre']) )
     {
         $plancadre = getPlanCadre($_SESSION['id_plancadre']);
+        $prealable = getPrealableCours($plancadre[0]["CodeCours"]);
     }
     //placer le texte des fichiers textes dans la bonne section du plancadre
     ?>
@@ -51,22 +52,86 @@ verifyAccessPages();
             </div>
             </br>
 
-            <label class="control-label col-md-2">
-                Numero du cours : 
-                <?php
-                    echo $plancadre[0]["CodeCours"];
-                ?>
-            </label>
+            <TABLE>
+                <tr>
+                    <td>
+                        <label class="control-label col-md-2">
+                            Titre du cours : 
+                            <?php
+                                echo $plancadre[0]["NomCours"];
+                            ?>
+                        </label>
+                    </td>
+                    <td>
+                        <label class="control-label col-md-2">
+                            Numero du cours : 
+                            <?php
+                                echo $plancadre[0]["CodeCours"];
+                            ?>
+                        </label>
+                    </td>
+                    <td>
+                        <label class="control-label col-md-2">
+                            Programme : 
+                            <?php
+                                echo $plancadre[0]["CodeProgramme"] . " " . $plancadre[0]["NomProgramme"];
+                            ?>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="control-label col-md-2">
+                            Pondération : 
+                            <?php
+                                echo $plancadre[0]["Ponderation"];
+                            ?>
+                        </label>
+                    </td>
+                    <td>
+                        <label class="control-label col-md-2">
+                            Nombre d'unité(s) : 
+                            <?php
+                                echo $plancadre[0]["NombreUnites"];
+                            ?>
+                        </label>
+                    </td>
+                    <td>
+                        <label class="control-label col-md-2">
+                            Préalable(s) : 
+                            <?php
+
+                                //faire une fonction
+                                // select
+                                // if hasrow codecours + titre cours
+                                // else "Aucun"
+
+                                if(!empty($prealable) )
+                                {
+                                    for ($i = 0; $i < count($prealable); $i++)
+                                    {
+                                        echo "<ul><li>";
+                                        echo $prealable[0]["Cours_CodeCoursPrealable"] . " " . $prealable[0]["NomCours"];
+                                    }
+                                }
+                                else
+                                {
+                                    echo "Aucun";
+                                }
+                            ?>
+                        </label>
+                    </td>
+                </tr>
+            </TABLE>
+
+
+
+
             </br>
 
             <?php
                 // les autres composants du cours
             ?>
-
-            <div class="col-md-10">
-                <input id="NumeroDeCours" name="NumeroDeCours" type="text" value="" class="text-box single-line"/>
-            </div>
-            </br>
 
             <label class="control-label col-md-2">Type d'enseignement : </label>
             </br>

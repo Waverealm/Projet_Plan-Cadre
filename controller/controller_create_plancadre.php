@@ -44,9 +44,12 @@ else if ( isset($_POST['open']) )
 
 function getPlanCadre($id_plancadre)
 {
-    return fetchPlanCadreElaboration_User($id_plancadre);;
+    return fetchPlanCadreElaboration_PlanCadre($id_plancadre);;
 }
-
+function getPrealableCours($id_cours)
+{
+    return fetchPrealableCours_Id($id_cours);;
+}
 
 
 

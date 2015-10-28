@@ -171,7 +171,7 @@
    Créé par : Simon Roy
    Prend un string en paramètre, le string représente une procédure stockée 
    dans la base de données qui serra éxécutée. La valeur de retour est un 
-   array qui contient le résultat du select
+   array qui contient le résultat du select.
 */
   function fetchStoredProc($call_select)
   {
@@ -198,37 +198,47 @@
   fin des fonctions qui appellent fetchStoredProc($call_select)
 */
 
-function fetchPlanCadreElaboration_User($id_user)
+/*
+  fonction : fetchId($call_select, $id)
+  Prend un string en paramètre, le string représente une procédure stockée 
+   dans la base de données qui serra éxécutée. La variable id est pour obtenir 
+   seulement ce résultat là.
+   La valeur de retour est un array qui contient le résultat du select
+*/
+
+function fetchId($id, $call_select)
 {
   $bdd = dbConnect();
-  $query = $bdd->prepare("CALL SELECT_ELABORATION_PLAN_CADRE(?)");
-  //$query = $bdd->prepare("CALL SELECT_ELABORATION_PLAN_CADRE()");
+  $query = $bdd->prepare($call_select);
 
-  $query->bindParam(1, $id_user, PDO::PARAM_STR);
+  $query->bindParam(1, $id, PDO::PARAM_STR);
 
   $query->execute();
   $result = $query->fetchAll();
   $query->closeCursor();
 
   return $result;
+}
+
+function fetchPlanCadreElaboration_User($id_user)
+{
+  return fetchId( $id_user, "CALL SELECT_PLAN_CADRE_ELABORATION_USER(?)" );
 }
 
 function fetchPlanCadreElaboration_PlanCadre($id_plancadre)
 {
-  $bdd = dbConnect();
-  $query = $bdd->prepare("CALL SELECT_ELABORATION_PLAN_CADRE(?)");
-  //$query = $bdd->prepare("CALL SELECT_ELABORATION_PLAN_CADRE()");
-
-  $query->bindParam(1, $id_plancadre, PDO::PARAM_STR);
-
-  $query->execute();
-  $result = $query->fetchAll();
-  $query->closeCursor();
-
-  return $result;
+  return fetchId( $id_plancadre, "CALL SELECT_PLAN_CADRE_ID(?)" );
+}
+function fetchPrealableCours_Id($id_plancadre)
+{
+  return fetchId( $id_plancadre, "CALL SELECT_PREALABLE_COURS_ID(?)" );
 }
 
 
+
+/*
+  fin des fonctions qui appellent fetchId($id, $call_select)
+*/
   /*function createUser($UserName, $MotDePasse, $PasswordConfirmation, $Email)
   {
       if($UserName && $MotDePasse && $PasswordConfirmation)
