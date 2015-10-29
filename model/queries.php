@@ -231,6 +231,7 @@ function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $co
   {
       return selectWithNoParam("CALL SELECT_ALL_PROGRAMS ()");
   }
+
   /*
     fin des fonctions qui appellent fetchStoredProc($call_select)
   */

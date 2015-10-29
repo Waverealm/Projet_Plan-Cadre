@@ -8,6 +8,7 @@
   include_once("../controller/controller_elaboration_plancadre.php");
 
   verifyAccessPages();
+  isAdmin();
 ?>
 
 <!DOCTYPE html>

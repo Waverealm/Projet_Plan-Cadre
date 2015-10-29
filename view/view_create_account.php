@@ -11,6 +11,7 @@
   include_once("../controller/pages_access.php");
 
   verifyAccessPages();
+  isPlanner();
 ?>
 
 <!DOCTYPE html>
@@ -75,11 +76,7 @@
                             </br>
 
                             <label>Type d'utilisateur :</label>
-                            <div>
-                                <select class="field" name="UserType" >
-                                  <option value="Elaborateur">Elaborateur</option>
-                               </select>
-                            </div>
+                            <?php showUserTypeList(); ?>
                             </br>
 
                             <div>

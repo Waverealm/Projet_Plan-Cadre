@@ -8,6 +8,7 @@
   include_once("../controller/controller_assign_user.php");
 
   verifyAccessPages();
+  isPlanner();
 ?>
 
 <!DOCTYPE html>

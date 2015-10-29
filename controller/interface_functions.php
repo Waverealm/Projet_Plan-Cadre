@@ -14,13 +14,40 @@
         <?php
     }
 
-    function showAppropriateMenu()
+function showAppropriateMenu()
     {
         if(isset($_SESSION[ "connected" ]))
         {
             if($_SESSION[ "connected" ])
             {
-                ?>
+
+                if($_SESSION[ "user_type" ] == "Élaborateur")
+                {
+
+                    ?>
+
+                    <div class="pure-menu pure-menu-horizontal">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-item pure-menu-selected"><a href="view_index.php" class="pure-menu-link">Accueil</a></li>
+                            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                                <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
+                                <ul class="pure-menu-children">
+                                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Rechercher</a></li>
+                                    <li class="pure-menu-item"><a href="view_elaboration_plancadre.php" class="pure-menu-link">Créer</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="login_field"><?php echo $_SESSION['last_name'].", ".$_SESSION['first_name']."   "; ?><a href="../controller/controller_logout.php">Se déconnecter</a></div>
+                    </div>
+
+                    <?php
+                }
+
+                else if($_SESSION[ "user_type" ] == "Conseiller pédagogique")
+                {
+
+                    ?>
+
                     <div class="pure-menu pure-menu-horizontal">
                         <ul class="pure-menu-list">
                             <li class="pure-menu-item pure-menu-selected"><a href="view_index.php" class="pure-menu-link">Accueil</a></li>
@@ -28,23 +55,22 @@
                                 <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
                                 <ul class="pure-menu-children">
                                     <li class="pure-menu-item"><a href="#" class="pure-menu-link">Recherche</a></li>
-                                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Élaboration</a></li>
+                                    <li class="pure-menu-item"><a href="view_elaboration_plancadre.php" class="pure-menu-link">Créer</a></li>
                                 </ul>
                             </li>
                             <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                                 <a href="#" id="menuLink1" class="pure-menu-link">Gestion de l'information</a>
                                 <ul class="pure-menu-children">
-                                    <li class="pure-menu-item"><a href="view_create_competence.php" class="pure-menu-link">Ajouter des compétences</a></li>
-                                    <li class="pure-menu-item"><a href="view_create_class.php" class="pure-menu-link">Ajouter des cours</a></li>
-                                    <li class="pure-menu-item"><a href="view_create_program.php" class="pure-menu-link">Ajouter des programmes d'études</a></li>
+                                    <li class="pure-menu-item"><a href="view_create_competence.php" class="pure-menu-link">Ajouter une compétence</a></li>
+                                    <li class="pure-menu-item"><a href="view_create_class.php" class="pure-menu-link">Ajouter un cours</a></li>
+                                    <li class="pure-menu-item"><a href="view_create_program.php" class="pure-menu-link">Ajouter un programme d'études</a></li>
                                     <li class="pure-menu-item"><a href="#" class="pure-menu-link">Modifier les instruction des plans-cadres</a></li>
                                 </ul>
                             </li>
                             <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                                <a href="#" id="menuLink1" class="pure-menu-link">Gestion des comptes utilisateurs</a>
+                                <a href="#" id="menuLink1" class="pure-menu-link">Gestion des membres
                                 <ul class="pure-menu-children">
                                     <li class="pure-menu-item"><a href="view_create_account.php" class="pure-menu-link">Créer un compte</a></li>
-                                    <li class="pure-menu-item"><a href="view_elaboration_plancadre.php" class="pure-menu-link">Créer un Plan-Cadre</a></li>
                                     <li class="pure-menu-item"><a href="view_assign_user.php" class="pure-menu-link">Assigner un plan-cadre</a></li>
                                     <li class="pure-menu-item"><a href="#" class="pure-menu-link">Liste des membres</a></li>
                                 </ul>
@@ -53,7 +79,37 @@
                         <div class="login_field"><?php echo $_SESSION['last_name'].", ".$_SESSION['first_name']."   "; ?><a href="../controller/controller_logout.php">Se déconnecter</a></div>
                     </div>
 
-                <?php
+                    <?php
+                }
+
+                else if($_SESSION[ "user_type" ] == "Administrateur")
+                {
+                    ?>
+
+                        <div class="pure-menu pure-menu-horizontal">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-item pure-menu-selected"><a href="view_index.php" class="pure-menu-link">Accueil</a></li>
+                            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                                <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
+                                <ul class="pure-menu-children">
+                                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Recherche</a></li>
+                                    <li class="pure-menu-item"><a href="view_elaboration_plancadre.php" class="pure-menu-link">Créer</a></li>
+                                </ul>
+                            </li>
+                            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                                <a href="#" id="menuLink1" class="pure-menu-link">Gestion des membres
+                                <ul class="pure-menu-children">
+                                    <li class="pure-menu-item"><a href="view_create_account.php" class="pure-menu-link">Créer un compte</a></li>
+                                    <li class="pure-menu-item"><a href="view_assign_user.php" class="pure-menu-link">Assigner un plan-cadre</a></li>
+                                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Liste des membres</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="login_field"><?php echo $_SESSION['last_name'].", ".$_SESSION['first_name']."   "; ?><a href="../controller/controller_logout.php">Se déconnecter</a></div>
+                    </div>
+
+                    <?php
+                }
             }
         }
 
@@ -162,6 +218,23 @@
 
             echo "</select>";
         echo "</div>";
+    }
+
+    function showUserTypeList()
+    {
+        ?>
+
+        <div>
+             <select class="field" name="UserType" >
+                <option value="Élaborateur">Élaborateur</option>
+                <?php if ($_SESSION[ "user_type" ] == "Administrateur")
+                {
+                    echo "<option value=\"Conseiller pédagogique\">Conseiller pédagogique</option>";
+                } ?>
+            </select>
+        </div>
+
+        <?php
     }
 
 ?>

@@ -11,6 +11,8 @@
   include_once("../controller/pages_access.php");
 
   verifyAccessPages();
+  isPlanner();
+  isAdmin();
 ?>
 
 <!DOCTYPE html>

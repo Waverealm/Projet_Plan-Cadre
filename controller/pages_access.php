@@ -31,4 +31,40 @@
 		}
 	}
 
+	function isPlanner()
+	{
+		if(isset($_SESSION[ "user_type" ]))
+		{
+			if($_SESSION[ "user_type" ] == "Élaborateur")
+			{
+				// Redirige vers la page d'accueil.
+				header('Location: ../view/view_index.php');
+			}
+		}
+	}
+
+	function isConsultant()
+	{
+		if(isset($_SESSION[ "user_type" ]))
+		{
+			if($_SESSION[ "user_type" ] == "Conseiller pédagogique")
+			{
+				// Redirige vers la page d'accueil.
+				header('Location: ../view/view_index.php');
+			}
+		}
+	}
+
+	function isAdmin()
+	{
+		if(isset($_SESSION[ "user_type" ]))
+		{
+			if($_SESSION[ "user_type" ] == "Administrateur")
+			{
+				// Redirige vers la page d'accueil.
+				header('Location: ../view/view_index.php');
+			}
+		}
+	}
+
 ?>
