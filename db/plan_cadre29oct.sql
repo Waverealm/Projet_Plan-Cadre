@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 29 Octobre 2015 à 19:16
+-- Généré le :  Mar 03 Novembre 2015 à 21:11
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -320,7 +320,7 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
 --
 
 INSERT INTO `utilisateurs` (`NoUtilisateur`, `Username`, `MotDePasse`, `Email`, `Nom`, `Prenom`, `TypeUtilisateur`, `Etat`) VALUES
-(1, 'test', 'test', '', 'Tanguay', 'Gounter', NULL, NULL),
+(1, 'test', 'test', '', 'Tanguay', 'Gounter', 'Élaborateur', 'Actif'),
 (7, 'lea', 'pouchi56', 'kelly.lea56@gmail.com', 'Kelly', 'Léa', 'Conseiller pédagogique', 'Actif'),
 (8, 'admintest', 'test', 'test@gmail.com', 'Yacoub', 'Saliha', 'Administrateur', 'Actif'),
 (9, 'elabo', '123456', 'elabo@gmail.com', 'Roy', 'Patrice', 'Élaborateur', 'Actif');
