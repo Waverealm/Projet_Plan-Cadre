@@ -14,9 +14,9 @@
      }
   }
 
-  function getUser($bdd, $username)
+  function getUser($username)
   {
-      $query = $bdd->prepare("CALL SELECT_USER(?)");
+      $query = dbConnect()->prepare("CALL SELECT_USER(?)");
  
       $query->bindParam(1, $username, PDO::PARAM_STR);
 

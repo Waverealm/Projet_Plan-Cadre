@@ -38,7 +38,6 @@
 		  header('Location: ../view/view_login.php');
 	   }
 	}
-
     else
     {
         $_SESSION[ 'connection_info' ] =  "Un ou plusieurs champs sont vident.";
@@ -47,23 +46,25 @@
 
 	function verification( $username, $password )
 	{
-	   $connected = false;
-
-	   $bdd = dbConnect();
+	    //$connected = false;// ligne inutile parce que php don't care about that
 
 		// On va récupérer l'utilisateur précis
-		$reponse = getUser($bdd, $username);
+		$reponse = getUser($username);
    
 
 	   	// On vérifie si l'adresse email et mot de passe correspondent
 	   	if ($reponse[0][ "MotDePasse" ] == $password)
 		{
 			$connected = true;
+            // le nom et le prénom servent à assurer à l'utilisateur qu'il est connecté
+            // et connecté avec le bon compte
 			$_SESSION['first_name'] = $reponse[0]['Prenom'];
 			$_SESSION['last_name'] = $reponse[0]['Nom'];
-			$_SESSION['user_type'] = $reponse[0]['TypeUtilisateur'];
 
-			//nécessaire pour montrer à l'usager ses données personnelles et autres.
+            // nécessaire pour valider le niveau d'accès de l'utilisateur
+			$_SESSION['user_type'] = $reponse[0]['TypeUtilisateur'];
+			//nécessaire pour accéder à d'autres informations liées à l'utilisateur plus loin
+            // dans la session
 			$_SESSION['no_user'] = $reponse[0]['NoUtilisateur'];
 		} else {
 			$connected = false;
