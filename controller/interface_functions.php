@@ -101,7 +101,7 @@ function showAppropriateMenu()
                                 <ul class="pure-menu-children">
                                     <li class="pure-menu-item"><a href="view_create_account.php" class="pure-menu-link">Créer un compte</a></li>
                                     <li class="pure-menu-item"><a href="view_assign_user.php" class="pure-menu-link">Assigner un plan-cadre</a></li>
-                                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Liste des membres</a></li>
+                                    <li class="pure-menu-item"><a href="view_update_password_elaborator.php" class="pure-menu-link">Modification mot de passe</a></li>
                                 </ul>
                             </li>
                         </ul>

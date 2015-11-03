@@ -11,7 +11,7 @@ session_start();
 include_once("../controller/interface_functions.php");
 include_once("../controller/pages_access.php");
 
-verifyConnected();
+//verifyConnected();
 ?>
 
     <!DOCTYPE html>
@@ -29,25 +29,35 @@ verifyConnected();
 
     <div class="container">
         <?php
-        showHeader();
-        showAppropriateMenu();
+        //showHeader();
+        //showAppropriateMenu();
         ?>
         <br>
 
         </br>
 
         <fieldset>
-            <legend>Login :</legend>
+            <legend>Modification de mot de passe :</legend>
             </br>
 
-            <form action="../controller/controller_login.php" method="post">
+            <form action="../controller/controller_update_elaborator_password.php" method="post">
+
+                <label class="control-label col-md-2">Username du compte a changer :</label>
+                <div class="col-md-2">
+                    <input class="text-box single-line password" data-val="true"
+                           data-val-length="Le champ Mot de passe doit être une chaîne dont la longueur maximale est de 20."
+                           data-val-length-max="50" data-val-required="Le champ Mot de passe est requis."
+                           id="Username" name="Username" type="password" value=""
+                        />
+                </div>
+                </br>
 
                 <label class="control-label col-md-2">Ancien mot de passe :</label>
                 <div class="col-md-2">
                     <input class="text-box single-line password" data-val="true"
                            data-val-length="Le champ Mot de passe doit être une chaîne dont la longueur maximale est de 20."
                            data-val-length-max="50" data-val-required="Le champ Mot de passe est requis."
-                           id="Password" name="Password" type="password" value=""
+                           id="OldPassword" name="OldPassword" type="password" value=""
                         />
                 </div>
                 </br>
@@ -57,7 +67,7 @@ verifyConnected();
                     <input class="text-box single-line password" data-val="true"
                            data-val-length="Le champ Mot de passe doit être une chaîne dont la longueur maximale est de 20."
                            data-val-length-max="50" data-val-required="Le champ Mot de passe est requis."
-                           id="Password" name="Password" type="password" value=""
+                           id="NewPassword" name="NewPassword" type="password" value=""
                         />
                 </div>
                 </br>
@@ -67,7 +77,7 @@ verifyConnected();
                     <input class="text-box single-line password" data-val="true"
                            data-val-length="Le champ Mot de passe doit être une chaîne dont la longueur maximale est de 20."
                            data-val-length-max="50" data-val-required="Le champ Mot de passe est requis."
-                           id="Password" name="Password" type="password" value=""
+                           id="NewPasswordConfirm" name="NewPasswordConfirm" type="password" value=""
                         />
                 </div>
                 </br>

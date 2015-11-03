@@ -271,7 +271,18 @@ function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $co
     return fetchId( $id_cours, "CALL SELECT_PREALABLE_COURS_ID(?)" );
   }
 
+function update_Password($username, $oldPassword, $newPassword, $newPasswordConfirm)
+{
+    $query = dbConnect()->prepare("CALL UPDATE_PASSWORD(?,?,?,?)");
 
+    $query->bindParam(1, $username, PDO::PARAM_STR);
+    $query->bindParam(2, $oldPassword, PDO::PARAM_STR);
+    $query->bindParam(3, $newPassword, PDO::PARAM_STR);
+    $query->bindParam(4, $newPasswordConfirm, PDO::PARAM_STR);
+
+    $query->execute();
+    $query->CloseCursor();
+}
 
 
 
