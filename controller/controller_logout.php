@@ -7,9 +7,11 @@
 */
 
    session_start();
-   
+
+   include_once("../assets/constant.php");
+
    session_destroy();
    unset( $_SESSION );
    
-   header('Location: ../view/view_index.php');
+   header('Location: ' . VIEW_INDEX);
 ?>

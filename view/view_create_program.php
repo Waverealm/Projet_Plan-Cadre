@@ -17,7 +17,7 @@
 
 <!DOCTYPE html>
 <html>
-  <body>
+
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       
@@ -26,7 +26,7 @@
       <link rel="Stylesheet" href="../assets/others.css">
          
     </head>
-      
+    <body> 
     <div class="container">
             <?php
                 showHeader();

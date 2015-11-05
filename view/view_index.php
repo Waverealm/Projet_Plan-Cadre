@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 
-    <body >
+
       <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
@@ -16,7 +16,7 @@
          <link rel="Stylesheet" href="../assets/others.css">
          
       </head>
-      
+      <body >
       <div class="container"  style="background-color: ghostwhite">
             <?php
                 showHeader();
@@ -26,7 +26,7 @@
 
           <fieldset>
               <legend>Description :</legend>
-              </br>
+              <br>
 
               <form>
                     <p>
@@ -41,7 +41,7 @@
           </fieldset>
           <fieldset>
               <legend>Développeurs :</legend>
-              </br>
+              <br>
 
               <table>
                 <tr>
@@ -56,7 +56,7 @@
                 </tr>
                 <tr>
                   <td class='developers'><a href="mailto:antoinelatendresse@gmail.com">antoinelatendresse@gmail.com</a></td>
-                  <td class='developers'><a href="mailto:simon.roy.26@hotmail.com">simon.roy.26@gmail.com</a></td>
+                  <td class='developers'><a href="mailto:simon.roy.26@hotmail.com">simon.roy.26@hotmail.com</a></td>
                   <td class='developers'><a href="mailto:kelly.lea56@gmail.com">kelly.lea56@gmail.com</a></td>
                 </tr>
               </table>
@@ -66,7 +66,7 @@
 
           <fieldset>
               <legend>Superviseur :</legend>
-              </br>
+              <br>
 
               <h3 style='float:left; margin-right: 25px;'>Saliha Yacoub</h3>
 
@@ -74,16 +74,20 @@
 
           <fieldset>
               <legend>Dédié à :</legend>
-              </br>
-              <td><h3 style='float:left;'>Johanne Raymond et Renaud Thibodeau</h3></td>
+              <br>
+              <h3 style='float:left;'>Johanne Raymond et Renaud Thibodeau</h3>
           </fieldset>
 
           <fieldset>
               <legend>Capture d'écran :</legend>
-              </br>
-              <tr>
-                  <td><img style='float:left; margin-right: 20px' src="../images/create_PC.png"></td>
-              </tr>
+              <br>
+              <table>
+                <tr>
+                  <td>
+                    <img style='float:left; margin-right: 20px' src="../images/create_PC.png">
+                  </td>
+                </tr>
+              </table>
 
           </fieldset>
 

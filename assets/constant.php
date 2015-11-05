@@ -5,7 +5,7 @@
 
 */
 
-define("LOGOUT", "../conroller/controller_logout.php");
+define("LOGOUT", "../controller/controller_logout.php");
 
 define("VIEW_LOGIN", "../view/view_login.php");
 define("VIEW_CREATE_ACCOUNT", "../view/view_create_account.php");
