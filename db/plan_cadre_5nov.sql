@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 03 Novembre 2015 à 21:11
+-- Généré le :  Jeu 05 Novembre 2015 à 23:21
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -121,11 +121,46 @@ BEGIN
     WHERE NoUtilisateur = PUtilisateur;
 END$$
 
+DROP PROCEDURE IF EXISTS `SELECT_PLAN_CADRE_ELABORATION_USER`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SELECT_PLAN_CADRE_ELABORATION_USER`(IN `PUtilisateur` INT(11))
+    NO SQL
+BEGIN
+    SELECT CodeCours, NomCours, PlanCadre_VersionPlan,                 NoUtilisateur FROM utilisateurs
+    INNER JOIN elaborateurplancadre
+    ON NoUtilisateur = Utilisateurs_NoUtilisateur
+    INNER JOIN plancadre
+    ON PlanCadre_VersionPlan = VersionPlan
+    INNER JOIN cours
+    ON plancadre.Cours_CodeCours = cours.CodeCours
+    WHERE NoUtilisateur = PUtilisateur;
+END$$
+
+DROP PROCEDURE IF EXISTS `SELECT_PREALABLE_COURS_ID`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SELECT_PREALABLE_COURS_ID`(IN `PCodeCours` CHAR(10))
+    NO SQL
+BEGIN
+SELECT Cours_CodeCours, Cours_CodeCoursPrealable, NomCours FROM prealablecours INNER JOIN cours ON Cours_CodeCours = CodeCours
+WHERE Cours_CodeCours = PCodeCours;
+END$$
+
 DROP PROCEDURE IF EXISTS `SELECT_USER`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SELECT_USER`(IN `PUSERNAME` VARCHAR(30))
     NO SQL
 BEGIN
 	SELECT Nom, Prenom, MotDePasse, NoUtilisateur, TypeUtilisateur, Etat FROM utilisateurs WHERE Username = PUSERNAME;
+END$$
+
+DROP PROCEDURE IF EXISTS `UPDATE_PLAN_CADRE_FICHIERS`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UPDATE_PLAN_CADRE_FICHIERS`(IN `Ppresentation` VARCHAR(100), IN `Pintegration` VARCHAR(100), IN `Pevaluation` VARCHAR(100), IN `Pcompetences` VARCHAR(100), IN `Pobjectifs` VARCHAR(100), IN `Pversion` INT(11))
+    NO SQL
+BEGIN
+UPDATE plancadre
+SET Presentation_Cours = Ppresentation,
+Objectifs_Integration = Pintegration,
+Evaluation_Apprentissage = Pevaluation,
+Enonce_Competences = Pcompetences,
+Objectifs_Apprentissage = Pobjectifs
+WHERE VersionPlan = Pversion;
 END$$
 
 DELIMITER ;
@@ -223,7 +258,9 @@ CREATE TABLE IF NOT EXISTS `elaborateurplancadre` (
 --
 
 INSERT INTO `elaborateurplancadre` (`PlanCadre_VersionPlan`, `Utilisateurs_NoUtilisateur`, `DateAjout`) VALUES
-(1, 1, '2015-10-27');
+(1, 1, '2015-10-27'),
+(2, 8, '2015-11-05'),
+(3, 8, '2015-11-05');
 
 -- --------------------------------------------------------
 
@@ -247,14 +284,16 @@ CREATE TABLE IF NOT EXISTS `plancadre` (
   `Recommandation` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`VersionPlan`),
   KEY `PlanCadre_Cours_FK` (`Cours_CodeCours`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `plancadre`
 --
 
 INSERT INTO `plancadre` (`VersionPlan`, `Cours_CodeCours`, `Etat`, `DateAdoption`, `DateAjout`, `Prensation_Cours`, `Objectifs_Integration`, `Evalutation_Apprentissage`, `Enonce_Competences`, `Objectifs_Apprentissage`, `Manuel_Obligatoire`, `Recommandation`) VALUES
-(1, '340-101-MQ', 'elaboratio', NULL, '2015-10-27', NULL, NULL, NULL, '', NULL, NULL, NULL);
+(1, '340-101-MQ', 'elaboratio', NULL, '2015-10-27', NULL, NULL, NULL, '', NULL, NULL, NULL),
+(2, '393-DE0-LG', 'elaboratio', NULL, '2015-11-05', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, '420-EDA-05', 'elaboratio', NULL, '2015-11-05', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

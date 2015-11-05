@@ -171,7 +171,7 @@
 
 function update_Password($username, $oldPassword, $newPassword, $newPasswordConfirm)
 {
-    $query = dbConnect()->prepare("CALL UPDATE_PASSWORD(?,?,?,?)");
+    $query = dbConnect()->prepare( "CALL UPDATE_PASSWORD(?,?,?,?)" );
 
     $query->bindParam(1, $username, PDO::PARAM_STR);
     $query->bindParam(2, $oldPassword, PDO::PARAM_STR);
@@ -192,6 +192,9 @@ function update_Password($username, $oldPassword, $newPassword, $newPasswordConf
 
 ------------------------------------------------------------------------------------
 */
+
+
+
 
 /*
 ------------------------------------------------------------------------------------
