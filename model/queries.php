@@ -1,5 +1,15 @@
 <?php
+/*
+  queris.php
+*/
 
+
+
+/*
+  fonction : dbConnect()
+  Cette fonction retourne une instance d'une connexion à la base de données
+
+*/
   function dbConnect() 
   {
 
@@ -13,6 +23,19 @@
       die('Erreur : ' . $e->getMessage());
      }
   }
+
+
+
+
+
+/*
+------------------------------------------------------------------------------------
+
+  début des selects
+
+------------------------------------------------------------------------------------
+*/
+
 
   function getUser($username)
   {
@@ -64,6 +87,132 @@
 
       return $email_free;
   }
+
+
+
+
+
+
+/* 
+   fonction : selectWithNoParam($call_select)
+   Créé par : Simon Roy
+   Prend un string en paramètre, le string représente une procédure stockée 
+   dans la base de données qui serra éxécutée. La valeur de retour est un 
+   array qui contient le résultat du select.
+*/
+  function selectWithNoParam($call_select)
+  {
+    $bdd = dbConnect();
+    $query = $bdd->prepare($call_select);
+
+    $query->execute();
+
+    $result = $query->fetchAll();
+    $query->closeCursor();
+
+    return $result;
+  }
+  function fetchAllUser()
+  {
+    return selectWithNoParam("CALL SELECT_ALL_USERS ()");
+  }
+  function fetchAllClass()
+  {
+    return selectWithNoParam("CALL SELECT_ALL_CLASSES ()");
+  }
+  // Va sélectionner la liste de stagiaires d'un responsable
+  function selectAllProgramCode($bdd)
+  {
+      return selectWithNoParam("CALL SELECT_ALL_PROGRAMS ()");
+  }
+
+  /*
+  ------------------------------------------------------------------------------------
+    
+    fin des fonctions qui appellent fetchStoredProc($call_select)
+
+  ------------------------------------------------------------------------------------
+  */
+
+  /*
+    fonction : fetchId($call_select, $id)
+    Prend un string en paramètre, le string représente une procédure stockée 
+     dans la base de données qui serra éxécutée. La variable id est pour obtenir 
+     seulement ce résultat là.
+     La valeur de retour est un array qui contient le résultat du select
+  */
+
+  function fetchId($id, $call_select)
+  {
+    $bdd = dbConnect();
+    $query = $bdd->prepare($call_select);
+
+    $query->bindParam(1, $id, PDO::PARAM_STR);
+
+    $query->execute();
+    $result = $query->fetchAll();
+    $query->closeCursor();
+
+    return $result;
+  }
+
+  function fetchPlanCadreElaboration_User($id_user)
+  {
+    return fetchId( $id_user, "CALL SELECT_PLAN_CADRE_ELABORATION_USER(?)" );
+  }
+  function fetchPlanCadreElaboration_PlanCadre($id_plancadre)
+  {
+    return fetchId( $id_plancadre, "CALL SELECT_PLAN_CADRE_ID(?)" );
+  }
+  function fetchPrealableCours_Id($id_cours)
+  {
+    return fetchId( $id_cours, "CALL SELECT_PREALABLE_COURS_ID(?)" );
+  }
+
+function update_Password($username, $oldPassword, $newPassword, $newPasswordConfirm)
+{
+    $query = dbConnect()->prepare("CALL UPDATE_PASSWORD(?,?,?,?)");
+
+    $query->bindParam(1, $username, PDO::PARAM_STR);
+    $query->bindParam(2, $oldPassword, PDO::PARAM_STR);
+    $query->bindParam(3, $newPassword, PDO::PARAM_STR);
+    $query->bindParam(4, $newPasswordConfirm, PDO::PARAM_STR);
+
+    $query->execute();
+    $query->CloseCursor();
+}
+
+
+
+
+/*
+------------------------------------------------------------------------------------
+  
+  fin des fonctions qui appellent fetchId($id, $call_select)
+
+------------------------------------------------------------------------------------
+*/
+
+/*
+------------------------------------------------------------------------------------
+
+  fin des selects
+
+------------------------------------------------------------------------------------
+*/
+
+
+
+
+
+/*
+------------------------------------------------------------------------------------
+  
+  début des insertions (create)
+
+------------------------------------------------------------------------------------
+*/
+
 
 
   function createUser($bdd, $userName, $pass, $email, $lastName, $firstName, $userType)
@@ -165,11 +314,20 @@
       $insert->execute();
       $insert->CloseCursor();
   }
+/*
+------------------------------------------------------------------------------------
+  
+  fin des insertions (create)
 
-/* 
-  début des updates
+------------------------------------------------------------------------------------
 */
 /* 
+------------------------------------------------------------------------------------
+  
+  début des updates
+
+------------------------------------------------------------------------------------
+
    fonction : fetchStoredProc($call_select)
    Créé par : Simon Roy
    Prend un string en paramètre, le string représente une procédure stockée 
@@ -195,100 +353,11 @@ function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $co
 }
 
 /* 
+------------------------------------------------------------------------------------
+  
   fin des updates
-*/
 
-
-/* 
-   fonction : selectWithNoParam($call_select)
-   Créé par : Simon Roy
-   Prend un string en paramètre, le string représente une procédure stockée 
-   dans la base de données qui serra éxécutée. La valeur de retour est un 
-   array qui contient le résultat du select.
-*/
-  function selectWithNoParam($call_select)
-  {
-    $bdd = dbConnect();
-    $query = $bdd->prepare($call_select);
-
-    $query->execute();
-
-    $result = $query->fetchAll();
-    $query->closeCursor();
-
-    return $result;
-  }
-  function fetchAllUser()
-  {
-    return selectWithNoParam("CALL SELECT_ALL_USERS ()");
-  }
-  function fetchAllClass()
-  {
-    return selectWithNoParam("CALL SELECT_ALL_CLASSES ()");
-  }
-  // Va sélectionner la liste de stagiaires d'un responsable
-  function selectAllProgramCode($bdd)
-  {
-      return selectWithNoParam("CALL SELECT_ALL_PROGRAMS ()");
-  }
-
-  /*
-    fin des fonctions qui appellent fetchStoredProc($call_select)
-  */
-
-  /*
-    fonction : fetchId($call_select, $id)
-    Prend un string en paramètre, le string représente une procédure stockée 
-     dans la base de données qui serra éxécutée. La variable id est pour obtenir 
-     seulement ce résultat là.
-     La valeur de retour est un array qui contient le résultat du select
-  */
-
-  function fetchId($id, $call_select)
-  {
-    $bdd = dbConnect();
-    $query = $bdd->prepare($call_select);
-
-    $query->bindParam(1, $id, PDO::PARAM_STR);
-
-    $query->execute();
-    $result = $query->fetchAll();
-    $query->closeCursor();
-
-    return $result;
-  }
-
-  function fetchPlanCadreElaboration_User($id_user)
-  {
-    return fetchId( $id_user, "CALL SELECT_PLAN_CADRE_ELABORATION_USER(?)" );
-  }
-  function fetchPlanCadreElaboration_PlanCadre($id_plancadre)
-  {
-    return fetchId( $id_plancadre, "CALL SELECT_PLAN_CADRE_ID(?)" );
-  }
-  function fetchPrealableCours_Id($id_cours)
-  {
-    return fetchId( $id_cours, "CALL SELECT_PREALABLE_COURS_ID(?)" );
-  }
-
-function update_Password($username, $oldPassword, $newPassword, $newPasswordConfirm)
-{
-    $query = dbConnect()->prepare("CALL UPDATE_PASSWORD(?,?,?,?)");
-
-    $query->bindParam(1, $username, PDO::PARAM_STR);
-    $query->bindParam(2, $oldPassword, PDO::PARAM_STR);
-    $query->bindParam(3, $newPassword, PDO::PARAM_STR);
-    $query->bindParam(4, $newPasswordConfirm, PDO::PARAM_STR);
-
-    $query->execute();
-    $query->CloseCursor();
-}
-
-
-
-
-/*
-  fin des fonctions qui appellent fetchId($id, $call_select)
+------------------------------------------------------------------------------------
 */
 
 

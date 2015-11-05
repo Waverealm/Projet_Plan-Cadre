@@ -35,7 +35,7 @@
 	{
 		if(isset($_SESSION[ "user_type" ]))
 		{
-			if($_SESSION[ "user_type" ] == "Élaborateur")
+			if(!$_SESSION[ "user_type" ] == "Élaborateur")
 			{
 				// Redirige vers la page d'accueil.
 				header('Location: ../view/view_index.php');
@@ -47,7 +47,7 @@
 	{
 		if(isset($_SESSION[ "user_type" ]))
 		{
-			if($_SESSION[ "user_type" ] == "Conseiller pédagogique")
+			if(!$_SESSION[ "user_type" ] == "Conseiller pédagogique")
 			{
 				// Redirige vers la page d'accueil.
 				header('Location: ../view/view_index.php');
@@ -59,7 +59,7 @@
 	{
 		if(isset($_SESSION[ "user_type" ]))
 		{
-			if($_SESSION[ "user_type" ] == "Administrateur")
+			if(!$_SESSION[ "user_type" ] == "Administrateur")
 			{
 				// Redirige vers la page d'accueil.
 				header('Location: ../view/view_index.php');

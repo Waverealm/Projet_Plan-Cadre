@@ -17,6 +17,7 @@
 
 function showAppropriateMenu()
     {
+        $visiteur = true;
         // Si la variable connected existe dans _Session
         if(isset($_SESSION[ "connected" ]))
         {
@@ -41,18 +42,11 @@ function showAppropriateMenu()
                         default:
                             showVisitorMenu();
                     }
+                    $visiteur = false;
                 }
-                else // deux/trois de trop, il faudrait trouver une solution éventuellement
-                {
-                    showVisitorMenu();
-                }
-            }
-            else
-            {
-                showVisitorMenu();
             }
         }
-        else
+        if($visiteur)
         {
             showVisitorMenu();
         }
@@ -60,6 +54,10 @@ function showAppropriateMenu()
 
     function showVisitorMenu()
     {
+        /*
+        changer le menu pour que ça ne soit pas un dropdown
+
+        */
         ?>
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list">
@@ -73,7 +71,6 @@ function showAppropriateMenu()
                 </ul>
                 <a href="<?php echo VIEW_LOGIN ?>" class="login_field">Se Connecter</a>
             </div>
-
         <?php
     }
     function showElaborateurMenu()
@@ -175,6 +172,23 @@ function showAppropriateMenu()
                             </li>
                             <li class="pure-menu-item">
                                 <a href="view_elaboration_plancadre.php" class="pure-menu-link">Créer</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                        <a href="#" id="menuLink1" class="pure-menu-link">Gestion de l'information</a>
+                        <ul class="pure-menu-children">
+                            <li class="pure-menu-item">
+                                <a href="view_create_competence.php" class="pure-menu-link">Ajouter une compétence</a>
+                            </li>
+                            <li class="pure-menu-item">
+                                <a href="view_create_class.php" class="pure-menu-link">Ajouter un cours</a>
+                            </li>
+                            <li class="pure-menu-item">
+                                <a href="view_create_program.php" class="pure-menu-link">Ajouter un programme d'études</a>
+                            </li>
+                            <li class="pure-menu-item">
+                                <a href="#" class="pure-menu-link">Modifier les instruction des plans-cadres</a>
                             </li>
                         </ul>
                     </li>

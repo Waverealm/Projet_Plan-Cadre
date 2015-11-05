@@ -29,8 +29,8 @@ include_once("../controller/pages_access.php");
     <body>
     <div class="container">
         <?php
-        //showHeader();
-        //showAppropriateMenu();
+            showHeader();
+            showAppropriateMenu();
         ?>
         <br>
 
