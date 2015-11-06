@@ -28,40 +28,7 @@
 		exit;
 	}
 
-	function getArrayUser()
-	{
-		$array = fetchAllUser();
-		$arrayOutput;
-		if(count($array) > 0)
-		{
-			for($i=0; $i < count($array); $i++)
-			{
-				// le nom et la valeur sont la clé primaire de l'utilisateur
-				// le contenu / texte est le nom de l'utilisateur (prénom + nom)
-				$arrayOutput[$i] = buildHTML_OptionSelect($array[$i]["NoUtilisateur"],
-					$array[$i]["NoUtilisateur"],
-					$array[$i]["Prenom"] . " " . $array[$i]["Nom"]);
-			}
-		}
 
-		return $arrayOutput;
-	}
-	function getArrayClass()
-	{
-		$array = fetchAllClass();
-		$arrayOutput;
-		if(count($array) > 0)
-		{
-			for($i=0; $i < count($array); $i++)
-			{
-				// le nom de l'option et sa valeur sont le code du cours
-				// le contenu / texte est le code du cours avec le nom du cours
-				$arrayOutput[$i] = buildHTML_OptionSelect($array[$i]["CodeCours"],
-					 $array[$i]["CodeCours"],
-					 $array[$i]["CodeCours"] . " " . $array[$i]["NomCours"]); 
-			}
-		}
-		return $arrayOutput;
-	}
 
+	
 ?>

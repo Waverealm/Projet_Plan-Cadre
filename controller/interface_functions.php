@@ -61,11 +61,15 @@ function showAppropriateMenu()
         ?>
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list">
-                    <li class="pure-menu-item pure-menu-selected"><a href="view_index.php" class="pure-menu-link">Accueil</a></li>
+                    <li class="pure-menu-item pure-menu-selected">
+                        <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
+                    </li>
                     <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                         <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
                         <ul class="pure-menu-children">
-                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Recherche</a></li>
+                            <li class="pure-menu-item">
+                                <a href="#" class="pure-menu-link">Recherche</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -79,7 +83,7 @@ function showAppropriateMenu()
         <div class="pure-menu pure-menu-horizontal">
             <ul class="pure-menu-list">
                 <li class="pure-menu-item pure-menu-selected">
-                    <a href="view_index.php" class="pure-menu-link">Accueil</a>
+                    <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
                 </li>
                 <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                     <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
@@ -88,13 +92,13 @@ function showAppropriateMenu()
                             <a href="#" class="pure-menu-link">Rechercher</a>
                         </li>
                         <li class="pure-menu-item">
-                            <a href="view_elaboration_plancadre.php" class="pure-menu-link">Créer</a>
+                            <a href="<?php echo VIEW_ELABORATION_PLANCADRE ?>" class="pure-menu-link">Créer</a>
                         </li>
                     </ul>
                 </li>
             </ul>
             <div class="login_field"><?php echo $_SESSION['last_name'].", ".$_SESSION['first_name']."   "; ?>
-                <a href="../controller/controller_logout.php">Se déconnecter</a>
+                <a href="<?php echo LOGOUT ?>">Se déconnecter</a>
             </div>
         </div>
         <?php
@@ -105,7 +109,7 @@ function showAppropriateMenu()
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list">
                     <li class="pure-menu-item pure-menu-selected">
-                        <a href="view_index.php" class="pure-menu-link">Accueil</a>
+                        <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
                     </li>
                     <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                         <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
@@ -114,7 +118,7 @@ function showAppropriateMenu()
                             <a href="#" class="pure-menu-link">Recherche</a>
                         </li>
                         <li class="pure-menu-item">
-                           <a href="view_elaboration_plancadre.php" class="pure-menu-link">Créer</a>
+                           <a href="<?php echo VIEW_ELABORATION_PLANCADRE ?>" class="pure-menu-link">Créer</a>
                         </li>
                         </ul>
                     </li>
@@ -122,16 +126,16 @@ function showAppropriateMenu()
                         <a href="#" id="menuLink1" class="pure-menu-link">Gestion de l'information</a>
                         <ul class="pure-menu-children">
                             <li class="pure-menu-item">
-                                <a href="view_create_competence.php" class="pure-menu-link">Ajouter une compétence</a>
+                                <a href="<?php echo VIEW_CREATE_COMPETENCE ?>" class="pure-menu-link">Ajouter une compétence</a>
+                            </li>
+                            <li class="pure-menu-item"><?php echo VIEW_CREATE_COMPETENCE ?>
+                                <a href="<?php echo VIEW_CREATE_CLASS ?>" class="pure-menu-link">Ajouter un cours</a>
                             </li>
                             <li class="pure-menu-item">
-                                <a href="view_create_class.php" class="pure-menu-link">Ajouter un cours</a>
+                                <a href="<?php echo VIEW_CREATE_PROGRAM ?>" class="pure-menu-link">Ajouter un programme d'études</a>
                             </li>
                             <li class="pure-menu-item">
-                                <a href="view_create_program.php" class="pure-menu-link">Ajouter un programme d'études</a>
-                            </li>
-                            <li class="pure-menu-item">
-                                <a href="#" class="pure-menu-link">Modifier les instruction des plans-cadres</a>
+                                <a href="<?php echo VIEW_CREATE_CONSIGNE ?>" class="pure-menu-link">Modifier les instruction des plans-cadres</a>
                             </li>
                         </ul>
                     </li>
@@ -139,10 +143,10 @@ function showAppropriateMenu()
                         <a href="#" id="menuLink1" class="pure-menu-link">Gestion des membres
                         <ul class="pure-menu-children">
                             <li class="pure-menu-item">
-                                <a href="view_create_account.php" class="pure-menu-link">Créer un compte</a>
+                                <a href="<?php echo VIEW_CREATE_ACCOUNT ?>" class="pure-menu-link">Créer un compte</a>
                             </li>
                             <li class="pure-menu-item">
-                                <a href="view_assign_user.php" class="pure-menu-link">Assigner un plan-cadre</a>
+                                <a href="<?php echo VIEW_ASSIGN_USER ?>" class="pure-menu-link">Assigner un plan-cadre</a>
                             </li>
                             <li class="pure-menu-item">
                                 <a href="#" class="pure-menu-link">Liste des membres</a>
@@ -151,7 +155,7 @@ function showAppropriateMenu()
                     </li>
                 </ul>
                 <div class="login_field"><?php echo $_SESSION['last_name'].", ".$_SESSION['first_name']."   "; ?>
-                    <a href="../controller/controller_logout.php">Se déconnecter</a>
+                    <a href="<?php echo LOGOUT ?>">Se déconnecter</a>
                 </div>
             </div>
         <?php
@@ -162,7 +166,7 @@ function showAppropriateMenu()
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list">
                     <li class="pure-menu-item pure-menu-selected">
-                        <a href="view_index.php" class="pure-menu-link">Accueil</a>
+                        <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
                     </li>
                     <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                         <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
@@ -171,7 +175,7 @@ function showAppropriateMenu()
                                 <a href="#" class="pure-menu-link">Recherche</a>
                             </li>
                             <li class="pure-menu-item">
-                                <a href="view_elaboration_plancadre.php" class="pure-menu-link">Créer</a>
+                                <a href="<?php echo VIEW_ELABORATION_PLANCADRE ?>" class="pure-menu-link">Créer</a>
                             </li>
                         </ul>
                     </li>
@@ -179,16 +183,16 @@ function showAppropriateMenu()
                         <a href="#" id="menuLink1" class="pure-menu-link">Gestion de l'information</a>
                         <ul class="pure-menu-children">
                             <li class="pure-menu-item">
-                                <a href="view_create_competence.php" class="pure-menu-link">Ajouter une compétence</a>
+                                <a href="<?php echo VIEW_CREATE_COMPETENCE ?>" class="pure-menu-link">Ajouter une compétence</a>
                             </li>
                             <li class="pure-menu-item">
-                                <a href="view_create_class.php" class="pure-menu-link">Ajouter un cours</a>
+                                <a href="<?php echo VIEW_CREATE_CLASS ?>" class="pure-menu-link">Ajouter un cours</a>
                             </li>
                             <li class="pure-menu-item">
-                                <a href="view_create_program.php" class="pure-menu-link">Ajouter un programme d'études</a>
+                                <a href="<?php echo VIEW_CREATE_PROGRAM ?>" class="pure-menu-link">Ajouter un programme d'études</a>
                             </li>
                             <li class="pure-menu-item">
-                                <a href="#" class="pure-menu-link">Modifier les instruction des plans-cadres</a>
+                                <a href="<?php echo VIEW_CREATE_CONSIGNE ?>" class="pure-menu-link">Modifier les instruction des plans-cadres</a>
                             </li>
                         </ul>
                     </li>
@@ -196,10 +200,10 @@ function showAppropriateMenu()
                         <a href="#" id="menuLink1" class="pure-menu-link">Gestion des membres</a>
                         <ul class="pure-menu-children">
                             <li class="pure-menu-item">
-                                <a href="view_create_account.php" class="pure-menu-link">Créer un compte</a>
+                                <a href="<?php echo VIEW_CREATE_ACCOUNT ?>" class="pure-menu-link">Créer un compte</a>
                             </li>
                             <li class="pure-menu-item">
-                                <a href="view_assign_user.php" class="pure-menu-link">Assigner un plan-cadre</a>
+                                <a href="<?php echo VIEW_ASSIGN_USER ?>" class="pure-menu-link">Assigner un plan-cadre</a>
                             </li>
                             <li class="pure-menu-item">
                                 <a href="view_update_password_elaborator.php" class="pure-menu-link">Modification mot de passe</a>
@@ -262,7 +266,49 @@ function showAppropriateMenu()
     }
 
 
-    /*
+
+    function getArrayUser()
+    {
+        $array = fetchAllUser();
+        $arrayOutput;
+        if(count($array) > 0)
+        {
+            for($i=0; $i < count($array); $i++)
+            {
+                // le nom et la valeur sont la clé primaire de l'utilisateur
+                // le contenu / texte est le nom de l'utilisateur (prénom + nom)
+                $arrayOutput[$i] = buildHTML_OptionSelect($array[$i]["NoUtilisateur"],
+                    $array[$i]["NoUtilisateur"],
+                    $array[$i]["Prenom"] . " " . $array[$i]["Nom"]);
+            }
+        }
+        return $arrayOutput;
+    }
+    function getArrayClass()
+    {
+        $array = fetchAllClass();
+        $arrayOutput;
+        if(count($array) > 0)
+        {
+            for($i=0; $i < count($array); $i++)
+            {
+                // le nom de l'option et sa valeur sont le code du cours
+                // le contenu / texte est le code du cours avec le nom du cours
+                $arrayOutput[$i] = buildHTML_OptionSelect($array[$i]["CodeCours"],
+                     $array[$i]["CodeCours"],
+                     $array[$i]["CodeCours"] . " " . $array[$i]["NomCours"]); 
+            }
+        }
+        return $arrayOutput;
+    }
+
+
+
+
+
+
+
+/*
     echoArray($array)
     Cette fonction utilise echo sur le contenu de chaque index de l'array.
     Suggestion : appelé cette fonction pour afficher à l'utilisateur le contenu 
@@ -275,6 +321,7 @@ function showAppropriateMenu()
             echo $array[$i];
         }
     }
+
 
     function showProgramsCode()
     {
@@ -312,5 +359,7 @@ function showAppropriateMenu()
 
         <?php
     }
+
+
 
 ?>

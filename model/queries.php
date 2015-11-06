@@ -12,16 +12,15 @@
 */
   function dbConnect() 
   {
-
-     try
-     {
-       return new PDO('mysql:host=localhost;dbname=plan_cadre', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-       mysql_set_charset("utf8", PDO);
-     }
-     catch (Exception $e)
-     {
+    try
+    {
+      return new PDO('mysql:host=localhost;dbname=plan_cadre', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+      mysql_set_charset("utf8", PDO);
+    }
+    catch (Exception $e)
+    {
       die('Erreur : ' . $e->getMessage());
-     }
+    }
   }
 
 
@@ -57,7 +56,6 @@
   // 1 pour nom d'utilisateur déjà utilisé
   function countUsersSpecificUsername ($bdd, $username)
   {
-
       $query = $bdd->prepare("CALL COUNT_USER_SPECIFIC_USERNAME(?)");
 
       $query->bindParam(1, $username, PDO::PARAM_STR);
@@ -168,22 +166,11 @@
   {
     return fetchId( $id_cours, "CALL SELECT_PREALABLE_COURS_ID(?)" );
   }
-
-function update_Password($username, $oldPassword, $newPassword, $newPasswordConfirm)
-{
-    $query = dbConnect()->prepare( "CALL UPDATE_PASSWORD(?,?,?,?)" );
-
-    $query->bindParam(1, $username, PDO::PARAM_STR);
-    $query->bindParam(2, $oldPassword, PDO::PARAM_STR);
-    $query->bindParam(3, $newPassword, PDO::PARAM_STR);
-    $query->bindParam(4, $newPasswordConfirm, PDO::PARAM_STR);
-
-    $query->execute();
-    $query->CloseCursor();
-}
-
-
-
+  function fetchConsignesPlanCadre_Id($id_consigne)
+  {
+    return fetchId( $id_consigne, "CALL SELECT_CONSIGNE_PLAN_CADRE_ID(?)" );
+  }
+  
 
 /*
 ------------------------------------------------------------------------------------
@@ -304,18 +291,29 @@ function update_Password($username, $oldPassword, $newPassword, $newPasswordConf
       return $id;
   }
   
+  function createConsignesPlanCadre($id, $enonce, $description)
+  {      
+    $connection = dbConnect();
+    $insert = $connection->prepare("CALL INSERT_CONSIGNE_PLAN_CADRE(?,?,?)");
+
+    $insert->bindParam(1, $id, PDO::PARAM_STR);
+    $insert->bindParam(2, $enonce, PDO::PARAM_STR);
+    $insert->bindParam(3, $description, PDO::PARAM_STR);
+    
+    $insert->execute();
+
+    $insert->CloseCursor();
+  }
 
   function assignUserPlanCadre($id, $user)
   {
-      $insert = dbConnect()->prepare("CALL INSERT_ELABORATEUR_PLAN_CADRE(?,?)");
+    $insert = dbConnect()->prepare("CALL INSERT_ELABORATEUR_PLAN_CADRE(?,?)");
 
-      $insert->bindParam(1, $id, PDO::PARAM_STR);
-      $insert->bindParam(2, $user, PDO::PARAM_STR);
+    $insert->bindParam(1, $id, PDO::PARAM_STR);
+    $insert->bindParam(2, $user, PDO::PARAM_STR);
 
-      //echo $id . " " . $user;
-
-      $insert->execute();
-      $insert->CloseCursor();
+    $insert->execute();
+    $insert->CloseCursor();
   }
 /*
 ------------------------------------------------------------------------------------
@@ -354,6 +352,37 @@ function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $co
 
   $update->closeCursor();
 }
+
+
+function updateConsignesPlanCadre($id, $enonce, $description)
+{
+  $bdd = dbConnect();
+  $update = $bdd->prepare("CALL UPDATE_CONSIGNES_PLAN_CADRE (?,?,?)");
+
+  $update->bindParam(1, $id, PDO::PARAM_STR);
+  $update->bindParam(2, $enonce, PDO::PARAM_STR);
+  $update->bindParam(3, $description, PDO::PARAM_STR);
+
+  $update->execute();
+
+  $update->closeCursor();
+}
+
+// change to updatePassword
+function update_Password($username, $oldPassword, $newPassword, $newPasswordConfirm)
+{
+    $query = dbConnect()->prepare( "CALL UPDATE_PASSWORD(?,?,?,?)" );
+
+    $query->bindParam(1, $username, PDO::PARAM_STR);
+    $query->bindParam(2, $oldPassword, PDO::PARAM_STR);
+    $query->bindParam(3, $newPassword, PDO::PARAM_STR);
+    $query->bindParam(4, $newPasswordConfirm, PDO::PARAM_STR);
+
+    $query->execute();
+    $query->CloseCursor();
+}
+
+
 
 /* 
 ------------------------------------------------------------------------------------
