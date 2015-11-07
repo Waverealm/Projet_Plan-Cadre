@@ -3,6 +3,9 @@
 	constant.php définie toutes les constantes qui 
 	seront utilitées par le site.
 
+
+
+	Juste un petit test
 */
 
 
