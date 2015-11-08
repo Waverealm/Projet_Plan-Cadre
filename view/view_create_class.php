@@ -69,7 +69,9 @@
           </div>
           <br>
           <label>Code du programme : </label>
-          <?php showProgramsCode(); ?>
+            <?php 
+              showProgramsCode(); 
+            ?>
           <br>
           <div>
             <input type="submit" value="Soumettre..." class="btn btn-default" /> <br /><br />

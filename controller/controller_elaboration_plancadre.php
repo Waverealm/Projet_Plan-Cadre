@@ -30,25 +30,6 @@ if(!isset($_SESSION))
 	}
 
 
-	function getArrayPlanCadre()
-	{
-		$id = $_SESSION['no_user'];
-		$array = fetchPlanCadreElaboration_User($id);
-		$arrayOutput;
-		if(count($array) > 0)
-		{
-			for($i=0; $i < count($array); $i++)
-			{
-				// le nom et la valeur sont la clé primaire du plancadre
-				// le contenu / texte est le code du cours avec le nom du cours
-				$arrayOutput[$i] = buildHTML_OptionSelect($array[$i]["PlanCadre_VersionPlan"],
-					$array[$i]["PlanCadre_VersionPlan"],
-					$array[$i]["CodeCours"] . " " . $array[$i]["NomCours"]);
-			}
-		}
-
-		return $arrayOutput;
-	}
 
 
 

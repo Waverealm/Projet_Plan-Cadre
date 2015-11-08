@@ -244,84 +244,6 @@ function showAppropriateMenu()
 
 
 
-/*
-    buildHTML_OptionSelect($name, $value, $content)
-    Cette fonction retourne une chaine de charactère qui devrait servir 
-    a représenter un tag html <option>. 
-    Par exemple,
-    <select name="select_list" id="select_list">
-    <?php
-    buildHTML_OptionSelect("nom", "valeur", "contenu");
-    ?>
-    </select>
-*/
-    function buildHTML_OptionSelect($name, $value, $content)
-    {
-        return "<option "
-        ."name='".$name."'" 
-        ." value='".$value."'"
-        ." >"
-        .$content
-        ."</option>";
-    }
-
-
-
-    function getArrayUser()
-    {
-        $array = fetchAllUser();
-        $arrayOutput;
-        if(count($array) > 0)
-        {
-            for($i=0; $i < count($array); $i++)
-            {
-                // le nom et la valeur sont la clé primaire de l'utilisateur
-                // le contenu / texte est le nom de l'utilisateur (prénom + nom)
-                $arrayOutput[$i] = buildHTML_OptionSelect($array[$i]["NoUtilisateur"],
-                    $array[$i]["NoUtilisateur"],
-                    $array[$i]["Prenom"] . " " . $array[$i]["Nom"]);
-            }
-        }
-        return $arrayOutput;
-    }
-    function getArrayClass()
-    {
-        $array = fetchAllClass();
-        $arrayOutput;
-        if(count($array) > 0)
-        {
-            for($i=0; $i < count($array); $i++)
-            {
-                // le nom de l'option et sa valeur sont le code du cours
-                // le contenu / texte est le code du cours avec le nom du cours
-                $arrayOutput[$i] = buildHTML_OptionSelect($array[$i]["CodeCours"],
-                     $array[$i]["CodeCours"],
-                     $array[$i]["CodeCours"] . " " . $array[$i]["NomCours"]); 
-            }
-        }
-        return $arrayOutput;
-    }
-
-
-
-
-
-
-
-/*
-    echoArray($array)
-    Cette fonction utilise echo sur le contenu de chaque index de l'array.
-    Suggestion : appelé cette fonction pour afficher à l'utilisateur le contenu 
-    d'un array
-*/
-    function echoArray($array)
-    {
-        for ($i = 0; $i < count($array); $i++)
-        {
-            echo $array[$i];
-        }
-    }
-
 
     function showProgramsCode()
     {
@@ -360,6 +282,172 @@ function showAppropriateMenu()
         <?php
     }
 
+/*
+    Nom de la fonction : showUserListAll
+    Fait par : Simon Roy
+    Cette fonction permet d'afficher une liste d'utilisateur
+    dans une liste déroulante. La liste d'utilisateur est obtenue par fecthAllUser
+*/
+    function showUserListAll()
+    {
+        $list = fetchAllUser();
+
+        echo "<select name=\"user_list_all\">";
+            echo "<option value=\"" . "\">" . "</option>";
+        foreach ($list as $row)
+        {
+            echo "<option value=\"".$row['NoUtilisateur']."\">".$row['Prenom']." ".$row['Nom']."</option>";
+        }
+        echo "</select>";
+    }
+/*
+    Nom de la fonction : showClassListAll
+    Fait par : Simon Roy
+    Cette fonction permet d'afficher une liste déroulante de tous les cours.
+*/
+    function showClassListAll()
+    {
+        $list = fetchAllClass();
+
+        echo "<select name=\"class_list_all\">";
+            echo "<option value=\"" . "\">" . "</option>";
+        foreach ($list as $row)
+        {
+            echo "<option value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+        }
+        echo "</select>";
+    }
+/*
+    Nom de la fonction : showPlanCadreUser
+    Fait par : Simon Roy
+    Cette fonction permet d'afficher une liste déroulante des plans-cadres
+    que l'utilisateur courrant peut élaborer.
+*/
+    function showPlanCadreUser()
+    {
+        $id = $_SESSION['no_user'];
+        $list = fetchPlanCadreElaboration_User($id);
+
+        echo "<select name=\"plancadre_elaboration_list\">";
+            echo "<option value=\"" . "\">" . "</option>";
+        foreach ($list as $row)
+        {
+            echo "<option value=\"".$row["PlanCadre_VersionPlan"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+        }
+        echo "</select>";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+utiliser les fonctions showSomething à la place
+*/
+    // getArrayUser is deprecated
+    function getArrayUser()
+    {
+        $array = fetchAllUser();
+        $arrayOutput;
+        if(count($array) > 0)
+        {
+            for($i=0; $i < count($array); $i++)
+            {
+                // le nom et la valeur sont la clé primaire de l'utilisateur
+                // le contenu / texte est le nom de l'utilisateur (prénom + nom)
+                $arrayOutput[$i] = buildHTML_OptionSelect($array[$i]["NoUtilisateur"],
+                    $array[$i]["NoUtilisateur"],
+                    $array[$i]["Prenom"] . " " . $array[$i]["Nom"]);
+            }
+        }
+        return $arrayOutput;
+    }
+    // getArrayClass is deprecated
+    function getArrayClass()
+    {
+        $array = fetchAllClass();
+        $arrayOutput;
+        if(count($array) > 0)
+        {
+            for($i=0; $i < count($array); $i++)
+            {
+                // le nom de l'option et sa valeur sont le code du cours
+                // le contenu / texte est le code du cours avec le nom du cours
+                $arrayOutput[$i] = buildHTML_OptionSelect($array[$i]["CodeCours"],
+                     $array[$i]["CodeCours"],
+                     $array[$i]["CodeCours"] . " " . $array[$i]["NomCours"]); 
+            }
+        }
+        return $arrayOutput;
+    }
+
+    function getArrayPlanCadre()
+    {
+        $id = $_SESSION['no_user'];
+        $array = fetchPlanCadreElaboration_User($id);
+        $arrayOutput;
+        if(count($array) > 0)
+        {
+            for($i=0; $i < count($array); $i++)
+            {
+                // le nom et la valeur sont la clé primaire du plancadre
+                // le contenu / texte est le code du cours avec le nom du cours
+                $arrayOutput[$i] = buildHTML_OptionSelect($array[$i]["PlanCadre_VersionPlan"],
+                    $array[$i]["PlanCadre_VersionPlan"],
+                    $array[$i]["CodeCours"] . " " . $array[$i]["NomCours"]);
+            }
+        }
+
+        return $arrayOutput;
+    }
+
+/*
+    a perdu son utilité à cause des fonctions show
+    Nom de la fonction : buildHTML_OptionSelect
+    Fait par : Simon Roy
+    buildHTML_OptionSelect($name, $value, $content)
+    Cette fonction retourne une chaine de charactère qui devrait servir 
+    a représenter un tag html <option>. 
+    Par exemple,
+    <select name="select_list" id="select_list">
+    <?php
+    buildHTML_OptionSelect("nom", "valeur", "contenu");
+    ?>
+    </select>
+*/
+    function buildHTML_OptionSelect($name, $value, $content)
+    {
+        return "<option "
+        ."name='".$name."'" 
+        ." value='".$value."'"
+        ." >"
+        .$content
+        ."</option>";
+    }
+
+/*
+    Nom de la fonction : echoArray
+    Fait par : Simon Roy
+    echoArray($array)
+    Cette fonction utilise echo sur le contenu de chaque index de l'array.
+    Suggestion : appelé cette fonction pour afficher à l'utilisateur le contenu 
+    d'un array
+*/
+    function echoArray($array)
+    {
+        for ($i = 0; $i < count($array); $i++)
+        {
+            echo $array[$i];
+        }
+    }
 
 
 ?>

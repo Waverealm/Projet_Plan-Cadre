@@ -20,7 +20,7 @@
         <link rel="Stylesheet" href="../assets/styles.css">
         <link rel="Stylesheet" href="../assets/others.css">
 
-        <script type="text/javascript" src="../controller/javascript.js" ></script>
+        <script type="text/javascript" src="../assets/js_global.js" ></script>
 
     </head>
     
@@ -45,16 +45,13 @@
 
                     <br>
 
-                    <select name="html_select_plancadre" id ="html_select_plancadre">
-                        <option> </option>
-                        <?php
-                            echoArray(getArrayPlanCadre());
-                        ?>
-                    </select>
+                    <?php
+                        showPlanCadreUser();
+                    ?>
 
                     <input type="text" name="search_class" 
-                    onKeyUp="arrayFilter(this.value, this.form.html_select_plancadre)" 
-                    onChange="arrayFilter(this.value, this.form.html_select_plancadre)"
+                    onKeyUp="arrayFilter(this.value, this.form.plancadre_elaboration_list)" 
+                    onChange="arrayFilter(this.value, this.form.plancadre_elaboration_list)"
                     >
 
                     <br>

@@ -23,16 +23,12 @@
     }
   }
 
-
-
-
-
 /*
-------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------------------
 
   début des selects
 
-------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------------------
 */
 
 
@@ -87,16 +83,15 @@
   }
 
 
-
-
-
-
 /* 
-   fonction : selectWithNoParam($call_select)
-   Créé par : Simon Roy
-   Prend un string en paramètre, le string représente une procédure stockée 
-   dans la base de données qui serra éxécutée. La valeur de retour est un 
-   array qui contient le résultat du select.
+  Nom de la fonction :  : selectWithNoParam($call_select)
+  Fait par : Simon Roy
+  Prend un string en paramètre, le string représente une procédure stockée 
+  dans la base de données qui serra éxécutée. La valeur de retour est un 
+  array qui contient le résultat du select.
+
+  Cette fonction ne devrait pas prendre être utilisé pour éxécuter autre chose 
+  que des selects.
 */
   function selectWithNoParam($call_select)
   {
@@ -118,27 +113,25 @@
   {
     return selectWithNoParam("CALL SELECT_ALL_CLASSES ()");
   }
-  // Va sélectionner la liste de stagiaires d'un responsable
+
+  // pas besoin de paramètre
   function selectAllProgramCode($bdd)
   {
-      return selectWithNoParam("CALL SELECT_ALL_PROGRAMS ()");
+    return selectWithNoParam("CALL SELECT_ALL_PROGRAMS ()");
   }
 
-  /*
-  ------------------------------------------------------------------------------------
-    
-    fin des fonctions qui appellent fetchStoredProc($call_select)
 
+/*
   ------------------------------------------------------------------------------------
-  */
-
-  /*
-    fonction : fetchId($call_select, $id)
+    début des fonctions qui appellent fetchId($id, $call_select)
+  ------------------------------------------------------------------------------------
+    Nom de la fonction : fetchId($id, $call_select)
     Prend un string en paramètre, le string représente une procédure stockée 
-     dans la base de données qui serra éxécutée. La variable id est pour obtenir 
-     seulement ce résultat là.
-     La valeur de retour est un array qui contient le résultat du select
-  */
+    dans la base de données qui serra éxécutée. La variable id est pour limiter
+    la recherche à l'identifiant choisi.
+
+    La valeur de retour est un array qui contient le résultat du select
+*/
 
   function fetchId($id, $call_select)
   {
@@ -172,35 +165,19 @@
   }
   
 
-/*
-------------------------------------------------------------------------------------
-  
-  fin des fonctions qui appellent fetchId($id, $call_select)
-
-------------------------------------------------------------------------------------
-*/
-
-
 
 
 /*
-------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------------------
 
   fin des selects
 
-------------------------------------------------------------------------------------
-*/
-
-
-
-
-
-/*
-------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------------------
   
   début des insertions (create)
 
-------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------------------
 */
 
 
@@ -315,28 +292,24 @@
     $insert->execute();
     $insert->CloseCursor();
   }
-/*
-------------------------------------------------------------------------------------
-  
-  fin des insertions (create)
 
-------------------------------------------------------------------------------------
-*/
 /* 
 ------------------------------------------------------------------------------------
-  
   début des updates
-
 ------------------------------------------------------------------------------------
-
-   fonction : fetchStoredProc($call_select)
-   Créé par : Simon Roy
-   Prend un string en paramètre, le string représente une procédure stockée 
-   dans la base de données qui serra éxécutée. La valeur de retour est un 
-   array qui contient le résultat du select.
 */
 
-function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $competences, $apprentissage, $id)
+
+/*
+  Nom de la fonction : updatePlanCadre_Fichiers
+  Fait par : Simon Roy
+  Cette fonction éxécute une modification (requête update) sur 
+  un plan-cadre qui est encore en élaboration.
+
+  note: ajouter la restriction (dans la procédure) et ratrappé l'erreur
+*/
+
+function updatePlanCadre_Fichiers($id, $presentation, $integration,  $evaluation, $competences, $apprentissage)
 {
   $bdd = dbConnect();
   $update = $bdd->prepare("CALL UPDATE_PLAN_CADRE_FICHIERS (?,?,?,?,?,?)");
@@ -353,7 +326,12 @@ function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $co
   $update->closeCursor();
 }
 
-
+/*
+  Nom de la fonction : updateConsignesPlanCadre
+  Fait par : Simon Roy
+  Cette fonction éxécute une modification (requête update) sur 
+  une des consignes de la table consignesplancadre.
+*/
 function updateConsignesPlanCadre($id, $enonce, $description)
 {
   $bdd = dbConnect();

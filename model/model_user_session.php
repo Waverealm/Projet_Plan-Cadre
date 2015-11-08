@@ -3,7 +3,9 @@
 /* 
    Nom : model_user_session.php
    Créé par Simon Roy
-   Regroupe les fonctions liés à l'identifaction d'un utilisateur
+   Regroupe les fonctions liés à l'identifaction d'un utilisateur.
+
+   suggestion : une session devrait être initialisé avant d'
 */
 
 

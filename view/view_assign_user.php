@@ -20,7 +20,7 @@
         <link rel="Stylesheet" href="../assets/styles.css">
         <link rel="Stylesheet" href="../assets/others.css">
 
-        <script type="text/javascript" src="../assets/js_filter.js" ></script>
+        <script type="text/javascript" src="../assets/js_global.js" ></script>
 
     </head>
     
@@ -42,17 +42,13 @@
                     Choisir un utilisateur :
                     
                     <br>
-
-                    <select name="html_select_user" id="html_select_plancadre">
-                        <option> </option>
-                        <?php
-                            echoArray(getArrayUser());
-                        ?>
-                    </select>
+                    <?php
+                        showUserListAll();
+                    ?>
 
                     <input type="text" name="search_user" 
-                    onKeyUp="arrayFilter(this.value, this.form.html_select_user)" 
-                    onChange="arrayFilter(this.value, this.form.html_select_user)"
+                    onKeyUp="arrayFilter(this.value, this.form.user_list_all)" 
+                    onChange="arrayFilter(this.value, this.form.user_list_all)"
                     >
 
                     <br>
@@ -62,16 +58,13 @@
 
                     <br>
 
-                    <select name="html_select_class" id ="html_select_class">
-                        <option> </option>
-                        <?php
-                            echoArray(getArrayClass());
-                        ?>
-                    </select>
+                    <?php
+                        showClassListAll();
+                    ?>
                     
                     <input type="text" name="search_class" 
-                    onKeyUp="arrayFilter(this.value, this.form.html_select_class)" 
-                    onChange="arrayFilter(this.value, this.form.html_select_class)"
+                    onKeyUp="arrayFilter(this.value, this.form.class_list_all)" 
+                    onChange="arrayFilter(this.value, this.form.class_list_all)"
                     >
 
                     <br>
