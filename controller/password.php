@@ -3,7 +3,7 @@
 /* 
    Nom : password.css
    Créé par Léa
-   Fonctions pour le mot de passe
+   Fonctions pour le cryptage du mot de passe
 */
 
 	// Fonction reprise de mon vieux projet.
