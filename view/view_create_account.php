@@ -40,7 +40,7 @@
 
                         <form action="../controller/controller_create_account.php" method="post">
 
-                            <label>Nom d'usager :</label>
+                            <label>Nom d'utilisateur :</label>
                             <div>
                                 <input class="field" id="UserName" name="UserName" type="text" value="<?php if (isset($_SESSION[ 'new_account_username' ])) echo htmlentities(trim($_SESSION[ 'new_account_username' ])); ?>" class="text-box single-line" />
                             </div>
@@ -94,7 +94,12 @@
             // On affiche les erreurs s'il y en a
             if( isset($_SESSION[ 'errors_create_user' ]) )
             {
-               echo $_SESSION[ 'errors_create_user' ];
+                ?>
+
+                <script>alert("<?php echo $_SESSION[ 'errors_create_user' ]; ?>");</script>
+
+                <?php
+
                unset($_SESSION[ 'errors_create_user' ]);
             }
          ?>

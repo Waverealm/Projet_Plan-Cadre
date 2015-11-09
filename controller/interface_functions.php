@@ -128,7 +128,7 @@ function showAppropriateMenu()
                             <li class="pure-menu-item">
                                 <a href="<?php echo VIEW_CREATE_COMPETENCE ?>" class="pure-menu-link">Ajouter une compétence</a>
                             </li>
-                            <li class="pure-menu-item"><?php echo VIEW_CREATE_COMPETENCE ?>
+                            <li class="pure-menu-item">
                                 <a href="<?php echo VIEW_CREATE_CLASS ?>" class="pure-menu-link">Ajouter un cours</a>
                             </li>
                             <li class="pure-menu-item">

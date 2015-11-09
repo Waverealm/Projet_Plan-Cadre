@@ -60,14 +60,14 @@ $email_free = countUsersSpecificEmail($bdd, $email);
 // Vérification de la disponibilité du nom d'utilisateur
 if(!$username_free)
 {
-  $error_usernamefree = "Ce nom d'utilisateur est d&eacutej&agrave utilisé par un autre utilisateur.";
+  $error_usernamefree = '- Ce nom d\'utilisateur est déjà utilisé par un autre utilisateur. \n';
   $i++;
 }
 
 // Vérification de la disponibilité de l'adresse email
 if(!$email_free)
 {
-  $error_emailfree = "Cette adresse courriel est d&eacutej&agrave utilisée par un autre utilisateur.";
+  $error_emailfree = '- Cette adresse courriel est déjà utilisée par un autre utilisateur. n';
   $i++;
 }
 
@@ -75,36 +75,34 @@ if(!$email_free)
 // Vérification du format de l'adresse email
 if (!preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$#", $email) && !empty($email))
 {
-  $error_emailformat = "Votre adresse courriel n'a pas un format valide";
+  $error_emailformat = '- Votre adresse courriel n\'a pas un format valide. \n';
   $i++;
 }
   
 //Vérification du mot de passe
-if ($password != $passwordConfirmation)
+if (!empty($password) && !empty($passwordConfirmation) && $password != $passwordConfirmation)
 {
-  $error_passwordconfirm = "Votre mot de passe et votre confirmation sont diff&eacuterents.";
+  $error_passwordconfirm = '- Votre mot de passe et votre confirmation sont difféterents. \n';
   $i++;
 }
 
-if (strlen($password) < 6 && !empty($password))
+if (strlen($password) < 6 || strlen($password) > 20 && !empty($password))
 {
-  $error_passwordwrongsize = "Votre mot de passe doit contenir au minimum six caractères"; //"Votre mot de passe doit contenir entre six et vingt caractères.";
+  $error_passwordwrongsize = '- Votre mot de passe doit contenir entre six et vingt caractères. \n';
   $i++;
 }
 
 
-// NE MARCHE PAS, À CORRIGER
-/*
-if ((strlen($userName) < 8 ||  strlen($userName > 20)) && !empty($userName))
+if (strlen($userName) < 8 || strlen($userName) > 20 && !empty($userName))
 {
-  $error_usernamewrongsize = "Votre nom d'utilisateur doit contenir entre huit et vingt caractères.";
+  $error_usernamewrongsize = '- Votre nom d\'utilisateur doit contenir entre huit et vingt caractères. \n';
   $i++;
-}*/
+}
 
 // On vérifie si des champs sont vides
 if (empty($userName) || empty($password) || empty($passwordConfirmation) || empty($email) || empty($lastName) || empty($firstName))
 {
-  $error_fieldsempty = "Un ou plusieurs champs de texte sont vides. Veuillez les remplir.";
+  $error_fieldsempty = '- Un ou plusieurs champs de texte sont vides. Veuillez les remplir. \n';
   $i++;
 }
 
@@ -139,9 +137,7 @@ else
 function setErrors()
 {
   global $error_usernamefree, $error_emailfree, $error_emailformat, $error_passwordconfirm, $error_fieldsempty, $error_passwordwrongsize, $error_usernamewrongsize;
-    $_SESSION[ 'errors_create_user' ] = '<h4>Une ou plusieurs erreurs se sont produites : </h4><p>'.$error_usernamefree.'</p><p>'.$error_emailfree.'</p>
-    <p>'.$error_emailformat.'</p><p>'.$error_passwordconfirm.'</p><p>'.$error_fieldsempty.'</p>'
-    .'<p>'.$error_passwordwrongsize.'</p>'; //.'<p>'.$error_usernamewrongsize.'</p>';
+    $_SESSION[ 'errors_create_user' ] = 'Une ou plusieurs erreurs se sont produites : \n\n'.$error_usernamefree.$error_emailfree.$error_emailformat.$error_passwordconfirm.$error_fieldsempty.$error_passwordwrongsize.$error_usernamewrongsize;
 }
 
 ?>

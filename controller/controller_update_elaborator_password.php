@@ -27,8 +27,6 @@ if(isset($_POST['$Username']) && isset($_POST['$OldPassword']) && isset($_POST['
     $newPasswordConfirm = $_POST['NewPasswordConfirm'];
 }
 
-$bdd = dbConnect();
-
 // On vérifie si des champs sont vides
 if (empty($username) || empty($oldPassword) || empty($newPassword) || empty($newPasswordConfirm))
 {
@@ -39,7 +37,7 @@ if (empty($username) || empty($oldPassword) || empty($newPassword) || empty($new
 // S'il n'y a aucune erreur
 if ($i == 0)
 {
-    update_Password($username,$oldPassword,$newPassword,$newPasswordConfirm);
+    updatePassword($username,$oldPassword,$newPassword,$newPasswordConfirm);
 }
 else
 {

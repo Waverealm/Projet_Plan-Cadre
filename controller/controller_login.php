@@ -27,7 +27,6 @@
 	   {
 		  unset($_SESSION[ 'username' ]);
 		  $_SESSION[ 'username_usager' ] = $username;
-		  $_SESSION[ 'connection_info' ] = "Vous avez été correctement identifié.";
 		  $_SESSION[ 'connected' ] = true;
 		  header('Location: ../view/view_index.php');
 	   }

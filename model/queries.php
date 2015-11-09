@@ -347,7 +347,7 @@ function updateConsignesPlanCadre($id, $enonce, $description)
 }
 
 // change to updatePassword
-function update_Password($username, $oldPassword, $newPassword, $newPasswordConfirm)
+function updatePassword($username, $oldPassword, $newPassword, $newPasswordConfirm)
 {
     $query = dbConnect()->prepare( "CALL UPDATE_PASSWORD(?,?,?,?)" );
 
