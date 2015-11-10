@@ -242,9 +242,6 @@ function showAppropriateMenu()
     }
 
 
-
-
-
     function showProgramsCode()
     {
         $bdd = dbConnect();

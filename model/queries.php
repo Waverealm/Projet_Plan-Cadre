@@ -360,6 +360,19 @@ function updatePassword($username, $oldPassword, $newPassword, $newPasswordConfi
     $query->CloseCursor();
 }
 
+function getPassword($username)
+{
+      $query = dbConnect()->prepare("CALL SELECT_PASSWORD(?)");
+ 
+      $query->bindParam(1, $username, PDO::PARAM_STR);
+
+      $query->execute();
+      $result = $query->fetchAll();
+
+      $query->closeCursor();
+ 
+      return $result[0][ "MotDePasse" ];
+}
 
 
 /* 

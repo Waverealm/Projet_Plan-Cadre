@@ -11,6 +11,7 @@ header("Content-type: text/html; charset=UTF-8");
 ini_set('mbstring.internal_encoding', 'UTF-8');
 
 include_once('../model/queries.php');
+include_once('password.php');
 
 
 // i est un compteur pour le nombre d'erreurs
