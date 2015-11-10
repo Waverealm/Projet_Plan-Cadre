@@ -161,8 +161,7 @@
             <label class="control-label col-md-2">Presentation du cours : </label>
             </br>
             <div class="col-md-10">
-                <textarea name="Presentation" rows="12" cols="50"><?php
-                        echo readFrom($path_presentation);
+                <textarea name="Presentation" rows="12" cols="50"><?php echo readFrom($path_presentation);
                     ?></textarea>
             </div>
             </br>
@@ -170,9 +169,8 @@
             <label class="control-label col-md-2">Objectifs d'integration : </label>
             </br>
             <div class="col-md-10">
-                <textarea name="ObjectifsIntegration" rows="12" cols="50">
-                    <?php
-                        echo readFrom($path_integration);
+                <textarea name="ObjectifsIntegration" rows="12" cols="50"><?php 
+                        echo readFrom($path_integration); 
                     ?>
                 </textarea>
             </div>
@@ -181,8 +179,7 @@
             <label class="control-label col-md-2">Evaluation des apprentissage : </label>
             </br>
             <div class="col-md-10">
-                <textarea name="Evaluation" rows="12" cols="50">
-                    <?php
+                <textarea name="Evaluation" rows="12" cols="50"><?php
                         echo readFrom($path_evalutation);
                     ?>
                 </textarea>
@@ -192,8 +189,7 @@
             <label class="control-label col-md-2">Énoncé des compétences : </label>
             </br>
             <div class="col-md-10">
-                <textarea name="Competences" rows="12" cols="50">
-                    <?php
+                <textarea name="Competences" rows="12" cols="50"><?php
                         echo readFrom($path_competences);
                     ?>
                 </textarea>
@@ -203,8 +199,7 @@
             <label class="control-label col-md-2">Objectifs d'apprentissage : </label>
             </br>
             <div class="col-md-10">
-                <textarea name="ObjectifsApprentissage" rows="12" cols="50">
-                    <?php
+                <textarea name="ObjectifsApprentissage" rows="12" cols="50"><?php
                         echo readFrom($path_apprentissage);
                     ?>
                 </textarea>
