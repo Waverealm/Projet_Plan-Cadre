@@ -15,11 +15,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       
-    <link rel="Stylesheet" href="../assets/pure.css">
-    <link rel="Stylesheet" href="../assets/styles.css">
-    <link rel="Stylesheet" href="../assets/others.css">
+      <link rel="Stylesheet" href="../assets/pure.css">
+      <link rel="Stylesheet" href="../assets/styles.css">
+      <link rel="Stylesheet" href="../assets/others.css">
 
-    <script type="text/javascript" src="../assets/js_global.js" ></script>
+      <script type="text/javascript" src="../assets/js_global.js" ></script>
+      <style type="text/css">
+        table, th, td{
+          border: 1px solid black;
+        }
+      </style>
   </head>
 
   <body>
@@ -28,40 +33,48 @@
         showHeader();
         showAppropriateMenu();
       ?>
-      <br>
 
+      <br><!-- espace -->
 
       <form action="../controller/controller_create_class.php" method="post">
         <fieldset>
 
-          <label> Le code de la consigne : </label>
-          <select name='select_'>
+          <br>
+          <?php
+            showPageConsignePlanCadre();
+          ?>
+
+          <br>
+
+          <br>
+
+          <label> Le code de la consigne : 
             <?php
-              //call to showHTML_Select_
+              showConsignePlanCadre();
             ?>
-          </select><br>
+          </label><br><!-- changement de ligne -->
 
-          <br>
+          <br><!-- espace -->
 
-          <label>L'énoncé de la consigne : </label><br>
-          <textarea name='enonce' ></textarea><br>
+          <label>L'énoncé de la consigne : </label><br><!-- changement de ligne -->
+          <textarea name='enonce' ></textarea><br><!-- changement de ligne -->
 
-          <br>
+          <br><!-- espace -->
 
           <label>La description de la consigne : </label>
-          <br>
+          <br><!-- changement de ligne -->
           <textarea name='description'>
             <?php 
               
             ?>
-          </textarea><br>
+          </textarea><br><!-- changement de ligne -->
 
-          <br>
+          <br><!-- espace -->
 
           <div>
-            <input type="submit" value="Soumettre..." class="btn btn-default" /><br>
+            <input type="submit" value="Soumettre..." class="btn btn-default" /><br><!-- changement de ligne -->
 
-            <br>
+            <br><!-- espace -->
 
           </div>
         </fieldset>  

@@ -113,13 +113,16 @@
   {
     return selectWithNoParam("CALL SELECT_ALL_CLASSES ()");
   }
+  function selectAllConsignesPlanCadre()
+  {
+    return selectWithNoParam("CALL SELECT_ALL_CONSIGNES_PLAN_CADRE ()");
+  }
 
   // pas besoin de paramètre
   function selectAllProgramCode($bdd)
   {
     return selectWithNoParam("CALL SELECT_ALL_PROGRAMS ()");
   }
-
 
 /*
   ------------------------------------------------------------------------------------

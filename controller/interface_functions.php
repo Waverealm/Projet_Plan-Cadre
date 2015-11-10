@@ -334,22 +334,55 @@ function showAppropriateMenu()
         echo "</select>";
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
 /*
-utiliser les fonctions showSomething à la place
+    Nom de la fonction : showConsignePlanCadre
+    Fait par : Simon Roy
+    
 */
-    // getArrayUser is deprecated
+    function showConsignePlanCadre()
+    {
+        $list = selectAllConsignesPlanCadre();
+
+        echo "<select name=\"consigne_list\" onchange='showSelectedConsigne(this.value)'>";
+        foreach ($list as $row)
+        {
+            echo "<option value=\"".$row["CodeConsigne"]."\">" .$row["TitreConsigne"]."</option>";
+        }
+        echo "</select>";
+    }
+
+    function showPageConsignePlanCadre()
+    {
+        $list = selectAllConsignesPlanCadre();
+
+        echo "<table>".
+                "<tr>".
+                    "<th>Titre de la section</th>".
+                    "<th>Énoncé de la consigne</th>".
+                    "<th>Description de la consigne</th>".
+                "</tr>";
+        foreach ($list as $row)
+        {
+            echo "<tr>".
+                    "<td>".$row["TitreConsigne"]."</td>".
+                    "<td>".$row["EnonceConsigne"]."</td>".
+                    "<td>".$row["DescriptionConsigne"]."</td>".
+                "</tr>";
+        }
+        echo "</table>";
+    }
+
+
+
+
+
+
+
+//////////////////////////////////////////////////
+//utiliser les fonctions showSomething à la place
+// getArray are deprecated
+/*
+
     function getArrayUser()
     {
         $array = fetchAllUser();
@@ -406,7 +439,6 @@ utiliser les fonctions showSomething à la place
         return $arrayOutput;
     }
 
-/*
     a perdu son utilité à cause des fonctions show
     Nom de la fonction : buildHTML_OptionSelect
     Fait par : Simon Roy
@@ -419,7 +451,6 @@ utiliser les fonctions showSomething à la place
     buildHTML_OptionSelect("nom", "valeur", "contenu");
     ?>
     </select>
-*/
     function buildHTML_OptionSelect($name, $value, $content)
     {
         return "<option "
@@ -429,15 +460,12 @@ utiliser les fonctions showSomething à la place
         .$content
         ."</option>";
     }
-
-/*
     Nom de la fonction : echoArray
     Fait par : Simon Roy
     echoArray($array)
     Cette fonction utilise echo sur le contenu de chaque index de l'array.
     Suggestion : appelé cette fonction pour afficher à l'utilisateur le contenu 
     d'un array
-*/
     function echoArray($array)
     {
         for ($i = 0; $i < count($array); $i++)
@@ -445,6 +473,6 @@ utiliser les fonctions showSomething à la place
             echo $array[$i];
         }
     }
-
+*/
 
 ?>
