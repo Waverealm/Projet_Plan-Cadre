@@ -17,7 +17,8 @@ include_once('../model/queries.php');
 if( isset($_POST['submit']) || isset($_POST['save']) ) 
 {
 
-    //Enter values from website to variables
+    // Prend les valeurs qui ont été envoyé par la méthode post
+    // et les place dans des variables
     $presentation = $_POST['Presentation'];
     $integration = $_POST['ObjectifsIntegration'];
     $evaluation = $_POST['Evaluation'];
@@ -56,7 +57,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
         $path_integration,
         $path_evalutation,
         $path_competences,
-        $path_competences,
+        $path_apprentissage,
         $_POST['id_plancadre']
         );
 

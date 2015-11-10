@@ -312,7 +312,7 @@
   note: ajouter la restriction (dans la procédure) et ratrappé l'erreur
 */
 
-function updatePlanCadre_Fichiers($id, $presentation, $integration,  $evaluation, $competences, $apprentissage)
+function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $competences, $apprentissage, $id)
 {
   $bdd = dbConnect();
   $update = $bdd->prepare("CALL UPDATE_PLAN_CADRE_FICHIERS (?,?,?,?,?,?)");
