@@ -10,7 +10,7 @@
 	session_start();
 
 	include_once('../model/queries.php');
-	include_once('password.php');
+	include_once('password_functions.php');
 
 
 	// Si on a reçu les données d'un formulaire et qu'elles ne sont pas vident

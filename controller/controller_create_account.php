@@ -11,7 +11,7 @@ header("Content-type: text/html; charset=UTF-8");
 ini_set('mbstring.internal_encoding', 'UTF-8');
 
 include_once('../model/queries.php');
-include_once('password.php');
+include_once('password_functions.php');
 
 
 // i est un compteur pour le nombre d'erreurs
@@ -68,7 +68,7 @@ if(!$username_free)
 // Vérification de la disponibilité de l'adresse email
 if(!$email_free)
 {
-  $error_emailfree = '- Cette adresse courriel est déjà utilisée par un autre utilisateur. n';
+  $error_emailfree = '- Cette adresse courriel est déjà utilisée par un autre utilisateur. \n';
   $i++;
 }
 
