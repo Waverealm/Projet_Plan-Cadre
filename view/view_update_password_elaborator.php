@@ -50,16 +50,6 @@ include_once("../controller/pages_access.php");
 
             <form action="../controller/controller_update_elaborator_password.php" method="post">
 
-                <label class="control-label col-md-2">Ancien mot de passe :</label>
-                <div class="col-md-2">
-                    <input class="text-box single-line password" data-val="true"
-                           data-val-length="Le champ Mot de passe doit être une chaîne dont la longueur maximale est de 20."
-                           data-val-length-max="50" data-val-required="Le champ Mot de passe est requis."
-                           id="OldPassword" name="OldPassword" type="password" value=""
-                        />
-                </div>
-                </br>
-
                 <label class="control-label col-md-2">Nouveau mot de passe :</label>
                 <div class="col-md-2">
                     <input class="text-box single-line password" data-val="true"
