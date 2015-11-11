@@ -25,7 +25,7 @@
       <link rel="Stylesheet" href="../assets/pure.css">
       <link rel="Stylesheet" href="../assets/styles.css">
       <link rel="Stylesheet" href="../assets/others.css">
-         
+      <script type="text/javascript" src="../assets/js_global.js" ></script>
     </head>
     <body>  
     <div class="container">
@@ -38,6 +38,17 @@
                         <legend>Ajout de competence :</legend>
                         </br>
 <form action="../controller/controller_create_competence.php" method="post">
+    <label>Programme qui existe déja : </label>
+    <br>
+    <?php
+    showProgramListAll();
+    ?>
+    <input type="text" name="search_class"
+           onKeyUp="arrayFilter(this.value, this.form.program_list_all)"
+           onChange="arrayFilter(this.value, this.form.program_list_all)"
+        >
+    <br>
+    <br>
         <label>Code de la competence :</label>
         <div>
             <input data-val="true" id="CodeCompetence" name="CodeCompetence" type="text" value="" />

@@ -297,6 +297,19 @@ function showAppropriateMenu()
         }
         echo "</select>";
     }
+
+    function showProgramListAll()
+    {
+        $list = fetchAllUser();
+
+        echo "<select name=\"program_list_all\">";
+        echo "<option value=\"" . "\">" . "</option>";
+        foreach ($list as $row)
+        {
+            echo "<option value=\"".$row['CodeProgramme']."\">".$row['NomProgramme']." ".$row['TypeProgramme']."</option>";
+        }
+        echo "</select>";
+    }
 /*
     Nom de la fonction : showClassListAll
     Fait par : Simon Roy
