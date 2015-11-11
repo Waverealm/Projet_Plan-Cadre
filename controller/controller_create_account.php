@@ -117,7 +117,7 @@ if ($i == 0)
   //$crypted_pass = getCryptedPassword($pass);
 
   // Fonction qui permet de créer l'utilisateur
-  createUser($bdd, $userName, $password, $email, $lastName, $firstName, $userType);
+  createUser($bdd, $userName, cryptPassword($password), $email, $lastName, $firstName, $userType);
 
   // Si on s'est bien inscrit, alors on peut supprimer ces variables de session
   unset($_SESSION['new_account_username']);

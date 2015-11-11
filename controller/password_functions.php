@@ -23,9 +23,6 @@
 	{
 		$hash = getPassword($username);
 
-		$_SESSION[ 'result' ] = password_verify($password, $hash);
-		$_SESSION[ 'test' ] = "test";
-
 		return password_verify($password, $hash);
 	}
 ?>
