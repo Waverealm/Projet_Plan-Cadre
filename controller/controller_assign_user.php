@@ -12,11 +12,11 @@
 	include_once('../controller/interface_functions.php');
 
 	// Si on a reçu les données d'un formulaire
-	if( isset( $_POST[ 'html_select_user' ] ) && isset( $_POST[ 'html_select_class' ] ) )
+	if( isset( $_POST[ 'user_list_all' ] ) && isset( $_POST[ 'class_list_all' ] ) )
 	{
 
-		$user = $_POST["html_select_user"];
-		$codecours = $_POST["html_select_class"];
+		$user = $_POST["user_list_all"];
+		$codecours = $_POST["class_list_all"];
 		// elaboration contient 11 charatère, la BD n'en prend que 10 pour l'etat d'un plancadre
 		$etat = "elaboratio";
 
