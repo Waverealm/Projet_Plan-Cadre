@@ -24,7 +24,7 @@
     <link rel="Stylesheet" href="../assets/pure.css">
     <link rel="Stylesheet" href="../assets/styles.css">
     <link rel="Stylesheet" href="../assets/others.css">
-         
+    <script type="text/javascript" src="../assets/js_global.js" ></script>
   </head>
   
   <body>
@@ -38,6 +38,17 @@
         <legend>Ajout de cours : </legend>
           <br>
         <form action="../controller/controller_create_class.php" method="post">
+            <label>Cours qui existe déja : </label>
+            <br>
+            <?php
+            showClassListAll();
+            ?>
+            <input type="text" name="search_class"
+            onKeyUp="arrayFilter(this.value, this.form.class_list_all)"
+            onChange="arrayFilter(this.value, this.form.class_list_all)"
+            >
+            <br>
+            <br>
           <label>Code du cours : </label>
           <div>
             <input data-val="true" id="CodeCours" name="CodeCours" type="text" value="" />
