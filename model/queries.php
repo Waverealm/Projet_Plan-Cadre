@@ -350,14 +350,12 @@ function updateConsignesPlanCadre($id, $enonce, $description)
 }
 
 // change to updatePassword
-function updatePassword($username, $oldPassword, $newPassword, $newPasswordConfirm)
+function updatePassword($user,$newPassword)
 {
-    $query = dbConnect()->prepare( "CALL UPDATE_PASSWORD(?,?,?,?)" );
+    $query = dbConnect()->prepare( "CALL UPDATE_PASSWORD(?,?)" );
 
-    $query->bindParam(1, $username, PDO::PARAM_STR);
-    $query->bindParam(2, $oldPassword, PDO::PARAM_STR);
-    $query->bindParam(3, $newPassword, PDO::PARAM_STR);
-    $query->bindParam(4, $newPasswordConfirm, PDO::PARAM_STR);
+    $query->bindParam(1, $user, PDO::PARAM_STR);
+    $query->bindParam(2, $newPassword, PDO::PARAM_STR);
 
     $query->execute();
     $query->CloseCursor();
