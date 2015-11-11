@@ -22,7 +22,8 @@
 	function verifyPassword($username, $password)
 	{
 		$hash = getPassword($username);
-
+		
+		//appele la fonction de la bibliothèque
 		return password_verify($password, $hash);
 	}
 ?>
