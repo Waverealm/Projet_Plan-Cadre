@@ -6,12 +6,15 @@
  * Time: 10:48
  */
 
+
+
 if(!isset($_SESSION))
 {
     session_start();
 }
 include_once('../model/queries.php');
 
+   
    
 
 if( isset($_POST['submit']) || isset($_POST['save']) ) 

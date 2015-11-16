@@ -58,7 +58,7 @@
             <input type='hidden' name='save_path' value = 
                 <?php 
                     // le nom des fichiers textes serra :
-                    // clé primaire du plancadre + code ou le nom du cours + le nom de la section
+                    // clé primaire du plancadre + code ou le nom du cours + le titre de la section
                     // exemple : 2_420-EDA-05_PresentationCours.txt
                     echo '\'' . $save_path . '\''; 
                 ?> 

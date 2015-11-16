@@ -5,7 +5,8 @@
    Créé par Simon Roy
    Regroupe les fonctions liés à l'identifaction d'un utilisateur.
 
-   suggestion : une session devrait être initialisé avant d'
+   suggestion : une session devrait être initialisé avant d'appeler 
+   des fonctions de ce modèle.
 */
 
 

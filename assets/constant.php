@@ -57,6 +57,8 @@ define("CONTROLLER_ELABORATION_PLANCADRE", "../controller/controller_elaboration
 define("CONTROLLER_CREATE_PLANCADRE", "../controller/controller_create_plancadre.php");
 
 
+define("CONTROLLER_SEND_FILE", "../controller/controller_send_file.php");
+
 
 
 

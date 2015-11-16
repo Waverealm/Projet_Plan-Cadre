@@ -34,25 +34,25 @@
             ?>
       <br>
       <fieldset>
-          <legend>Ajout de programme :</legend>
+          <legend>Ajout de programme : </legend>
           </br>
 <form action="../controller/controller_create_program.php" method="post">
-        <label>Code du programme :</label>
+        <label>Code du programme : </label>
         <div>
             <input class="text-box single-line" data-val="true" id="CodeProgramme" name="CodeProgramme" type="text" value="" />
         </div>
         </br>
-        <label>Nom du programme :</label>
+        <label>Nom du programme : </label>
         <div>
             <input data-val="true" id="NomProgramme" name="NomProgramme" type="text" value="" />
         </div>
         </br>
-        <label>Type du programme :</label>
+        <label>Type du programme : </label>
         <div>
             <input data-val="true" id="TypeProgramme" name="TypeProgramme" type="text" value="" />
         </div>
         </br>
-        <label>Type de sanction:</label>
+        <label>Type de sanction: </label>
         <div>
             <input data-val="true" id="TypeSanction" name="TypeSanction" type="text" value="" />
         </div>
