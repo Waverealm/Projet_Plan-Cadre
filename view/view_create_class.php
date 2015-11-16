@@ -14,7 +14,6 @@
   isPlanner();
   isAdmin();
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -51,7 +50,8 @@
             <br>
           <label>Code du cours : </label>
           <div>
-            <input data-val="true" id="CodeCours" name="CodeCours" type="text" value="" />
+            <input data-val="true" id="CodeCours" name="CodeCours" type="text" value=""
+                   onChange="codeCoursMask()"/>
          </div>
           <br>
           <label>Nom du cours : </label>

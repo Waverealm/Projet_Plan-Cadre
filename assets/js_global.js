@@ -14,13 +14,10 @@ function alphaOnly(e) {
   return true;
 }
 
+function codeCoursMask() {
 
+}
 
-
-
-
-
-        
 
 /*
     arrayFilter(search, list)
