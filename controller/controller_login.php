@@ -52,7 +52,7 @@
    
 
 	   	// On vérifie si l'adresse email et mot de passe correspondent
-	   	if ($reponse[0][ "MotDePasse" ] == $password)/*verifyPassword($username, $password)*/
+	   	if (validatePassword($username, $password)) //($reponse[0][ "MotDePasse" ] == $password)
 		{
 			$connected = true;
             // le nom et le prénom servent à assurer à l'utilisateur qu'il est connecté

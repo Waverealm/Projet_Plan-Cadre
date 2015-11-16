@@ -87,16 +87,16 @@ if (!empty($password) && !empty($passwordConfirmation) && $password != $password
   $i++;
 }
 
-if (strlen($password) < 6 || strlen($password) > 20 && !empty($password))
+if (strlen($password) < 6 && !empty($password))
 {
-  $error_passwordwrongsize = '- Votre mot de passe doit contenir entre six et vingt caractères. \n';
+  $error_passwordwrongsize = '- Votre mot de passe doit contenir au minimum huit caractères. \n';
   $i++;
 }
 
 
-if (strlen($userName) < 8 || strlen($userName) > 20 && !empty($userName))
+if (strlen($userName) < 6 && !empty($userName))
 {
-  $error_usernamewrongsize = '- Votre nom d\'utilisateur doit contenir entre huit et vingt caractères. \n';
+  $error_usernamewrongsize = '- Votre nom d\'utilisateur doit contenir au minimum six caractères. \n';
   $i++;
 }
 
@@ -117,7 +117,7 @@ if ($i == 0)
   //$crypted_pass = getCryptedPassword($pass);
 
   // Fonction qui permet de créer l'utilisateur
-  createUser($bdd, $userName, cryptPassword($password), $email, $lastName, $firstName, $userType);
+  createUser($bdd, $userName, createHash($password), $email, $lastName, $firstName, $userType);
 
   // Si on s'est bien inscrit, alors on peut supprimer ces variables de session
   unset($_SESSION['new_account_username']);
