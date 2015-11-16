@@ -10,8 +10,12 @@
 // trouver comment changer le nom en fonction du plancadre choisi
 
 
+// nohrad pourrait avoir une bonne piste
+// http://forum.hardware.fr/hfr/Programmation/PHP/remplir-word-php-sujet_86873_1.htm
 
-$file = '../assets/template.docx';
+
+$file = '../assets/template.dotx';
+
 
 if (file_exists($file)) {
     header('Content-Description: File Transfer');
@@ -42,14 +46,15 @@ if (file_exists($file)) {
 
 
 
+// cpradio donne un exemple avec un template pdf
+// http://www.sitepoint.com/community/t/filling-word-doc-from-mysql-database-using-php/22650/9
 
 
 
 
 
 
-
-
+// autre solution, utiliser un objet COM
 
 // autre solution, utiliser du html pour générer un document que Word peut ouvrir
 // pour ensuite l'envoyer comme si c'était un document Word
