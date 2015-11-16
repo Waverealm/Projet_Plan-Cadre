@@ -40,15 +40,13 @@ include_once("../controller/pages_access.php");
 
             <label class="control-label col-md-2">Nom d'usager :</label>
             </br>
-            <?php
-            showUserListAll();
-            ?>
+            <?php showUserListAll(); ?>
             </br>
 
             <legend>Modification de mot de passe :</legend>
             </br>
 
-            <form action="../controller/controller_update_elaborator_password.php" method="post">
+            <form action="<?php echo CONTROLLER_UPDATE_PASSWORD ?>" method="post">
 
                 <label class="control-label col-md-2">Nouveau mot de passe :</label>
                 <div class="col-md-2">

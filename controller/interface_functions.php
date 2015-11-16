@@ -206,7 +206,7 @@ function showAppropriateMenu()
                                 <a href="<?php echo VIEW_ASSIGN_USER ?>" class="pure-menu-link">Assigner un plan-cadre</a>
                             </li>
                             <li class="pure-menu-item">
-                                <a href="view_update_password_elaborator.php" class="pure-menu-link">Modification mot de passe</a>
+                                <a href="<?php echo VIEW_UPDATE_PASSWORD ?>" class="pure-menu-link">Modification mot de passe</a>
                             </li>
                         </ul>
                     </li>
@@ -287,7 +287,12 @@ function showAppropriateMenu()
 */
     function showUserListAll()
     {
-        $list = fetchAllUser();
+        if ($_SESSION[ 'user_type' ] == 'Administrateur')
+            $list = fetchAllUser();
+        
+
+        else if ($_SESSION[ 'user_type' ] == 'Conseiller pédagogique')
+            $list = fetchAllPlanners("Élaborateur");
 
         echo "<select name=\"user_list_all\">";
             echo "<option value=\"" . "\">" . "</option>";

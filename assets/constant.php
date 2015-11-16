@@ -19,10 +19,12 @@ define("LOGOUT", "../controller/controller_logout.php");
 
 define("VIEW_LOGIN", "../view/view_login.php");
 define("VIEW_CREATE_ACCOUNT", "../view/view_create_account.php");
+define("VIEW_UPDATE_PASSWORD", "../view/view_update_password.php");
 
 define("CONTROLLER_LOGIN", "../controller/controller_login.php");
 define("CONTROLLER_LOGOUT", "../controller/controller_logout.php");
 define("CONTROLLER_CREATE_ACCOUNT", "../controller/controller_create_account.php");
+define("CONTROLLER_UPDATE_PASSWORD", "../controller/controller_update_password.php");
 
 
 

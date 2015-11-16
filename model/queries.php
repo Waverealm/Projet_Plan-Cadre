@@ -166,6 +166,10 @@
   {
     return fetchId( $id_consigne, "CALL SELECT_CONSIGNE_PLAN_CADRE_ID(?)" );
   }
+  function fetchAllPlanners($user_type)
+  {
+    return fetchId( $user_type, "CALL SELECT_ALL_PLANNERS(?)" );
+  }
   
 
 
@@ -352,7 +356,7 @@ function updateConsignesPlanCadre($id, $enonce, $description)
 // change to updatePassword
 function updatePassword($user,$newPassword)
 {
-    $query = dbConnect()->prepare( "CALL UPDATE_PASSWORD(?,?)" );
+    $query = dbConnect()->prepare( "CALL UPDATE_PASSWORD_USER(?,?)" );
 
     $query->bindParam(1, $user, PDO::PARAM_STR);
     $query->bindParam(2, $newPassword, PDO::PARAM_STR);

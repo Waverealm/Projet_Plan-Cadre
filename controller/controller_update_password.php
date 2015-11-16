@@ -10,17 +10,18 @@ session_start();
 header("Content-type: text/html; charset=UTF-8");
 ini_set('mbstring.internal_encoding', 'UTF-8');
 
-include_once('../model/queries.php');
+require_once('../model/queries.php');
+require_once('password_functions.php');
 
 $i = 0;
-$user = null;
+$noUser = null;
 $newPassword = null;
 $newPasswordConfirm = null;
 
 //isset($var) vérifie que la variable a été créé et qu'elle n'est pas nulle
-if(isset($_POST["user_list_all"]) && isset($_POST['$NewPassword']) && isset($_POST['NewPasswordConfirm']))
+if(isset($_POST["user_list_all"]) && isset($_POST['NewPassword']) && isset($_POST['NewPasswordConfirm']))
 {
-    $user = $_POST["user_list_all"];
+    $noUser = $_POST["user_list_all"];
     $newPassword = $_POST['$NewPassword'];
     $newPasswordConfirm = $_POST['NewPasswordConfirm'];
 }
@@ -36,7 +37,7 @@ if (empty($newPassword) || empty($newPasswordConfirm))
 if ($i == 0)
 {
     if($newPassword == $newPasswordConfirm) {
-        updatePassword($user,$newPassword);
+        updatePassword($noUser, createHash($newPassword));
         header('Location: ../view/view_index.php');
     }
     else{
@@ -46,7 +47,7 @@ if ($i == 0)
 }
 else
 {
-    header('Location: ../view/view_create_account.php');
+    header('Location: ../view/view_update_password.php');
 }
 
 ?>
