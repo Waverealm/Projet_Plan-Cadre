@@ -10,12 +10,37 @@
 // trouver comment changer le nom en fonction du plancadre choisi
 
 
-// nohrad pourrait avoir une bonne piste
-// http://forum.hardware.fr/hfr/Programmation/PHP/remplir-word-php-sujet_86873_1.htm
+// use phpWord ?
+// http://phpword.codeplex.com/
 
+require_once '../assets/PHPWord.php';
 
 $file = '../assets/template.dotx';
 
+
+$php_word = new PHPWord();
+
+// After creating a section, you can append elements:
+$section->addText('Hello world!')
+// You can directly style your text by giving the addText function an array:
+$section->addText('Hello world! I am formatted.', array('name'=>'Tahoma', 'size'=>16, 'bold'=>true));
+
+// If you often need the same style again you can create a user defined style to the word document
+// and give the addText function the name of the style:
+$php_word->addFontStyle('myOwnStyle', array('name'=>'Verdana', 'size'=>14, 'color'=>'1B2232'));
+$section->addText('Hello world! I am formatted by a user defined style', 'myOwnStyle');
+
+// You can also putthe appended element to local object an call functions like this:
+$myTextElement = $section->addText('Hello World!');
+$myTextElement->setBold();
+$myTextElement->setName('Verdana');
+$myTextElement->setSize(22);
+
+$writer = PHPWord_IOFactory::createWriter($php_word, 'Word2007');
+$writer->save('../plancadre/testWord.docx');
+
+
+/*
 
 if (file_exists($file)) {
     header('Content-Description: File Transfer');
@@ -29,7 +54,7 @@ if (file_exists($file)) {
     exit;
 }
 
-
+*/
 
 
 
@@ -48,7 +73,6 @@ if (file_exists($file)) {
 
 // cpradio donne un exemple avec un template pdf
 // http://www.sitepoint.com/community/t/filling-word-doc-from-mysql-database-using-php/22650/9
-
 
 
 
