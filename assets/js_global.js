@@ -14,8 +14,16 @@ function alphaOnly(e) {
   return true;
 }
 
-function codeCoursMask() {
-
+function codeCoursMask(e) {
+    var code;
+    if (!e) var e = window.event;
+    if (e.keyCode) code = e.keyCode;
+    else if (e.which) code = e.which;
+    if ((code < 45)) { return false; }
+    else if ((code >= 46) && (code <= 47)) { return false; }
+    else if ((code >= 58) && (code <= 65)) { return false; }
+    else if ((code >= 91) && (code <= 97)) { return false; }
+    return true;
 }
 
 
