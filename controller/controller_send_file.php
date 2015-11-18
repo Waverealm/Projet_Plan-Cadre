@@ -79,6 +79,23 @@ $word = null;
 ////////////////////////////////////////////////////////////////////////////
 require_once '../assets/PHPWord.php';
 
+
+$phpWord = new PHPWord();
+
+$document = $phpWord->loadTemplate('../assets/template1.dotx');
+
+$document->setValue('code_cours', 'John');
+$document->setValue('ponderation_cours', 'JBS Marketing');
+$document->setValue('prealable_cours', 'www.website.com.au');
+
+$name = 'test.docx';
+
+ob_clean();
+$document->save('../plancadre/' . $name);
+//rename($name, "results/{$name}");
+
+
+/*
 $PHPWord = new PHPWord();
 
 $document = $PHPWord->loadTemplate('../assets/template.docx');
@@ -102,7 +119,7 @@ $file = '../plancadre/test.docx';
 
 $document->save($file);
 
-
+*/
 
 /*
 // use phpWord ?
