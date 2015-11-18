@@ -33,7 +33,7 @@ define("CONTROLLER_UPDATE_PASSWORD", "../controller/controller_update_password.p
 define("VIEW_INDEX", "../view/view_index.php");
 
 // autre vues de base
-define("VIEW_SEARCH_PLANCADRE", "../view/view_search_plan_cadre.php");
+define("VIEW_SEARCH_PLAN_CADRE", "../view/view_search_plan_cadre.php");
 
 
 // données à entrer
