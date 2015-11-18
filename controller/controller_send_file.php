@@ -13,9 +13,6 @@
 
 
 
-// placer des bookmark dans le document Word
-
-
 // plus d'objet COM exemple
 /*
 com_load_typelib('Word.Application');
@@ -106,7 +103,10 @@ $word = null;
 ////////////////////////////////////////////////////////////////////////////
 require_once '../assets/PHPWord.php';
 
+$PHPWord = new PHPWord();
+
 $document = $PHPWord->loadTemplate('../assets/template.docx');
+
 
 
 $row = array('cours',
