@@ -17,6 +17,13 @@ include_once("../model/queries.php");
 	- faire une page qui servira de template pour afficher un plan-cadre
 	- 
 */
+
+
+function makeLinkPlancadre($path)
+{
+	return '<a href="'.$path.'"> Télécharger </a>';
+}
+
 function showAllPlancadre()
 {
     $list = selectAllPlanCadre();
@@ -34,19 +41,18 @@ function showAllPlancadre()
         foreach ($list as $row)
         {
         	$date_adoption = $row["DateAdoption"];
-        	$document_link = $row["Presentation_Cours"];
+        	$path = $row["Presentation_Cours"];
         	if( !isset($date_adoption) ) 
         	{
         		$date_adoption = "pas adopté";
         	}
-        	if( !isset($document_link) ) 
+        	if( !isset($path) ) 
         	{
         		$document_link = "lien manquant";
         	}
         	else
         	{
-        		// s'occuper de générer un lien qui a de l'allure et qui fonctionne
-        		// plutôt faire une fonction qui va s'occuper de faire ça 
+        		$document_link = makeLinkPlancadre($path);
         	}
             echo "<tr>".
                     "<td>".$row["CodeCours"]."</td>".
