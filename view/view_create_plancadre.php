@@ -192,7 +192,7 @@
             </div>
             </br>
 
-            <?php showInstructionToggle('3'); ?>
+            <?php showInstructionToggle('4'); ?>
             <label class="control-label col-md-2">Énoncé des compétences : </label>
             </br>
             <div class="col-md-10">

@@ -380,8 +380,11 @@ function showAppropriateMenu()
 
         ?>
 
-        <button>Afficher/masquer la consigne</button>
-        <p><?php $descriptionConsigne[0][ "DescriptionConsigne" ]; ?></p>
+        <a name=<?php echo $codeInstruction; ?>>Afficher/masquer la consigne</a>
+        <p name=<?php echo $codeInstruction."_desc"; ?>><?php echo $descriptionConsigne[0][ "DescriptionConsigne" ]; ?></p>
+
+        <br>
+        <br>
 
         <?php
     }

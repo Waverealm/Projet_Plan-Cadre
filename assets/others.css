@@ -19,7 +19,25 @@
 }
 
 $(document).ready(function(){
-    $("button").click(function(){
-        $("p").toggle(1000);
-    });
+	$("input[name*='1']").click(function(){
+		$("[name='1_desc']").toggle(1000);
+	});
+});
+
+$(document).ready(function(){
+	$("input[name*='2']").click(function(){
+		$("[name='2_desc']").toggle(1000);
+	});
+});
+
+$(document).ready(function(){
+	$("input[name*='3]").click(function(){
+		$("[name='3_desc']").toggle(1000);
+	});
+});
+
+$(document).ready(function(){
+	$("input[name*='4']").click(function(){
+		$("[name='4_desc']").toggle(1000);
+	});
 });
