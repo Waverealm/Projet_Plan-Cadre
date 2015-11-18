@@ -90,7 +90,7 @@ function showAppropriateMenu()
                     <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
                     <ul class="pure-menu-children">
                         <li class="pure-menu-item">
-                            <a href="#" class="pure-menu-link">Rechercher</a>
+                            <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" class="pure-menu-link">Rechercher</a>
                         </li>
                         <li class="pure-menu-item">
                             <a href="<?php echo VIEW_ELABORATION_PLANCADRE ?>" class="pure-menu-link">Créer</a>
@@ -116,7 +116,7 @@ function showAppropriateMenu()
                         <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
                     <ul class="pure-menu-children">
                         <li class="pure-menu-item">
-                            <a href="#" class="pure-menu-link">Recherche</a>
+                            <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" class="pure-menu-link">Recherche</a>
                         </li>
                         <li class="pure-menu-item">
                            <a href="<?php echo VIEW_ELABORATION_PLANCADRE ?>" class="pure-menu-link">Créer un plan-cadre</a>
@@ -173,7 +173,7 @@ function showAppropriateMenu()
                         <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
                         <ul class="pure-menu-children">
                             <li class="pure-menu-item">
-                                <a href="<?php echo CONTROLLER_SEND_FILE ?>" class="pure-menu-link">Recherche</a>
+                                <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" class="pure-menu-link">Recherche</a>
                             </li>
                             <li class="pure-menu-item">
                                 <a href="<?php echo VIEW_ELABORATION_PLANCADRE ?>" class="pure-menu-link">Créer un plan-cadre</a>
