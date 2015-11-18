@@ -136,12 +136,12 @@ function showAppropriateMenu()
                                 <a href="<?php echo VIEW_CREATE_PROGRAM ?>" class="pure-menu-link">Ajouter un programme d'études</a>
                             </li>
                             <li class="pure-menu-item">
-                                <a href="<?php echo VIEW_CREATE_CONSIGNE ?>" class="pure-menu-link">Modifier les instruction des plans-cadres</a>
+                                <a href="<?php echo VIEW_UPDATE_INSTRUCTIONS ?>" class="pure-menu-link">Modifier les instruction des plans-cadres</a>
                             </li>
                         </ul>
                     </li>
                     <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                        <a href="#" id="menuLink1" class="pure-menu-link">Gestion des membres
+                        <a href="#" id="menuLink1" class="pure-menu-link">Gestion des membres</a>
                         <ul class="pure-menu-children">
                             <li class="pure-menu-item">
                                 <a href="<?php echo VIEW_CREATE_ACCOUNT ?>" class="pure-menu-link">Créer un compte</a>
@@ -150,7 +150,7 @@ function showAppropriateMenu()
                                 <a href="<?php echo VIEW_ASSIGN_USER ?>" class="pure-menu-link">Assigner un plan-cadre</a>
                             </li>
                             <li class="pure-menu-item">
-                                <a href="#" class="pure-menu-link">Liste des membres</a>
+                                <a href="<?php echo VIEW_UPDATE_PASSWORD ?>" class="pure-menu-link">Modification mot de passe</a>
                             </li>
                         </ul>
                     </li>
@@ -177,23 +177,6 @@ function showAppropriateMenu()
                             </li>
                             <li class="pure-menu-item">
                                 <a href="<?php echo VIEW_ELABORATION_PLANCADRE ?>" class="pure-menu-link">Créer un plan-cadre</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                        <a href="#" id="menuLink1" class="pure-menu-link">Gestion de l'information</a>
-                        <ul class="pure-menu-children">
-                            <li class="pure-menu-item">
-                                <a href="<?php echo VIEW_CREATE_COMPETENCE ?>" class="pure-menu-link">Ajouter une compétence</a>
-                            </li>
-                            <li class="pure-menu-item">
-                                <a href="<?php echo VIEW_CREATE_CLASS ?>" class="pure-menu-link">Ajouter un cours</a>
-                            </li>
-                            <li class="pure-menu-item">
-                                <a href="<?php echo VIEW_CREATE_PROGRAM ?>" class="pure-menu-link">Ajouter un programme d'études</a>
-                            </li>
-                            <li class="pure-menu-item">
-                                <a href="<?php echo VIEW_UPDATE_INSTRUCTIONS ?>" class="pure-menu-link">Modifier les instruction des plans-cadres</a>
                             </li>
                         </ul>
                     </li>
