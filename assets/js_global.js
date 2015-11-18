@@ -26,6 +26,32 @@ function codeCoursMask(e) {
     return true;
 }
 
+function showSelectedInstruction(selected) {
+  if(selected == "1") 
+  {
+    document.getElementById("enonce").value = document.getElementById("1_enonce").innerHTML;
+    document.getElementById("description").value = document.getElementById("1_description").innerHTML;
+  }
+
+    if(selected == "2") 
+  {
+    document.getElementById("enonce").value = document.getElementById("2_enonce").innerHTML;
+    document.getElementById("description").value = document.getElementById("2_description").innerHTML;
+  }
+
+    if(selected == "3") 
+  {
+    document.getElementById("enonce").value = document.getElementById("3_enonce").innerHTML;
+    document.getElementById("description").value = document.getElementById("3_description").innerHTML;
+  }
+
+    if(selected == "4") 
+  {
+    document.getElementById("enonce").value = document.getElementById("4_enonce").innerHTML;
+    document.getElementById("description").value = document.getElementById("4_description").innerHTML;
+  }
+}
+
 
 /*
     arrayFilter(search, list)

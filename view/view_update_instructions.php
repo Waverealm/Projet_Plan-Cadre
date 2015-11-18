@@ -5,9 +5,10 @@
   include_once("../assets/constant.php");
   include_once("../controller/interface_functions.php");
   include_once("../controller/pages_access.php");
-  include_once("../controller/controller_create_consignes.php");
 
   verifyAccessPages();
+  isAdmin();
+  isPlanner();
 ?>
 
 <!DOCTYPE html>
@@ -36,49 +37,46 @@
 
       <br><!-- espace -->
 
-      <form action="../controller/controller_create_class.php" method="post">
+      <form action="../controller/controller_update_instructions.php" method="post">
         <fieldset>
 
           <br>
           <?php
-            showPageConsignePlanCadre();
+            showInstructionsTable();
           ?>
-
-          <br>
-
           <br>
 
           <label> Le code de la consigne : 
             <?php
               showConsignePlanCadre();
             ?>
-          </label><br><!-- changement de ligne -->
+          </label>
+          <br>
 
-          <br><!-- espace -->
-
-          <label>L'énoncé de la consigne : </label><br><!-- changement de ligne -->
-          <textarea name='enonce' ></textarea><br><!-- changement de ligne -->
-
-          <br><!-- espace -->
+          <label>L'énoncé de la consigne : </label>
+          <div>
+            <textarea id='enonce' name='enonce' rows="12" cols="50"></textarea>
+          </div>
+          <br>
 
           <label>La description de la consigne : </label>
-          <br><!-- changement de ligne -->
-          <textarea name='description'>
-            <?php 
-              
-            ?>
-          </textarea><br><!-- changement de ligne -->
-
-          <br><!-- espace -->
+          <div>
+            <textarea id='description' name='description' rows="12" cols="50"></textarea>
+          </div>
+          <br>
 
           <div>
             <input type="submit" value="Soumettre..." class="btn btn-default" /><br><!-- changement de ligne -->
-
-            <br><!-- espace -->
-
           </div>
+
         </fieldset>  
+
       </form> 
+
     </div>
   </body>
 </html>
+
+    <?php 
+        showErrors("errors_update_instructions");
+    ?>

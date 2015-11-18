@@ -193,7 +193,7 @@ function showAppropriateMenu()
                                 <a href="<?php echo VIEW_CREATE_PROGRAM ?>" class="pure-menu-link">Ajouter un programme d'études</a>
                             </li>
                             <li class="pure-menu-item">
-                                <a href="<?php echo VIEW_CREATE_CONSIGNE ?>" class="pure-menu-link">Modifier les instruction des plans-cadres</a>
+                                <a href="<?php echo VIEW_UPDATE_INSTRUCTIONS ?>" class="pure-menu-link">Modifier les instruction des plans-cadres</a>
                             </li>
                         </ul>
                     </li>
@@ -346,7 +346,6 @@ function showAppropriateMenu()
         $list = fetchPlanCadreElaboration_User($id);
 
         echo "<select name=\"plancadre_elaboration_list\">";
-            echo "<option value=\"" . "\">" . "</option>";
         foreach ($list as $row)
         {
             echo "<option value=\"".$row["PlanCadre_VersionPlan"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
@@ -363,15 +362,17 @@ function showAppropriateMenu()
     {
         $list = selectAllConsignesPlanCadre();
 
-        echo "<select name=\"consigne_list\" onchange='showSelectedConsigne(this.value)'>";
-        foreach ($list as $row)
-        {
-            echo "<option value=\"".$row["CodeConsigne"]."\">" .$row["TitreConsigne"]."</option>";
-        }
-        echo "</select>";
+        echo "<div>";
+            echo "<select class='field' name=\"consigne_list\" onchange='showSelectedInstruction(this.value)'>";
+                foreach ($list as $row)
+                {
+                    echo "<option value=\"".$row["CodeConsigne"]."\">" .$row["TitreConsigne"]."</option>";
+                }
+            echo "</select>";
+        echo "</div>";
     }
 
-    function showPageConsignePlanCadre()
+    function showInstructionsTable()
     {
         $list = selectAllConsignesPlanCadre();
 
@@ -385,8 +386,8 @@ function showAppropriateMenu()
         {
             echo "<tr>".
                     "<td>".$row["TitreConsigne"]."</td>".
-                    "<td>".$row["EnonceConsigne"]."</td>".
-                    "<td>".$row["DescriptionConsigne"]."</td>".
+                    "<td id=\"".$row["CodeConsigne"]."_enonce"."\">".$row["EnonceConsigne"]."</td>".
+                    "<td id=\"".$row["CodeConsigne"]."_description"."\">".$row["DescriptionConsigne"]."</td>".
                 "</tr>";
         }
         echo "</table>";

@@ -334,15 +334,15 @@ function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $co
 }
 
 /*
-  Nom de la fonction : updateConsignesPlanCadre
+  Nom de la fonction : updateInstruction
   Fait par : Simon Roy
   Cette fonction éxécute une modification (requête update) sur 
   une des consignes de la table consignesplancadre.
 */
-function updateConsignesPlanCadre($id, $enonce, $description)
+function updateInstruction($id, $enonce, $description)
 {
   $bdd = dbConnect();
-  $update = $bdd->prepare("CALL UPDATE_CONSIGNES_PLAN_CADRE (?,?,?)");
+  $update = $bdd->prepare("CALL UPDATE_INSTRUCTION (?,?,?)");
 
   $update->bindParam(1, $id, PDO::PARAM_STR);
   $update->bindParam(2, $enonce, PDO::PARAM_STR);

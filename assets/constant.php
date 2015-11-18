@@ -38,7 +38,7 @@ define("VIEW_INDEX", "../view/view_index.php");
 define("VIEW_CREATE_PROGRAM", "../view/view_create_program.php");
 define("VIEW_CREATE_CLASS", "../view/view_create_class.php");
 define("VIEW_CREATE_COMPETENCE", "../view/view_create_competence.php");
-define("VIEW_CREATE_CONSIGNE", "../view/view_create_consignes.php");
+define("VIEW_UPDATE_INSTRUCTIONS", "../view/view_update_instructions.php");
 
 
 define("CONTROLLER_CREATE_CLASS", "../controller/controller_create_class.php");
