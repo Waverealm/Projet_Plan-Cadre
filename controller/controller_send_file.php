@@ -26,30 +26,6 @@ unset($word);
 */
 
 
-
-
-
-////////////////////////////////////////////////////////////////
-// code pour envoyer un fichier au client (download)
-/*
-
-if (file_exists($file)) {
-    header('Content-Description: File Transfer');
-    header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename="'.basename($file).'"');
-    header('Expires: 0');
-    header('Cache-Control: must-revalidate');
-    header('Pragma: public');
-    header('Content-Length: ' . filesize($file));
-    readfile($file);
-    exit;
-}
-
-*/
-
-////////////////////////////////////////////////////////////////
-
-
 // exemple a tester 
 
 
@@ -115,16 +91,18 @@ $row = array('cours',
 
 // doit peut-être créer des bookmarks
 // à regarder demain avant la rencontre
-// les variables ont peut-être besoin de $ en avant
+// les variables/bookmarks ont peut-être besoin de $ en avant
 // par exemple ${nomvariable}
 
-$document->setValue('code_cours', $row[1]);
-$document->setValue('ponderation_cours', $row[2]);
-$document->setValue('prealable_cours', $row[3]);
+$document->setValue('code_cours', $row[0]);
+$document->setValue('ponderation_cours', $row[1]);
+$document->setValue('prealable_cours', $row[2]);
 
 $file = '../plancadre/test.docx';
 
 $document->save($file);
+
+
 
 /*
 // use phpWord ?
@@ -169,7 +147,25 @@ $objWriter->save('../plancadre/helloWorld.docx');
 */
 
 
+////////////////////////////////////////////////////////////////
+// code pour envoyer un fichier au client (download)
+/*
 
+if (file_exists($file)) {
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename="'.basename($file).'"');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($file));
+    readfile($file);
+    exit;
+}
+
+*/
+
+////////////////////////////////////////////////////////////////
 
 
 
