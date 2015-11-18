@@ -32,8 +32,6 @@
                     showAppropriateMenu();
                 ?>
 
-                </br>
-
                 <fieldset>
                             <legend>Créer un compte :</legend>
                             </br>
@@ -88,22 +86,22 @@
                 </fieldset>
             </div>
 
-        <center>
-         <?php 
 
-            // On affiche les erreurs s'il y en a
-            if( isset($_SESSION[ 'errors_create_user' ]) )
-            {
-                ?>
+    <?php 
 
-                <script>alert("<?php echo $_SESSION[ 'errors_create_user' ]; ?>");</script>
+        // On affiche les erreurs s'il y en a
+        if( isset($_SESSION[ 'errors_create_user' ]) )
+        {
+            ?>
 
-                <?php
+            <script>alert("<?php echo $_SESSION[ 'errors_create_user' ]; ?>");</script>
 
-               unset($_SESSION[ 'errors_create_user' ]);
-            }
-         ?>
-      </center>
+            <?php
+
+            unset($_SESSION[ 'errors_create_user' ]);
+        }
+    ?>
+
     </body>
 </html>
 

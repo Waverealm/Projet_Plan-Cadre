@@ -22,7 +22,7 @@ $newPasswordConfirm = null;
 if(isset($_POST["user_list_all"]) && isset($_POST['NewPassword']) && isset($_POST['NewPasswordConfirm']))
 {
     $noUser = $_POST["user_list_all"];
-    $newPassword = $_POST['$NewPassword'];
+    $newPassword = $_POST['NewPassword'];
     $newPasswordConfirm = $_POST['NewPasswordConfirm'];
 }
 
@@ -43,7 +43,6 @@ if ($i == 0)
     else{
 
     }
-
 }
 else
 {

@@ -6,75 +6,72 @@
  * Time: 15:21
  */
 
-session_start();
+    session_start();
 
-include_once("../controller/interface_functions.php");
-include_once("../controller/pages_access.php");
+    include_once("../controller/interface_functions.php");
+    include_once("../controller/pages_access.php");
 
-//verifyConnected();
+    verifyAccessPages();
+    isPlanner();
+
 ?>
 
-    <!DOCTYPE html>
-    <html>
+<!DOCTYPE html>
+<html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
+            <link rel="Stylesheet" href="../assets/pure.css">
+            <link rel="Stylesheet" href="../assets/styles.css">
+            <link rel="Stylesheet" href="../assets/others.css">
 
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        </head>
+        <body>
+            <div class="container">
+                <?php
+                    showHeader();
+                    showAppropriateMenu();
+                ?>
 
-        <link rel="Stylesheet" href="../assets/pure.css">
-        <link rel="Stylesheet" href="../assets/styles.css">
-        <link rel="Stylesheet" href="../assets/others.css">
+                <fieldset>
 
-    </head>
-    <body>
-    <div class="container">
-        <?php
-            showHeader();
-            showAppropriateMenu();
-        ?>
-        <br>
+                    <legend>Modification de mot de passe :</legend>
+                    </br>
 
-        </br>
+                    <form action="<?php echo CONTROLLER_UPDATE_PASSWORD ?>" method="post">
 
-        <fieldset>
+                        <label>Nom d'usager :</label>
+                        <?php showUserListAll(); ?>
+                        </br>
 
-            <label class="control-label col-md-2">Nom d'usager :</label>
-            </br>
-            <?php showUserListAll(); ?>
-            </br>
+                        <label>Nouveau mot de passe :</label>
+                        <div>
+                            <input class="text-box single-line password" data-val="true"
+                                   data-val-length="Le champ Mot de passe doit être une chaîne dont la longueur maximale est de 20."
+                                   data-val-length-max="50" data-val-required="Le champ Mot de passe est requis."
+                                   id="NewPassword" name="NewPassword" type="password" value=""
+                                />
+                        </div>
+                        </br>
 
-            <legend>Modification de mot de passe :</legend>
-            </br>
+                        <label>Confirmation du nouveau mot de passe :</label>
+                        <div>
+                            <input class="text-box single-line password" data-val="true"
+                                   data-val-length="Le champ Mot de passe doit être une chaîne dont la longueur maximale est de 20."
+                                   data-val-length-max="50" data-val-required="Le champ Mot de passe est requis."
+                                   id="NewPasswordConfirm" name="NewPasswordConfirm" type="password" value=""
+                                />
+                        </div>
+                        </br>
 
-            <form action="<?php echo CONTROLLER_UPDATE_PASSWORD ?>" method="post">
+                        <div>
+                            <input type="submit" value="Soumettre..." class="btn btn-default" /> <br /><br />
+                        </div>
 
-                <label class="control-label col-md-2">Nouveau mot de passe :</label>
-                <div class="col-md-2">
-                    <input class="text-box single-line password" data-val="true"
-                           data-val-length="Le champ Mot de passe doit être une chaîne dont la longueur maximale est de 20."
-                           data-val-length-max="50" data-val-required="Le champ Mot de passe est requis."
-                           id="NewPassword" name="NewPassword" type="password" value=""
-                        />
-                </div>
-                </br>
-
-                <label class="control-label col-md-2">Confirmation du nouveau mot de passe :</label>
-                <div class="col-md-2">
-                    <input class="text-box single-line password" data-val="true"
-                           data-val-length="Le champ Mot de passe doit être une chaîne dont la longueur maximale est de 20."
-                           data-val-length-max="50" data-val-required="Le champ Mot de passe est requis."
-                           id="NewPasswordConfirm" name="NewPasswordConfirm" type="password" value=""
-                        />
-                </div>
-                </br>
-
-                <div class="col-md-offset-2 col-md-2">
-                    <input type="submit" value="Soumettre..." class="btn btn-default" /> <br /><br />
-                </div>
-
-            </form>
-        </fieldset>
-    </body>
+                    </form>
+                </fieldset>
+            </div>
+        </body>
     </html>
 
 <?php showConnectionAlert(); ?>

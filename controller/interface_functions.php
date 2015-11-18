@@ -295,13 +295,14 @@ function showAppropriateMenu()
         else if ($_SESSION[ 'user_type' ] == 'Conseiller pédagogique')
             $list = fetchAllPlanners("Élaborateur");
 
-        echo "<select name=\"user_list_all\">";
-            echo "<option value=\"" . "\">" . "</option>";
-        foreach ($list as $row)
-        {
-            echo "<option value=\"".$row['NoUtilisateur']."\">".$row['Prenom']." ".$row['Nom']."</option>";
-        }
-        echo "</select>";
+        echo "<div>";
+            echo "<select class='field' name='user_list_all'>";
+                foreach ($list as $row)
+                {
+                    echo "<option value=\"".$row['NoUtilisateur']."\">".$row['Prenom']." ".$row['Nom']."</option>";
+                }
+            echo "</select>";
+        echo "</div>";
     }
 
     function showProgramListAll()
