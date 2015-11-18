@@ -85,23 +85,9 @@
                         </form>    
                 </fieldset>
             </div>
-
-
-    <?php 
-
-        // On affiche les erreurs s'il y en a
-        if( isset($_SESSION[ 'errors_create_user' ]) )
-        {
-            ?>
-
-            <script>alert("<?php echo $_SESSION[ 'errors_create_user' ]; ?>");</script>
-
-            <?php
-
-            unset($_SESSION[ 'errors_create_user' ]);
-        }
-    ?>
-
     </body>
 </html>
 
+    <?php 
+        showErrors("errors_create_user");
+    ?>

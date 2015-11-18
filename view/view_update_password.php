@@ -74,4 +74,6 @@
         </body>
     </html>
 
-<?php showConnectionAlert(); ?>
+    <?php 
+        showErrors("errors_update_password");
+    ?>

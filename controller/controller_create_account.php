@@ -21,9 +21,8 @@ $error_emailfree = NULL;
 $error_emailformat = NULL;
 $error_passwordconfirm = NULL;
 $error_passwordwrongsize = NULL;
-// $error_usernamewrongsize = NULL;
+$error_usernamewrongsize = NULL;
 $error_fieldsempty = NULL;
-// $crypted_pass = NULL;
 
 $userName = NULL;
 $password = NULL;
@@ -83,7 +82,7 @@ if (!preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$#", $email) &&
 //Vérification du mot de passe
 if (!empty($password) && !empty($passwordConfirmation) && $password != $passwordConfirmation)
 {
-  $error_passwordconfirm = '- Votre mot de passe et votre confirmation sont difféterents. \n';
+  $error_passwordconfirm = '- Le mot de passe et sa confirmation sont différents. \n';
   $i++;
 }
 

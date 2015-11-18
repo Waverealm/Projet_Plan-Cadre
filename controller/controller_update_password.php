@@ -14,6 +14,10 @@ require_once('../model/queries.php');
 require_once('password_functions.php');
 
 $i = 0;
+$error_fieldsempty = NULL;
+$error_passwordconfirm = NULL;
+$error_passwordwrongsize = NULL;
+
 $noUser = null;
 $newPassword = null;
 $newPasswordConfirm = null;
@@ -29,24 +33,39 @@ if(isset($_POST["user_list_all"]) && isset($_POST['NewPassword']) && isset($_POS
 // On vérifie si des champs sont vides
 if (empty($newPassword) || empty($newPasswordConfirm))
 {
-    $error_fieldsempty = "Un ou plusieurs champs de texte sont vides. Veuillez les remplir.";
-    //$i++;
+    $error_fieldsempty = '- Un ou plusieurs champs de texte sont vides. Veuillez les remplir. \n';
+    $i++;
+}
+
+if($newPassword != $newPasswordConfirm)
+{
+    $error_passwordconfirm = '- Le mot de passe et sa confirmation sont différents. \n';
+    $i++;
+}
+
+if (strlen($newPassword) < 6 && !empty($newPassword))
+{
+  $error_passwordwrongsize = '- Votre mot de passe doit contenir au minimum huit caractères. \n';
+  $i++;
 }
 
 // S'il n'y a aucune erreur
 if ($i == 0)
 {
-    if($newPassword == $newPasswordConfirm) {
-        updatePassword($noUser, createHash($newPassword));
-        header('Location: ../view/view_index.php');
-    }
-    else{
-
-    }
+    updatePassword($noUser, createHash($newPassword));
+    header('Location: ../view/view_index.php');
 }
+
 else
 {
+    setErrors();
     header('Location: ../view/view_update_password.php');
+}
+
+function setErrors()
+{
+  global $error_passwordconfirm, $error_fieldsempty, $error_passwordwrongsize;
+    $_SESSION[ 'errors_update_password' ] = 'Une ou plusieurs erreurs se sont produites : \n\n'.$error_passwordconfirm.$error_fieldsempty.$error_passwordwrongsize;
 }
 
 ?>
