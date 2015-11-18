@@ -112,6 +112,10 @@ $PHPWord = new PHPWord();
 
 $document = $PHPWord->loadTemplate('../assets/template1.docx');
 
+
+$document->setValue('type_enseignement', 'Enseignement régulier');
+$document->setValue('nom_programme', 'test');
+$document->setValue('code_programme', '510.A0');
 $document->setValue('code_cours', 'John');
 $document->setValue('ponderation_cours', 'JBS Marketing');
 $document->setValue('prealable_cours', 'u');
