@@ -69,7 +69,7 @@ function showAppropriateMenu()
                         <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
                         <ul class="pure-menu-children">
                             <li class="pure-menu-item">
-                                <a href="#" class="pure-menu-link">Recherche</a>
+                                <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" class="pure-menu-link">Recherche</a>
                             </li>
                         </ul>
                     </li>

@@ -2,6 +2,7 @@
   session_start();
 
   include_once("../controller/interface_functions.php");
+  include_once("../model/model_search_plan_cadre.php");
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +24,10 @@
             showAppropriateMenu();
           ?>
           <br>
+
+          <?php 
+            showAllPlancadre();
+          ?>
 
         </div>
 

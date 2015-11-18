@@ -117,6 +117,10 @@
   {
     return selectWithNoParam("CALL SELECT_ALL_CONSIGNES_PLAN_CADRE ()");
   }
+  function selectAllPlanCadre()
+  {
+    return selectWithNoParam("CALL SELECT_ALL_PLAN_CADRE ()");
+  }
 
   // pas besoin de paramètre
   function selectAllProgramCode($bdd)
