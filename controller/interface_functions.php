@@ -374,6 +374,18 @@ function showAppropriateMenu()
         echo "</table>";
     }
 
+    function showInstructionToggle($codeInstruction)
+    {
+        $descriptionConsigne = fetchDescriptionInstruction($codeInstruction);
+
+        ?>
+
+        <button>Afficher/masquer la consigne</button>
+        <p><?php $descriptionConsigne[0][ "DescriptionConsigne" ]; ?></p>
+
+        <?php
+    }
+
     function showErrors($errors)
     {
         // On affiche les erreurs s'il y en a

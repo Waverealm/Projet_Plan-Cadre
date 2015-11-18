@@ -174,6 +174,10 @@
   {
     return fetchId( $user_type, "CALL SELECT_ALL_PLANNERS(?)" );
   }
+  function fetchDescriptionInstruction($id_instruction)
+  {
+    return fetchId( $id_instruction, "CALL SELECT_DESCRIPTION_INSTRUCTION(?)" );
+  }
   
 
 

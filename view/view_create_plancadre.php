@@ -26,6 +26,7 @@
     <link rel="Stylesheet" href="../assets/others.css">
 
     <script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -160,6 +161,7 @@
             </br>
             </br>
 
+            <?php showInstructionToggle('1'); ?>
             <label class="control-label col-md-2">Presentation du cours : </label>
             </br>
             <div class="col-md-10">
@@ -168,6 +170,7 @@
             </div>
             </br>
 
+            <?php showInstructionToggle('2'); ?>
             <label class="control-label col-md-2">Objectifs d'integration : </label>
             </br>
             <div class="col-md-10">
@@ -178,6 +181,7 @@
             </div>
             </br>
 
+            <?php showInstructionToggle('3'); ?>
             <label class="control-label col-md-2">Evaluation des apprentissage : </label>
             </br>
             <div class="col-md-10">
@@ -188,6 +192,7 @@
             </div>
             </br>
 
+            <?php showInstructionToggle('3'); ?>
             <label class="control-label col-md-2">Énoncé des compétences : </label>
             </br>
             <div class="col-md-10">
