@@ -21,7 +21,9 @@ include_once("../model/queries.php");
 //** à modifier
 function makeLinkPlancadre($path)
 {
-	return '<a href="'.$path.'"> Télécharger </a>';
+	//return '<a href="'.$path.'"> Télécharger </a>';
+
+    return '<a href="../plancadre/test.docx"> Télécharger </a>';
 }
 
 function showAllPlancadre()
