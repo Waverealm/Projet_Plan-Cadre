@@ -24,11 +24,12 @@
             showAppropriateMenu();
           ?>
           <br>
-
-          <?php 
-            showAllPlancadre();
-          ?>
-
+          <fieldset>
+            <legend>Liste des plans-cadres : </legend>
+            <?php 
+              showAllPlancadre();
+            ?>
+          </fieldset>
         </div>
 
      </body>

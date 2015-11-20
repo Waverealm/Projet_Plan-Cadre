@@ -18,7 +18,7 @@ include_once("../model/queries.php");
 	- 
 */
 
-
+//** à modifier
 function makeLinkPlancadre($path)
 {
 	return '<a href="'.$path.'"> Télécharger </a>';
@@ -34,6 +34,7 @@ function showAllPlancadre()
                 "<th>Nom du cours</th>".
                 "<th>Code du programme</th>".
                 "<th>Nom du programme</th>".
+                "<th>État</th>".
                 "<th>Date de création</th>".
                 "<th>Date d'adoption</th>".
                 "<th>Télécharger</th>".
@@ -59,6 +60,7 @@ function showAllPlancadre()
                     "<td>".$row["NomCours"]."</td>".
                     "<td>".$row["CodeProgramme"]."</td>".
                     "<td>".$row["NomProgramme"]."</td>".
+                    "<td>".$row["Etat"]."</td>".
                     "<td>".$row["DateAjout"]."</td>".
                     "<td>". $date_adoption ."</td>".
                     "<td>" . $document_link . "</td>".
