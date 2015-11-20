@@ -228,10 +228,7 @@ function showAppropriateMenu()
 
     function showProgramsCode()
     {
-        $bdd = dbConnect();
-
-        // On va récupérer les stagiaires
-        $list = selectAllProgramCode($bdd);
+        $list = selectAllProgramCode();
 
         echo "<div>";
             echo "<select name=\"CodeProgramme\">";
@@ -288,13 +285,13 @@ function showAppropriateMenu()
 
     function showProgramListAll()
     {
-        $list = fetchAllUser();
+        $list = selectAllProgramCode();
 
         echo "<select name=\"program_list_all\">";
         echo "<option value=\"" . "\">" . "</option>";
         foreach ($list as $row)
         {
-            echo "<option value=\"".$row['CodeProgramme']."\">".$row['NomProgramme']." ".$row['TypeProgramme']."</option>";
+            echo "<option value=\"".$row['CodeProgramme']."\">".$row['CodeProgramme']." ".$row['NomProgramme']."</option>";
         }
         echo "</select>";
     }

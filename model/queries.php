@@ -125,9 +125,7 @@
   {
     return selectWithNoParam("CALL SELECT_ALL_VALID_PLAN_CADRE ()");
   }
-
-  // pas besoin de paramètre
-  function selectAllProgramCode($bdd)
+  function selectAllProgramCode()
   {
     return selectWithNoParam("CALL SELECT_ALL_PROGRAMS ()");
   }
