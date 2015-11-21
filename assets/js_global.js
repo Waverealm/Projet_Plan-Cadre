@@ -52,7 +52,6 @@ function showSelectedInstruction(selected) {
   }
 }
 
-
 /*
     arrayFilter(search, list)
     search : est une chaine de charactère qui va servir de filtre

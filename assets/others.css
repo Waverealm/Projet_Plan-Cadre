@@ -18,26 +18,15 @@
 	width: 12em;
 }
 
-$(document).ready(function(){
-	$("input[name*='1']").click(function(){
-		$("[name='1_desc']").toggle(1000);
-	});
-});
+/* 
+   IDs utilisées pour les toggle des consignes
+   dans la page de création du plan-cadre.
+*/
 
-$(document).ready(function(){
-	$("input[name*='2']").click(function(){
-		$("[name='2_desc']").toggle(1000);
-	});
-});
+.toggle {
 
-$(document).ready(function(){
-	$("input[name*='3]").click(function(){
-		$("[name='3_desc']").toggle(1000);
-	});
-});
+}
 
-$(document).ready(function(){
-	$("input[name*='4']").click(function(){
-		$("[name='4_desc']").toggle(1000);
-	});
-});
+.desc {
+
+}
