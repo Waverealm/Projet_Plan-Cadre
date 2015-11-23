@@ -9,59 +9,68 @@
 ------------------------------------------------------------------------------------
 	
 	début des variables qui contiennent le chemin des différentes pages
-
+	
+	Les constantes sont regroupées selon leur rôle.
+	Les vues sont suivies de leur controlleur si elles en ont un.
 ------------------------------------------------------------------------------------
 */
 define("PAGE_ACCESS", "../controller/page_acces.php");
+define("INTERFACE_FUNCTIONS", "../controller/interface_functions.php");
 
-// account
-define("LOGOUT", "../controller/controller_logout.php");
+
+// lien avec le compte utilisateur
 
 define("VIEW_LOGIN", "../view/view_login.php");
-define("VIEW_CREATE_ACCOUNT", "../view/view_create_account.php");
-define("VIEW_UPDATE_PASSWORD", "../view/view_update_password.php");
-
 define("CONTROLLER_LOGIN", "../controller/controller_login.php");
-define("CONTROLLER_LOGOUT", "../controller/controller_logout.php");
+
+define("VIEW_CREATE_ACCOUNT", "../view/view_create_account.php");
 define("CONTROLLER_CREATE_ACCOUNT", "../controller/controller_create_account.php");
+
+define("VIEW_UPDATE_PASSWORD", "../view/view_update_password.php");
 define("CONTROLLER_UPDATE_PASSWORD", "../controller/controller_update_password.php");
 
-
+define("CONTROLLER_LOGOUT", "../controller/controller_logout.php");
 
 
 //accueil
 define("VIEW_INDEX", "../view/view_index.php");
 
-// autre vues de base
+
 define("VIEW_SEARCH_PLAN_CADRE", "../view/view_search_plan_cadre.php");
 
 
-// données à entrer
+// lien avec des données à entrer ou modifier
 define("VIEW_CREATE_PROGRAM", "../view/view_create_program.php");
-define("VIEW_CREATE_CLASS", "../view/view_create_class.php");
-define("VIEW_CREATE_COMPETENCE", "../view/view_create_competence.php");
-define("VIEW_UPDATE_INSTRUCTIONS", "../view/view_update_instructions.php");
-
-
-define("CONTROLLER_CREATE_CLASS", "../controller/controller_create_class.php");
-define("CONTROLLER_CREATE_COMPETENCE", "../controller/controller_create_competence.php");
 define("CONTROLLER_CREATE_PROGRAM", "../controller/controller_create_programe.php");
 
 
+define("VIEW_CREATE_CLASS", "../view/view_create_class.php");
+define("CONTROLLER_CREATE_CLASS", "../controller/controller_create_class.php");
 
-// plancadre
+define("VIEW_UPDATE_INSTRUCTIONS", "../view/view_update_instructions.php");
+define("CONTROLLER_UPDATE_INSTRUCTIONS", "../controller/controller_update_instructions.php");
+
+
+// Les compétences sont déplacées en could / won't
+/*
+define("VIEW_CREATE_COMPETENCE", "../view/view_create_competence.php");
+define("CONTROLLER_CREATE_COMPETENCE", "../controller/controller_create_competence.php");
+*/
+//
+
+// en lien avec le plancadre
 define("VIEW_ASSIGN_USER", "../view/view_assign_user.php");
-define("VIEW_ELABORATION_PLANCADRE", "../view/view_elaboration_plancadre.php");
-define("VIEW_CREATE_PLANCADRE", "../view/view_create_plancadre.php");
-
 define("CONTROLLER_ASSIGN_USER", "../controller/controller_assign_user.php");
+
+define("VIEW_ELABORATION_PLANCADRE", "../view/view_elaboration_plancadre.php");
 define("CONTROLLER_ELABORATION_PLANCADRE", "../controller/controller_elaboration_plancadre.php");
+
+define("VIEW_CREATE_PLANCADRE", "../view/view_create_plancadre.php");
 define("CONTROLLER_CREATE_PLANCADRE", "../controller/controller_create_plancadre.php");
 
 
+// ** à confirmer pourrait être inutile **
 define("CONTROLLER_SEND_FILE", "../controller/controller_send_file.php");
-
-
 
 
 /*
