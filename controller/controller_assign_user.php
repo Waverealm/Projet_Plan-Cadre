@@ -18,7 +18,7 @@
 		$user = $_POST["user_list_all"];
 		$codecours = $_POST["class_list_all"];
 		// elaboration contient 11 charatère, la BD n'en prend que 10 pour l'etat d'un plancadre
-		$etat = "elaboratio";
+		$etat = "elaboration";
 
 		$id = createPlanCadre($codecours, $etat);
 		

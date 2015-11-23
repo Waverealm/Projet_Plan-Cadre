@@ -37,7 +37,7 @@
         <legend>Ajout de cours : </legend>
           <br>
         <form action="../controller/controller_create_class.php" method="post">
-            <label>Cours qui existe déja : </label>
+            <label>Liste de cours qui existe déja : </label>
             <br>
             <?php
             showClassListAll();
@@ -61,7 +61,10 @@
           <br>
           <label>Type du cours : </label>
           <div>
-            <input data-val="true" id="TypeCours" name="TypeCours" type="text" value="" />
+            <select name="TypeCours">
+              <option>Enseignement régulier</option>
+              <option>Formation continue</option>
+            </select>
           </div>
           <br>
           <label>Ponderation du cours : </label>

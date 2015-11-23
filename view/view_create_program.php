@@ -49,7 +49,11 @@
         </br>
         <label>Type du programme : </label>
         <div>
-            <input data-val="true" id="TypeProgramme" name="TypeProgramme" type="text" value="" />
+            <select name="TypeProgramme">
+              <option>Technique</option>
+              <option>Pré-universitaire</option>
+              <option>Attestation d'études collégiales</option>
+            </select>
         </div>
         </br>
         <label>Type de sanction: </label>
