@@ -7,7 +7,7 @@
 
   include_once("../controller/pages_access.php");
   include_once("../controller/controller_elaboration_plancadre.php");
-  include_once("../model/model_current_user.php");
+  include_once("../model/model_user_session.php");
   verifyAccessPages();
   isAdmin();
 ?>
