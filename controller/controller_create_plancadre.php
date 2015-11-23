@@ -83,20 +83,38 @@ function getPrealableCours($id_cours)
     return fetchPrealableCours_Id($id_cours);;
 }
 
+/*
+    readFrom($path)
+    Cette fonction retourne le contenu du fichier texte qui se
+    trouve à l'emplacement spécifié sur le serveur. Si le fichier 
+    n'existe pas alors une chaine vide est retourné. Si le fichier 
+    n'a pas de contenu alors une chaine vide est retournée.
+*/
 function readFrom($path)
 {
     if(file_exists($path))
     {
-        $handle = fopen($path, "rb");
-        $text = fread($handle, filesize($path));
-        return $text;
+        if(filesize($path) > 0)
+        {
+            $handle = fopen($path, "rb");
+            $text = fread($handle, filesize($path));
+            return $text;
+        }
+        else
+        {
+            $fichier_vide = "";
+            return $fichier_vide;
+        }
     }
     else
     {
-        return "";
+        $fichier_inexistant = "";
+        return $fichier_inexistant;
     }
-
 }
+
+
+
     
 
 
