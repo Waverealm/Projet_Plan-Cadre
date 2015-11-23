@@ -106,7 +106,7 @@ function showAppropriateMenu()
                 </li>
             </ul>
             <div class="login_field"><?php echo $_SESSION['last_name'].", ".$_SESSION['first_name']."   "; ?>
-                <a href="<?php echo LOGOUT ?>">Se déconnecter</a>
+                <a href="<?php echo CONTROLLER_LOGOUT ?>">Se déconnecter</a>
             </div>
         </div>
         <?php
@@ -170,7 +170,7 @@ function showAppropriateMenu()
                     </li>
                 </ul>
                 <div class="login_field"><?php echo $_SESSION['last_name'].", ".$_SESSION['first_name']."   "; ?>
-                    <a href="<?php echo LOGOUT ?>">Se déconnecter</a>
+                    <a href="<?php echo CONTROLLER_LOGOUT ?>">Se déconnecter</a>
                 </div>
             </div>
         <?php
@@ -210,7 +210,7 @@ function showAppropriateMenu()
                     </li>
                 </ul>
                 <div class="login_field"><?php echo $_SESSION['last_name'].", ".$_SESSION['first_name']."   "; ?>
-                    <a href="<?php echo LOGOUT?>">Se déconnecter</a>
+                    <a href="<?php echo CONTROLLER_LOGOUT ?>">Se déconnecter</a>
                 </div>
             </div>
         <?php
