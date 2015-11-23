@@ -269,18 +269,27 @@ function showAppropriateMenu()
     function showUserListAll()
     {
         if ($_SESSION[ 'user_type' ] == 'Administrateur')
+        {
             $list = fetchAllUser();
-        
-
+        }
         else if ($_SESSION[ 'user_type' ] == 'Conseiller pédagogique')
+        {
             $list = fetchAllPlanners("Élaborateur");
+        }
+        echo "<select class='field' name='user_list_all'>";
+        if(sizeof($list) > 0)
+        {
+            foreach ($list as $row)
+            {
+                echo "<option value=\"".$row['NoUtilisateur']."\">".$row['Prenom']." ".$row['Nom']."</option>";
+            }
+        }
+        else
+        {
+            echo "<option>"."Aucun utilisateur"."</option>";
+        }
         
-            echo "<select class='field' name='user_list_all'>";
-                foreach ($list as $row)
-                {
-                    echo "<option value=\"".$row['NoUtilisateur']."\">".$row['Prenom']." ".$row['Nom']."</option>";
-                }
-            echo "</select>";
+        echo "</select>";
     }
 
     function showProgramListAll()
@@ -289,9 +298,16 @@ function showAppropriateMenu()
 
         echo "<select name=\"program_list_all\">";
         echo "<option value=\"" . "\">" . "</option>";
-        foreach ($list as $row)
+        if(sizeof($list) > 0)
         {
-            echo "<option value=\"".$row['CodeProgramme']."\">".$row['CodeProgramme']." ".$row['NomProgramme']."</option>";
+            foreach ($list as $row)
+            {
+                echo "<option value=\"".$row['CodeProgramme']."\">".$row['CodeProgramme']." ".$row['NomProgramme']."</option>";
+            }
+        }
+        else
+        {
+            echo "<option>"."Aucun Programme"."</option>";
         }
         echo "</select>";
     }
@@ -306,35 +322,48 @@ function showAppropriateMenu()
 
         echo "<select name=\"class_list_all\">";
             echo "<option value=\"" . "\">" . "</option>";
-        foreach ($list as $row)
+        
+        if(sizeof($list) > 0)
         {
-            echo "<option value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+            foreach ($list as $row)
+            {
+                echo "<option value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+            }
+        }
+        else
+        {
+            echo "<option>"."Aucun cours"."</option>";
         }
         echo "</select>";
     }
 /*
-    Nom de la fonction : showPlanCadreUser
-    Fait par : Simon Roy
+    Nom de la fonction : showPlanCadreCurrentUser
     Cette fonction permet d'afficher une liste déroulante des plans-cadres
     que l'utilisateur courrant peut élaborer.
 */
-    function showPlanCadreUser()
+    function showPlanCadreCurrentUser()
     {
         $id = $_SESSION['no_user'];
         $list = fetchPlanCadreElaboration_User($id);
 
         echo "<select name=\"plancadre_elaboration_list\">";
-        foreach ($list as $row)
+        
+        if(sizeof($list) > 0)
         {
-            echo "<option value=\"".$row["PlanCadre_VersionPlan"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+            foreach ($list as $row)
+            {
+                echo "<option value=\"".$row["PlanCadre_VersionPlan"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+            }
+        }
+        else
+        {
+            echo "<option>" . "Aucun plan-cadre ne vous a été assigné." . "</option>";
         }
         echo "</select>";
     }
 
 /*
     Nom de la fonction : showConsignePlanCadre
-    Fait par : Simon Roy
-    
 */
     function showConsignePlanCadre()
     {

@@ -46,7 +46,7 @@
                     <br>
 
                     <?php
-                        showPlanCadreUser();
+                        showPlanCadreCurrentUser();
                     ?>
 
                     <input type="text" name="search_class" 
