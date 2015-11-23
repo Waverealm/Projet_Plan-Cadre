@@ -4,9 +4,10 @@
   //
   include_once("../controller/interface_functions.php");
   //
+
   include_once("../controller/pages_access.php");
   include_once("../controller/controller_elaboration_plancadre.php");
-
+  include_once("../model/model_current_user.php");
   verifyAccessPages();
   isAdmin();
 ?>
@@ -23,8 +24,6 @@
         <script type="text/javascript" src="../assets/js_global.js" ></script>
 
     </head>
-    
-
     <body>
 
 
