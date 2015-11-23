@@ -57,9 +57,13 @@ $name = 'test.docx';
 
 $document->save('../plancadre/test.docx');
 
+
+// code pour envoyer un fichier au client (download)
+
 $file = '../plancadre/test.docx';
 
-if (file_exists($file)) {
+if (file_exists($file)) 
+{
     header('Content-Description: File Transfer');
     header('Content-Type: application/octet-stream');
     header('Content-Disposition: attachment; filename="'.basename($file).'"');

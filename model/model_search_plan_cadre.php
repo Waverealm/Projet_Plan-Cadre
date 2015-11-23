@@ -44,11 +44,12 @@ function showAllPlancadre()
         foreach ($list as $row)
         {
         	$date_adoption = $row["DateAdoption"];
-        	$path = $row["Presentation_Cours"];
         	if( !isset($date_adoption) ) 
         	{
         		$date_adoption = "pas adopté";
         	}
+
+            $path = $row["Presentation_Cours"];
         	if( !isset($path) ) 
         	{
         		$document_link = "lien manquant";
@@ -57,6 +58,7 @@ function showAllPlancadre()
         	{
         		$document_link = makeLinkPlancadre($path);
         	}
+
             echo "<tr>".
                     "<td>".$row["CodeCours"]."</td>".
                     "<td>".$row["NomCours"]."</td>".
