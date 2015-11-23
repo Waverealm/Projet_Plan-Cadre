@@ -4,28 +4,46 @@
    Contient des fonctions javascript nécessaires au site
 */
 
+// Fonction : showSelectedInstruction()
+// Faite par Léa Kelly
 // Autorise seulement de taper des lettres dans une text box.
 function alphaOnly(e) {
   var code;
   if (!e) var e = window.event;
   if (e.keyCode) code = e.keyCode;
   else if (e.which) code = e.which;
-  if ((code >= 48) && (code <= 57)) { return false; }
+  if (code < 65) { return false; }
+  else if ((code >= 91) && (code <= 96)) { return false; }
+  else if ((code >= 123) && (code <= 126)) { return false; }
   return true;
 }
 
-function codeCoursMask(e) {
+
+// Fonction : codeClassMask()
+// Faite par Antoine Latendresse
+// Filtre spécifique pour le code d'un cours
+function filerClassCode(e) {
     var code;
     if (!e) var e = window.event;
     if (e.keyCode) code = e.keyCode;
     else if (e.which) code = e.which;
-    if ((code < 45)) { return false; }
+    if (code < 45) { return false; }
     else if ((code >= 46) && (code <= 47)) { return false; }
-    else if ((code >= 58) && (code <= 65)) { return false; }
-    else if ((code >= 91) && (code <= 97)) { return false; }
+    else if ((code >= 58) && (code <= 64)) { return false; }
+    else if ((code >= 91) && (code <= 96)) { return false; }
+    else if ((code >= 123) && (code <= 126)) { return false; }
     return true;
 }
 
+jQuery(function($){
+   $("input[name*='CodeCours']").mask("999-999-99");
+});
+
+
+// Fonction : showSelectedInstruction()
+// Faite par Léa Kelly
+// Selon la consigne sélectionnée, l'énoncé et la description correspondants vont s'afficher dans les champs de texte.
+// On utilise l'énoncé et la description du tableau sur la page.
 function showSelectedInstruction(selected) {
   if(selected == "1") 
   {
@@ -52,6 +70,12 @@ function showSelectedInstruction(selected) {
   }
 }
 
+// Fonction : loadInstruction()
+// Faite par Léa Kelly
+// J'ai "hardcodé" le contenu des champs de texte de l'énoncé et de la description afin qu'elles soient déjà remplies
+// lorsque la page est chargé.
+// J'avais essayé en réutilisant la fonction ci-dessus, mais un window.load ne semble pas fonctionner lorsqu'on lui
+// demande d'exécuter une fonction qui prendre un paramètre.
 function loadInstruction() {
     document.getElementById("enonce").value = document.getElementById("1_enonce").innerHTML;
     document.getElementById("description").value = document.getElementById("1_description").innerHTML;
@@ -78,6 +102,7 @@ function loadInstruction() {
   	// Source: www.evolt.org
    	///////////////////////////////////////////////////////////////////////////
 */
+
 function arrayFilter(search, list){
 
     // si un backup de la liste n'existe pas on en fait un maintenant
