@@ -34,6 +34,7 @@ function setLastName ( $last_name )
 }
 
 /*
+// on ne veut pas pouvoir changer le type du user
 function setUserType ( $user_type )
 {
 	$_SESSION['user_type'] = $user_type;
@@ -56,11 +57,6 @@ function getUserType ()
 {
 	return $_SESSION['user_type'];
 }
-
-
-
-
-
 
 
 

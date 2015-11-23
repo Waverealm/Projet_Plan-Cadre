@@ -15,7 +15,8 @@
         <link rel="Stylesheet" href="../assets/pure.css">
         <link rel="Stylesheet" href="../assets/styles.css">
         <link rel="Stylesheet" href="../assets/others.css">
-         
+
+        <script type="text/javascript" src="../assets/js_global.js"></script>
       </head>
       <body >
         <div class="container"  style="background-color: ghostwhite">
