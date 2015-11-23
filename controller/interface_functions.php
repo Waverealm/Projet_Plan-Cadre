@@ -104,6 +104,16 @@ function showAppropriateMenu()
         </div>
         <?php
     }
+
+/*
+    <li class="pure-menu-item">
+        <a href="<?php echo VIEW_CREATE_COMPETENCE ?>" class="pure-menu-link">Ajouter une compétence</a>
+    </li>
+
+    Nous ne occupons présentement pas des compétences. 
+    On peut travailler dessus à la fin si il reste du temps.
+
+*/
     function showConseillerPedagogiqueMenu()
     {
         ?>
@@ -126,9 +136,6 @@ function showAppropriateMenu()
                     <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                         <a href="#" id="menuLink1" class="pure-menu-link">Gestion de l'information</a>
                         <ul class="pure-menu-children">
-                            <li class="pure-menu-item">
-                                <a href="<?php echo VIEW_CREATE_COMPETENCE ?>" class="pure-menu-link">Ajouter une compétence</a>
-                            </li>
                             <li class="pure-menu-item">
                                 <a href="<?php echo VIEW_CREATE_CLASS ?>" class="pure-menu-link">Ajouter un cours</a>
                             </li>
