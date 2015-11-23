@@ -56,22 +56,29 @@ function showAppropriateMenu()
     function showVisitorMenu()
     {
         /*
-        changer le menu pour que ça ne soit pas un dropdown
+            Le menu a été changé pour ne pas être un drop-down menu
+            puisqu'il y a seulement un lien
 
+            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
+                 <ul class="pure-menu-children">
+                    <li class="pure-menu-item">
+                        <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" class="pure-menu-link">Recherche</a>
+                    </li>
+                </ul>
+            </li>
+            
         */
+
         ?>
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list">
-                    <li class="pure-menu-item pure-menu-selected">
+                    <li class="pure-menu-item ">
                         <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
                     </li>
-                    <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                        <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
-                        <ul class="pure-menu-children">
-                            <li class="pure-menu-item">
-                                <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" class="pure-menu-link">Recherche</a>
-                            </li>
-                        </ul>
+                    <li class="pure-menu-item pure-menu-allow-hover">
+                        <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
+
                     </li>
                 </ul>
                 <a href="<?php echo VIEW_LOGIN ?>" class="login_field">Se Connecter</a>
@@ -83,7 +90,7 @@ function showAppropriateMenu()
         ?>
         <div class="pure-menu pure-menu-horizontal">
             <ul class="pure-menu-list">
-                <li class="pure-menu-item pure-menu-selected">
+                <li class="pure-menu-item ">
                     <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
                 </li>
                 <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
@@ -119,7 +126,7 @@ function showAppropriateMenu()
         ?>
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list">
-                    <li class="pure-menu-item pure-menu-selected">
+                    <li class="pure-menu-item ">
                         <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
                     </li>
                     <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
@@ -173,7 +180,7 @@ function showAppropriateMenu()
         ?>
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list">
-                    <li class="pure-menu-item pure-menu-selected">
+                    <li class="pure-menu-item ">
                         <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
                     </li>
                     <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
