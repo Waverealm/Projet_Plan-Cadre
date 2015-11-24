@@ -64,13 +64,14 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
         $_POST['id_plancadre']
         );
 
+
     // document word fait à partir du template
     $plancadre = fetchPlanCadreElaboration_PlanCadre( $_POST['id_plancadre'] );
     $prealable_cours = fetchPrealableCours_Id( $plancadre[0]['CodeCours'] );
 
-    $PHPWord = new PHPWord();
+    $php_word = new PHPWord();
 
-    $document = $PHPWord->loadTemplate('../assets/template_test.docx');
+    $document = $php_word->loadTemplate('../assets/template_test.docx');
 
     //$document->setValue('type_enseignement', $plancadre[0]['TypeCours']);
     $document->setValue('nom_programme', $plancadre[0]['NomProgramme']);
@@ -86,7 +87,12 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     // test
     // obtient une erreur pour le text
     //$text = $presentation . " " . $integration . " " . $evaluation . " " . $competences . " " . $apprentissage;
-    //$document->setValue('presentation', $text);
+    
+    //$text = readFrom($path_presentation);
+    //$document->setValue('presentation', "$text");
+
+    $section = $php_word->createSection();
+    $section->addText(readFrom($path_presentation));
 
     $path_docx = "../plancadre/". $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
 
