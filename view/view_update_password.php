@@ -1,4 +1,8 @@
 <?php
+$currentVisitor = 'updatepassword';
+$currentElaborator = 'updatepassword';
+$currentConseiller = 'updatepassword';
+$currentAdmin = 'updatepassword';
 /**
  * Created by PhpStorm.
  * User: 201087112

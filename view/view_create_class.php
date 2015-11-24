@@ -1,4 +1,8 @@
 <?php
+$currentVisitor = 'createclass';
+$currentElaborator = 'createclass';
+$currentConseiller = 'createclass';
+$currentAdmin = 'createclass';
 /**
  * Created by PhpStorm.
  * User: 201087112//AntoineLatendresse

@@ -1,10 +1,7 @@
-
 <?php
 
     include_once("../assets/constant.php");
     include_once('../model/queries.php');
-
-
 
     function showHeader()
     {
@@ -55,6 +52,8 @@ function showAppropriateMenu()
 
     function showVisitorMenu()
     {
+        GLOBAL $currentVisitor;
+
         /*
             Le menu a été changé pour ne pas être un drop-down menu
             puisqu'il y a seulement un lien
@@ -73,10 +72,10 @@ function showAppropriateMenu()
         ?>
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list">
-                    <li class="pure-menu-item ">
+                    <li <?php if($currentVisitor == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                         <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
                     </li>
-                    <li class="pure-menu-item pure-menu-allow-hover">
+                    <li <?php if($currentVisitor == 'searchplancadre') {echo 'class="pure-menu-item pure-menu-allow-hover pure-menu-selected"';} ?> class="pure-menu-item pure-menu-allow-hover">
                         <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
 
                     </li>
@@ -87,19 +86,20 @@ function showAppropriateMenu()
     }
     function showElaborateurMenu()
     {
+        GLOBAL $currentElaborator;
         ?>
         <div class="pure-menu pure-menu-horizontal">
             <ul class="pure-menu-list">
-                <li class="pure-menu-item ">
+                <li <?php if($currentElaborator == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
                     <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
                 </li>
                 <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                     <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
                     <ul class="pure-menu-children">
-                        <li class="pure-menu-item">
+                        <li <?php if($currentElaborator == 'searchplancadre') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                             <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" class="pure-menu-link">Rechercher</a>
                         </li>
-                        <li class="pure-menu-item">
+                        <li <?php if($currentElaborator == 'elaborationplancadre') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                             <a href="<?php echo VIEW_ELABORATION_PLANCADRE ?>" class="pure-menu-link">Créer</a>
                         </li>
                     </ul>
@@ -123,19 +123,20 @@ function showAppropriateMenu()
 */
     function showConseillerPedagogiqueMenu()
     {
+        GLOBAL $currentConseiller;
         ?>
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list">
-                    <li class="pure-menu-item ">
+                    <li <?php if($currentConseiller == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
                         <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
                     </li>
                     <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                         <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
                     <ul class="pure-menu-children">
-                        <li class="pure-menu-item">
+                        <li <?php if($currentConseiller == 'searchplancadre') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                             <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" class="pure-menu-link">Recherche</a>
                         </li>
-                        <li class="pure-menu-item">
+                        <li <?php if($currentConseiller == 'elaborationplancadre') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                            <a href="<?php echo VIEW_ELABORATION_PLANCADRE ?>" class="pure-menu-link">Créer un plan-cadre</a>
                         </li>
                         </ul>
@@ -143,13 +144,13 @@ function showAppropriateMenu()
                     <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                         <a href="#" id="menuLink1" class="pure-menu-link">Gestion de l'information</a>
                         <ul class="pure-menu-children">
-                            <li class="pure-menu-item">
+                            <li <?php if($currentConseiller == 'createclass') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                                 <a href="<?php echo VIEW_CREATE_CLASS ?>" class="pure-menu-link">Ajouter un cours</a>
                             </li>
-                            <li class="pure-menu-item">
+                            <li <?php if($currentConseiller == 'createprogram') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                                 <a href="<?php echo VIEW_CREATE_PROGRAM ?>" class="pure-menu-link">Ajouter un programme d'études</a>
                             </li>
-                            <li class="pure-menu-item">
+                            <li <?php if($currentConseiller == 'updateinstructions') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                                 <a href="<?php echo VIEW_UPDATE_INSTRUCTIONS ?>" class="pure-menu-link">Modifier les instruction des plans-cadres</a>
                             </li>
                         </ul>
@@ -157,13 +158,13 @@ function showAppropriateMenu()
                     <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                         <a href="#" id="menuLink1" class="pure-menu-link">Gestion des membres</a>
                         <ul class="pure-menu-children">
-                            <li class="pure-menu-item">
+                            <li <?php if($currentConseiller == 'createaccount') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                                 <a href="<?php echo VIEW_CREATE_ACCOUNT ?>" class="pure-menu-link">Créer un compte</a>
                             </li>
-                            <li class="pure-menu-item">
+                            <li <?php if($currentConseiller == 'assignuser') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                                 <a href="<?php echo VIEW_ASSIGN_USER ?>" class="pure-menu-link">Assigner un plan-cadre</a>
                             </li>
-                            <li class="pure-menu-item">
+                            <li <?php if($currentConseiller == 'updatepassword') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                                 <a href="<?php echo VIEW_UPDATE_PASSWORD ?>" class="pure-menu-link">Modification mot de passe</a>
                             </li>
                         </ul>
@@ -177,19 +178,20 @@ function showAppropriateMenu()
     }
     function showAdminMenu()
     {
+        GLOBAL $currentAdmin;
         ?>
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list">
-                    <li class="pure-menu-item ">
+                    <li <?php if($currentAdmin == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
                         <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
                     </li>
                     <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                         <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
                         <ul class="pure-menu-children">
-                            <li class="pure-menu-item">
+                            <li <?php if($currentAdmin == 'searchplancadre') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                                 <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" class="pure-menu-link">Recherche</a>
                             </li>
-                            <li class="pure-menu-item">
+                            <li <?php if($currentAdmin == 'elaborationplancadre') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                                 <a href="<?php echo VIEW_ELABORATION_PLANCADRE ?>" class="pure-menu-link">Créer un plan-cadre</a>
                             </li>
                         </ul>
@@ -197,13 +199,13 @@ function showAppropriateMenu()
                     <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                         <a href="#" id="menuLink1" class="pure-menu-link">Gestion des membres</a>
                         <ul class="pure-menu-children">
-                            <li class="pure-menu-item">
+                            <li <?php if($currentAdmin == 'createaccount') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                                 <a href="<?php echo VIEW_CREATE_ACCOUNT ?>" class="pure-menu-link">Créer un compte</a>
                             </li>
-                            <li class="pure-menu-item">
+                            <li <?php if($currentAdmin == 'assignuser') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                                 <a href="<?php echo VIEW_ASSIGN_USER ?>" class="pure-menu-link">Assigner un plan-cadre</a>
                             </li>
-                            <li class="pure-menu-item">
+                            <li <?php if($currentAdmin == 'updatepassword') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                                 <a href="<?php echo VIEW_UPDATE_PASSWORD ?>" class="pure-menu-link">Modification mot de passe</a>
                             </li>
                         </ul>

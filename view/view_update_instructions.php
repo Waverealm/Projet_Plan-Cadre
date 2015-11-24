@@ -1,4 +1,8 @@
 <?php
+$currentVisitor = 'updateinstructions';
+$currentElaborator = 'updateinstructions';
+$currentConseiller = 'updateinstructions';
+$currentAdmin = 'updateinstructions';
 
   session_start();
 

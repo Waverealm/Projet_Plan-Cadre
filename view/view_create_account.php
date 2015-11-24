@@ -1,4 +1,8 @@
 <?php
+$currentVisitor = 'createaccount';
+$currentElaborator = 'createaccount';
+$currentConseiller = 'createaccount';
+$currentAdmin = 'createaccount';
 /**
  * Created by PhpStorm.
  * User: 201087112//AntoineLatendresse

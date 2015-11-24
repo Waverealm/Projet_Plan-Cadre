@@ -1,4 +1,8 @@
 <?php
+$currentVisitor = 'assignuser';
+$currentElaborator = 'assignuser';
+$currentConseiller = 'assignuser';
+$currentAdmin = 'assignuser';
   session_start();
 
   //

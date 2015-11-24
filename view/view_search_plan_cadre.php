@@ -1,6 +1,9 @@
 <?php
   session_start();
-
+  $currentVisitor = 'searchplancadre';
+  $currentElaborator = 'searchplancadre';
+  $currentConseiller = 'searchplancadre';
+  $currentAdmin = 'searchplancadre';
   include_once("../controller/interface_functions.php");
   include_once("../model/model_search_plan_cadre.php");
 ?>

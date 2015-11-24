@@ -1,6 +1,9 @@
 <?php
   session_start();
-
+  $currentVisitor = 'elaborationplancadre';
+  $currentElaborator = 'elaborationplancadre';
+  $currentConseiller = 'elaborationplancadre';
+  $currentAdmin = 'elaborationplancadre';
   //
   include_once("../controller/interface_functions.php");
   //
