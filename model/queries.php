@@ -421,6 +421,17 @@ function updatePassword($user,$newPassword)
     $query->CloseCursor();
 }
 
+// Change l'état du plan-cadre pour "validé"
+function updatePlanCadreState($codecours)
+{
+  $query = dbConnect()->prepare( "CALL UPDATE_STATE_PLANCADRE(?)" );
+
+  $query->bindParam(1, $codeCours, PDO::PARAM_STR);
+
+  $query->execute();
+  $query->CloseCursor();
+}
+
 
 /* 
 ------------------------------------------------------------------------------------
