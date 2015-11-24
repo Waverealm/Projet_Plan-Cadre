@@ -84,7 +84,7 @@
 
 
 /* 
-  Nom de la fonction :  : selectWithNoParam($call_select)
+  Nom de la fonction : selectWithNoParam($call_select)
   Fait par : Simon Roy
   Prend un string en paramètre, le string représente une procédure stockée 
   dans la base de données qui serra éxécutée. La valeur de retour est un 
@@ -192,9 +192,24 @@
   {
     return fetchId( $id_instruction, "CALL SELECT_DESCRIPTION_INSTRUCTION(?)" );
   }
+  function fetchInformationPlanCadre($class_code)
+  {
+    return fetchId( $class_code, "CALL SELECT_PLAN_CADRE_INFOS(?)");
+  }
   
+  function getPassword($username)
+  {
+      $query = dbConnect()->prepare("CALL SELECT_PASSWORD(?)");
+ 
+      $query->bindParam(1, $username, PDO::PARAM_STR);
 
+      $query->execute();
+      $result = $query->fetchAll();
 
+      $query->closeCursor();
+ 
+      return $result[0][ "MotDePasse" ];
+  }
 
 /*
   ------------------------------------------------------------------------------------
@@ -262,7 +277,7 @@
       $insert->CloseCursor();
   }
 
-  function createProgram($bdd, $codeProgramme, $nomProgramme, $typeProgramme, $typeSanction, $dateAjoutProgramme)
+  function createProgram($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction, $dateAjoutProgramme)
   {
       $insert = dbConnect()->prepare("CALL INSERT_PROGRAMME(?,?,?,?,?)");
 
@@ -317,6 +332,25 @@
 
     $insert->bindParam(1, $id, PDO::PARAM_STR);
     $insert->bindParam(2, $user, PDO::PARAM_STR);
+
+    $insert->execute();
+    $insert->CloseCursor();
+  }
+
+  function createPlanCadreCopy($codeCours, $etat, $presentationCours, $objectifsIntegration, $evaluationApprentissage, $enonceCompetence,
+                               $objectifsApprentissage, $manuelObligatoire, $recommandation)
+  {
+    $insert = dbConnect()->prepare("CALL INSERT_ELABORATEUR_PLAN_CADRE(?,?,?,?,?,?,?,?,?)");
+
+    $insert->bindParam(1, $codeCours, PDO::PARAM_STR);
+    $insert->bindParam(2, $etat, PDO::PARAM_STR);
+    $insert->bindParam(3, $presentationCours, PDO::PARAM_STR);
+    $insert->bindParam(4, $objectifsIntegration, PDO::PARAM_STR);
+    $insert->bindParam(5, $evaluationApprentissage, PDO::PARAM_STR);
+    $insert->bindParam(6, $enonceCompetence, PDO::PARAM_STR);
+    $insert->bindParam(7, $objectifsApprentissage, PDO::PARAM_STR);
+    $insert->bindParam(8, $manuelObligatoire, PDO::PARAM_STR);
+    $insert->bindParam(9, $recommandation, PDO::PARAM_STR);
 
     $insert->execute();
     $insert->CloseCursor();
@@ -385,20 +419,6 @@ function updatePassword($user,$newPassword)
 
     $query->execute();
     $query->CloseCursor();
-}
-
-function getPassword($username)
-{
-      $query = dbConnect()->prepare("CALL SELECT_PASSWORD(?)");
- 
-      $query->bindParam(1, $username, PDO::PARAM_STR);
-
-      $query->execute();
-      $result = $query->fetchAll();
-
-      $query->closeCursor();
- 
-      return $result[0][ "MotDePasse" ];
 }
 
 

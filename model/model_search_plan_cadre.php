@@ -69,7 +69,7 @@ function showAllPlancadre()
                     "<td>".$row["DateAjout"]."</td>".
                     "<td>". $date_adoption ."</td>".
                     "<td>" . $document_link . "</td>".
-                    "<td>Valider</td>".
+                    "<td>'<a href ='../controller/controller_validate_plancadre.php?codecours=".$row["CodeCours"]."'>Valider </a>';</td>".
                 "</tr>";
         }
     echo "</table>";
