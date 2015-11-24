@@ -1,7 +1,7 @@
 /* 
-   Nom : others.css
+   Nom : js_global.js
    Créé par Léa
-   Contient des fonctions javascript nécessaires au site
+   Contient des fonctions javascript nécessaires au site.
 */
 
 // Fonction : alphaOnly()
@@ -21,20 +21,19 @@ function alphaOnly(e) {
 
 // Fonction : alphaOnly()
 // Fait par Antoine Latendresse
-// Filtre propre au code d'un cours.
+// Filtre propre au code du cours.
 function filterClassCode(e) {
-    var code;
-    if (!e) var e = window.event;
-    if (e.keyCode) code = e.keyCode;
-    else if (e.which) code = e.which;
-    if (code < 45) { return false; }
-    else if ((code >= 46) && (code <= 47)) { return false; }
-    else if ((code >= 58) && (code <= 64)) { return false; }
-    else if ((code >= 91) && (code <= 96)) { return false; }
-    else if ((code >= 123) && (code <= 126)) { return false; }
-    return true;
+  var code;
+  if (!e) var e = window.event;
+  if (e.keyCode) code = e.keyCode;
+  else if (e.which) code = e.which;
+  if (code < 45) { return false; }
+  else if ((code >= 46) && (code <= 47)) { return false; }
+  else if ((code >= 58) && (code <= 64)) { return false; }
+  else if ((code >= 91) && (code <= 96)) { return false; }
+  else if ((code >= 123) && (code <= 126)) { return false; }
+  return true;
 }
-
 
 // Fonction : showSelectedInstruction()
 // Fait par Léa Kelly
@@ -70,7 +69,7 @@ function showSelectedInstruction(selected) {
 // Fonction : showSelectedInstruction()
 // Fait par Léa Kelly
 // Fait en sorte de charger l'énoncé et la description de la première consigne lors du chargement de la page.
-// Pour l'instant les valeurs sont "hard coded". J'ai essayé de réutiliser la fonction showSelectedInstruction,
+// Pour l'instant c'est "hard coded". J'ai essayé de réutiliser la fonction showSelectedInstruction,
 // mais window.load ne semble pas vouloir exécuter une fonction qui prend des paramètres.
 // À voir s'il serait possible d'arranger ce problème ou de trouver une alternative.
 function loadInstruction() {

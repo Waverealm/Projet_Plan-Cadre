@@ -24,6 +24,15 @@
     <link rel="Stylesheet" href="../assets/styles.css">
     <link rel="Stylesheet" href="../assets/others.css">
     <script type="text/javascript" src="../assets/js_global.js" ></script>
+    <script src="jquery.js" type="text/javascript"></script>
+    <script src="../assets/jquery.maskedinput.min.js" type="text/javascript"></script> 
+    <script>
+      // Ne marche pas...
+      // Voir http://www.myjqueryplugins.com/jquery-plugin/masked-input-plugin
+      jQuery(function($) {
+        $('#codecours').mask('99/99/9999');
+      });
+    </script>
   </head>
   
   <body>
@@ -50,8 +59,7 @@
             <br>
           <label>Code du cours : </label>
           <div>
-            <input data-val="true" id="CodeCours" name="CodeCours" type="text" value=""
-                   onkeypress="return filterClassCode(event);"/>
+            <input data-val="true" id="codecours" name="CodeCours" type="text" value="" onkeypress="return filterClassCode(event);"/>
          </div>
           <br>
           <label>Nom du cours : </label>
