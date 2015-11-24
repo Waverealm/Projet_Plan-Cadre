@@ -13,7 +13,7 @@ if(!isset($_SESSION))
     session_start();
 }
 include_once('../model/queries.php');
-
+require_once '../assets/PHPWord.php';
    
    
 
@@ -63,6 +63,34 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
         $path_apprentissage,
         $_POST['id_plancadre']
         );
+
+    // document word fait à partir du template
+    $plancadre = fetchPlanCadreElaboration_PlanCadre( $_POST['id_plancadre'] );
+    $prealable_cours = fetchPrealableCours_Id( $plancadre[0]['CodeCours'] );
+
+    $PHPWord = new PHPWord();
+
+    $document = $PHPWord->loadTemplate('../assets/template_elaboration.docx');
+
+    //$document->setValue('type_enseignement', );
+    $document->setValue('nom_programme', $plancadre[0]['NomProgramme']);
+    $document->setValue('code_programme', $plancadre[0]['CodeProgramme']);
+    $document->setValue('nom_cours', $plancadre[0]['NomCours']);
+    $document->setValue('code_cours', $plancadre[0]['CodeCours']);
+    $document->setValue('ponderation_cours', $plancadre[0]['Ponderation']);
+    $document->setValue('unite_cours', $plancadre[0]['NombreUnites']);
+    // extraire le code des cours prealable et l'entrer 
+    // si il n'a pas de cours prealable entrer "aucun" 
+    //$document->setValue('prealable_cours', 'u');
+
+    // test
+    // obtient une erreur pour le text
+    //$text = $presentation . " " . $integration " " . $evaluation . " " . $competences . " " . $apprentissage;
+    //$document->setValue('presentation', $text);
+
+    $path_docx = "../plancadre/". $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
+
+    $document->save($path_docx);
 
     header('Location: ../view/view_create_plancadre.php');
 }

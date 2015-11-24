@@ -19,11 +19,11 @@ include_once("../model/queries.php");
 */
 
 //** à modifier
-function makeLinkPlancadre($path)
+function makeLinkPlancadre($plancadre)
 {
-	//return '<a href="'.$path.'"> Télécharger </a>';
+	$lien = "../plancadre/" . $plancadre['VersionPlan'] . "_" . $plancadre['CodeCours'] . ".docx";
 
-    return '<a href="../plancadre/test.docx"> Télécharger </a>';
+    return '<a href ="' . $lien . '">Télécharger </a>';
 }
 
 function showAllPlancadre()
@@ -57,7 +57,7 @@ function showAllPlancadre()
         	}
         	else
         	{
-        		$document_link = makeLinkPlancadre($path);
+        		$document_link = makeLinkPlancadre($row);
         	}
 
             echo "<tr>".

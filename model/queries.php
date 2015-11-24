@@ -156,10 +156,22 @@
     return $result;
   }
 
+/*
+   fetchPlanCadreElaboration_User($id_user)
+   Cette fonction éxecute une procédure qui retourne tous 
+   les plans-cadres qui ont l'utilisateur passé
+   en paramètre parmi ses élaborateurs.
+*/
   function fetchPlanCadreElaboration_User($id_user)
   {
     return fetchId( $id_user, "CALL SELECT_PLAN_CADRE_ELABORATION_USER(?)" );
   }
+/*
+   fetchPlanCadreElaboration_PlanCadre($id_user)
+   Cette fonction éxecute une procédure qui retourne les 
+   données du plan-cadre qui possède l'identifiant passé 
+   en paramètre.
+*/
   function fetchPlanCadreElaboration_PlanCadre($id_plancadre)
   {
     return fetchId( $id_plancadre, "CALL SELECT_PLAN_CADRE_ID(?)" );
