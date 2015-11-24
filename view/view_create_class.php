@@ -51,7 +51,7 @@
           <label>Code du cours : </label>
           <div>
             <input data-val="true" id="CodeCours" name="CodeCours" type="text" value=""
-                   onChange="codeCoursMask()"/>
+                   onkeypress="return filterClassCode(event);"/>
          </div>
           <br>
           <label>Nom du cours : </label>
