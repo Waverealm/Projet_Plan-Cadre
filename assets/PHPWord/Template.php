@@ -85,10 +85,13 @@ class PHPWord_Template {
             $search = '${'.$search.'}';
         }
         
+        /*
+        // ne doit pas être utilisé
+        // utf8_econde fait un encodage de iso88591 à utf8
         if(!is_array($replace)) {
             $replace = utf8_encode($replace);
         }
-        
+        */
         $this->_documentXML = str_replace($search, $replace, $this->_documentXML);
     }
     

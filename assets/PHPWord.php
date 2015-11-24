@@ -1,4 +1,16 @@
 <?php
+/*
+ *	Modifications apportées :
+ *
+ *	dans 'PHPWord/Template.php'
+ *		dans setValue
+ *			ne pas utiliser utf8_encode($text);
+ *
+ *
+ *
+ *
+*/
+///////////////////////////////////////////////////////////////////////////////////
 /**
  * PHPWord
  *

@@ -70,9 +70,9 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $PHPWord = new PHPWord();
 
-    $document = $PHPWord->loadTemplate('../assets/template_elaboration.docx');
+    $document = $PHPWord->loadTemplate('../assets/template_test.docx');
 
-    //$document->setValue('type_enseignement', );
+    //$document->setValue('type_enseignement', $plancadre[0]['TypeCours']);
     $document->setValue('nom_programme', $plancadre[0]['NomProgramme']);
     $document->setValue('code_programme', $plancadre[0]['CodeProgramme']);
     $document->setValue('nom_cours', $plancadre[0]['NomCours']);
@@ -85,7 +85,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     // test
     // obtient une erreur pour le text
-    //$text = $presentation . " " . $integration " " . $evaluation . " " . $competences . " " . $apprentissage;
+    //$text = $presentation . " " . $integration . " " . $evaluation . " " . $competences . " " . $apprentissage;
     //$document->setValue('presentation', $text);
 
     $path_docx = "../plancadre/". $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
