@@ -40,6 +40,7 @@ function showAllPlancadre()
                 "<th>Date de création</th>".
                 "<th>Date d'adoption</th>".
                 "<th>Télécharger</th>".
+                "<th>Validation</th>".
             "</tr>";
         foreach ($list as $row)
         {
@@ -68,6 +69,7 @@ function showAllPlancadre()
                     "<td>".$row["DateAjout"]."</td>".
                     "<td>". $date_adoption ."</td>".
                     "<td>" . $document_link . "</td>".
+                    "<td>Valider</td>".
                 "</tr>";
         }
     echo "</table>";
