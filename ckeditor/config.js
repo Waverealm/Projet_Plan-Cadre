@@ -31,4 +31,9 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Dialog windows are also simplified.
 	config.removeDialogTabs = 'link:advanced';
+   
+   //Keep Word and Excel formatting
+   config.pasteFromWordRemoveFontStyles = false;
+   config.pasteFromWordRemoveStyles = false;
+   config.extraAllowedContent = 'span div table tr td th colgroup col style[*]{*}';
 };
