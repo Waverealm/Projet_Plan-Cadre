@@ -13,7 +13,8 @@ if(!isset($_SESSION))
     session_start();
 }
 include_once('../model/queries.php');
-require_once '../assets/PHPWord.php';
+require_once '../assets/PHPWord-master/src/PhpWord/Autoloader.php';
+\PhpOffice\PhpWord\Autoloader::register();
    
    
 
@@ -69,9 +70,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $plancadre = fetchPlanCadreElaboration_PlanCadre( $_POST['id_plancadre'] );
     $prealable_cours = fetchPrealableCours_Id( $plancadre[0]['CodeCours'] );
 
-    $php_word = new PHPWord();
-
-    $document = $php_word->loadTemplate('../assets/template_test.docx');
+    $document = new \PhpOffice\PhpWord\TemplateProcessor('../assets/template_test.docx');
 
     //$document->setValue('type_enseignement', $plancadre[0]['TypeCours']);
     $document->setValue('nom_programme', $plancadre[0]['NomProgramme']);
@@ -84,19 +83,32 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     // si il n'a pas de cours prealable entrer "aucun" 
     //$document->setValue('prealable_cours', 'u');
 
+    $path_docx = "../plancadre/". $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
+
+    $document->saveAs($path_docx);
+    // en haut fonctionne, remplit le template dans une copie
+
+    // écrit par dessus le template, devrait écrire à la suite
+    //$php_word = new \PhpOffice\PhpWord\PhpWord($path_docx);
+    $php_word = new \PhpOffice\PhpWord\PhpWord();
+
+    $section = $php_word->addSection();
+
+
+
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section, readFrom($path_presentation));
+    // n'utilise pas le code html, addText ne semble pas convenir à nos besoins
+    //$textrun = $section->addTextRun('pStyle');
+    //$textrun->addText( htmlspecialchars(readFrom($path_competences)) );
+
+    $php_word->save($path_docx);
+    
     // test
     // obtient une erreur pour le text
     //$text = $presentation . " " . $integration . " " . $evaluation . " " . $competences . " " . $apprentissage;
     
     //$text = readFrom($path_presentation);
     //$document->setValue('presentation', "$text");
-
-    $section = $php_word->createSection();
-    $section->addText(readFrom($path_presentation));
-
-    $path_docx = "../plancadre/". $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
-
-    $document->save($path_docx);
 
     header('Location: ../view/view_create_plancadre.php');
 }

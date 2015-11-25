@@ -76,6 +76,8 @@ class String
      * @param string $value
      * @return string
      */
+/*
+// ********************************************************
     public static function toUTF8($value = '')
     {
         if (!is_null($value) && !self::isUTF8($value)) {
@@ -84,6 +86,14 @@ class String
 
         return $value;
     }
+    // ********************************************************
+*/
+    // ********************************************************
+    public static function toUTF8($value = '')
+    {
+        return $value;
+    }
+    // ********************************************************
 
     /**
      * Returns unicode from UTF8 text

@@ -402,10 +402,13 @@ class TemplateProcessor
         if (substr($search, 0, 2) !== '${' && substr($search, -1) !== '}') {
             $search = '${' . $search . '}';
         }
-
+        /*
+        // ********************************************************
         if (!String::isUTF8($replace)) {
             $replace = utf8_encode($replace);
         }
+        // ********************************************************
+        */
 
         // Note: we can't use the same function for both cases here, because of performance considerations.
         if (self::MAXIMUM_REPLACEMENTS_DEFAULT === $limit) {
