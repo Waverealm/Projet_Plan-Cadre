@@ -68,9 +68,18 @@ function showAllPlancadre()
                     "<td>".$row["Etat"]."</td>".
                     "<td>".$row["DateAjout"]."</td>".
                     "<td>". $date_adoption ."</td>".
-                    "<td>" . $document_link . "</td>".
-                    "<td><a href ='../controller/controller_validate_plancadre.php?codecours=".$row["CodeCours"]."'>Valider</a></td>".
-                "</tr>";
+                    "<td>" . $document_link . "</td>";
+
+            if ($row["Etat"] != "Validé")
+            {
+                echo "<td><a href ='../controller/controller_validate_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["VersionPlan"]."'>Valider</a></td>";
+            }
+
+            else
+            {
+                echo "<td>Déjà validé</td>";
+            }
+            echo "</tr>";
         }
     echo "</table>";
 }

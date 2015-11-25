@@ -340,7 +340,7 @@
   function createPlanCadreCopy($codeCours, $etat, $presentationCours, $objectifsIntegration, $evaluationApprentissage, $enonceCompetence,
                                $objectifsApprentissage, $manuelObligatoire, $recommandation)
   {
-    $insert = dbConnect()->prepare("CALL INSERT_ELABORATEUR_PLAN_CADRE(?,?,?,?,?,?,?,?,?)");
+    $insert = dbConnect()->prepare("CALL INSERT_COPY_PLAN_CADRE(?,?,?,?,?,?,?,?,?)");
 
     $insert->bindParam(1, $codeCours, PDO::PARAM_STR);
     $insert->bindParam(2, $etat, PDO::PARAM_STR);
@@ -422,14 +422,15 @@ function updatePassword($user,$newPassword)
 }
 
 // Change l'état du plan-cadre pour "validé"
-function updatePlanCadreState($codecours)
+function updatePlanCadreState($idPlanCadre,$state)
 {
-  $query = dbConnect()->prepare( "CALL UPDATE_STATE_PLANCADRE(?)" );
+    $query = dbConnect()->prepare( "CALL UPDATE_STATE_PLANCADRE(?,?)" );
 
-  $query->bindParam(1, $codeCours, PDO::PARAM_STR);
+    $query->bindParam(1, $idPlanCadre, PDO::PARAM_STR);
+    $query->bindParam(2, $state, PDO::PARAM_STR);
 
-  $query->execute();
-  $query->CloseCursor();
+    $query->execute();
+    $query->CloseCursor();
 }
 
 

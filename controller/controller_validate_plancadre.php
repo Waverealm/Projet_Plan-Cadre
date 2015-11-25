@@ -2,14 +2,20 @@
 
 include_once("../model/queries.php");
 
-if(isset($_GET['codecours']))
+if(isset($_GET['codecours']) && isset($_GET['versionplan']))
  {
+ 	$versionPlan = $_GET['versionplan'];
  	$classCode = $_GET['codecours'];
+ 	$state = "Validé";
 
- 	$result = fetchInformationPlanCadre($classCode);
+ 	$result = fetchInformationPlanCadre($versionPlan);
 
- 	createPlanCadreCopy([0][ "CodeCours" ], [0][ "Etat" ], [0][ "Presentation_Cours" ], [0][ "Objectifs_Integration" ], [0][ "Evaluation_Apprentissage" ], 
- 						[0][ "Enonce_Competences" ], [0][ "Objectifs_Apprentissage" ], [0][ "Manuel_Obligatoire" ], [0][ "Recommandation" ]);
+ 	updatePlanCadreState($versionPlan, $state);
 
- 	updatePlanCadreState($classCode);
+ 	createPlanCadreCopy($classCode, $result[0][ "Etat" ], $result[0][ "Presentation_Cours" ], $result[0][ "Objectifs_Integration" ], $result[0][ "Evaluation_Apprentissage" ], 
+ 						$result[0][ "Enonce_Competences" ], $result[0][ "Objectifs_Apprentissage" ], $result[0][ "Manuel_Obligatoire" ], $result[0][ "Recommandation" ]);
+
+ 	header('Location: ../view/view_search_plan_cadre.php');
  }
+
+ ?>
