@@ -35,14 +35,12 @@
     $error_fieldsempty = "Un ou plusieurs champs de texte sont vides. Veuillez les remplir.";
     $i++;
   }
-     
-  $bdd = dbConnect();
 
   // S'il n'y a aucune erreur
   if ($i == 0)
   {
 
-    createProgram($bdd, $codeProgramme, $nomProgramme, $typeProgramme, $typeSanction, $dateAjoutProgramme);
+    createProgram($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction, $dateAjoutProgramme);
 
 
     header('Location: ../view/view_index.php');

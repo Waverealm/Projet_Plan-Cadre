@@ -5,6 +5,8 @@
    Créé par Léa
    Fonctions assurant le contrôle d'accès à différentes pages selon l'état
    et le type d'utilisateur
+
+   suggestion : appeler les fonctions en début de page pour restreindre l'accès
 */
 
 

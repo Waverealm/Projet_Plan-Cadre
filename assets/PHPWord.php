@@ -1,4 +1,17 @@
 <?php
+/*
+ *	Modifications apportées :
+ * 
+ *	http://answered.site/the-database-has-mysql-charset-utf-8-unicode-utf8mysql-connection-collation/1731733/
+ *	dans 'PHPWord/Template.php'
+ *		dans setValue
+ *			ne pas utiliser utf8_encode($text);
+ *
+ *
+ *
+ *
+*/
+///////////////////////////////////////////////////////////////////////////////////
 /**
  * PHPWord
  *

@@ -19,11 +19,11 @@ include_once("../model/queries.php");
 */
 
 //** à modifier
-function makeLinkPlancadre($path)
+function makeLinkPlancadre($plancadre)
 {
-	//return '<a href="'.$path.'"> Télécharger </a>';
+	$lien = "../plancadre/" . $plancadre['VersionPlan'] . "_" . $plancadre['CodeCours'] . ".docx";
 
-    return '<a href="../plancadre/test.docx"> Télécharger </a>';
+    return '<a href ="' . $lien . '">Télécharger </a>';
 }
 
 function showAllPlancadre()
@@ -39,8 +39,16 @@ function showAllPlancadre()
                 "<th>État</th>".
                 "<th>Date de création</th>".
                 "<th>Date d'adoption</th>".
-                "<th>Télécharger</th>".
-            "</tr>";
+                "<th>Télécharger</th>";
+        if( isset($_SESSION['user_type']) )
+        {
+            if ($_SESSION['user_type'] != "Élaborateur")
+            {
+                echo "<th>Validation</th>";
+            }
+        }
+
+        echo "</tr>";
         foreach ($list as $row)
         {
         	$date_adoption = $row["DateAdoption"];
@@ -56,7 +64,7 @@ function showAllPlancadre()
         	}
         	else
         	{
-        		$document_link = makeLinkPlancadre($path);
+        		$document_link = makeLinkPlancadre($row);
         	}
 
             echo "<tr>".
@@ -67,8 +75,24 @@ function showAllPlancadre()
                     "<td>".$row["Etat"]."</td>".
                     "<td>".$row["DateAjout"]."</td>".
                     "<td>". $date_adoption ."</td>".
-                    "<td>" . $document_link . "</td>".
-                "</tr>";
+                    "<td>" . $document_link . "</td>";
+
+            if( isset($_SESSION['user_type']) )
+            {
+                if ($_SESSION['user_type'] != "Élaborateur")
+                {
+                    if ($row["Etat"] != "Validé")
+                    {
+                        echo "<td><a href ='../controller/controller_validate_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["VersionPlan"]."'>Valider</a></td>";
+                    }
+
+                    else
+                    {
+                        echo "<td>Déjà validé</td>";
+                    }
+                    echo "</tr>";
+                }
+            }
         }
     echo "</table>";
 }

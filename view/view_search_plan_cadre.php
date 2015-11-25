@@ -1,6 +1,9 @@
 <?php
   session_start();
-
+  $currentVisitor = 'searchplancadre';
+  $currentElaborator = 'searchplancadre';
+  $currentConseiller = 'searchplancadre';
+  $currentAdmin = 'searchplancadre';
   include_once("../controller/interface_functions.php");
   include_once("../model/model_search_plan_cadre.php");
 ?>
@@ -15,7 +18,8 @@
         <link rel="Stylesheet" href="../assets/pure.css">
         <link rel="Stylesheet" href="../assets/styles.css">
         <link rel="Stylesheet" href="../assets/others.css">
-         
+
+        <script type="text/javascript" src="../assets/js_global.js"></script>
       </head>
       <body >
         <div class="container"  style="background-color: ghostwhite">

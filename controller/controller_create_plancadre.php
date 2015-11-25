@@ -13,7 +13,7 @@ if(!isset($_SESSION))
     session_start();
 }
 include_once('../model/queries.php');
-
+require_once '../assets/PHPWord.php';
    
    
 
@@ -64,6 +64,40 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
         $_POST['id_plancadre']
         );
 
+
+    // document word fait à partir du template
+    $plancadre = fetchPlanCadreElaboration_PlanCadre( $_POST['id_plancadre'] );
+    $prealable_cours = fetchPrealableCours_Id( $plancadre[0]['CodeCours'] );
+
+    $php_word = new PHPWord();
+
+    $document = $php_word->loadTemplate('../assets/template_test.docx');
+
+    //$document->setValue('type_enseignement', $plancadre[0]['TypeCours']);
+    $document->setValue('nom_programme', $plancadre[0]['NomProgramme']);
+    $document->setValue('code_programme', $plancadre[0]['CodeProgramme']);
+    $document->setValue('nom_cours', $plancadre[0]['NomCours']);
+    $document->setValue('code_cours', $plancadre[0]['CodeCours']);
+    $document->setValue('ponderation_cours', $plancadre[0]['Ponderation']);
+    $document->setValue('unite_cours', $plancadre[0]['NombreUnites']);
+    // extraire le code des cours prealable et l'entrer 
+    // si il n'a pas de cours prealable entrer "aucun" 
+    //$document->setValue('prealable_cours', 'u');
+
+    // test
+    // obtient une erreur pour le text
+    //$text = $presentation . " " . $integration . " " . $evaluation . " " . $competences . " " . $apprentissage;
+    
+    //$text = readFrom($path_presentation);
+    //$document->setValue('presentation', "$text");
+
+    $section = $php_word->createSection();
+    $section->addText(readFrom($path_presentation));
+
+    $path_docx = "../plancadre/". $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
+
+    $document->save($path_docx);
+
     header('Location: ../view/view_create_plancadre.php');
 }
 else if ( isset($_POST['open']) )
@@ -83,20 +117,38 @@ function getPrealableCours($id_cours)
     return fetchPrealableCours_Id($id_cours);;
 }
 
+/*
+    readFrom($path)
+    Cette fonction retourne le contenu du fichier texte qui se
+    trouve à l'emplacement spécifié sur le serveur. Si le fichier 
+    n'existe pas alors une chaine vide est retourné. Si le fichier 
+    n'a pas de contenu alors une chaine vide est retournée.
+*/
 function readFrom($path)
 {
     if(file_exists($path))
     {
-        $handle = fopen($path, "rb");
-        $text = fread($handle, filesize($path));
-        return $text;
+        if(filesize($path) > 0)
+        {
+            $handle = fopen($path, "rb");
+            $text = fread($handle, filesize($path));
+            return $text;
+        }
+        else
+        {
+            $fichier_vide = "";
+            return $fichier_vide;
+        }
     }
     else
     {
-        return "";
+        $fichier_inexistant = "";
+        return $fichier_inexistant;
     }
-
 }
+
+
+
     
 
 

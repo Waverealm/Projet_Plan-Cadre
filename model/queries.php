@@ -25,9 +25,7 @@
 
 /*
   ------------------------------------------------------------------------------------
-
   début des selects
-
   ------------------------------------------------------------------------------------
 */
 
@@ -84,7 +82,7 @@
 
 
 /* 
-  Nom de la fonction :  : selectWithNoParam($call_select)
+  Nom de la fonction : selectWithNoParam($call_select)
   Fait par : Simon Roy
   Prend un string en paramètre, le string représente une procédure stockée 
   dans la base de données qui serra éxécutée. La valeur de retour est un 
@@ -156,10 +154,22 @@
     return $result;
   }
 
+/*
+   fetchPlanCadreElaboration_User($id_user)
+   Cette fonction éxecute une procédure qui retourne tous 
+   les plans-cadres qui ont l'utilisateur passé
+   en paramètre parmi ses élaborateurs.
+*/
   function fetchPlanCadreElaboration_User($id_user)
   {
     return fetchId( $id_user, "CALL SELECT_PLAN_CADRE_ELABORATION_USER(?)" );
   }
+/*
+   fetchPlanCadreElaboration_PlanCadre($id_user)
+   Cette fonction éxecute une procédure qui retourne les 
+   données du plan-cadre qui possède l'identifiant passé 
+   en paramètre.
+*/
   function fetchPlanCadreElaboration_PlanCadre($id_plancadre)
   {
     return fetchId( $id_plancadre, "CALL SELECT_PLAN_CADRE_ID(?)" );
@@ -180,20 +190,31 @@
   {
     return fetchId( $id_instruction, "CALL SELECT_DESCRIPTION_INSTRUCTION(?)" );
   }
+  function fetchInformationPlanCadre($class_code)
+  {
+    return fetchId( $class_code, "CALL SELECT_PLAN_CADRE_INFOS(?)");
+  }
   
+  function getPassword($username)
+  {
+      $query = dbConnect()->prepare("CALL SELECT_PASSWORD(?)");
+ 
+      $query->bindParam(1, $username, PDO::PARAM_STR);
 
+      $query->execute();
+      $result = $query->fetchAll();
 
+      $query->closeCursor();
+ 
+      return $result[0][ "MotDePasse" ];
+  }
 
 /*
   ------------------------------------------------------------------------------------
-
   fin des selects
-
   ------------------------------------------------------------------------------------
   ------------------------------------------------------------------------------------
-  
   début des insertions (create)
-
   ------------------------------------------------------------------------------------
 */
 
@@ -250,7 +271,7 @@
       $insert->CloseCursor();
   }
 
-  function createProgram($bdd, $codeProgramme, $nomProgramme, $typeProgramme, $typeSanction, $dateAjoutProgramme)
+  function createProgram($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction, $dateAjoutProgramme)
   {
       $insert = dbConnect()->prepare("CALL INSERT_PROGRAMME(?,?,?,?,?)");
 
@@ -305,6 +326,25 @@
 
     $insert->bindParam(1, $id, PDO::PARAM_STR);
     $insert->bindParam(2, $user, PDO::PARAM_STR);
+
+    $insert->execute();
+    $insert->CloseCursor();
+  }
+
+  function createPlanCadreCopy($codeCours, $etat, $presentationCours, $objectifsIntegration, $evaluationApprentissage, $enonceCompetence,
+                               $objectifsApprentissage, $manuelObligatoire, $recommandation)
+  {
+    $insert = dbConnect()->prepare("CALL INSERT_COPY_PLAN_CADRE(?,?,?,?,?,?,?,?,?)");
+
+    $insert->bindParam(1, $codeCours, PDO::PARAM_STR);
+    $insert->bindParam(2, $etat, PDO::PARAM_STR);
+    $insert->bindParam(3, $presentationCours, PDO::PARAM_STR);
+    $insert->bindParam(4, $objectifsIntegration, PDO::PARAM_STR);
+    $insert->bindParam(5, $evaluationApprentissage, PDO::PARAM_STR);
+    $insert->bindParam(6, $enonceCompetence, PDO::PARAM_STR);
+    $insert->bindParam(7, $objectifsApprentissage, PDO::PARAM_STR);
+    $insert->bindParam(8, $manuelObligatoire, PDO::PARAM_STR);
+    $insert->bindParam(9, $recommandation, PDO::PARAM_STR);
 
     $insert->execute();
     $insert->CloseCursor();
@@ -375,31 +415,48 @@ function updatePassword($user,$newPassword)
     $query->CloseCursor();
 }
 
-function getPassword($username)
+// Change l'état du plan-cadre pour "validé"
+function updatePlanCadreState($idPlanCadre,$state)
 {
-      $query = dbConnect()->prepare("CALL SELECT_PASSWORD(?)");
- 
-      $query->bindParam(1, $username, PDO::PARAM_STR);
+    $query = dbConnect()->prepare( "CALL UPDATE_STATE_PLANCADRE(?,?)" );
 
-      $query->execute();
-      $result = $query->fetchAll();
+    $query->bindParam(1, $idPlanCadre, PDO::PARAM_STR);
+    $query->bindParam(2, $state, PDO::PARAM_STR);
 
-      $query->closeCursor();
- 
-      return $result[0][ "MotDePasse" ];
+    $query->execute();
+    $query->CloseCursor();
 }
 
 
 /* 
 ------------------------------------------------------------------------------------
-  
   fin des updates
-
 ------------------------------------------------------------------------------------
 */
 
+/* 
+------------------------------------------------------------------------------------
+  début des delete
+------------------------------------------------------------------------------------
+*/
 
+// Supprimer une vieille version validé d'un plan-cadre
+function deleteOldVersionPlanCadre($classCode,$state)
+{
+    $query = dbConnect()->prepare( "CALL DELETE_OLD_VERSION_PLANCADRE(?,?)" );
 
+    $query->bindParam(1, $classCode, PDO::PARAM_STR);
+    $query->bindParam(2, $state, PDO::PARAM_STR);
+
+    $query->execute();
+    $query->CloseCursor();
+}
+
+/* 
+------------------------------------------------------------------------------------
+  fin des delete
+------------------------------------------------------------------------------------
+*/
 
 
 

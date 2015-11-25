@@ -22,7 +22,7 @@ if(!isset($_SESSION))
 		//prendre la valeur du select dans le $_POST
 		//envoyer les données à view_create_plancadre.php
 		$id = $_POST['plancadre_elaboration_list'];
-		echo $id;
+		//echo $id;
 		$_SESSION['id_plancadre'] = $id;
 
 		header('Location: ../view/view_create_plancadre.php');
