@@ -14,8 +14,9 @@ if(!isset($_SESSION))
 }
 include_once('../model/queries.php');
 require_once '../assets/PHPWord.php';
-   
-   
+
+require_once '../assets/PHPWord-Master/src/PhpWord/Autoloader.php';
+\PhpOffice\PhpWord\Autoloader::register();
 
 if( isset($_POST['submit']) || isset($_POST['save']) ) 
 {
@@ -55,6 +56,12 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     fwrite($fichier_competences, $competences);
     fwrite($fichier_apprentissage, $apprentissage);
 
+    fclose($fichier_presentation);
+    fclose($fichier_integration);
+    fclose($fichier_evalutation);
+    fclose($fichier_competences);
+    fclose($fichier_apprentissage);
+
     //sauvegarder le tout dans la bd
     updatePlanCadre_Fichiers($path_presentation,
         $path_integration,
@@ -65,10 +72,59 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
         );
 
 
-    // document word fait à partir du template
+
+
+
+    // Chercher pour les données de l'entête
     $plancadre = fetchPlanCadreElaboration_PlanCadre( $_POST['id_plancadre'] );
     $prealable_cours = fetchPrealableCours_Id( $plancadre[0]['CodeCours'] );
+    //
 
+    // ensuite on écrit dans le fichier qui serra utiliser pour monter le contenu
+    /*
+    //***************************************
+    // pour générer un fichier .txt
+    $path_txt = "../plancadre/". $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . ".txt";
+    $fichier_template = fopen($path_txt, "w");
+
+    $header = "<table>".
+                "<tr>".
+                    "<th>Titre du cours : ". 
+                        $plancadre[0]['NomCours'] .
+                    "</th>".
+                    "<th>Numéro du cours : ". 
+                        $plancadre[0]['CodeCours'] .
+                    "</th>".
+                    "<th>Programme : ". 
+                        $plancadre[0]['CodeProgramme']. " " . $plancadre[0]['NomProgramme'] .
+                    "</th>".
+                "</tr>".
+                "<tr>".
+                    "<td>Pondération : ".
+                        $plancadre[0]['Ponderation'].
+                    "</td>".
+                    "<td>Nombre d'unité(s) : ".
+                        $plancadre[0]['NombreUnites'].
+                    "</td>".
+                    "<td>Pondération : aucun".
+                    "</td>".
+                "</tr>".
+                "</table>";
+
+    fwrite($fichier_template, $header);
+    //écrire les valeurs dans les fichiers
+    fwrite($fichier_template, $presentation);
+    fwrite($fichier_template, $integration);
+    fwrite($fichier_template, $evaluation);
+    fwrite($fichier_template, $competences);
+    fwrite($fichier_template, $apprentissage);
+
+    fclose($fichier_template);
+    //***************************************
+    */
+
+    
+    // document word fait à partir du template
     $php_word = new PHPWord();
 
     $document = $php_word->loadTemplate('../assets/template_test.docx');
@@ -84,19 +140,53 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     // si il n'a pas de cours prealable entrer "aucun" 
     //$document->setValue('prealable_cours', 'u');
 
-    // test
-    // obtient une erreur pour le text
-    //$text = $presentation . " " . $integration . " " . $evaluation . " " . $competences . " " . $apprentissage;
     
-    //$text = readFrom($path_presentation);
-    //$document->setValue('presentation', "$text");
+    $path_docx = "../plancadre/". $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
+    $document->save($path_docx);
 
-    $section = $php_word->createSection();
-    $section->addText(readFrom($path_presentation));
+
+    $phpWord = \PhpOffice\PhpWord\IOFactory::load($path_docx);
+
+    $section = $phpWord->addSection();
+
+    $text = $presentation;
+    //\PhpOffice\PhpWord\Shared\Html::addHtml($section, $text);
+    $textrun = $section->addText(htmlspecialchars($text));
+
+    $phpWord->save($path_docx);
+
+    /*
+    // New Word Document
+    $phpWord_text = new \PhpOffice\PhpWord\PhpWord();
+
+    // New portrait section
+    $section = $phpWord_text->addSection();
+
+    // Add text run
+    $textrun = $section->addTextRun('pStyle');
+
+    $textrun->addText(htmlspecialchars($presentation));
+
+    // Save file
+    write($phpWord_text, $path_docx, $writers);
+    */
+
+
+    /*
+    // manque le code de création/ouverture du fichier
+    // test pour ajouter du texte au document word manque d'exemple
+    // témoignages suggèrent des solutions payantes.
+    $text = $presentation . " " . $integration . " " . $evaluation . " " . $competences . " " . $apprentissage;
+    
+    $text = readFrom($path_presentation);
+    $document->setValue('presentation', "$text");
 
     $path_docx = "../plancadre/". $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
 
     $document->save($path_docx);
+    */
+
+
 
     header('Location: ../view/view_create_plancadre.php');
 }
