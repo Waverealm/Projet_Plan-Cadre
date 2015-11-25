@@ -39,9 +39,13 @@ function showAllPlancadre()
                 "<th>État</th>".
                 "<th>Date de création</th>".
                 "<th>Date d'adoption</th>".
-                "<th>Télécharger</th>".
-                "<th>Validation</th>".
-            "</tr>";
+                "<th>Télécharger</th>";
+                    
+                if ($_SESSION['user_type'] != "Élaborateur")
+                {
+                    echo "<th>Validation</th>";
+                }
+        echo "</tr>";
         foreach ($list as $row)
         {
         	$date_adoption = $row["DateAdoption"];
@@ -70,16 +74,19 @@ function showAllPlancadre()
                     "<td>". $date_adoption ."</td>".
                     "<td>" . $document_link . "</td>";
 
-            if ($row["Etat"] != "Validé")
+            if ($_SESSION['user_type'] != "Élaborateur")
             {
-                echo "<td><a href ='../controller/controller_validate_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["VersionPlan"]."'>Valider</a></td>";
-            }
+                if ($row["Etat"] != "Validé")
+                {
+                    echo "<td><a href ='../controller/controller_validate_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["VersionPlan"]."'>Valider</a></td>";
+                }
 
-            else
-            {
-                echo "<td>Déjà validé</td>";
+                else
+                {
+                    echo "<td>Déjà validé</td>";
+                }
+                echo "</tr>";
             }
-            echo "</tr>";
         }
     echo "</table>";
 }
