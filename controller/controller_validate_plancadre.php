@@ -10,6 +10,7 @@ if(isset($_GET['codecours']) && isset($_GET['versionplan']))
 
  	$result = fetchInformationPlanCadre($versionPlan);
 
+ 	deleteOldVersionPlanCadre($classCode,$state);
  	updatePlanCadreState($versionPlan, $state);
 
  	createPlanCadreCopy($classCode, $result[0][ "Etat" ], $result[0][ "Presentation_Cours" ], $result[0][ "Objectifs_Integration" ], $result[0][ "Evaluation_Apprentissage" ], 
