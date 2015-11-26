@@ -1,1 +1,1 @@
-<ul><li><h2 style="font-style:italic"><strong>test</strong></h2></li><li><hr /><h2 style="font-style:italic"><strong>test2</strong></h2></li><li><hr /><p> </p></li></ul>
+<p>test</p><ul><li><p>test</p></li><li><p>test2</p></li><li><p>iul</p></li></ul><p>fin de la liste qui n&#39;est pas vide</p>

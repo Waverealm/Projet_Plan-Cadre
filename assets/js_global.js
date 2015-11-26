@@ -1,11 +1,11 @@
 /* 
-   Nom : js_global.js
+   Nom : others.css
    Créé par Léa
-   Contient des fonctions javascript nécessaires au site.
+   Contient des fonctions javascript nécessaires au site
 */
 
-// Fonction : alphaOnly()
-// Fait par Léa Kelly
+// Fonction : showSelectedInstruction()
+// Faite par Léa Kelly
 // Autorise seulement de taper des lettres dans une text box.
 function alphaOnly(e) {
   var code;
@@ -19,26 +19,31 @@ function alphaOnly(e) {
 }
 
 
-// Fonction : alphaOnly()
-// Fait par Antoine Latendresse
-// Filtre propre au code du cours.
-function filterClassCode(e) {
-  var code;
-  if (!e) var e = window.event;
-  if (e.keyCode) code = e.keyCode;
-  else if (e.which) code = e.which;
-  if (code < 45) { return false; }
-  else if ((code >= 46) && (code <= 47)) { return false; }
-  else if ((code >= 58) && (code <= 64)) { return false; }
-  else if ((code >= 91) && (code <= 96)) { return false; }
-  else if ((code >= 123) && (code <= 126)) { return false; }
-  return true;
+// Fonction : codeClassMask()
+// Faite par Antoine Latendresse
+// Filtre spécifique pour le code d'un cours
+function filerClassCode(e) {
+    var code;
+    if (!e) var e = window.event;
+    if (e.keyCode) code = e.keyCode;
+    else if (e.which) code = e.which;
+    if (code < 45) { return false; }
+    else if ((code >= 46) && (code <= 47)) { return false; }
+    else if ((code >= 58) && (code <= 64)) { return false; }
+    else if ((code >= 91) && (code <= 96)) { return false; }
+    else if ((code >= 123) && (code <= 126)) { return false; }
+    return true;
 }
 
+jQuery(function($){
+   $("input[name*='CodeCours']").mask("999-999-99");
+});
+
+
 // Fonction : showSelectedInstruction()
-// Fait par Léa Kelly
-// Selon l'instruction sélectionnée, affecte l'énoncé et la description correspondants dans les text box.
-// On fait référence au contenu du tableau placé en début de page.
+// Faite par Léa Kelly
+// Selon la consigne sélectionnée, l'énoncé et la description correspondants vont s'afficher dans les champs de texte.
+// On utilise l'énoncé et la description du tableau sur la page.
 function showSelectedInstruction(selected) {
   if(selected == "1") 
   {
@@ -65,13 +70,12 @@ function showSelectedInstruction(selected) {
   }
 }
 
-
-// Fonction : showSelectedInstruction()
-// Fait par Léa Kelly
-// Fait en sorte de charger l'énoncé et la description de la première consigne lors du chargement de la page.
-// Pour l'instant c'est "hard coded". J'ai essayé de réutiliser la fonction showSelectedInstruction,
-// mais window.load ne semble pas vouloir exécuter une fonction qui prend des paramètres.
-// À voir s'il serait possible d'arranger ce problème ou de trouver une alternative.
+// Fonction : loadInstruction()
+// Faite par Léa Kelly
+// J'ai "hardcodé" le contenu des champs de texte de l'énoncé et de la description afin qu'elles soient déjà remplies
+// lorsque la page est chargé.
+// J'avais essayé en réutilisant la fonction ci-dessus, mais un window.load ne semble pas fonctionner lorsqu'on lui
+// demande d'exécuter une fonction qui prendre un paramètre.
 function loadInstruction() {
     document.getElementById("enonce").value = document.getElementById("1_enonce").innerHTML;
     document.getElementById("description").value = document.getElementById("1_description").innerHTML;
@@ -98,6 +102,7 @@ function loadInstruction() {
   	// Source: www.evolt.org
    	///////////////////////////////////////////////////////////////////////////
 */
+
 function arrayFilter(search, list){
 
     // si un backup de la liste n'existe pas on en fait un maintenant

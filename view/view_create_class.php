@@ -1,8 +1,4 @@
 <?php
-$currentVisitor = 'createclass';
-$currentElaborator = 'createclass';
-$currentConseiller = 'createclass';
-$currentAdmin = 'createclass';
 /**
  * Created by PhpStorm.
  * User: 201087112//AntoineLatendresse
@@ -29,14 +25,8 @@ $currentAdmin = 'createclass';
     <link rel="Stylesheet" href="../assets/others.css">
     <script type="text/javascript" src="../assets/js_global.js" ></script>
     <script src="jquery.js" type="text/javascript"></script>
-    <script src="../assets/jquery.maskedinput.min.js" type="text/javascript"></script> 
-    <script>
-      // Ne marche pas...
-      // Voir http://www.myjqueryplugins.com/jquery-plugin/masked-input-plugin
-      jQuery(function($) {
-        $('#codecours').mask('99/99/9999');
-      });
-    </script>
+    <script src="jquery.maskedinput.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   </head>
   
   <body>
@@ -50,7 +40,7 @@ $currentAdmin = 'createclass';
         <legend>Ajout de cours : </legend>
           <br>
         <form action="../controller/controller_create_class.php" method="post">
-            <label>Liste de cours qui existe déja : </label>
+            <label>Cours qui existe déja : </label>
             <br>
             <?php
             showClassListAll();
@@ -63,7 +53,8 @@ $currentAdmin = 'createclass';
             <br>
           <label>Code du cours : </label>
           <div>
-            <input data-val="true" id="codecours" name="CodeCours" type="text" value="" onkeypress="return filterClassCode(event);"/>
+            <input data-val="true" id="CodeCours" name="CodeCours" type="text" value=""
+                   onkeypress="return filterClassCode(event);"/>
          </div>
           <br>
           <label>Nom du cours : </label>
@@ -73,10 +64,7 @@ $currentAdmin = 'createclass';
           <br>
           <label>Type du cours : </label>
           <div>
-            <select name="TypeCours">
-              <option>Enseignement régulier</option>
-              <option>Formation continue</option>
-            </select>
+            <input data-val="true" id="TypeCours" name="TypeCours" type="text" value="" />
           </div>
           <br>
           <label>Ponderation du cours : </label>
