@@ -64,9 +64,8 @@
     <fieldset>
         <legend>Creation Plan-Cadre</legend>
         </br>
-
         <form action="../controller/controller_create_plancadre.php" method="post">
-            
+            <input name="save" type="submit" value="Sauvegarder..." class="btn btn-default" />
             <input type='hidden' name='save_path' value = 
                 <?php 
                     // le nom des fichiers textes serra :

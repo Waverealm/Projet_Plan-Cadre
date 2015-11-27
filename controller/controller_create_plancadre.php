@@ -88,25 +88,18 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $template_processor->saveAs($path_docx);
 
-    //$text = new \PhpOffice\PhpWord\IOFactory::load($path_presentation, 'HTML');
+    // lire le fichier pour ensuite ré-écrire dedans et écrire le reste ?
+
 
     $php_word = new \PhpOffice\PhpWord\PhpWord($path_docx);
 
     $section = $php_word->addSection();
+
+    // essayer avec une table "<table><tr><td></td>1<td>2</td></tr><td>3</td><td>4</td><tr></tr></table>"
     \PhpOffice\PhpWord\Shared\Html::addHtml($section, $presentation);
     $php_word->save($path_docx);
 
-
-    //$text = readFrom($path_presentation);
-    //$document->setValue('presentation', "$text");
-    /*
-    $section = $php_word->createSection();
-    $section->addText(readFrom($path_presentation));
-
-    $path_docx = "../plancadre/". $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
-
-    $document->save($path_docx);
-    */
+    
 
     header('Location: ../view/view_create_plancadre.php');
 }
