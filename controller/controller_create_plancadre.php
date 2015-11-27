@@ -94,14 +94,22 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $php_word = new \PhpOffice\PhpWord\PhpWord($path_docx);
 
+    $style_titre = '';
+
+    $titre_presentation = '<p style="text-align: center; font-size:16px"><strong> Présentation du cours </strong></p>';
     $section_presentation = $php_word->addSection();
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $titre_presentation);
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $presentation);
+
     $section_integration = $php_word->addSection();
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_integration, $integration);
+
     $section_evaluation = $php_word->addSection();
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_evaluation, $evaluation);
+
     $section_competences = $php_word->addSection();
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_competences, $competences);
+
     $section_apprentissage = $php_word->addSection();
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_apprentissage, $apprentissage);
 
