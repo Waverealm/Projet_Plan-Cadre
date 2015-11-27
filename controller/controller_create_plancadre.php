@@ -56,7 +56,8 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     fwrite($fichier_apprentissage, $apprentissage);
 
     //sauvegarder le tout dans la bd
-    updatePlanCadre_Fichiers($path_presentation,
+    updatePlanCadre_Fichiers(
+        $path_presentation,
         $path_integration,
         $path_evalutation,
         $path_competences,
@@ -93,10 +94,17 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $php_word = new \PhpOffice\PhpWord\PhpWord($path_docx);
 
-    $section = $php_word->addSection();
+    $section_presentation = $php_word->addSection();
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $presentation);
+    $section_integration = $php_word->addSection();
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_integration, $integration);
+    $section_evaluation = $php_word->addSection();
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_evaluation, $evaluation);
+    $section_competences = $php_word->addSection();
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_competences, $competences);
+    $section_apprentissage = $php_word->addSection();
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_apprentissage, $apprentissage);
 
-    // essayer avec une table "<table><tr><td></td>1<td>2</td></tr><td>3</td><td>4</td><tr></tr></table>"
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section, $presentation);
     $php_word->save($path_docx);
 
     

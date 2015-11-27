@@ -1,1 +1,1 @@
-<p>test</p><ul><li><p>test</p></li><li><p>test2</p></li><li><p>iul</p></li></ul><p>fin de la liste qui n&#39;est pas vide</p><p>plus</p><p>&nbsp;</p>
+<p><span style="font-size:14px"><strong>test</strong></span></p><ul><li><p><span style="font-size:14px"><span style="font-family:georgia,serif"><strong>test</strong></span></span></p></li><li><p><span style="font-size:14px"><span style="font-family:georgia,serif"><strong>test2</strong></span></span></p></li><li><p>pas de texte</p></li></ul><p>fin de la liste qui n&#39;est pas vide</p><p>plus</p><p>&nbsp;</p>
