@@ -94,10 +94,22 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $php_word = new \PhpOffice\PhpWord\PhpWord($path_docx);
 
-    $style_titre = '';
+    $style_titre = new \PhpOffice\PhpWord\Style\Font();
+    $style_titre->setBold(true);
+    $style_titre->setSize(16);
+    $center_p = new \PhpOffice\PhpWord\Style\Paragraph();
+    $center_p->setAlign("center");
+    $style_titre->setParagraph(  );
 
-    $titre_presentation = '<p style="text-align: center; font-size:16px"><strong> Présentation du cours </strong></p>';
+
+    // l'alignement fonctionne en html mais pas la taille du texte
+    $titre_presentation = '<p  style="font-size:16px; text-align:center; "><strong>Présentation du cours</strong></p>';
+    // l'alignement ne fonctionne pas en texte mais la taille du texte fonctionne
+    //$titre_presentation = 'Présentation du cours';
+    
     $section_presentation = $php_word->addSection();
+
+    //$section_presentation->addText($titre_presentation, $style_titre);
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $titre_presentation);
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $presentation);
 
