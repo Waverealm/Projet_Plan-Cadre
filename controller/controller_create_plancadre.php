@@ -77,7 +77,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $template_processor->setValue('type_enseignement', 'PLACEHOLDER'/*$plancadre[0]['TypeCours']*/);
     $template_processor->setValue('nom_programme', $plancadre[0]['NomProgramme']);
     $template_processor->setValue('code_programme', $plancadre[0]['CodeProgramme']);
-    $template_processor->setValue('nom_discipline', 'PLACEHOLDER');
+    $template_processor->setValue('nom_discipline', 'PLACEHOLDER' /***********************/);
     $template_processor->setValue('nom_cours', $plancadre[0]['NomCours']);
     $template_processor->setValue('code_cours', $plancadre[0]['CodeCours']);
     $template_processor->setValue('ponderation_cours', $plancadre[0]['Ponderation']);
@@ -91,22 +91,31 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     // lire le fichier pour ensuite ré-écrire dedans et écrire le reste ?
 
+    $reader = \PhpOffice\PhpWord\IOFactory::load($path_docx);
 
-    $php_word = new \PhpOffice\PhpWord\PhpWord($path_docx);
+    $template_text = $reader->getSections();
+
+
+    $php_word = new \PhpOffice\PhpWord\PhpWord();
 
     $style_titre = new \PhpOffice\PhpWord\Style\Font();
     $style_titre->setBold(true);
     $style_titre->setSize(16);
     $center_p = new \PhpOffice\PhpWord\Style\Paragraph();
     $center_p->setAlign("center");
-    $style_titre->setParagraph(  );
+    $style_titre->setParagraph($center_p);
+
+
+    $section_template = $php_word->addSection($template_text);
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_template, $template_text [0]->getText());
+
 
 
     // l'alignement fonctionne en html mais pas la taille du texte
     $titre_presentation = '<p  style="font-size:16px; text-align:center; "><strong>Présentation du cours</strong></p>';
     // l'alignement ne fonctionne pas en texte mais la taille du texte fonctionne
     //$titre_presentation = 'Présentation du cours';
-    
+
     $section_presentation = $php_word->addSection();
 
     //$section_presentation->addText($titre_presentation, $style_titre);
@@ -128,7 +137,6 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $php_word->save($path_docx);
 
     
-
     header('Location: ../view/view_create_plancadre.php');
 }
 else if ( isset($_POST['open']) )
