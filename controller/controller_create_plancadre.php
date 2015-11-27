@@ -13,7 +13,8 @@ if(!isset($_SESSION))
     session_start();
 }
 include_once('../model/queries.php');
-   
+require_once '../assets/PHPWord-Master/src/PhpWord/Autoloader.php';
+\PhpOffice\PhpWord\Autoloader::register();   
    
 
 if( isset($_POST['submit']) || isset($_POST['save']) ) 
@@ -68,34 +69,44 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $plancadre = fetchPlanCadreElaboration_PlanCadre( $_POST['id_plancadre'] );
     $prealable_cours = fetchPrealableCours_Id( $plancadre[0]['CodeCours'] );
 
-    $php_word = new PHPWord();
+    $path_docx = "../plancadre/". $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
 
-    $document = $php_word->loadTemplate('../assets/template_test.docx');
+    $template_processor = new \PhpOffice\PhpWord\TemplateProcessor('../assets/template_test.docx');
 
-    //$document->setValue('type_enseignement', $plancadre[0]['TypeCours']);
-    $document->setValue('nom_programme', $plancadre[0]['NomProgramme']);
-    $document->setValue('code_programme', $plancadre[0]['CodeProgramme']);
-    $document->setValue('nom_cours', $plancadre[0]['NomCours']);
-    $document->setValue('code_cours', $plancadre[0]['CodeCours']);
-    $document->setValue('ponderation_cours', $plancadre[0]['Ponderation']);
-    $document->setValue('unite_cours', $plancadre[0]['NombreUnites']);
+    $template_processor->setValue('type_enseignement', 'PLACEHOLDER'/*$plancadre[0]['TypeCours']*/);
+    $template_processor->setValue('nom_programme', $plancadre[0]['NomProgramme']);
+    $template_processor->setValue('code_programme', $plancadre[0]['CodeProgramme']);
+    $template_processor->setValue('nom_discipline', 'PLACEHOLDER');
+    $template_processor->setValue('nom_cours', $plancadre[0]['NomCours']);
+    $template_processor->setValue('code_cours', $plancadre[0]['CodeCours']);
+    $template_processor->setValue('ponderation_cours', $plancadre[0]['Ponderation']);
+    $template_processor->setValue('unite_cours', $plancadre[0]['NombreUnites']);
+
     // extraire le code des cours prealable et l'entrer 
     // si il n'a pas de cours prealable entrer "aucun" 
     //$document->setValue('prealable_cours', 'u');
 
-    // test
-    // obtient une erreur pour le text
-    //$text = $presentation . " " . $integration . " " . $evaluation . " " . $competences . " " . $apprentissage;
-    
+    $template_processor->saveAs($path_docx);
+
+    //$text = new \PhpOffice\PhpWord\IOFactory::load($path_presentation, 'HTML');
+
+    $php_word = new \PhpOffice\PhpWord\PhpWord($path_docx);
+
+    $section = $php_word->addSection();
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section, $presentation);
+    $php_word->save($path_docx);
+
+
     //$text = readFrom($path_presentation);
     //$document->setValue('presentation', "$text");
-
+    /*
     $section = $php_word->createSection();
     $section->addText(readFrom($path_presentation));
 
     $path_docx = "../plancadre/". $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
 
     $document->save($path_docx);
+    */
 
     header('Location: ../view/view_create_plancadre.php');
 }
