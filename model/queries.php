@@ -194,6 +194,10 @@
   {
     return fetchId( $class_code, "CALL SELECT_PLAN_CADRE_INFOS(?)");
   }
+  function fetchPlanCadreProgram($code_programme)
+  {
+    return fetchId( $code_programme, "CALL SELECT_PLAN_CADRE_PROGRAM(?)");
+  }
   
   function getPassword($username)
   {

@@ -32,19 +32,17 @@
           <br>
           <fieldset>
             <legend>Liste des plans-cadres : </legend>
-              <input type="checkbox" name="valid_only" onchange="function()"> 
-              Afficher seulement les plans-cadres qui sont valides 
-              &nbsp &nbsp
-
               <?php
                 showProgramListAll();
               ?>
-              Chercher par programme
+
+              <input type="checkbox" name="valid_only" onchange="function()"> 
+              Afficher seulement les plans-cadres qui sont valides 
               <br>
               <br>
 
               <?php 
-                showAllPlancadre();
+                showPlancadre();
               ?>
           </fieldset>
         </div>

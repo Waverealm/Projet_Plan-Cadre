@@ -312,20 +312,24 @@ function showAppropriateMenu()
     {
         $list = selectAllProgramCode();
 
-        echo "<select name=\"program_list_all\">";
-        echo "<option value=\"" . "\">" . "</option>";
-        if(sizeof($list) > 0)
-        {
-            foreach ($list as $row)
+        echo "<form action='../model/model_save_program_code.php' method='post'>";
+            echo "<select name=\"CodeProgramme\" id=\"CodeProgramme\">";
+            echo "<option value='Tous'>Afficher tous les plans-cadre</option>";
+            if(sizeof($list) > 0)
             {
-                echo "<option value=\"".$row['CodeProgramme']."\">".$row['CodeProgramme']." ".$row['NomProgramme']."</option>";
+                foreach ($list as $row)
+                {
+                    echo "<option value=\"".$row['CodeProgramme']."\">".$row['CodeProgramme']."</option>";
+                }
             }
-        }
-        else
-        {
-            echo "<option>"."Aucun Programme"."</option>";
-        }
-        echo "</select>";
+            else
+            {
+                echo "<option>"."Aucun Programme"."</option>";
+            }
+            echo "</select>";
+
+            echo "<input type='submit' value='Valider'>";
+        echo "</form>";
     }
 /*
     Nom de la fonction : showClassListAll

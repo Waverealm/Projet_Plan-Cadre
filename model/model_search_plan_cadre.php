@@ -26,9 +26,34 @@ function makeLinkPlancadre($plancadre)
     return '<a href ="' . $lien . '">Télécharger </a>';
 }
 
-function showAllPlancadre()
+function showPlanCadre()
 {
-    $list = selectAllPlanCadre();
+    $list = null;
+
+    if(isset($_SESSION['recherche_plan_cadre']))
+    {
+        // Il est nécessaire de traiter cette alternative au cas ou l'utilisateur veut réafficher
+        // tous les plans-cadre après avoir cherché pour un programme en particulier, étant
+        // donné que la page ne se réactualise pas toute seule
+        // C'est aussi pour une question de "user friendly"
+        if($_SESSION['recherche_plan_cadre'] == "Tous")
+        {
+            $list = selectAllPlanCadre();
+        }
+
+        else
+        {
+            // On va chercher les plans-cadre
+            $list = fetchPlanCadreProgram($_SESSION["recherche_plan_cadre"]);
+            // On "unset" la variable une fois que la recherche est faite
+        }
+
+        unset($_SESSION["recherche_plan_cadre"]);
+    }
+
+    // Lorsque l'utilisateur réactualise la page de lui-même
+    else
+        $list = selectAllPlanCadre();
 
     echo "<table>".
             "<tr>".
