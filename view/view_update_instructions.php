@@ -1,10 +1,8 @@
 <?php
-$currentVisitor = 'updateinstructions';
-$currentElaborator = 'updateinstructions';
-$currentConseiller = 'updateinstructions';
-$currentAdmin = 'updateinstructions';
 
   session_start();
+
+  $currentConseiller = 'updateinstructions';
 
   include_once("../assets/constant.php");
   include_once("../controller/interface_functions.php");

@@ -1,16 +1,9 @@
 <?php
-$currentVisitor = 'updatepassword';
-$currentElaborator = 'updatepassword';
-$currentConseiller = 'updatepassword';
-$currentAdmin = 'updatepassword';
-/**
- * Created by PhpStorm.
- * User: 201087112
- * Date: 2015-11-02
- * Time: 15:21
- */
 
     session_start();
+
+    $currentConseiller = 'updatepassword';
+    $currentAdmin = 'updatepassword';
 
     include_once("../controller/interface_functions.php");
     include_once("../controller/pages_access.php");

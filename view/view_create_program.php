@@ -1,15 +1,8 @@
 <?php
-$currentVisitor = 'createprogram';
-$currentElaborator = 'createprogram';
-$currentConseiller = 'createprogram';
-$currentAdmin = 'createprogram';
-/**
- * Created by PhpStorm.
- * User: 201087112//AntoineLatendresse
- * Date: 2015-10-21
- * Time: 10:48
- */
+
   session_start();
+
+  $currentConseiller = 'createprogram';
 
   include_once("../controller/interface_functions.php");
   include_once("../controller/pages_access.php");

@@ -7,6 +7,8 @@
  */
   session_start();
 
+  $currentConseiller = 'createcompetence';
+
   include_once("../controller/interface_functions.php");
   include_once("../controller/pages_access.php");
 

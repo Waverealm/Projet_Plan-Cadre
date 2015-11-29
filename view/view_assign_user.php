@@ -1,13 +1,10 @@
 <?php
-$currentVisitor = 'assignuser';
-$currentElaborator = 'assignuser';
-$currentConseiller = 'assignuser';
-$currentAdmin = 'assignuser';
   session_start();
 
-  //
+  $currentConseiller = 'assignuser';
+  $currentAdmin = 'assignuser';
+
   include_once("../controller/interface_functions.php");
-  //
   include_once("../controller/pages_access.php");
   include_once("../controller/controller_assign_user.php");
 

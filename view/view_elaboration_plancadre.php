@@ -1,16 +1,16 @@
 <?php
+
   session_start();
-  $currentVisitor = 'elaborationplancadre';
+
   $currentElaborator = 'elaborationplancadre';
   $currentConseiller = 'elaborationplancadre';
   $currentAdmin = 'elaborationplancadre';
-  //
+  
   include_once("../controller/interface_functions.php");
-  //
-
   include_once("../controller/pages_access.php");
   include_once("../controller/controller_elaboration_plancadre.php");
   include_once("../model/model_user_session.php");
+  
   verifyAccessPages();
   isAdmin();
 ?>

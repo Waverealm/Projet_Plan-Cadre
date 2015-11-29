@@ -1,9 +1,11 @@
 ﻿<?php
   session_start();
+
   $currentVisitor = 'index';
   $currentElaborator = 'index';
   $currentConseiller = 'index';
   $currentAdmin = 'index';
+
   include_once("../controller/interface_functions.php");
 ?>
 
