@@ -9,8 +9,9 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.uiColor = '#AADC6E';
 
 
-
-	// changement expliqué
+	// un peu de lecteur
+	// http://margotskapacs.com/2014/11/ckeditor-stop-altering-elements/
+	// http://stackoverflow.com/questions/3339710/how-to-configure-ckeditor-to-not-wrap-content-in-p-block
 	// http://stackoverflow.com/questions/1977791/turn-off-enclosing-p-tags-in-ckeditor-3-0
 
 	//  "unpredictable usability issues"
