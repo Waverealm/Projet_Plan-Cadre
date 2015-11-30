@@ -79,7 +79,7 @@ function getUserType ()
         {
             foreach ($list as $row)
             {
-                echo "<option value=\"".$row["PlanCadre_VersionPlan"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+                echo "<option value=\"".$row["No_PlanCadre"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
             }
         }
         else

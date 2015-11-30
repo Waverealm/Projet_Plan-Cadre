@@ -21,7 +21,7 @@ include_once("../model/queries.php");
 //** à modifier
 function makeLinkPlancadre($plancadre)
 {
-	$lien = "../plancadre/" . $plancadre['VersionPlan'] . "_" . $plancadre['CodeCours'] . ".docx";
+	$lien = "../plancadre/" . $plancadre['No_PlanCadre'] . "_" . $plancadre['CodeCours'] . ".docx";
 
     return '<a href ="' . $lien . '">Télécharger </a>';
 }
@@ -123,7 +123,8 @@ function showPlanCadre()
                 {
                     if ($row["Etat"] != "Validé")
                     {
-                        echo "<td><a href ='../controller/controller_validate_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["VersionPlan"]."'>Valider</a></td>";
+                        // ****************       la date de soumission / autre serait plus approprié que celle de la clé primaire
+                        echo "<td><a href ='../controller/controller_validate_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["No_PlanCadre"]."'>Valider</a></td>";
                     }
 
                     else

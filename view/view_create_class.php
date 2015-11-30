@@ -79,12 +79,19 @@
             <input data-val="true" id="NombreHeures" name="NombreHeures" type="text" value="" />
           </div>
           <br>
-
           <label>Programme du cours : </label><br>
             <?php 
               showListPrograms(); 
             ?>
-          <br>          
+          <br>      
+          <label><strong>Recherche d'un programme : </strong></label><br>
+          <input type='text' name='search_program' value=''
+            onKeyUp="arrayFilter(this.value, this.form.CodeProgram)"
+            onChange="arrayFilter(this.value, this.form.CodeProgram)"
+          /><br>
+          <br>
+    
+
 
           <div>
             <input type="submit" value="Soumettre..." class="btn btn-default" /> <br /><br />

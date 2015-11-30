@@ -49,7 +49,7 @@
         $plancadre = getPlanCadre($_SESSION['id_plancadre']);
         $prealable = getPrealableCours($plancadre[0]["CodeCours"]);
 
-        $save_path = "../plancadre/". $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . "_";
+        $save_path = "../plancadre/". $plancadre[0]['No_PlanCadre'] . "_" . $plancadre[0]['CodeCours'] . "_";
 
         $path_presentation = $save_path . "presentation" . ".txt";
         $path_integration = $save_path . "integration" .".txt";
