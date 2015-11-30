@@ -43,16 +43,15 @@
             <?php
             showClassListAll();
             ?>
-            <input type="text" name="search_class"
-            onKeyUp="arrayFilter(this.value, this.form.class_list_all)"
-            onChange="arrayFilter(this.value, this.form.class_list_all)"
-            >
             <br>
             <br>
           <label>Code du cours : </label>
           <div>
             <input data-val="true" id="CodeCours" name="CodeCours" type="text" value=""
-                   onkeypress="return filterClassCode(event);"/>
+              onkeypress="return filterClassCode(event);"
+              onKeyUp="arrayFilter(this.value, this.form.class_list_all)"
+              onChange="arrayFilter(this.value, this.form.class_list_all)"
+            />
          </div>
           <br>
           <label>Nom du cours : </label>
@@ -80,11 +79,13 @@
             <input data-val="true" id="NombreHeures" name="NombreHeures" type="text" value="" />
           </div>
           <br>
-          <label>Code du programme : </label>
+
+          <label>Programme du cours : </label><br>
             <?php 
-              showProgramsCode(); 
+              showListPrograms(); 
             ?>
-          <br>
+          <br>          
+
           <div>
             <input type="submit" value="Soumettre..." class="btn btn-default" /> <br /><br />
           </div>

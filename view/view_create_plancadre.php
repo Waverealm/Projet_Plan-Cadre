@@ -126,8 +126,6 @@
                             Nombre d'unité(s) : 
                             <?php
                                 $nb_unites = $plancadre[0]["NombreUnites"];
-
-                                $nb_unites = 2.3333333333333333;
                                 
                                 $entier = floor($nb_unites);
                                 $decimale = $nb_unites - $entier;

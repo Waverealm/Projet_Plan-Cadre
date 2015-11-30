@@ -252,7 +252,7 @@ function showAppropriateMenu()
         // Affichage de la liste des codes des programmes dans une combo box.
         foreach ($list as $row)
         {
-            echo "<option value=\"".$row['CodeProgramme']."\">".$row['CodeProgramme']."</option>";
+            echo "<option value=\"".$row['CodeProgramme']."\">".$row['CodeProgramme']. "</option>";
         }
 
             echo "</select>";
@@ -308,18 +308,34 @@ function showAppropriateMenu()
         echo "</select>";
     }
 
+    function showListPrograms()
+    {
+        $list = selectAllPrograms();
+
+        echo "<div>";
+            echo '<select name="CodeProgram">';
+                echo '<option value="">' . '</option>';
+        foreach ($list as $row)
+        {
+            echo '<option value="'.$row['CodeProgramme'].'">'.$row['CodeProgramme']. ' ' .$row['NomProgramme']. '</option>';
+        }
+
+            echo "</select>";
+        echo "</div>";
+    }
+
     function showProgramListAll()
     {
-        $list = selectAllProgramCode();
+        $list = selectAllPrograms();
 
         echo "<form action='../controller/controller_save_program_code.php' method='post'>";
             echo "<select name=\"CodeProgramme\" id=\"CodeProgramme\">";
-            echo "<option value='Tous'>Afficher tous les plans-cadre</option>";
+                echo "<option value='Tous'>Afficher tous les plans-cadre</option>";
             if(sizeof($list) > 0)
             {
                 foreach ($list as $row)
                 {
-                    echo "<option value=\"".$row['CodeProgramme']."\">".$row['CodeProgramme']."</option>";
+                    echo "<option value=\"".$row['CodeProgramme']."\">".$row['CodeProgramme']. " " . $row['NomProgramme']  ."</option>";
                 }
             }
             else

@@ -127,6 +127,10 @@
   {
     return selectWithNoParam("CALL SELECT_ALL_PROGRAMS ()");
   }
+  function selectAllPrograms()
+  {
+    return selectWithNoParam("CALL SELECT_ALL_PROGRAMS_WITH_NAME ()");
+  }
 
 /*
   ------------------------------------------------------------------------------------

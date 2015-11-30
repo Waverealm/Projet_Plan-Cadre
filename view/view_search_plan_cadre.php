@@ -32,10 +32,11 @@
           <br>
           <fieldset>
             <legend>Liste des plans-cadres : </legend>
-              <?php
-                showProgramListAll();
-              ?>
-
+              <form action='../controller/controller_save_program_code.php' method='post'>
+                <?php
+                  showProgramListAll();
+                ?>
+              </form>
               <form action='../controller/controller_show_valid_plancadre.php' method='post'>
                 <input type="checkbox" name="valid_only" id="valid_only" onchange="this.form.submit();"> 
                 Afficher seulement les plans-cadres qui sont valides 
