@@ -198,6 +198,10 @@
   {
     return fetchId( $code_programme, "CALL SELECT_PLAN_CADRE_PROGRAM(?)");
   }
+   function fetchAllPlanCadreOfficiel($etat)
+  {
+    return fetchId( $etat, "CALL SELECT_ALL_PLAN_CADRE_OFFICIEL(?)");
+  }
   
   function getPassword($username)
   {
@@ -211,6 +215,20 @@
       $query->closeCursor();
  
       return $result[0][ "MotDePasse" ];
+  }
+
+  function getPlanCadreOfficielProgram($etat, $code_programme)
+  {
+    $query = dbConnect()->prepare("CALL SELECT_PLAN_CADRE_OFFICIEL_PROGRAM(?,?)");
+
+    $query->bindParam(1, $etat, PDO::PARAM_STR);
+    $query->bindParam(2, $code_programme, PDO::PARAM_STR);
+
+    $query->execute();
+    $result = $query->fetchAll();
+    $query->closeCursor();
+
+    return $result;
   }
 
 /*

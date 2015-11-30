@@ -312,7 +312,7 @@ function showAppropriateMenu()
     {
         $list = selectAllProgramCode();
 
-        echo "<form action='../model/model_save_program_code.php' method='post'>";
+        echo "<form action='../controller/controller_save_program_code.php' method='post'>";
             echo "<select name=\"CodeProgramme\" id=\"CodeProgramme\">";
             echo "<option value='Tous'>Afficher tous les plans-cadre</option>";
             if(sizeof($list) > 0)
