@@ -141,30 +141,33 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     //$section_presentation->addTitle( $titre_presentation, 'style_titre' );
 
     // l'alignement fonctionne en html mais pas la taille du texte
-    $titre_presentation = '<p  style="font-size:16px; text-align:center; "><strong>Présentation du cours</strong></p>';
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $titre_presentation);
+    $debut_balise_titre = '<p  style="font-size:16px; text-align:center; "><strong>';
+    $fin_balise_titre = '</strong></p>';
+    $titre = 'Présentation du cours';
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $debut_balise_titre . $titre . $fin_balise_titre);
     
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $presentation);
 
 
-    /*
-        à faire : 
-        ajouter le titre aux autres sections
-    */
-
-    $section_integration = $php_word->addSection();
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section_integration, $integration);
-
 
     $section_evaluation = $php_word->addSection();
+    $titre = 'Évaluation des apprentissages';
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_evaluation, $debut_balise_titre . $titre . $fin_balise_titre);
+    
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_evaluation, $evaluation);
 
 
     $section_competences = $php_word->addSection();
+    $titre = 'Énoncé des compétences';
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_competences, $debut_balise_titre . $titre . $fin_balise_titre);
+
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_competences, $competences);
 
 
     $section_apprentissage = $php_word->addSection();
+    $titre = "Objectifs d'apprentissage";
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_apprentissage, $debut_balise_titre . $titre . $fin_balise_titre);
+
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_apprentissage, $apprentissage);
 
 

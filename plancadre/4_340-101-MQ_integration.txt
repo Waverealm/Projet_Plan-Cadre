@@ -1,1 +1,1 @@
-<p>objectifs d&#39;int&eacute;gration est ici</p>
+<p>objectifs d'intégration est ici</p>
