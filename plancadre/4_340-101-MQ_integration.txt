@@ -1,1 +1,1 @@
-<p>objectifs d'intégration est ici</p><ul><li>liste</li><li>pour</li><li>tester</li></ul><p> </p><ul><li>test</li><li>de liste</li><li>qui devraite avoir des<p> </p></li></ul>                
+<p>ob</p><ul><li>liste</li><li>de</li><li>stuff</li><li>pour</li><li>tester</li></ul>

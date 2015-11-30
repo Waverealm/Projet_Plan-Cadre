@@ -403,10 +403,8 @@ function showAppropriateMenu()
         ?>
 
         <br>
-
-        <a>Afficher/masquer la consigne</a>
-        <p><?php echo $descriptionConsigne[0][ "DescriptionConsigne" ]; ?></p>
-
+        <a class="toggler">Afficher/masquer la consigne</a>
+        <p class="toggled"><?php echo $descriptionConsigne[0][ "DescriptionConsigne" ]; ?></p>
         <br>
         <br>
 

@@ -31,10 +31,11 @@
 
     <script>
         $(document).ready(function() {
-            $('a').click(function(){
-                $('p').toggle(500);
+            $('a.toggler').click(function(){
+                $(this).next('.toggled').toggle(500);
             });
         });
+
     </script>
 </head>
 <body>
@@ -124,7 +125,21 @@
                         <label class="control-label col-md-2">
                             Nombre d'unité(s) : 
                             <?php
-                                echo $plancadre[0]["NombreUnites"];
+                                $nb_unites = $plancadre[0]["NombreUnites"];
+
+                                $nb_unites = 2.3333333333333333;
+                                
+                                $entier = floor($nb_unites);
+                                $decimale = $nb_unites - $entier;
+                                if($decimale > 0)
+                                {
+                                    echo $nb_unites;
+                                }
+                                else
+                                {
+                                    echo $entier;
+                                }
+                                
                             ?>
                         </label>
                     </td>
@@ -133,23 +148,17 @@
                             Préalable(s) : 
                             <?php
 
-                                //faire une fonction
-                                // select
-                                // if hasrow codecours + titre cours
-                                // else "Aucun"
-
                                 if(!empty($prealable) )
                                 {
                                     for ($i = 0; $i < count($prealable); $i++)
                                     {
                                         echo 
-                                        "<ul>
-                                            <li>" 
+                                        "<ul>"
+                                            ."<li>"
                                                 . $prealable[0]["Cours_CodeCoursPrealable"] 
-                                                . " " . $prealable[0]["NomCours"] .
-                                            "li>
-                                        <ul>";
-
+                                                . " " . $prealable[0]["NomCours"]
+                                            ."li>"
+                                        ."<ul>";
                                     }
                                 }
                                 else
