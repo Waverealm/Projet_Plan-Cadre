@@ -70,9 +70,9 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $plancadre = fetchPlanCadreElaboration_PlanCadre( $_POST['id_plancadre'] );
     $prealable_cours = fetchPrealableCours_Id( $plancadre[0]['CodeCours'] );
 
-    $path_docx_template = "../plancadre/". $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . "_template". ".docx";
+    $path_docx_template = "../plancadre/". $plancadre[0]['No_PlanCadre'] . "_" . $plancadre[0]['CodeCours'] . "_template". ".docx";
 
-    $template_processor = new \PhpOffice\PhpWord\TemplateProcessor('../assets/template_test.docx');
+    $template_processor = new \PhpOffice\PhpWord\TemplateProcessor('../assets/template_elaboration.docx');
 
     $template_processor->setValue('type_enseignement', 'PLACEHOLDER'/*$plancadre[0]['TypeCours']*/);
     $template_processor->setValue('nom_programme', $plancadre[0]['NomProgramme']);
@@ -90,8 +90,6 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $template_processor->saveAs($path_docx_template);
 
     // lire le fichier pour ensuite ré-écrire dedans et écrire le reste ?
-
-    
 
     // création d'un nouveau document
     $php_word = new \PhpOffice\PhpWord\PhpWord();
@@ -119,14 +117,14 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $template_text = $reader->getSections();
 
-    $section_template = $php_word->addSection($template_text);
+    $section_template = $php_word->addSection();
     // $reader n'est pas un string donc ça ne marche pas 
     //\PhpOffice\PhpWord\Shared\Html::addHtml($section_template, $reader);
     //\PhpOffice\PhpWord\Shared\Html::addHtml($section_template, $template_text[0]->getText());
     
     // N'a plus l'erreur, on a bien un string comme variable mais rien ne s'affiche
     $texte = $template_text[0]->getText();
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section_template, $texte);
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_template, $texte );
 
     // test pour confirmer que la section fonctionne
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_template, 'test DU TEMPLATE');
@@ -195,7 +193,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_apprentissage, $apprentissage);
 
 
-    $path_docx = "../plancadre/". $plancadre[0]['VersionPlan'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
+    $path_docx = "../plancadre/". $plancadre[0]['No_PlanCadre'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
     $php_word->save($path_docx);
 
     
