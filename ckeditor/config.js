@@ -4,21 +4,36 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-	// Define changes to default configuration here. For example:
-	// config.language = 'fr';
-	// config.uiColor = '#AADC6E';
+	// Define changes to default configuration here.
+	// For complete reference see:
+	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
+	// The toolbar groups arrangement, optimized for a single toolbar row.
+	config.toolbarGroups = [
+		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+		{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+		{ name: 'forms' },
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+		{ name: 'links' },
+		{ name: 'insert' },
+		{ name: 'styles' },
+		{ name: 'colors' },
+		{ name: 'tools' },
+		{ name: 'others' },
+		{ name: 'about' }
+	];
 
-	// un peu de lecteur
-	// http://margotskapacs.com/2014/11/ckeditor-stop-altering-elements/
-	// http://stackoverflow.com/questions/3339710/how-to-configure-ckeditor-to-not-wrap-content-in-p-block
-	// http://stackoverflow.com/questions/1977791/turn-off-enclosing-p-tags-in-ckeditor-3-0
+	// The default plugins included in the basic setup define some buttons that
+	// are not needed in a basic editor. They are removed here.
+	config.removeButtons = 'Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript';
 
-	//  "unpredictable usability issues"
-	// http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html#.autoParagraph
-	//CKEDITOR.config.autoParagraph = false;
-	// utilise des <br> au lieu de <p> </p> pour les changements de lignes
-	//CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
-	// utilise des <div> au lieu de <p> </p> pour les changements de lignes
-	//CKEDITOR.config.enterMode = CKEDITOR.ENTER_DIV;
+	// Dialog windows are also simplified.
+	config.removeDialogTabs = 'link:advanced';
+   
+   //Keep Word and Excel formatting
+   config.pasteFromWordRemoveFontStyles = false;
+   config.pasteFromWordRemoveStyles = false;
+   config.extraAllowedContent = 'span div table tr td th colgroup col style[*]{*}';
 };
