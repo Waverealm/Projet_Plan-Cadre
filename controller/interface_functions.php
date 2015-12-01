@@ -2,6 +2,7 @@
 
     include_once("../assets/constant.php");
     include_once('../model/queries.php');
+    include_once('../model/model_search_plan_cadre.php');
 
     function showHeader()
     {
@@ -330,12 +331,12 @@ function showAppropriateMenu()
 
         echo "<form action='../controller/controller_save_program_code.php' method='post'>";
             echo "<select name=\"CodeProgramme\" id=\"CodeProgramme\">";
-                echo "<option value='Tous'>Afficher tous les plans-cadre</option>";
+                echo "<option value='Tous' ".isSelected('Tous').">Afficher tous les plans-cadre</option>";
             if(sizeof($list) > 0)
             {
                 foreach ($list as $row)
                 {
-                    echo "<option value=\"".$row['CodeProgramme']."\">".$row['CodeProgramme']. " " . $row['NomProgramme']  ."</option>";
+                    echo "<option value=\"".$row['CodeProgramme']."\" ".isSelected($row['CodeProgramme']).">".$row['CodeProgramme']. " " . $row['NomProgramme']  ."</option>";
                 }
             }
             else
@@ -347,6 +348,7 @@ function showAppropriateMenu()
             echo "<input type='submit' value='Valider'>";
         echo "</form>";
     }
+    
 /*
     Nom de la fonction : showClassListAll
     Fait par : Simon Roy

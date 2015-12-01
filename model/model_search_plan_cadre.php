@@ -55,6 +55,17 @@ function unsetSearchProgram()
     unset($_SESSION["recherche_code_programme"]);
 }
 
+// Fonction faisant en sorte de mettre la valeur de la combo box
+// sur la valeur actuelle de la variable de session pour la
+// recherche d'un programme
+function isSelected($selectedValue)
+{
+    if (isset($_SESSION['recherche_code_programme']) && $_SESSION['recherche_code_programme'] == $selectedValue)
+    {
+        return 'selected';
+    }
+}
+
 function showPlanCadre()
 {
     $list = null;
@@ -68,21 +79,18 @@ function showPlanCadre()
         if (isset($_SESSION['valid_only']) && $_SESSION['valid_only'] == "unchecked" && $_SESSION['recherche_code_programme'] == "Tous")
         {
             $list = selectAllPlanCadre();
-            unsetSearchProgram();
         }
 
         // Recherche des plans-cadre officiels à travers tous les plans-cadre
         else if(isset($_SESSION['valid_only']) && $_SESSION['valid_only'] == "checked" && $_SESSION['recherche_code_programme'] == "Tous")
         {
-            $list = getPlanCadreOfficielProgram("Adopté", $_SESSION['recherche_code_programme']);
-            unsetSearchProgram();
+            $list = fetchAllPlanCadreOfficiel("Adopté");
         }
 
         // Recherche les plans-cadre officiels spécifiques à un programme
         else if(isset($_SESSION['valid_only']) && $_SESSION['valid_only'] == "checked")
         {
-            $list = fetchAllPlanCadreOfficiel("Adopté");
-            unsetSearchProgram();
+            $list = getPlanCadreOfficielProgram("Adopté", $_SESSION['recherche_code_programme']);
         }
 
         // Chercher toutes les versions de tous les plans-cadre spécifiques à un programme
@@ -90,24 +98,22 @@ function showPlanCadre()
         {
             // On va chercher les plans-cadre
             $list = fetchPlanCadreProgram($_SESSION["recherche_code_programme"]);
-            unsetSearchProgram();
         }
-
-        //unset($_SESSION["recherche_code_programme"]);
     }
 
-    // On a pas le choix de traiter les if suivant, bien que leur contenu soit répétif aux if plus haut. C'est pour une question de user friendly
+    /*// On a pas le choix de traiter les if suivant, bien que leur contenu soit répétif aux if plus haut. C'est pour une question de user friendly
     // si l'utilisateur actualise la page de lui-même et également pour bien traiter les variables de session dans ce cas.
     else if(isset($_SESSION['valid_only']) && $_SESSION['valid_only'] == "unchecked")
     {
         $list = selectAllPlanCadre();
         //unset($_SESSION["valid_only"]);
+        unset($_SESSION["recherche_code_programme"]);
     }
 
     else if(isset($_SESSION['valid_only']) && $_SESSION['valid_only'] == "checked")
     {
         $list = fetchAllPlanCadreOfficiel("Adopté");
-    }
+    }*/
 
     echo "<table>".
             "<tr>".
