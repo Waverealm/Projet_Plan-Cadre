@@ -466,7 +466,14 @@ function updatePlanCadreState($idPlanCadre,$state)
 ------------------------------------------------------------------------------------
 */
 
+/*
 // Supprimer une vieille version validé d'un plan-cadre
+  on devrait mettre une "protection", un plancadre adopté ne devrait jamais être effacé
+
+  genre on pourrait placer un if pour confirmer qu'on efface pas un plan-cadre adopté et 
+  on pourrait aussi enlever l'option d'appeler la fonction avec l'état en paramètre pour 
+  limiter son accès. Dans tous les cas il faudra mettre des commentaires détaillés.
+*/
 function deleteOldVersionPlanCadre($classCode,$state)
 {
     $query = dbConnect()->prepare( "CALL DELETE_OLD_VERSION_PLANCADRE(?,?)" );

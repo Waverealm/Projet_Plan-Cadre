@@ -1,1 +1,1 @@
-<p>test des énoncés des compétences&nbsp;</p>
+<p>test des &eacute;nonc&eacute;s des comp&eacute;tences&nbsp;</p>
