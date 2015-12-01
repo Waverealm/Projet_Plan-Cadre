@@ -87,9 +87,62 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     // si il n'a pas de cours prealable entrer "aucun" 
     //$document->setValue('prealable_cours', 'u');
 
+
+/*
+
+
+
+    $debut_balise_titre = '<p  style="font-size:16px; text-align:center; "><strong>';
+    $fin_balise_titre = '</strong></p>';
+
+
+    $section_presentation = $template_processor->addSection();
+
+    $titre = "Présentation du cours";
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $debut_balise_titre . $titre . $fin_balise_titre);
+
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $presentation);
+
+
+    $section_integration = $php_word->addSection();
+    
+    $titre = "Objectif d'intégration";
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_integration, $debut_balise_titre . $titre . $fin_balise_titre);
+    
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_integration, $integration);
+
+
+    $section_evaluation = $php_word->addSection();
+
+    $titre = 'Évaluation des apprentissages';
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_evaluation, $debut_balise_titre . $titre . $fin_balise_titre);
+    
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_evaluation, $evaluation);
+
+
+    $section_competences = $php_word->addSection();
+
+    $titre = "Énoncé des compétences";
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_competences, $debut_balise_titre . $titre . $fin_balise_titre);
+
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_competences, $competences);
+
+
+    $section_apprentissage = $php_word->addSection();
+
+    $titre = "Objectifs d'apprentissage";
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_apprentissage, $debut_balise_titre . $titre . $fin_balise_titre);
+
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_apprentissage, $apprentissage);
+
+*/
+
+
+
     $template_processor->saveAs($path_docx_template);
 
     // lire le fichier pour ensuite ré-écrire dedans et écrire le reste ?
+
 
     // création d'un nouveau document
     $php_word = new \PhpOffice\PhpWord\PhpWord();
@@ -115,16 +168,23 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $reader = \PhpOffice\PhpWord\IOFactory::load($path_docx_template);
     //******************************************************************************************
 
-    $template_text = $reader->getSections();
-
-    $section_template = $php_word->addSection();
     // $reader n'est pas un string donc ça ne marche pas 
     //\PhpOffice\PhpWord\Shared\Html::addHtml($section_template, $reader);
+    $template_text = $reader->getSections();
+    // N'a plus l'erreur, on a bien un string comme variable mais rien ne s'affiche
+    $text_array = $template_text[0]->getElements();
+    
+
+    $section_template = $php_word->addSection();
+    //$section_template->addText($texte[0]->getText());
     //\PhpOffice\PhpWord\Shared\Html::addHtml($section_template, $template_text[0]->getText());
     
-    // N'a plus l'erreur, on a bien un string comme variable mais rien ne s'affiche
-    $texte = $template_text[0]->getText();
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section_template, $texte );
+    foreach($text_array as $text_run)
+    {
+        $section_template->addTextRun($text_run);
+    }
+   
+    //\PhpOffice\PhpWord\Shared\Html::addHtml($section_template, $texte );
 
     // test pour confirmer que la section fonctionne
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_template, 'test DU TEMPLATE');
@@ -145,6 +205,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     \PhpOffice\PhpWord\Shared\Html::addHtml($section, $texte);
 
 */
+
     $section_presentation = $php_word->addSection();
     
     
@@ -195,7 +256,6 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $path_docx = "../plancadre/". $plancadre[0]['No_PlanCadre'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
     $php_word->save($path_docx);
-
     
     header('Location: ../view/view_create_plancadre.php');
 }
