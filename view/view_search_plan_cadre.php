@@ -1,13 +1,15 @@
 <?php
   session_start();
 
+  include_once("../controller/interface_functions.php");
+  include_once("../model/model_search_plan_cadre.php");
+
   $currentVisitor = 'searchplancadre';
   $currentElaborator = 'searchplancadre';
   $currentConseiller = 'searchplancadre';
   $currentAdmin = 'searchplancadre';
-  
-  include_once("../controller/interface_functions.php");
-  include_once("../model/model_search_plan_cadre.php");
+
+  setCheckboxSessionValue();
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +40,7 @@
                 ?>
               </form>
               <form action='../controller/controller_show_valid_plancadre.php' method='post'>
-                <input type="checkbox" name="valid_only" id="valid_only" onchange="this.form.submit();"> 
+                <input type="checkbox" name="valid_only" id="valid_only" <?php updateCheckbox(); ?> onchange="this.form.submit();"> 
                 Afficher seulement les plans-cadres qui sont valides 
               </form>
               <br>
@@ -46,6 +48,8 @@
 
               <?php 
                 showPlancadre();
+
+                //echo "<script> alert('".$_SESSION['valid_only']."'); </script>";
               ?>
           </fieldset>
         </div>

@@ -26,6 +26,35 @@ function makeLinkPlancadre($plancadre)
     return '<a href ="' . $lien . '">Télécharger </a>';
 }
 
+// Si la variable de session de la checkbox n'existe pas, alors on la créé
+function setCheckboxSessionValue()
+{
+    if (!(isset($_SESSION["valid_only"])))
+    {
+        $_SESSION["valid_only"] = "unchecked";
+    }
+}
+
+// Coche ou décoche la checkbox selon la valeur de la variable de sesssion
+function updateCheckbox()
+{
+    if($_SESSION["valid_only"] == "checked")
+    {
+        echo "checked='checked'";
+    }
+
+    else if ($_SESSION["valid_only"] == "unchecked")
+    {
+        echo "";
+    }
+}
+
+// Fonction appelée lorsqu'une recherche a été effectuée
+function unsetSearchProgram()
+{
+    unset($_SESSION["recherche_code_programme"]);
+}
+
 function showPlanCadre()
 {
     $list = null;
@@ -36,21 +65,24 @@ function showPlanCadre()
         // tous les plans-cadre après avoir cherché pour un programme en particulier, étant
         // donné que la page ne se réactualise pas toute seule
         // C'est aussi pour une question de "user friendly"
-        if($_SESSION['recherche_code_programme'] == "Tous")
+        if (isset($_SESSION['valid_only']) && $_SESSION['valid_only'] == "unchecked" && $_SESSION['recherche_code_programme'] == "Tous")
         {
             $list = selectAllPlanCadre();
+            unsetSearchProgram();
         }
 
         // Recherche des plans-cadre officiels à travers tous les plans-cadre
-        else if(isset($_SESSION['valid_only']) && $_SESSION['recherche_code_programme'] == "Tous")
+        else if(isset($_SESSION['valid_only']) && $_SESSION['valid_only'] == "checked" && $_SESSION['recherche_code_programme'] == "Tous")
         {
             $list = getPlanCadreOfficielProgram("Adopté", $_SESSION['recherche_code_programme']);
+            unsetSearchProgram();
         }
 
         // Recherche les plans-cadre officiels spécifiques à un programme
-        else if(isset($_SESSION['valid_only']))
+        else if(isset($_SESSION['valid_only']) && $_SESSION['valid_only'] == "checked")
         {
             $list = fetchAllPlanCadreOfficiel("Adopté");
+            unsetSearchProgram();
         }
 
         // Chercher toutes les versions de tous les plans-cadre spécifiques à un programme
@@ -58,16 +90,23 @@ function showPlanCadre()
         {
             // On va chercher les plans-cadre
             $list = fetchPlanCadreProgram($_SESSION["recherche_code_programme"]);
-            // On "unset" la variable une fois que la recherche est faite
+            unsetSearchProgram();
         }
+
+        //unset($_SESSION["recherche_code_programme"]);
     }
 
-    // Lorsque l'utilisateur réactualise la page de lui-même
-    else
+    // On a pas le choix de traiter les if suivant, bien que leur contenu soit répétif aux if plus haut. C'est pour une question de user friendly
+    // si l'utilisateur actualise la page de lui-même et également pour bien traiter les variables de session dans ce cas.
+    else if(isset($_SESSION['valid_only']) && $_SESSION['valid_only'] == "unchecked")
     {
         $list = selectAllPlanCadre();
-        unset($_SESSION["recherche_code_programme"]);
-        unset($_SESSION["valid_only"]);
+        //unset($_SESSION["valid_only"]);
+    }
+
+    else if(isset($_SESSION['valid_only']) && $_SESSION['valid_only'] == "checked")
+    {
+        $list = fetchAllPlanCadreOfficiel("Adopté");
     }
 
     echo "<table>".
