@@ -130,14 +130,16 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $style_table = array('borderColor'=>'006699',
               'borderSize'=>6,
               'cellMargin'=>50,
-              'spaceBefore'=>100,
-              'spaceAfter'=>100);
+              'align'=>center);
 
     $style_frist_row = array('bgcolor'=>'66BBFF');
 
     $php_word->addTableStyle('style_table', $style_table, $style_frist_row);
 
     $table = $section_template->addTable('style_table');
+
+    $table->addRow(200);
+    $table->addCell(3600)->addText("TITRE");
 
     $table->addRow(200);
     $table->addCell(1200)->addText("");
