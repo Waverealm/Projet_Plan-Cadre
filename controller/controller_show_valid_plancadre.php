@@ -6,16 +6,16 @@
 
 	session_start();
 	
-	if (isset($_SESSION["valid_only"]))
+	if (isset($_SESSION["official_only"]))
 	{
-		if($_SESSION["valid_only"] == "unchecked")
+		if($_SESSION["official_only"] == "unchecked")
 		{
-			$_SESSION['valid_only'] = "checked";
+			$_SESSION['official_only'] = "checked";
 		}
 
-		else if($_SESSION['valid_only'] == "checked")
+		else if($_SESSION['official_only'] == "checked")
 		{
-			$_SESSION['valid_only'] = "unchecked";
+			$_SESSION['official_only'] = "unchecked";
 		}
 	}
 

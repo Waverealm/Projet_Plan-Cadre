@@ -29,21 +29,21 @@ function makeLinkPlancadre($plancadre)
 // Si la variable de session de la checkbox n'existe pas, alors on la créé
 function setCheckboxSessionValue()
 {
-    if (!(isset($_SESSION["valid_only"])))
+    if (!(isset($_SESSION["official_only"])))
     {
-        $_SESSION["valid_only"] = "unchecked";
+        $_SESSION["official_only"] = "unchecked";
     }
 }
 
 // Coche ou décoche la checkbox selon la valeur de la variable de sesssion
 function updateCheckbox()
 {
-    if($_SESSION["valid_only"] == "checked")
+    if($_SESSION["official_only"] == "checked")
     {
         echo "checked='checked'";
     }
 
-    else if ($_SESSION["valid_only"] == "unchecked")
+    else if ($_SESSION["official_only"] == "unchecked")
     {
         echo "";
     }
@@ -76,27 +76,27 @@ function showPlanCadre()
         // tous les plans-cadre après avoir cherché pour un programme en particulier, étant
         // donné que la page ne se réactualise pas toute seule
         // C'est aussi pour une question de "user friendly"
-        if (isset($_SESSION['valid_only']) && $_SESSION['valid_only'] == "unchecked" && $_SESSION['recherche_code_programme'] == "Tous")
+        // Rechercher toutes les versions de tous les plans-cadre
+        if (isset($_SESSION['official_only']) && $_SESSION['official_only'] == "unchecked" && $_SESSION['recherche_code_programme'] == "Tous")
         {
             $list = selectAllPlanCadre();
         }
 
-        // Recherche des plans-cadre officiels à travers tous les plans-cadre
-        else if(isset($_SESSION['valid_only']) && $_SESSION['valid_only'] == "checked" && $_SESSION['recherche_code_programme'] == "Tous")
+        // Recherche les plans-cadre officiels à travers tous les plans-cadre existants
+        else if(isset($_SESSION['official_only']) && $_SESSION['official_only'] == "checked" && $_SESSION['recherche_code_programme'] == "Tous")
         {
             $list = fetchAllPlanCadreOfficiel("Adopté");
         }
 
-        // Recherche les plans-cadre officiels spécifiques à un programme
-        else if(isset($_SESSION['valid_only']) && $_SESSION['valid_only'] == "checked")
+        // Recherche tous les plans-cadre officiels spécifiques à un programme
+        else if(isset($_SESSION['official_only']) && $_SESSION['official_only'] == "checked")
         {
             $list = getPlanCadreOfficielProgram("Adopté", $_SESSION['recherche_code_programme']);
         }
 
-        // Chercher toutes les versions de tous les plans-cadre spécifiques à un programme
+        // Rechercher toutes les versions de tous les plans-cadre spécifiques à un programme
         else
         {
-            // On va chercher les plans-cadre
             $list = fetchPlanCadreProgram($_SESSION["recherche_code_programme"]);
         }
     }
