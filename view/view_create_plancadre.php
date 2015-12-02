@@ -88,15 +88,15 @@
             <TABLE>
                 <tr>
                     <td>
-                        <label class="control-label col-md-2">
-                            Titre du cours : 
+                        <input type="hidden" name="NomCours" value="Titre du cours :">
+                        Titre du cours :
                             <?php
                                 echo $plancadre[0]["NomCours"];
                             ?>
                         </label>
                     </td>
                     <td>
-                        <label class="control-label col-md-2">
+                        <input type="hidden" name="CodeCours" value="Numero du cours :">
                             Numero du cours : 
                             <?php
                                 echo $plancadre[0]["CodeCours"];
@@ -104,7 +104,7 @@
                         </label>
                     </td>
                     <td>
-                        <label class="control-label col-md-2">
+                        <input type="hidden" name="Programme" value="Programme :">
                             Programme : 
                             <?php
                                 echo $plancadre[0]["CodeProgramme"] . " " . $plancadre[0]["NomProgramme"];
@@ -114,7 +114,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label class="control-label col-md-2">
+                        <input type="hidden" name="Ponderation" value="Pondération :">
                             Pondération : 
                             <?php
                                 echo $plancadre[0]["Ponderation"];
@@ -122,7 +122,7 @@
                         </label>
                     </td>
                     <td>
-                        <label class="control-label col-md-2">
+                        <input type="hidden" name="NombreUnites" value="Nombre d'unité(s) :">
                             Nombre d'unité(s) : 
                             <?php
                                 $nb_unites = $plancadre[0]["NombreUnites"];
@@ -142,7 +142,7 @@
                         </label>
                     </td>
                     <td>
-                        <label class="control-label col-md-2">
+                        <input type="hidden" name="Prealables" value="Préalable(s) :">
                             Préalable(s) : 
                             <?php
 
