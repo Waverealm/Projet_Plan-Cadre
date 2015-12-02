@@ -49,23 +49,60 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $path_apprentissage = "../plancadre/". $_POST['save_path'] . "apprentissage" . ".txt";
 
  
+    // création du fichier
+    // fopen(path, write/read)
 
-    // création d'un nouveau document
+    $fichier_presentation = fopen($path_presentation, "w");
+    $fichier_integration = fopen($path_integration, "w");
+    $fichier_evalutation = fopen($path_evalutation, "w");
+    $fichier_competences = fopen($path_competences, "w");
+    $fichier_apprentissage = fopen($path_apprentissage, "w");
+
+    //écrire les valeurs dans les fichiers
+    fwrite($fichier_presentation, $presentation);
+    fwrite($fichier_integration, $integration);
+    fwrite($fichier_evalutation, $evaluation);
+    fwrite($fichier_competences, $competences);
+    fwrite($fichier_apprentissage, $apprentissage);
+
+ 
+/*
+    Début de la création du document.
+    Le code qui suit pourrait être considéré comme un template si 
+    on arrive à le paramétrer correctement.
+*/
     $php_word = new \PhpOffice\PhpWord\PhpWord();
 
+    // variable avec un nom significatif pour mieux expliquer le code qui suit
+    $saut_ligne = "";
+    /*
+        $section->addText($saut_ligne);
+        permet d'écrire un paragraphe vide ce qui
+        va prendre une ligne au complet pour rien
+        écrire. Donc au final on obtient un saut 
+        de ligne
+    */
 
+
+    // début de la définition des différents styles
+    // possibilité d'exporter cela dans un autre document
+    // pour mieux paramétrer le
+    // http://phpword.readthedocs.org/en/latest/styles.html
     $style_font_titre = array('size'=> 14,
         'bold'=>true);
 
     $style_font_texte = array('size'=>12);
 
+    $style_align_right = array("align"=>"right");
+    $php_word->addParagraphStyle( "style_align_right", $style_align_right);
+
+    $style_align_center = array("align"=>"center");
+    $php_word->addParagraphStyle( "style_align_center", $style_align_center);
+
     $style_table = array('width'=> 5000,
-        'borderColor'=>'006699',
         'borderSize'=>6,
         'cellMargin'=>50,
         'align'=>'center');
-
-
     $php_word->addTableStyle('style_table', $style_table, $style_first_row);
 
     $style_first_row = array('bgcolor'=>'66BBFF');
@@ -79,27 +116,23 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $cell_width = 2800;
 
+    // Fin de la définiton des styles
+
+
 
     $section_template = $php_word->addSection();
 
     $section_template->addText("Collège Lionel-Groulx");
     
-    $style_align_right = array("align"=>"right");
-    $php_word->addParagraphStyle( "style_align_right", $style_align_right);
-
-    $style_align_center = array("align"=>"center");
-    $php_word->addParagraphStyle( "style_align_center", $style_align_center);
-
     $section_template->addText("Placeholder pour le type d'enseignement", null, "style_align_right");
     $section_template->addText( $programme_cours,
     null, "style_align_right" );
 
-    // faire de l'espace
-    $section_template->addText("");
+    $section_template->addText($saut_ligne);
 
     $section_template->addText("Plan-cadre en élaboration", $style_font_titre, $style_align_center);
 
-    $section_template->addText("");
+    $section_template->addText($saut_ligne);
 
 
     $table = $section_template->addTable('style_table');
@@ -119,33 +152,28 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $table->addCell($cell_width)->addText($ponderation_cours, null, $style_align_center);
     $table->addCell($cell_width)->addText($nombre_unites_cours, null, $style_align_center);
     $table->addCell($cell_width)->addText("test", null, $style_align_center);
-    // fin du template et début de l'ajout des parties du plan-cadre 
+
+    $section_template->addText("");
 
     // changer pour ajouter un style à du texte ?
     $debut_balise_titre = '<p  style="size:16px; text-align:center; "><strong>';
     $fin_balise_titre = '</strong></p>';
 
 
-/*
-    Exemple d'une section
-    $section = $php_word->addSection();
-    // Titre de la section
-    $titre = "un titre";
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section, $debut_balise_titre . $titre . $fin_balise_titre);
-    // Le texte de la section
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section, $texte);
+    $section_presentation = $section_template;
 
-*/
-
-    $section_presentation = $php_word->addSection();
-    
-    // l'alignement ne fonctionne pas en texte mais la taille du texte fonctionne
-    //$titre_presentation = 'Présentation du cours';
-    //$section_presentation->addTitle( $titre_presentation, 'style_titre' );
-
-    // l'alignement fonctionne en html mais pas la taille du texte
-    
     $titre = "Présentation du cours";
+    
+    // nouvelle table
+    $table_presentation = $section_presentation->addTable('style_table');
+    
+    $table_presentation->addRow($style_row);
+    $table_presentation->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
+
+    //$table_presentation->addRow($style_row);
+
+    //$table_presentation->addCell($cell_width)->addText($presentation);
+
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $debut_balise_titre . $titre . $fin_balise_titre);
 
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $presentation);
