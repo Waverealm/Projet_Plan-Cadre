@@ -101,19 +101,11 @@ function showPlanCadre()
         }
     }
 
-    /*// On a pas le choix de traiter les if suivant, bien que leur contenu soit répétif aux if plus haut. C'est pour une question de user friendly
-    // si l'utilisateur actualise la page de lui-même et également pour bien traiter les variables de session dans ce cas.
-    else if(isset($_SESSION['valid_only']) && $_SESSION['valid_only'] == "unchecked")
+    // Si la variable de session n'a pas encore été créé (c'est le cas lorsqu'on un utilisateur vient de se connecter), il faut traiter cette situation
+    else
     {
         $list = selectAllPlanCadre();
-        //unset($_SESSION["valid_only"]);
-        unset($_SESSION["recherche_code_programme"]);
     }
-
-    else if(isset($_SESSION['valid_only']) && $_SESSION['valid_only'] == "checked")
-    {
-        $list = fetchAllPlanCadreOfficiel("Adopté");
-    }*/
 
     echo "<table>".
             "<tr>".

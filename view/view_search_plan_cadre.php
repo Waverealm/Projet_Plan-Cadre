@@ -41,7 +41,7 @@
               </form>
               <form action='../controller/controller_show_valid_plancadre.php' method='post'>
                 <input type="checkbox" name="valid_only" id="valid_only" <?php updateCheckbox(); ?> onchange="this.form.submit();"> 
-                Afficher seulement les plans-cadres qui sont valides 
+                Afficher seulement les plans-cadre officiels
               </form>
               <br>
               <br>
