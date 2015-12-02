@@ -48,90 +48,25 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $path_competences = "../plancadre/". $_POST['save_path'] . "competences" . ".txt";
     $path_apprentissage = "../plancadre/". $_POST['save_path'] . "apprentissage" . ".txt";
 
-    /*
-    plus de besoin du template
-    // création du fichier
-    // fopen(path, write/read)
-
-    $fichier_presentation = fopen($path_presentation, "w");
-    $fichier_integration = fopen($path_integration, "w");
-    $fichier_evalutation = fopen($path_evalutation, "w");
-    $fichier_competences = fopen($path_competences, "w");
-    $fichier_apprentissage = fopen($path_apprentissage, "w");
-
-    //écrire les valeurs dans les fichiers
-    fwrite($fichier_presentation, $presentation);
-    fwrite($fichier_integration, $integration);
-    fwrite($fichier_evalutation, $evaluation);
-    fwrite($fichier_competences, $competences);
-    fwrite($fichier_apprentissage, $apprentissage);
-
-    //sauvegarder le tout dans la bd
-    updatePlanCadre_Fichiers(
-        $path_presentation,
-        $path_integration,
-        $path_evalutation,
-        $path_competences,
-        $path_apprentissage,
-        $_POST['id_plancadre']
-        );
-
-
-    // document word fait à partir du template
-    $plancadre = fetchPlanCadreElaboration_PlanCadre( $_POST['id_plancadre'] );
-    $prealable_cours = fetchPrealableCours_Id( $plancadre[0]['CodeCours'] );
-
-    $path_docx_template = "../plancadre/". $plancadre[0]['No_PlanCadre'] . "_" . $plancadre[0]['CodeCours'] . "_template". ".docx";
-
-    $template_processor = new \PhpOffice\PhpWord\TemplateProcessor('../assets/template_elaboration.docx');
-
-    $template_processor->setValue('type_enseignement', $plancadre[0]['TypeCours']);
-    $template_processor->setValue('nom_programme', $plancadre[0]['NomProgramme']);
-    $template_processor->setValue('code_programme', $plancadre[0]['CodeProgramme']);
-    $template_processor->setValue('nom_discipline', 'PLACEHOLDER');
-    $template_processor->setValue('nom_cours', $plancadre[0]['NomCours']);
-    $template_processor->setValue('code_cours', $plancadre[0]['CodeCours']);
-    $template_processor->setValue('ponderation_cours', $plancadre[0]['Ponderation']);
-    $template_processor->setValue('unite_cours', $plancadre[0]['NombreUnites']);
-
-    // extraire le code des cours prealable et l'entrer 
-    // si il n'a pas de cours prealable entrer "aucun" 
-    //$document->setValue('prealable_cours', 'u');
-
-    $template_processor->saveAs($path_docx_template);
-
-    plus de besoin du template
-    */
-
+ 
 
     // création d'un nouveau document
     $php_word = new \PhpOffice\PhpWord\PhpWord();
 
 
-    $section_template = $php_word->addSection();
+    $style_font_titre = array('size'=> 14,
+        'bold'=>true);
 
-
-    $section_template->addText("Collège Lionel-Groulx");
-
-    
-    $style_align_right = array("align"=>"right");
-    $php_word->addParagraphStyle( "style_align_right", $style_align_right);
-
-    $section_template->addText("Placeholder pour le type d'enseignement", null, "style_align_right");
-    $section_template->addText( $programme_cours,
-    null, "style_align_right" );
-
-    // faire de l'espace
-    $section_template->addText("");
-
-
-    $style_titre = array("");
+    $style_font_texte = array('size'=>12);
 
     $style_table = array('width'=> 5000,
         'borderColor'=>'006699',
         'borderSize'=>6,
         'cellMargin'=>50,
         'align'=>'center');
+
+
+    $php_word->addTableStyle('style_table', $style_table, $style_first_row);
 
     $style_first_row = array('bgcolor'=>'66BBFF');
 
@@ -144,25 +79,46 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $cell_width = 2800;
 
-    $php_word->addTableStyle('style_table', $style_table, $style_first_row);
+
+    $section_template = $php_word->addSection();
+
+    $section_template->addText("Collège Lionel-Groulx");
+    
+    $style_align_right = array("align"=>"right");
+    $php_word->addParagraphStyle( "style_align_right", $style_align_right);
+
+    $style_align_center = array("align"=>"center");
+    $php_word->addParagraphStyle( "style_align_center", $style_align_center);
+
+    $section_template->addText("Placeholder pour le type d'enseignement", null, "style_align_right");
+    $section_template->addText( $programme_cours,
+    null, "style_align_right" );
+
+    // faire de l'espace
+    $section_template->addText("");
+
+    $section_template->addText("Plan-cadre en élaboration", $style_font_titre, $style_align_center);
+
+    $section_template->addText("");
+
 
     $table = $section_template->addTable('style_table');
 
     $table->addRow($style_row);
 
-    $table->addCell($cell_width, $style_cellule_titre)->addText("TITRE");
+    $table->addCell($cell_width, $style_cellule_titre)->addText("Identification du cours", $style_font_titre, $style_align_center);
 
 
     $table->addRow($style_row);   
-    $table->addCell($cell_width)->addText("");
-    $table->addCell($cell_width)->addText($nom_cours);
-    $table->addCell($cell_width)->addText($code_cours);
+    $table->addCell($cell_width)->addText("Discipline", null, $style_align_center);
+    $table->addCell($cell_width)->addText($nom_cours, null, $style_align_center);
+    $table->addCell($cell_width)->addText($code_cours, null, $style_align_center);
 
 
     $table->addRow($style_row);
-    $table->addCell($cell_width)->addText($ponderation_cours);
-    $table->addCell($cell_width)->addText($nombre_unites_cours);
-    $table->addCell($cell_width)->addText("test");
+    $table->addCell($cell_width)->addText($ponderation_cours, null, $style_align_center);
+    $table->addCell($cell_width)->addText($nombre_unites_cours, null, $style_align_center);
+    $table->addCell($cell_width)->addText("test", null, $style_align_center);
     // fin du template et début de l'ajout des parties du plan-cadre 
 
     // changer pour ajouter un style à du texte ?
@@ -284,4 +240,58 @@ function readFrom($path)
     
 
 
-?>
+   /*
+    code du template
+    plus de besoin du template
+    // création du fichier
+    // fopen(path, write/read)
+
+    $fichier_presentation = fopen($path_presentation, "w");
+    $fichier_integration = fopen($path_integration, "w");
+    $fichier_evalutation = fopen($path_evalutation, "w");
+    $fichier_competences = fopen($path_competences, "w");
+    $fichier_apprentissage = fopen($path_apprentissage, "w");
+
+    //écrire les valeurs dans les fichiers
+    fwrite($fichier_presentation, $presentation);
+    fwrite($fichier_integration, $integration);
+    fwrite($fichier_evalutation, $evaluation);
+    fwrite($fichier_competences, $competences);
+    fwrite($fichier_apprentissage, $apprentissage);
+
+    //sauvegarder le tout dans la bd
+    updatePlanCadre_Fichiers(
+        $path_presentation,
+        $path_integration,
+        $path_evalutation,
+        $path_competences,
+        $path_apprentissage,
+        $_POST['id_plancadre']
+        );
+
+
+    // document word fait à partir du template
+    $plancadre = fetchPlanCadreElaboration_PlanCadre( $_POST['id_plancadre'] );
+    $prealable_cours = fetchPrealableCours_Id( $plancadre[0]['CodeCours'] );
+
+    $path_docx_template = "../plancadre/". $plancadre[0]['No_PlanCadre'] . "_" . $plancadre[0]['CodeCours'] . "_template". ".docx";
+
+    $template_processor = new \PhpOffice\PhpWord\TemplateProcessor('../assets/template_elaboration.docx');
+
+    $template_processor->setValue('type_enseignement', $plancadre[0]['TypeCours']);
+    $template_processor->setValue('nom_programme', $plancadre[0]['NomProgramme']);
+    $template_processor->setValue('code_programme', $plancadre[0]['CodeProgramme']);
+    $template_processor->setValue('nom_discipline', 'PLACEHOLDER');
+    $template_processor->setValue('nom_cours', $plancadre[0]['NomCours']);
+    $template_processor->setValue('code_cours', $plancadre[0]['CodeCours']);
+    $template_processor->setValue('ponderation_cours', $plancadre[0]['Ponderation']);
+    $template_processor->setValue('unite_cours', $plancadre[0]['NombreUnites']);
+
+    // extraire le code des cours prealable et l'entrer 
+    // si il n'a pas de cours prealable entrer "aucun" 
+    //$document->setValue('prealable_cours', 'u');
+
+    $template_processor->saveAs($path_docx_template);
+
+    plus de besoin du template
+    */

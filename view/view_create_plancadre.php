@@ -101,7 +101,7 @@
                             $codeCours = $plancadre[0]["CodeCours"];
                             echo  $codeCours;
                         ?>
-                        <input type="hidden" name="CodeCours" value="Numero du cours : <?php echo $codeCours; ?>">
+                        <input type="hidden" name="CodeCours" value="Numéro du cours : <?php echo $codeCours; ?>">
                     </td>
                     <td>
                         Programme :
@@ -119,7 +119,7 @@
                             $ponderation = $plancadre[0]["Ponderation"];
                             echo $ponderation;
                         ?>
-                        <input type="hidden" name="Ponderation" value="Pondération :<?php echo $ponderation; ?>">
+                        <input type="hidden" name="Ponderation" value="Pondération : <?php echo $ponderation; ?>">
 
                     </td>
                     <td>
@@ -139,7 +139,7 @@
                                 }
                                 echo $nb_unites;
                             ?>
-                        <input type="hidden" name="NombreUnites" value="Nombre d'unité(s) :<?php echo $nb_unites; ?>">
+                        <input type="hidden" name="NombreUnites" value="Nombre d'unité(s) : <?php echo $nb_unites; ?>">
                     </td>
                     <td>
                         Préalable(s) :
