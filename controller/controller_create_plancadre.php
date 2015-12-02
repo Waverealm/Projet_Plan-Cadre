@@ -127,39 +127,48 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $style_titre = array("");
 
-    $style_table = array('borderColor'=>'006699',
-              'borderSize'=>6,
-              'cellMargin'=>50,
-              'align'=>center);
+    $style_table = array('width'=> 5000,
+        'borderColor'=>'006699',
+        'borderSize'=>6,
+        'cellMargin'=>50,
+        'align'=>'center');
 
-    $style_frist_row = array('bgcolor'=>'66BBFF');
+    $style_first_row = array('bgcolor'=>'66BBFF');
 
-    $php_word->addTableStyle('style_table', $style_table, $style_frist_row);
+    $style_cellule_titre = array('valign'=>'center',
+        'gridspan'=> 3);
+
+    $style_row = array('cantSplit'=>true,
+        'exactHeight'=>500
+        );
+
+    $cell_width = 2800;
+
+    $php_word->addTableStyle('style_table', $style_table, $style_first_row);
 
     $table = $section_template->addTable('style_table');
 
-    $table->addRow(200);
-    $table->addCell(3600)->addText("TITRE");
+    $table->addRow($style_row);
 
-    $table->addRow(200);
-    $table->addCell(1200)->addText("");
-    $table->addCell(1200)->addText($nom_cours);
-    $table->addCell(1200)->addText($code_cours);
-
-    $table->addRow(200);
-    $table->addCell(1200)->addText($ponderation_cours);
-    $table->addCell(1200)->addText($nombre_unites_cours);
-    $table->addCell(1200)->addText("");
+    $table->addCell($cell_width, $style_cellule_titre)->addText("TITRE");
 
 
-    // test pour confirmer que la section fonctionne
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section_template, 'test DU TEMPLATE');
+    $table->addRow($style_row);   
+    $table->addCell($cell_width)->addText("");
+    $table->addCell($cell_width)->addText($nom_cours);
+    $table->addCell($cell_width)->addText($code_cours);
 
 
+    $table->addRow($style_row);
+    $table->addCell($cell_width)->addText($ponderation_cours);
+    $table->addCell($cell_width)->addText($nombre_unites_cours);
+    $table->addCell($cell_width)->addText("test");
     // fin du template et début de l'ajout des parties du plan-cadre 
 
+    // changer pour ajouter un style à du texte ?
     $debut_balise_titre = '<p  style="size:16px; text-align:center; "><strong>';
     $fin_balise_titre = '</strong></p>';
+
 
 /*
     Exemple d'une section

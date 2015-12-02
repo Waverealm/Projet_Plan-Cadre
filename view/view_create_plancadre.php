@@ -93,7 +93,7 @@
                             $nomCours = $plancadre[0]["NomCours"];
                             echo  $nomCours;
                         ?>
-                        <input type="hidden" name="NomCours" value="Titre du cours :<?php echo $nomCours; ?>">
+                        <input type="hidden" name="NomCours" value="Titre du cours : <?php echo $nomCours; ?>">
                     </td>
                     <td>
                         Numero du cours :
@@ -101,7 +101,7 @@
                             $codeCours = $plancadre[0]["CodeCours"];
                             echo  $codeCours;
                         ?>
-                        <input type="hidden" name="CodeCours" value="Numero du cours :<?php echo $codeCours; ?>">
+                        <input type="hidden" name="CodeCours" value="Numero du cours : <?php echo $codeCours; ?>">
                     </td>
                     <td>
                         Programme :
