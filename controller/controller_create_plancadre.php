@@ -20,10 +20,17 @@ require_once '../assets/PHPWord-Master/src/PhpWord/Autoloader.php';
 if( isset($_POST['submit']) || isset($_POST['save']) ) 
 {
 
-
-
     // Prend les valeurs qui ont été envoyé par la méthode post
     // et les place dans des variables
+
+    $nom_cours = $_POST['NomCours'];
+    $code_cours = $_POST['CodeCours'];
+    $programme_cours = $_POST['Programme'];
+    $ponderation_cours = $_POST['Ponderation'];
+    $nombre_unites_cours = $_POST['NombreUnites'];
+    $prealable_cours = $_POST['Prealables'];
+
+    // le texte
     $presentation = $_POST['Presentation'];
     $integration = $_POST['ObjectifsIntegration'];
     $evaluation = $_POST['Evaluation'];
@@ -40,7 +47,6 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $path_evalutation = "../plancadre/". $_POST['save_path'] . "evaluation" . ".txt";
     $path_competences = "../plancadre/". $_POST['save_path'] . "competences" . ".txt";
     $path_apprentissage = "../plancadre/". $_POST['save_path'] . "apprentissage" . ".txt";
-
 
     /*
     plus de besoin du template
@@ -97,48 +103,29 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     plus de besoin du template
     */
 
-    // lire le fichier pour ensuite ré-écrire son contenu et écrire le reste à la suite?
 
     // création d'un nouveau document
     $php_word = new \PhpOffice\PhpWord\PhpWord();
 
 
-    /*
-    //******************************************************************************************
-    // devrait peut-être extraire le texte mais je n'arrive pas à trouver comment
-    $reader = \PhpOffice\PhpWord\IOFactory::load($path_docx_template);
-    //******************************************************************************************
-
-    $template_text = $reader->getSections();
-
-    $text_array = $template_text[0]->getElements();
-    
     $section_template = $php_word->addSection();
-    $text_run = $section_template->addTextRun();
-
-    foreach($text_array as $text)
-    {
-        $section_template->addTextRun($text);
-    }
-    */
-
-    $section_template = $php_word->addSection();
-
 
 
     $section_template->addText("Collège Lionel-Groulx");
 
+    
     $style_align_right = array("align"=>"right");
     $php_word->addParagraphStyle( "style_align_right", $style_align_right);
 
     $section_template->addText("Placeholder pour le type d'enseignement", null, "style_align_right");
-    $section_template->addText( $plancadre[0]['NomProgramme'] . " " . $plancadre[0]['CodeProgramme'] ,
+    $section_template->addText( $programme_cours,
     null, "style_align_right" );
 
     // faire de l'espace
     $section_template->addText("");
 
-    $style_titre = array();
+
+    $style_titre = array("");
 
     $style_table = array('borderColor'=>'006699',
               'borderSize'=>6,
@@ -154,12 +141,12 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $table->addRow(200);
     $table->addCell(1200)->addText("");
-    $table->addCell(1200)->addText($plancadre[0]['NomCours']);
-    $table->addCell(1200)->addText($plancadre[0]['CodeCours']);
+    $table->addCell(1200)->addText($nom_cours);
+    $table->addCell(1200)->addText($code_cours);
 
     $table->addRow(200);
-    $table->addCell(1200)->addText($plancadre[0]['Ponderation']);
-    $table->addCell(1200)->addText($plancadre[0]['NombreUnites']);
+    $table->addCell(1200)->addText($ponderation_cours);
+    $table->addCell(1200)->addText($nombre_unites_cours);
     $table->addCell(1200)->addText("");
 
 
@@ -228,7 +215,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_apprentissage, $apprentissage);
 
-
+    $plancadre = fetchPlanCadreElaboration_PlanCadre( $_POST['id_plancadre'] );
     $path_docx = "../plancadre/". $plancadre[0]['No_PlanCadre'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
     $php_word->save($path_docx);
     

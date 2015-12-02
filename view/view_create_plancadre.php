@@ -93,7 +93,7 @@
                             $nomCours = $plancadre[0]["NomCours"];
                             echo  $nomCours;
                         ?>
-                        <input type="hidden" name="NomCours" value="Titre du cours :<?php echo $nomCours ?>">
+                        <input type="hidden" name="NomCours" value="Titre du cours :<?php echo $nomCours; ?>">
                     </td>
                     <td>
                         Numero du cours :
@@ -101,7 +101,7 @@
                             $codeCours = $plancadre[0]["CodeCours"];
                             echo  $codeCours;
                         ?>
-                        <input type="hidden" name="CodeCours" value="Numero du cours :<?php echo $codeCours ?>">
+                        <input type="hidden" name="CodeCours" value="Numero du cours :<?php echo $codeCours; ?>">
                     </td>
                     <td>
                         Programme :
@@ -109,7 +109,7 @@
                             $programme = $plancadre[0]["CodeProgramme"] . " " . $plancadre[0]["NomProgramme"];
                             echo $programme;
                         ?>
-                        <input type="hidden" name="Programme" value="Programme :<?php echo $programme ?>">
+                        <input type="hidden" name="Programme" value="<?php echo $programme; ?>">
                     </td>
                 </tr>
                 <tr>
@@ -119,7 +119,7 @@
                             $ponderation = $plancadre[0]["Ponderation"];
                             echo $ponderation;
                         ?>
-                        <input type="hidden" name="Ponderation" value="Pondération :<?php echo $ponderation ?>">
+                        <input type="hidden" name="Ponderation" value="Pondération :<?php echo $ponderation; ?>">
 
                     </td>
                     <td>
@@ -139,17 +139,17 @@
                                 }
                                 echo $nb_unites;
                             ?>
-                        <input type="hidden" name="NombreUnites" value="Nombre d'unité(s) :<?php echo $nb_unites ?>">
+                        <input type="hidden" name="NombreUnites" value="Nombre d'unité(s) :<?php echo $nb_unites; ?>">
                     </td>
                     <td>
                         Préalable(s) :
                         <?php
-
+                        $prealables = "";
                         if(!empty($prealable) )
                         {
                             for ($i = 0; $i < count($prealable); $i++)
                             {
-                                echo
+                                $prealables .=
                                     "<ul>"
                                     ."<li>"
                                     . $prealable[0]["Cours_CodeCoursPrealable"]
@@ -160,11 +160,11 @@
                         }
                         else
                         {
-                            $aucunPrealables = "Aucun";
-                            echo $aucunPrealables;
+                            $prealables = "Aucun";
                         }
+                        echo $prealables;
                         ?>
-                        <input type="hidden" name="Prealables" value="Préalable(s) :">
+                        <input type="hidden" name="Prealables" value="Préalable(s) : <?php echo $prealables; ?>">
                     </td>
                 </tr>
             </TABLE>
