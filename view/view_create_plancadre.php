@@ -88,38 +88,39 @@
             <TABLE>
                 <tr>
                     <td>
-                        <input type="hidden" name="NomCours" value="Titre du cours :">
                         Titre du cours :
-                            <?php
-                                echo $plancadre[0]["NomCours"];
-                            ?>
-                        </label>
+                        <?php
+                            $nomCours = $plancadre[0]["NomCours"];
+                            echo  $nomCours;
+                        ?>
+                        <input type="hidden" name="NomCours" value="Titre du cours :<?php echo $nomCours ?>">
                     </td>
                     <td>
-                        <input type="hidden" name="CodeCours" value="Numero du cours :">
-                            Numero du cours : 
-                            <?php
-                                echo $plancadre[0]["CodeCours"];
-                            ?>
-                        </label>
+                        Numero du cours :
+                        <?php
+                            $codeCours = $plancadre[0]["CodeCours"];
+                            echo  $codeCours;
+                        ?>
+                        <input type="hidden" name="CodeCours" value="Numero du cours :<?php echo $codeCours ?>">
                     </td>
                     <td>
-                        <input type="hidden" name="Programme" value="Programme :">
-                            Programme : 
-                            <?php
-                                echo $plancadre[0]["CodeProgramme"] . " " . $plancadre[0]["NomProgramme"];
-                            ?>
-                        </label>
+                        Programme :
+                        <?php
+                            $programme = $plancadre[0]["CodeProgramme"] . " " . $plancadre[0]["NomProgramme"];
+                            echo $programme;
+                        ?>
+                        <input type="hidden" name="Programme" value="Programme :<?php echo $programme ?>">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="hidden" name="Ponderation" value="Pondération :">
-                            Pondération : 
-                            <?php
-                                echo $plancadre[0]["Ponderation"];
-                            ?>
-                        </label>
+                        Pondération :
+                        <?php
+                            $ponderation = $plancadre[0]["Ponderation"];
+                            echo $ponderation;
+                        ?>
+                        <input type="hidden" name="Ponderation" value="Pondération :<?php echo $ponderation ?>">
+
                     </td>
                     <td>
                         Nombre d'unité(s) : 
@@ -139,32 +140,31 @@
                                 echo $nb_unites;
                             ?>
                         <input type="hidden" name="NombreUnites" value="Nombre d'unité(s) :<?php echo $nb_unites ?>">
-                        </label>
                     </td>
                     <td>
-                        <input type="hidden" name="Prealables" value="Préalable(s) :">
-                            Préalable(s) : 
-                            <?php
+                        Préalable(s) :
+                        <?php
 
-                                if(!empty($prealable) )
-                                {
-                                    for ($i = 0; $i < count($prealable); $i++)
-                                    {
-                                        echo 
-                                        "<ul>"
-                                            ."<li>"
-                                                . $prealable[0]["Cours_CodeCoursPrealable"] 
-                                                . " " . $prealable[0]["NomCours"]
-                                            ."li>"
-                                        ."<ul>";
-                                    }
-                                }
-                                else
-                                {
-                                    echo "Aucun";
-                                }
-                            ?>
-                        </label>
+                        if(!empty($prealable) )
+                        {
+                            for ($i = 0; $i < count($prealable); $i++)
+                            {
+                                echo
+                                    "<ul>"
+                                    ."<li>"
+                                    . $prealable[0]["Cours_CodeCoursPrealable"]
+                                    . " " . $prealable[0]["NomCours"]
+                                    ."li>"
+                                    ."<ul>";
+                            }
+                        }
+                        else
+                        {
+                            $aucunPrealables = "Aucun";
+                            echo $aucunPrealables;
+                        }
+                        ?>
+                        <input type="hidden" name="Prealables" value="Préalable(s) :">
                     </td>
                 </tr>
             </TABLE>
