@@ -121,7 +121,9 @@ function showPlanCadre()
         {
             if ($_SESSION['user_type'] != "Élaborateur")
             {
-                echo "<th>Validation</th>";
+                echo "<th>Validation</th>".
+                     "<th>Adoption</th>";
+
             }
         }
 
@@ -133,6 +135,11 @@ function showPlanCadre()
         	{
         		$date_adoption = "pas adopté";
         	}
+
+            else
+            {
+                echo $date_adoption;
+            }
 
             $path = $row["Presentation_Cours"];
         	if( !isset($path) ) 
@@ -148,9 +155,19 @@ function showPlanCadre()
                     "<td>".$row["CodeCours"]."</td>".
                     "<td>".$row["NomCours"]."</td>".
                     "<td>".$row["CodeProgramme"]."</td>".
-                    "<td>".$row["NomProgramme"]."</td>".
-                    "<td>".$row["Etat"]."</td>".
-                    "<td>".$row["DateAjout"]."</td>".
+                    "<td>".$row["NomProgramme"]."</td>";
+                    
+            if($row["Officiel"] == 1)
+            {
+                echo "<td>Version officielle</td>";
+            }
+
+            else
+            {
+                echo "<td>".$row["Etat"]."</td>";
+            }
+
+            echo    "<td>".$row["DateAjout"]."</td>".
                     "<td>". $date_adoption ."</td>".
                     "<td>" . $document_link . "</td>";
 
@@ -164,9 +181,15 @@ function showPlanCadre()
                         echo "<td><a href ='../controller/controller_validate_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["No_PlanCadre"]."'>Valider</a></td>";
                     }
 
-                    else
+                    else if($row["Etat"] == "Validé")
                     {
                         echo "<td>Déjà validé</td>";
+                        echo "<td><a href ='../controller/controller_adopt_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["No_PlanCadre"]."'>Adopter</a></td>";
+                    }
+
+                    else if($row["Etat"] != "Adopté")
+                    {
+                        echo "<td>Déjà adopté</td>";
                     }
                     echo "</tr>";
                 }

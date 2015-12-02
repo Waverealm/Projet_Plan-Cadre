@@ -235,6 +235,20 @@
     return $result;
   }
 
+    function getPlanCadreOfficialState($classCode, $officiel)
+  {
+    $query = dbConnect()->prepare("CALL SELECT_OFFICIAL_PLAN_CADRE_CLASS(?,?)");
+
+    $query->bindParam(1, $etat, PDO::PARAM_STR);
+    $query->bindParam(2, $code_programme, PDO::PARAM_STR);
+
+    $query->execute();
+    $result = $query->fetchAll();
+    $query->closeCursor();
+
+    return $result;
+  }
+
 /*
   ------------------------------------------------------------------------------------
   fin des selects
@@ -452,6 +466,18 @@ function updatePlanCadreState($idPlanCadre,$state)
     $query->execute();
     $query->CloseCursor();
 }
+
+function setPlanCadreOfficial($noPlanCadre,$official)
+{
+    $query = dbConnect()->prepare( "CALL UPDATE_STATE_PLANCADRE(?,?)" );
+
+    $query->bindParam(1, $noPlanCadre, PDO::PARAM_STR);
+    $query->bindParam(2, $official, PDO::PARAM_STR);
+
+    $query->execute();
+    $query->CloseCursor();
+}
+
 
 
 /* 
