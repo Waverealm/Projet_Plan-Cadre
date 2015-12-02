@@ -122,8 +122,7 @@
                         </label>
                     </td>
                     <td>
-                        <input type="hidden" name="NombreUnites" value="Nombre d'unité(s) :">
-                            Nombre d'unité(s) : 
+                        Nombre d'unité(s) : 
                             <?php
                                 $nb_unites = $plancadre[0]["NombreUnites"];
                                 
@@ -131,14 +130,15 @@
                                 $decimale = $nb_unites - $entier;
                                 if($decimale > 0)
                                 {
-                                    echo $nb_unites;
+                                    $nb_unites = $nb_unites;
                                 }
                                 else
                                 {
-                                    echo $entier;
+                                    $nb_unites = $entier;
                                 }
-                                
+                                echo $nb_unites;
                             ?>
+                        <input type="hidden" name="NombreUnites" value="Nombre d'unité(s) :<?php echo $nb_unites ?>">
                         </label>
                     </td>
                     <td>

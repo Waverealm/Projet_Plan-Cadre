@@ -20,6 +20,8 @@ require_once '../assets/PHPWord-Master/src/PhpWord/Autoloader.php';
 if( isset($_POST['submit']) || isset($_POST['save']) ) 
 {
 
+
+
     // Prend les valeurs qui ont été envoyé par la méthode post
     // et les place dans des variables
     $presentation = $_POST['Presentation'];
@@ -39,6 +41,9 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $path_competences = "../plancadre/". $_POST['save_path'] . "competences" . ".txt";
     $path_apprentissage = "../plancadre/". $_POST['save_path'] . "apprentissage" . ".txt";
 
+
+    /*
+    plus de besoin du template
     // création du fichier
     // fopen(path, write/read)
 
@@ -74,10 +79,10 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $template_processor = new \PhpOffice\PhpWord\TemplateProcessor('../assets/template_elaboration.docx');
 
-    $template_processor->setValue('type_enseignement', 'PLACEHOLDER'/*$plancadre[0]['TypeCours']*/);
+    $template_processor->setValue('type_enseignement', $plancadre[0]['TypeCours']);
     $template_processor->setValue('nom_programme', $plancadre[0]['NomProgramme']);
     $template_processor->setValue('code_programme', $plancadre[0]['CodeProgramme']);
-    $template_processor->setValue('nom_discipline', 'PLACEHOLDER' /***********************/);
+    $template_processor->setValue('nom_discipline', 'PLACEHOLDER');
     $template_processor->setValue('nom_cours', $plancadre[0]['NomCours']);
     $template_processor->setValue('code_cours', $plancadre[0]['CodeCours']);
     $template_processor->setValue('ponderation_cours', $plancadre[0]['Ponderation']);
@@ -89,11 +94,16 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $template_processor->saveAs($path_docx_template);
 
+    plus de besoin du template
+    */
+
     // lire le fichier pour ensuite ré-écrire son contenu et écrire le reste à la suite?
 
     // création d'un nouveau document
     $php_word = new \PhpOffice\PhpWord\PhpWord();
 
+
+    /*
     //******************************************************************************************
     // devrait peut-être extraire le texte mais je n'arrive pas à trouver comment
     $reader = \PhpOffice\PhpWord\IOFactory::load($path_docx_template);
@@ -110,14 +120,56 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     {
         $section_template->addTextRun($text);
     }
-    
+    */
+
+    $section_template = $php_word->addSection();
+
+
+
+    $section_template->addText("Collège Lionel-Groulx");
+
+    $style_align_right = array("align"=>"right");
+    $php_word->addParagraphStyle( "style_align_right", $style_align_right);
+
+    $section_template->addText("Placeholder pour le type d'enseignement", null, "style_align_right");
+    $section_template->addText( $plancadre[0]['NomProgramme'] . " " . $plancadre[0]['CodeProgramme'] ,
+    null, "style_align_right" );
+
+    // faire de l'espace
+    $section_template->addText("");
+
+    $style_titre = array();
+
+    $style_table = array('borderColor'=>'006699',
+              'borderSize'=>6,
+              'cellMargin'=>50,
+              'spaceBefore'=>100,
+              'spaceAfter'=>100);
+
+    $style_frist_row = array('bgcolor'=>'66BBFF');
+
+    $php_word->addTableStyle('style_table', $style_table, $style_frist_row);
+
+    $table = $section_template->addTable('style_table');
+
+    $table->addRow(200);
+    $table->addCell(1200)->addText("");
+    $table->addCell(1200)->addText($plancadre[0]['NomCours']);
+    $table->addCell(1200)->addText($plancadre[0]['CodeCours']);
+
+    $table->addRow(200);
+    $table->addCell(1200)->addText($plancadre[0]['Ponderation']);
+    $table->addCell(1200)->addText($plancadre[0]['NombreUnites']);
+    $table->addCell(1200)->addText("");
+
+
     // test pour confirmer que la section fonctionne
     \PhpOffice\PhpWord\Shared\Html::addHtml($section_template, 'test DU TEMPLATE');
 
 
     // fin du template et début de l'ajout des parties du plan-cadre 
 
-    $debut_balise_titre = '<p  style="font-size:16px; text-align:center; "><strong>';
+    $debut_balise_titre = '<p  style="size:16px; text-align:center; "><strong>';
     $fin_balise_titre = '</strong></p>';
 
 /*
