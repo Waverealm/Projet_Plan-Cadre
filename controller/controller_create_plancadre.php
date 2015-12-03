@@ -99,13 +99,13 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $style_align_center = array("align"=>"center");
     $php_word->addParagraphStyle( "style_align_center", $style_align_center);
 
-    $style_table = array('width'=> 5000,
+    $style_table = array(/*'width'=> 50000,*/
         'borderSize'=>6,
-        'cellMargin'=>50,
+        'cellMargin'=>100,
         'align'=>'center');
     $php_word->addTableStyle('style_table', $style_table, $style_first_row);
 
-    $style_first_row = array('bgcolor'=>'66BBFF');
+    //$style_first_row = array('bgcolor'=>'66BBFF');
 
     $style_cellule_titre = array('valign'=>'center',
         'gridspan'=> 3);
@@ -114,7 +114,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
         'exactHeight'=>500
         );
 
-    $cell_width = 2800;
+    $table_width = 10000;
 
     // Fin de la définiton des styles
 
@@ -136,6 +136,8 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
 
     $table = $section_template->addTable('style_table');
+    $nombre_colonnes = 3;
+    $cell_width = $table_width / $nombre_colonnes;
 
     $table->addRow($style_row);
 
@@ -166,17 +168,22 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     
     // nouvelle table
     $table_presentation = $section_presentation->addTable('style_table');
+    $nombre_colonnes = 1;
+    $cell_width = $table_width / $nombre_colonnes;
     
     $table_presentation->addRow($style_row);
-    $table_presentation->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
+    $cellule_titre = $table_presentation->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
 
-    //$table_presentation->addRow($style_row);
+    $table_presentation->addRow($style_row);
 
-    //$table_presentation->addCell($cell_width)->addText($presentation);
+    //$table_presentation->addCell($cell_width)->addText( $presentation );
+    $cellule_contenu = $table_presentation->addCell($cell_width);
+    \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $presentation);
 
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $debut_balise_titre . $titre . $fin_balise_titre);
 
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $presentation);
+    //\PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $debut_balise_titre . $titre . $fin_balise_titre);
+
+    //\PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $presentation);
 
 
     $section_integration = $php_word->addSection();
@@ -222,6 +229,18 @@ else if ( isset($_POST['open']) )
 }
 
 
+// convert html to docx
+// https://github.com/PHPOffice/PHPWord/issues/543
+/*
+function parseParagraph($node, $element, &$styles)
+{
+    $styles['paragraph'] = self::parseInlineStyle($node, $styles['paragraph']);
+    $newElement = $element->addTextRun($styles['paragraph']);
+    $newElement->addTextBreak(1);
+
+    return $newElement;
+}
+*/
 
 
 function getPlanCadre($id_plancadre)

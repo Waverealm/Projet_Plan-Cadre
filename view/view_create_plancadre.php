@@ -37,6 +37,13 @@
         });
 
     </script>
+
+    <!--style>
+        table, th, td, tr{
+            text-align: center;
+            border: 1px solid black;
+        }
+    </style -->
 </head>
 <body>
 <div class="container">
@@ -88,7 +95,8 @@
             <TABLE>
                 <tr>
                     <td>
-                        Titre du cours :
+                        Titre du cours : 
+                        <br> 
                         <?php
                             $nomCours = $plancadre[0]["NomCours"];
                             echo  $nomCours;
@@ -96,7 +104,8 @@
                         <input type="hidden" name="NomCours" value="Titre du cours : <?php echo $nomCours; ?>">
                     </td>
                     <td>
-                        Numero du cours :
+                        Numero du cours : 
+                        <br>
                         <?php
                             $codeCours = $plancadre[0]["CodeCours"];
                             echo  $codeCours;
@@ -105,6 +114,7 @@
                     </td>
                     <td>
                         Programme :
+                        <br>
                         <?php
                             $programme = $plancadre[0]["CodeProgramme"] . " " . $plancadre[0]["NomProgramme"];
                             echo $programme;
@@ -115,6 +125,7 @@
                 <tr>
                     <td>
                         Pondération :
+                        <br>
                         <?php
                             $ponderation = $plancadre[0]["Ponderation"];
                             echo $ponderation;
@@ -124,6 +135,7 @@
                     </td>
                     <td>
                         Nombre d'unité(s) : 
+                        <br>
                             <?php
                                 $nb_unites = $plancadre[0]["NombreUnites"];
                                 
@@ -143,6 +155,7 @@
                     </td>
                     <td>
                         Préalable(s) :
+                        <br>
                         <?php
                         $prealables = "";
                         if(!empty($prealable) )
