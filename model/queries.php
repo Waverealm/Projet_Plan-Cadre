@@ -249,6 +249,36 @@
     return $result;
   }
 
+  function getAssignationPlanner($classCode, $state)
+  {
+    $query = dbConnect()->prepare("CALL SELECT_ELABORATEUR_ASSIGNATION(?,?)");
+
+    $query->bindParam(1, $etat, PDO::PARAM_STR);
+    $query->bindParam(2, $code_programme, PDO::PARAM_STR);
+
+    $query->execute();
+    $result = $query->fetchAll();
+    $query->closeCursor();
+
+    return $result;
+  }
+
+  function getPlanCadreIdByState($classCode, $state)
+  {
+    $query = dbConnect()->prepare("CALL SELECT_VERSION_PLAN_CADRE_BY_STATE(?,?)");
+
+    $query->bindParam(1, $etat, PDO::PARAM_STR);
+    $query->bindParam(2, $code_programme, PDO::PARAM_STR);
+
+    $query->execute();
+    $result = $query->fetchAll();
+    $query->closeCursor();
+
+    return $result;
+  }
+
+
+
 /*
   ------------------------------------------------------------------------------------
   fin des selects
@@ -499,10 +529,28 @@ function setPlanCadreOfficial($noPlanCadre,$official)
   genre on pourrait placer un if pour confirmer qu'on efface pas un plan-cadre adopté et 
   on pourrait aussi enlever l'option d'appeler la fonction avec l'état en paramètre pour 
   limiter son accès. Dans tous les cas il faudra mettre des commentaires détaillés.
+
+  // Léa : La fonction n'est appelé que pour supprimer des plans-cadre validés. Des plans-cadre
+  // adoptés de leur côté ne seront jamais supprimés. On appelle pas la fonction dans controller_adopt_plancadre,
+  // donc je ne vois pas le danger, mais si tu crois qu'il est nécessaire de faire un if, on pourra toujours
+  // y penser avant de remettre notre projet.
 */
 function deleteOldVersionPlanCadre($classCode,$state)
 {
     $query = dbConnect()->prepare( "CALL DELETE_OLD_VERSION_PLANCADRE(?,?)" );
+
+    $query->bindParam(1, $classCode, PDO::PARAM_STR);
+    $query->bindParam(2, $state, PDO::PARAM_STR);
+
+    $query->execute();
+    $query->CloseCursor();
+}
+
+// Lorsqu'une version d'un plan-sacre est supprimée, cette fonction vient également supprimer l'assignation
+// reliée à ce plan-cadre
+function deleteAssignationPlanCadre($classCode,$state)
+{
+    $query = dbConnect()->prepare( "CALL DELETE_ASSIGNATION_PLAN_CADRE(?,?)" );
 
     $query->bindParam(1, $classCode, PDO::PARAM_STR);
     $query->bindParam(2, $state, PDO::PARAM_STR);
