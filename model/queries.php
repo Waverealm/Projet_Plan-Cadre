@@ -239,8 +239,8 @@
   {
     $query = dbConnect()->prepare("CALL SELECT_PLAN_CADRE_OFFICIAL_CLASS(?,?)");
 
-    $query->bindParam(1, $etat, PDO::PARAM_STR);
-    $query->bindParam(2, $code_programme, PDO::PARAM_STR);
+    $query->bindParam(1, $classCode, PDO::PARAM_STR);
+    $query->bindParam(2, $officiel, PDO::PARAM_STR);
 
     $query->execute();
     $result = $query->fetchAll();
@@ -253,8 +253,8 @@
   {
     $query = dbConnect()->prepare("CALL SELECT_ELABORATEUR_ASSIGNATION(?,?)");
 
-    $query->bindParam(1, $etat, PDO::PARAM_STR);
-    $query->bindParam(2, $code_programme, PDO::PARAM_STR);
+    $query->bindParam(1, $classCode, PDO::PARAM_STR);
+    $query->bindParam(2, $state, PDO::PARAM_STR);
 
     $query->execute();
     $result = $query->fetchAll();
@@ -267,8 +267,8 @@
   {
     $query = dbConnect()->prepare("CALL SELECT_VERSION_PLAN_CADRE_BY_STATE(?,?)");
 
-    $query->bindParam(1, $etat, PDO::PARAM_STR);
-    $query->bindParam(2, $code_programme, PDO::PARAM_STR);
+    $query->bindParam(1, $classCode, PDO::PARAM_STR);
+    $query->bindParam(2, $state, PDO::PARAM_STR);
 
     $query->execute();
     $result = $query->fetchAll();
@@ -535,12 +535,11 @@ function setPlanCadreOfficial($noPlanCadre,$official)
   // donc je ne vois pas le danger, mais si tu crois qu'il est nécessaire de faire un if, on pourra toujours
   // y penser avant de remettre notre projet.
 */
-function deleteOldVersionPlanCadre($classCode,$state)
+function deleteOldVersionPlanCadre($noValidatePlanCadre)
 {
-    $query = dbConnect()->prepare( "CALL DELETE_OLD_VERSION_PLANCADRE(?,?)" );
+    $query = dbConnect()->prepare( "CALL DELETE_OLD_VERSION_PLANCADRE(?)" );
 
-    $query->bindParam(1, $classCode, PDO::PARAM_STR);
-    $query->bindParam(2, $state, PDO::PARAM_STR);
+    $query->bindParam(1, $noValidatePlanCadre, PDO::PARAM_STR);
 
     $query->execute();
     $query->CloseCursor();
@@ -548,12 +547,11 @@ function deleteOldVersionPlanCadre($classCode,$state)
 
 // Lorsqu'une version d'un plan-sacre est supprimée, cette fonction vient également supprimer l'assignation
 // reliée à ce plan-cadre
-function deleteAssignationPlanCadre($classCode,$state)
+function deleteAssignationPlanCadre($noValidatePlanCadre)
 {
-    $query = dbConnect()->prepare( "CALL DELETE_ASSIGNATION_PLAN_CADRE(?,?)" );
+    $query = dbConnect()->prepare( "CALL DELETE_ASSIGNATION_PLAN_CADRE(?)" );
 
-    $query->bindParam(1, $classCode, PDO::PARAM_STR);
-    $query->bindParam(2, $state, PDO::PARAM_STR);
+    $query->bindParam(1, $noValidatePlanCadre, PDO::PARAM_STR);
 
     $query->execute();
     $query->CloseCursor();
