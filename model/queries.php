@@ -202,9 +202,9 @@
   {
     return fetchId( $code_programme, "CALL SELECT_PLAN_CADRE_PROGRAM(?)");
   }
-   function fetchAllPlanCadreOfficiel($etat)
+   function fetchAllPlanCadreOfficiel($officiel)
   {
-    return fetchId( $etat, "CALL SELECT_ALL_PLAN_CADRE_OFFICIEL(?)");
+    return fetchId( $officiel, "CALL SELECT_ALL_PLAN_CADRE_OFFICIEL(?)");
   }
   
   function getPassword($username)

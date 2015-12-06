@@ -85,13 +85,13 @@ function showPlanCadre()
         // Recherche les plans-cadre officiels à travers tous les plans-cadre existants
         else if(isset($_SESSION['official_only']) && $_SESSION['official_only'] == "checked" && $_SESSION['recherche_code_programme'] == "Tous")
         {
-            $list = fetchAllPlanCadreOfficiel("Adopté");
+            $list = fetchAllPlanCadreOfficiel(1);
         }
 
         // Recherche tous les plans-cadre officiels spécifiques à un programme
         else if(isset($_SESSION['official_only']) && $_SESSION['official_only'] == "checked")
         {
-            $list = getPlanCadreOfficielProgram("Adopté", $_SESSION['recherche_code_programme']);
+            $list = getPlanCadreOfficielProgram(1, $_SESSION['recherche_code_programme']);
         }
 
         // Rechercher toutes les versions de tous les plans-cadre spécifiques à un programme
@@ -175,7 +175,7 @@ function showPlanCadre()
             {
                 if ($_SESSION['user_type'] != "Élaborateur")
                 {
-                    if ($row["Etat"] != "Validé")
+                    if ($row["Etat"] != "Validé" && $row["Etat"] != "Adopté")
                     {
                         // ****************       la date de soumission / autre serait plus approprié que celle de la clé primaire
                         echo "<td><a href ='../controller/controller_validate_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["No_PlanCadre"]."'>Valider</a></td>";
@@ -187,8 +187,9 @@ function showPlanCadre()
                         echo "<td><a href ='../controller/controller_adopt_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["No_PlanCadre"]."'>Adopter</a></td>";
                     }
 
-                    else if($row["Etat"] != "Adopté")
+                    else if($row["Etat"] == "Adopté")
                     {
+                        echo "<td></td>";
                         echo "<td>Déjà adopté</td>";
                     }
                     echo "</tr>";
