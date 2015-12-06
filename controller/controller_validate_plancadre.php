@@ -17,6 +17,7 @@ if(isset($_GET['codecours']) && isset($_GET['versionplan']))
  	// On va chercher les informations du plan-cadre que l'on valide
  	$result = fetchInformationPlanCadre($No_PlanCadre);
 
+ 	// On va chercher l'id de la dernière validation du plan-cadre (s'il a déjà été validé, $noValidatePlanCadre contiendra un résultat)
  	$noValidatePlanCadre = getPlanCadreIdByState($classCode, $state);
 
  	// S'il existe déjà une version validée du plan-cadre
