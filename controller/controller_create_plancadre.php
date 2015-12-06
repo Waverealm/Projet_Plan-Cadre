@@ -99,11 +99,11 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $style_align_center = array("align"=>"center");
     $php_word->addParagraphStyle( "style_align_center", $style_align_center);
 
-    $style_table = array(/*'width'=> 50000,*/
+    $style_table = array('width'=> 50000,
         'borderSize'=>6,
         'cellMargin'=>100,
         'align'=>'center');
-    $php_word->addTableStyle('style_table', $style_table, $style_first_row);
+    $php_word->addTableStyle('style_table', $style_table);
 
     //$style_first_row = array('bgcolor'=>'66BBFF');
 
@@ -114,7 +114,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
         'exactHeight'=>500
         );
 
-    $table_width = 10000;
+    $table_width = 5000;
 
     // Fin de la définiton des styles
 
@@ -125,8 +125,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $section_template->addText("Collège Lionel-Groulx");
     
     $section_template->addText("Placeholder pour le type d'enseignement", null, "style_align_right");
-    $section_template->addText( $programme_cours,
-    null, "style_align_right" );
+    $section_template->addText( $programme_cours, null, "style_align_right" );
 
     $section_template->addText($saut_ligne);
 
@@ -155,7 +154,8 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $table->addCell($cell_width)->addText($nombre_unites_cours, null, $style_align_center);
     $table->addCell($cell_width)->addText("test", null, $style_align_center);
 
-    $section_template->addText("");
+    $section_template->addText($saut_ligne);
+
 
     // changer pour ajouter un style à du texte ?
     $debut_balise_titre = '<p  style="size:16px; text-align:center; "><strong>';
@@ -165,57 +165,82 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $section_presentation = $section_template;
 
     $titre = "Présentation du cours";
-    
+  
     // nouvelle table
     $table_presentation = $section_presentation->addTable('style_table');
     $nombre_colonnes = 1;
     $cell_width = $table_width / $nombre_colonnes;
     
-    $table_presentation->addRow($style_row);
-    $cellule_titre = $table_presentation->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
+    $table->addRow($style_row);
+    $cellule_titre = $table->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
 
-    $table_presentation->addRow($style_row);
-
-    //$table_presentation->addCell($cell_width)->addText( $presentation );
-    $cellule_contenu = $table_presentation->addCell($cell_width);
+    $table->addRow($style_row);
+    $cellule_contenu = $table->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $presentation);
 
 
-    //\PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $debut_balise_titre . $titre . $fin_balise_titre);
-
-    //\PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, $presentation);
-
 
     $section_integration = $php_word->addSection();
-    
-    $titre = "Objectif d'intégration";
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section_integration, $debut_balise_titre . $titre . $fin_balise_titre);
-    
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section_integration, $integration);
 
+    $titre = "Objectif d'intégration";
+
+    $table = $section_integration->addTable('style_table');
+    $nombre_colonnes = 1;
+    $cell_width = $table_width / $nombre_colonnes;
+    
+    $table->addRow($style_row);
+    $cellule_titre = $table->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
+
+    $table->addRow($style_row);
+    $cellule_contenu = $table->addCell($cell_width);
+    \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $integration);
+
+    $section_template->addText($saut_ligne);
 
     $section_evaluation = $php_word->addSection();
 
     $titre = 'Évaluation des apprentissages';
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section_evaluation, $debut_balise_titre . $titre . $fin_balise_titre);
+
+    $table = $section_integration->addTable('style_table');
+    $nombre_colonnes = 1;
+    $cell_width = $table_width / $nombre_colonnes;
     
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section_evaluation, $evaluation);
+    $table->addRow($style_row);
+    $cellule_titre = $table->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
+
+    $table->addRow($style_row);
+    $cellule_contenu = $table->addCell($cell_width);
+    \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $evaluation);
 
 
     $section_competences = $php_word->addSection();
 
     $titre = "Énoncé des compétences";
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section_competences, $debut_balise_titre . $titre . $fin_balise_titre);
+    $table = $section_integration->addTable('style_table');
+    $nombre_colonnes = 1;
+    $cell_width = $table_width / $nombre_colonnes;
+    
+    $table->addRow($style_row);
+    $cellule_titre = $table->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
 
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section_competences, $competences);
+    $table->addRow($style_row);
+    $cellule_contenu = $table->addCell($cell_width);
+    \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $competences);
 
 
     $section_apprentissage = $php_word->addSection();
 
     $titre = "Objectifs d'apprentissage";
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section_apprentissage, $debut_balise_titre . $titre . $fin_balise_titre);
+    $table = $section_integration->addTable('style_table');
+    $nombre_colonnes = 1;
+    $cell_width = $table_width / $nombre_colonnes;
+    
+    $table->addRow($style_row);
+    $cellule_titre = $table->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
 
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section_apprentissage, $apprentissage);
+    $table->addRow($style_row);
+    $cellule_contenu = $table->addCell($cell_width);
+    \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $apprentissage);
 
     $plancadre = fetchPlanCadreElaboration_PlanCadre( $_POST['id_plancadre'] );
     $path_docx = "../plancadre/". $plancadre[0]['No_PlanCadre'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
