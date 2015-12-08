@@ -161,17 +161,18 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $titre = "Présentation du cours";
     
     $section_presentation->addText("test");
+    \PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, '<br></br>');
 
     // nouvelle table
     $table_presentation = $section_presentation->addTable('style_table');
     $nombre_colonnes = 1;
     $cell_width = $table_width / $nombre_colonnes;
     
-    $table->addRow($style_row_titre);
-    $cellule_titre = $table->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
+    $table_presentation->addRow($style_row_titre);
+    $cellule_titre = $table_presentation->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
 
-    $table->addRow($style_row);
-    $cellule_contenu = $table->addCell($cell_width);
+    $table_presentation->addRow($style_row);
+    $cellule_contenu = $table_presentation->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $presentation);
 
     $section_presentation->addPageBreak();
