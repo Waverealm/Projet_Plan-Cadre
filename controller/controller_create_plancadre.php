@@ -108,7 +108,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
         'tblHeader'=>true
         );
 
-    $table_width = 5000;
+    $table_width = 10000;
 
     $saut_ligne = "";
 
@@ -129,41 +129,34 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $section_template->addText($saut_ligne);
 
 
-    $table = $section_template->addTable('style_table');
+    $table_identification = $section_template->addTable('style_table');
     $nombre_colonnes = 3;
     $cell_width = $table_width / $nombre_colonnes;
 
-    $table->addRow($style_row);
+    $table_identification->addRow($style_row);
 
-    $table->addCell($cell_width, $style_cellule_titre)->addText("Identification du cours", $style_font_titre, $style_align_center);
-
-
-    $table->addRow($style_row);   
-    $table->addCell($cell_width)->addText("Discipline", null, $style_align_center);
-    $table->addCell($cell_width)->addText($nom_cours, null, $style_align_center);
-    $table->addCell($cell_width)->addText($code_cours, null, $style_align_center);
+    $table_identification->addCell($cell_width, $style_cellule_titre)->addText("Identification du cours", $style_font_titre, $style_align_center);
 
 
-    $table->addRow($style_row);
-    $table->addCell($cell_width)->addText($ponderation_cours, null, $style_align_center);
-    $table->addCell($cell_width)->addText($nombre_unites_cours, null, $style_align_center);
-    $table->addCell($cell_width)->addText("test", null, $style_align_center);
+    $table_identification->addRow($style_row);   
+    $table_identification->addCell($cell_width)->addText("Discipline", null, $style_align_center);
+    $table_identification->addCell($cell_width)->addText($nom_cours, null, $style_align_center);
+    $table_identification->addCell($cell_width)->addText($code_cours, null, $style_align_center);
 
-    $section_template->addTextBreak();
 
-    // changer pour ajouter un style à du texte ?
-    $debut_balise_titre = '<p  style="size:16px; text-align:center; "><strong>';
-    $fin_balise_titre = '</strong></p>';
+    $table_identification->addRow($style_row);
+    $table_identification->addCell($cell_width)->addText($ponderation_cours, null, $style_align_center);
+    $table_identification->addCell($cell_width)->addText($nombre_unites_cours, null, $style_align_center);
+    $table_identification->addCell($cell_width)->addText("test", null, $style_align_center);
 
-    $section_template->addPageBreak(1);
+
+
     $section_presentation = $php_word->addSection();
 
     $titre = "Présentation du cours";
     
-    $section_presentation->addText("test");
-    \PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, '<br></br>');
+    //\PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, '<br></br>');
 
-    // nouvelle table
     $table_presentation = $section_presentation->addTable('style_table');
     $nombre_colonnes = 1;
     $cell_width = $table_width / $nombre_colonnes;
@@ -175,80 +168,78 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $cellule_contenu = $table_presentation->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $presentation);
 
-    $section_presentation->addPageBreak();
+
 
 
     $section_integration = $php_word->addSection();
 
     $titre = "Objectif d'intégration";
 
-    $table = $section_integration->addTable('style_table');
+    $table_integration = $section_integration->addTable('style_table');
     $nombre_colonnes = 1;
     $cell_width = $table_width / $nombre_colonnes;
     
-    $table->addRow($style_row_titre);
-    $cellule_titre = $table->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
+    $table_integration->addRow($style_row_titre);
+    $cellule_titre = $table_integration->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
 
-    $table->addRow($style_row);
-    $cellule_contenu = $table->addCell($cell_width);
+    $table_integration->addRow($style_row);
+    $cellule_contenu = $table_integration->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $integration);
 
-    $section_integration->addTextBreak();
-    $section_integration->addPageBreak();
+
 
     $section_evaluation = $php_word->addSection();
 
-
     $titre = 'Évaluation des apprentissages';
 
-    $table = $section_integration->addTable('style_table');
+    $table_evaluation = $section_integration->addTable('style_table');
     $nombre_colonnes = 1;
     $cell_width = $table_width / $nombre_colonnes;
     
-    $table->addRow($style_row_titre);
-    $cellule_titre = $table->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
+    $table_evaluation->addRow($style_row_titre);
+    $cellule_titre = $table_evaluation->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
 
-    $table->addRow($style_row);
-    $cellule_contenu = $table->addCell($cell_width);
+    $table_evaluation->addRow($style_row);
+    $cellule_contenu = $table_evaluation->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $evaluation);
 
-    $section_evaluation->addTextBreak();
-    $section_evaluation->addPageBreak();
+
 
 
     $section_competences = $php_word->addSection();
 
     $titre = "Énoncé des compétences";
-    $table = $section_integration->addTable('style_table');
+
+    $table_competences = $section_integration->addTable('style_table');
     $nombre_colonnes = 1;
     $cell_width = $table_width / $nombre_colonnes;
     
-    $table->addRow($style_row_titre);
-    $cellule_titre = $table->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
+    $table_competences->addRow($style_row_titre);
+    $cellule_titre = $table_competences->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
 
-    $table->addRow($style_row);
-    $cellule_contenu = $table->addCell($cell_width);
+    $table_competences->addRow($style_row);
+    $cellule_contenu = $table_competences->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $competences);
 
-    $section_competences->addTextBreak();
-    $section_competences->addPageBreak();
 
 
     $section_apprentissage = $php_word->addSection();
 
     $titre = "Objectifs d'apprentissage";
-    $table = $section_integration->addTable('style_table');
+
+    $table_apprentissage = $section_integration->addTable('style_table');
     $nombre_colonnes = 1;
     $cell_width = $table_width / $nombre_colonnes;
     
-    $table->addRow($style_row_titre);
-    $cellule_titre = $table->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
+    $table_apprentissage->addRow($style_row_titre);
+    $cellule_titre = $table_apprentissage->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
 
-    $table->addRow($style_row);
-    $cellule_contenu = $table->addCell($cell_width);
+    $table_apprentissage->addRow($style_row);
+    $cellule_contenu = $table_apprentissage->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $apprentissage);
 
-    $section_apprentissage->addPageBreak();
+
+
 
     $plancadre = fetchPlanCadreElaboration_PlanCadre( $_POST['id_plancadre'] );
     $path_docx = "../plancadre/". $plancadre[0]['No_PlanCadre'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
