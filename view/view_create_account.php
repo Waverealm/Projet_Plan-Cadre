@@ -66,7 +66,7 @@
 
                             <label>Adresse courriel :</label>
                             <div>
-                                <input class="field" id="Email" name="Email" type="text" 
+                                <input class="field" id="Email" name="Email" type="email" 
                                 value="<?php if (isset($_SESSION[ 'new_account_email' ])) echo htmlentities(trim($_SESSION[ 'new_account_email' ])); ?>" 
                                 class="text-box single-line" 
                                 required

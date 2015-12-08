@@ -25,8 +25,31 @@
     <script src="jquery.js" type="text/javascript"></script>
     <script src="jquery.maskedinput.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script>
+      function validate() {
+        // pour une validation plus custom
+        //http://www.w3.org/TR/WCAG20-TECHS/SCR18.html
+        // initialize error message
+        var msg = "";
+        
+        //validate name
+        var pattern = /^[a-zA-Z\s]+$/;
+        var el = document.getElementById("name");
+        if (!pattern.test(el.value))  msg += "Name can only have letters and spaces. ";
+        
+        // validate number
+        var pattern = /^[\d\-+\.\s]+$/;
+        var el = document.getElementById("tel");
+        if (!pattern.test(el.value))  msg += "Telephone number can only have digits and separators. ";
+        
+        if (msg != "") {
+          alert(msg);
+          return false;
+        } else return true;
+      }
+    </script>
   </head>
-  
   <body>
     <div class="container">
       <?php
@@ -71,17 +94,27 @@
           <br>
           <label>Ponderation du cours : </label>
           <div>
-            <input data-val="true" id="Ponderation" name="Ponderation" type="text" value="" />
+            <input data-val="true" id="Ponderation" name="Ponderation" type="text" value="" 
+            pattern="\d{1,2}-\d{1,2}-\d{1,2}"
+            />
           </div>
           <br>
           <label>Nombre d'unites : </label>
           <div>
-            <input data-val="true" id="NombreUnites" name="NombreUnites" type="text" value="" />
+            <input data-val="true" id="NombreUnites" name="NombreUnites" type="Number" value="" 
+            step="0.01"
+            min="0"
+            max="10"
+            />
           </div>
           <br>
           <label>Nombre d'heures : </label>
           <div >
-            <input data-val="true" id="NombreHeures" name="NombreHeures" type="text" value="" />
+            <input data-val="true" id="NombreHeures" name="NombreHeures" type="Number" value="" 
+            step="10"
+            min="50"
+            max="200"
+            />
           </div>
           <br>
           <label>Programme du cours : </label><br>
