@@ -1,1 +1,1 @@
-<div><div>d&eacute;but de la liste avec rien d&#39;ajout&eacute;</div><div>&nbsp;</div><ul><li>test</li><li>test2</li><li>test3</li></ul><div>fin de la liste</div><div>test avec des div</div><ul><li>div1</li><li>div2</li></ul><div>fin</div><ol><li>test</li><li>rien</li><li>&eacute;crit</li></ol><div>lorsqu&#39;on utilise les paragraphes leur contenu n&#39;est pas sauvegard&eacute;</div><div>&nbsp;</div></div>
+<ul><li>test</li></ul><p>&nbsp;</p><p>regeger</p><p>&nbsp;</p><p>espace apr&egrave;s</p><p>&nbsp;</p>

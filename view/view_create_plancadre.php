@@ -214,7 +214,7 @@
             </br>
 
             <?php showInstructionToggle('3'); ?>
-            <label class="control-label col-md-2">Evaluation des apprentissage : </label>
+            <label class="control-label col-md-2">Evaluation des apprentissages : </label>
             </br>
             <div class="col-md-10">
                 <textarea class="ckeditor" name="Evaluation" rows="12" cols="50"><?php
@@ -228,7 +228,7 @@
             <label class="control-label col-md-2">Énoncé des compétences : </label>
             </br>
             <div class="col-md-10">
-                <textarea class="ckeditor" name="Competences" rows="12" cols="50"><?php
+                <textarea class="ckeditor" name="EnonceCompetences" rows="12" cols="50"><?php
                         echo readFrom($path_competences);
                     ?>
                 </textarea>

@@ -34,7 +34,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $presentation = $_POST['Presentation'];
     $integration = $_POST['ObjectifsIntegration'];
     $evaluation = $_POST['Evaluation'];
-    $competences = $_POST['Competences'];
+    $competences = $_POST['EnonceCompetences'];
     $apprentissage = $_POST['ObjectifsApprentissage'];
 
 
@@ -155,6 +155,8 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $table->addCell($cell_width)->addText("test", null, $style_align_center);
 
     $section_template->addText($saut_ligne);
+    $section_template->addText($saut_ligne);
+
 
 
     // changer pour ajouter un style à du texte ?
@@ -178,6 +180,8 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $cellule_contenu = $table->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $presentation);
 
+    $section_presentation->addText($saut_ligne);
+
 
 
     $section_integration = $php_word->addSection();
@@ -195,7 +199,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $cellule_contenu = $table->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $integration);
 
-    $section_template->addText($saut_ligne);
+    $section_integration->addText($saut_ligne);
 
     $section_evaluation = $php_word->addSection();
 
@@ -212,6 +216,8 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $cellule_contenu = $table->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $evaluation);
 
+    $section_evaluation->addText($saut_ligne);
+
 
     $section_competences = $php_word->addSection();
 
@@ -227,6 +233,8 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $cellule_contenu = $table->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $competences);
 
+    $section_competences->addText($saut_ligne);
+
 
     $section_apprentissage = $php_word->addSection();
 
@@ -241,6 +249,8 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $table->addRow($style_row);
     $cellule_contenu = $table->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $apprentissage);
+
+    $section_apprentissage->addText($saut_ligne);
 
     $plancadre = fetchPlanCadreElaboration_PlanCadre( $_POST['id_plancadre'] );
     $path_docx = "../plancadre/". $plancadre[0]['No_PlanCadre'] . "_" . $plancadre[0]['CodeCours'] . ".docx";

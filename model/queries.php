@@ -15,7 +15,8 @@
     try
     {
       return new PDO('mysql:host=localhost;dbname=plan_cadre', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-      mysql_set_charset("utf8", PDO);
+      
+      //mysql_set_charset("utf8", PDO);
     }
     catch (Exception $e)
     {
