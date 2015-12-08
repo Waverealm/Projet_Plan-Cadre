@@ -42,11 +42,12 @@
     $i++;
   }
 
-  $bdd = dbConnect();
+  
 
   // S'il n'y a aucune erreur
   if ($i == 0)
   {
+    $bdd = dbConnect();
     createClass($bdd, $codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $codeProgramme, $dateAjout);
 
     header('Location: ../view/view_index.php');

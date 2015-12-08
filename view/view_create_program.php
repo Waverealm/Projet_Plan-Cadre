@@ -47,15 +47,18 @@
         <label>Type du programme : </label>
         <div>
             <select name="TypeProgramme">
-              <option>Technique</option>
-              <option>Pré-universitaire</option>
-              <option>Attestation d'études collégiales</option>
+              <option value='Technique'>Technique</option>
+              <option value='Pré-universitaire'>Pré-universitaire</option>
+              <option value="Attestation d'études collégiales">Attestation d'études collégiales</option>
             </select>
         </div>
         </br>
         <label>Type de sanction: </label>
         <div>
-            <input data-val="true" id="TypeSanction" name="TypeSanction" type="text" value="" />
+            <select name="TypeSanction">
+              <option value="Diplôme d'étude collégialese"> Diplôme d'étude collégiales </option>
+              <option value="Attestation d'études collégiales"> Attestation d'études collégiales </option>
+            </select>
         </div>
         </br>
       

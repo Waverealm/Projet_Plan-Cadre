@@ -56,12 +56,16 @@
           <br>
           <label>Nom du cours : </label>
           <div>
-            <input data-val="true" id="NomCours" name="NomCours" type="text" value="" />
+            <input data-val="true" id="NomCours" name="NomCours" type="text" value="" 
+            />
           </div>
           <br>
           <label>Type du cours : </label>
           <div>
-            <input data-val="true" id="TypeCours" name="TypeCours" type="text" value="" />
+            <select name='TypeCours'>
+              <option value='Enseignement régulier'> Enseignement régulier </option>
+              <option value='Formation continue'> Formation continue </option>
+            </select>
           </div>
           <br>
           <label>Ponderation du cours : </label>
