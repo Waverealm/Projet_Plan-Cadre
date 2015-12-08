@@ -73,16 +73,6 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 */
     $php_word = new \PhpOffice\PhpWord\PhpWord();
 
-    // variable avec un nom significatif pour mieux expliquer le code qui suit
-    $saut_ligne = "";
-    /*
-        $section->addText($saut_ligne);
-        permet d'écrire un paragraphe vide ce qui
-        va prendre une ligne au complet pour rien
-        écrire. Donc au final on obtient un saut 
-        de ligne
-    */
-
 
     // début de la définition des différents styles
     // possibilité d'exporter cela dans un autre document
@@ -113,11 +103,16 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $style_row = array('cantSplit'=>true,
         'exactHeight'=>500
         );
+    $style_row_titre = array('cantSplit'=>true,
+        'exactHeight'=>500,
+        'tblHeader'=>true
+        );
 
     $table_width = 5000;
 
-    // Fin de la définiton des styles
+    $saut_ligne = "";
 
+    // Fin de la définiton des styles
 
 
     $section_template = $php_word->addSection();
@@ -154,34 +149,32 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $table->addCell($cell_width)->addText($nombre_unites_cours, null, $style_align_center);
     $table->addCell($cell_width)->addText("test", null, $style_align_center);
 
-    $section_template->addText($saut_ligne);
-    $section_template->addText($saut_ligne);
-
-
+    $section_template->addTextBreak();
 
     // changer pour ajouter un style à du texte ?
     $debut_balise_titre = '<p  style="size:16px; text-align:center; "><strong>';
     $fin_balise_titre = '</strong></p>';
 
-
-    $section_presentation = $section_template;
+    $section_template->addPageBreak(1);
+    $section_presentation = $php_word->addSection();
 
     $titre = "Présentation du cours";
-  
+    
+    $section_presentation->addText("test");
+
     // nouvelle table
     $table_presentation = $section_presentation->addTable('style_table');
     $nombre_colonnes = 1;
     $cell_width = $table_width / $nombre_colonnes;
     
-    $table->addRow($style_row);
+    $table->addRow($style_row_titre);
     $cellule_titre = $table->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
 
     $table->addRow($style_row);
     $cellule_contenu = $table->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $presentation);
 
-    $section_presentation->addText($saut_ligne);
-
+    $section_presentation->addPageBreak();
 
 
     $section_integration = $php_word->addSection();
@@ -192,16 +185,18 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $nombre_colonnes = 1;
     $cell_width = $table_width / $nombre_colonnes;
     
-    $table->addRow($style_row);
+    $table->addRow($style_row_titre);
     $cellule_titre = $table->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
 
     $table->addRow($style_row);
     $cellule_contenu = $table->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $integration);
 
-    $section_integration->addText($saut_ligne);
+    $section_integration->addTextBreak();
+    $section_integration->addPageBreak();
 
     $section_evaluation = $php_word->addSection();
+
 
     $titre = 'Évaluation des apprentissages';
 
@@ -209,14 +204,15 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $nombre_colonnes = 1;
     $cell_width = $table_width / $nombre_colonnes;
     
-    $table->addRow($style_row);
+    $table->addRow($style_row_titre);
     $cellule_titre = $table->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
 
     $table->addRow($style_row);
     $cellule_contenu = $table->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $evaluation);
 
-    $section_evaluation->addText($saut_ligne);
+    $section_evaluation->addTextBreak();
+    $section_evaluation->addPageBreak();
 
 
     $section_competences = $php_word->addSection();
@@ -226,14 +222,15 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $nombre_colonnes = 1;
     $cell_width = $table_width / $nombre_colonnes;
     
-    $table->addRow($style_row);
+    $table->addRow($style_row_titre);
     $cellule_titre = $table->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
 
     $table->addRow($style_row);
     $cellule_contenu = $table->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $competences);
 
-    $section_competences->addText($saut_ligne);
+    $section_competences->addTextBreak();
+    $section_competences->addPageBreak();
 
 
     $section_apprentissage = $php_word->addSection();
@@ -243,14 +240,14 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $nombre_colonnes = 1;
     $cell_width = $table_width / $nombre_colonnes;
     
-    $table->addRow($style_row);
+    $table->addRow($style_row_titre);
     $cellule_titre = $table->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
 
     $table->addRow($style_row);
     $cellule_contenu = $table->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $apprentissage);
 
-    $section_apprentissage->addText($saut_ligne);
+    $section_apprentissage->addPageBreak();
 
     $plancadre = fetchPlanCadreElaboration_PlanCadre( $_POST['id_plancadre'] );
     $path_docx = "../plancadre/". $plancadre[0]['No_PlanCadre'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
