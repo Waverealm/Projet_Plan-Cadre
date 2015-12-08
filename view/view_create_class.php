@@ -51,6 +51,7 @@
               onkeypress="return filterClassCode(event);"
               onKeyUp="arrayFilter(this.value, this.form.class_list_all)"
               onChange="arrayFilter(this.value, this.form.class_list_all)"
+              required
             />
          </div>
           <br>
@@ -62,7 +63,7 @@
           <br>
           <label>Type du cours : </label>
           <div>
-            <select name='TypeCours'>
+            <select name='TypeCours' required>
               <option value='Enseignement régulier'> Enseignement régulier </option>
               <option value='Formation continue'> Formation continue </option>
             </select>

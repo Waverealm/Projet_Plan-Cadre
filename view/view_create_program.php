@@ -36,17 +36,22 @@
 <form action="../controller/controller_create_program.php" method="post">
         <label>Code du programme : </label>
         <div>
-            <input class="text-box single-line" data-val="true" id="CodeProgramme" name="CodeProgramme" type="text" value="" />
+            <input class="text-box single-line" data-val="true" id="CodeProgramme" name="CodeProgramme" 
+              type="text" value="" 
+              required
+            />
         </div>
         </br>
         <label>Nom du programme : </label>
         <div>
-            <input data-val="true" id="NomProgramme" name="NomProgramme" type="text" value="" />
+            <input data-val="true" id="NomProgramme" name="NomProgramme" type="text" value="" 
+              required
+            />
         </div>
         </br>
         <label>Type du programme : </label>
         <div>
-            <select name="TypeProgramme">
+            <select name="TypeProgramme" class="required">
               <option value='Technique'>Technique</option>
               <option value='Pré-universitaire'>Pré-universitaire</option>
               <option value="Attestation d'études collégiales">Attestation d'études collégiales</option>

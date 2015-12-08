@@ -397,6 +397,11 @@ function showAppropriateMenu()
         echo "</div>";
     }
 
+
+
+    // pour les tag html select (la validation)
+    // http://stackoverflow.com/questions/1271640/validate-select-box
+
     function showInstructionsTable()
     {
         $list = selectAllConsignesPlanCadre();
