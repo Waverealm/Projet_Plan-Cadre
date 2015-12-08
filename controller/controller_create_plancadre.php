@@ -110,6 +110,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $table_width = 10000;
 
+    // variable avec nom significatif pour son utilisation
     $saut_ligne = "";
 
     // Fin de la définiton des styles
@@ -154,8 +155,6 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $section_presentation = $php_word->addSection();
 
     $titre = "Présentation du cours";
-    
-    //\PhpOffice\PhpWord\Shared\Html::addHtml($section_presentation, '<br></br>');
 
     $table_presentation = $section_presentation->addTable('style_table');
     $nombre_colonnes = 1;
