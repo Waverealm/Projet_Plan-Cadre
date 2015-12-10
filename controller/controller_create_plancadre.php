@@ -29,6 +29,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $ponderation_cours = $_POST['Ponderation'];
     $nombre_unites_cours = $_POST['NombreUnites'];
     $prealable_cours = $_POST['Prealables'];
+    $type_enseignement = $_POST['TypeEnseignement'];
 
     // le texte
     $presentation = $_POST['Presentation'];
@@ -51,20 +52,42 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
  
     // création du fichier
     // fopen(path, write/read)
+// ----------------------------------------------
+// sauvegarde des données entrées dans des fichiers textes
 
+/*
+    ouverture du fichier ave fopen(path, option)
+    "w" ouvre le fichier en write only pour le reste des options voir la documentation
+    http://php.net/manual/fr/function.fopen.php
+
+    écriture dans le fichier avec fwrite(fichier, text)
+
+    Fermeture du fichier avec fclose(handle) 
+    parce qu'il faut toujours fermer ce qu'on n'a plus de besoin.
+    C'est une question de bonne pratique.
+*/
     $fichier_presentation = fopen($path_presentation, "w");
-    $fichier_integration = fopen($path_integration, "w");
-    $fichier_evalutation = fopen($path_evalutation, "w");
-    $fichier_competences = fopen($path_competences, "w");
-    $fichier_apprentissage = fopen($path_apprentissage, "w");
-
-    //écrire les valeurs dans les fichiers
     fwrite($fichier_presentation, $presentation);
-    fwrite($fichier_integration, $integration);
-    fwrite($fichier_evalutation, $evaluation);
-    fwrite($fichier_competences, $competences);
-    fwrite($fichier_apprentissage, $apprentissage);
+    fclose($fichier_presentation);
 
+
+    $fichier_integration = fopen($path_integration, "w");
+    fwrite($fichier_integration, $integration);
+    fclose($fichier_integration);
+
+    $fichier_evalutation = fopen($path_evalutation, "w");
+    fwrite($fichier_evalutation, $evaluation);
+    fclose($fichier_evalutation);
+
+    $fichier_competences = fopen($path_competences, "w");
+    fwrite($fichier_competences, $competences);
+    fclose($fichier_competences);
+
+    $fichier_apprentissage = fopen($path_apprentissage, "w");
+    fwrite($fichier_apprentissage, $apprentissage);
+    fclose($fichier_apprentissage);   
+
+// ----------------------------------------------
  
 /*
     Début de la création du document.
@@ -74,10 +97,13 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $php_word = new \PhpOffice\PhpWord\PhpWord();
 
 
-    // début de la définition des différents styles
-    // possibilité d'exporter cela dans un autre document
-    // pour mieux paramétrer le
-    // http://phpword.readthedocs.org/en/latest/styles.html
+
+// ----------------------------------------------
+// début de la définition des différents styles
+// possibilité d'exporter cela dans un autre document
+// pour mieux paramétrer le
+// http://phpword.readthedocs.org/en/latest/styles.html
+
     $style_font_titre = array('size'=> 14,
         'bold'=>true);
 
@@ -114,14 +140,18 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     // variable avec nom significatif pour son utilisation
     $saut_ligne = "";
 
-    // Fin de la définiton des styles
+// Fin de la définiton des styles
+// ----------------------------------------------
 
-
+// ----------------------------------------------
+// Section de l'indentification du cours 
     $section_template = $php_word->addSection();
 
-    $section_template->addText("Collège Lionel-Groulx");
+    //
+    $nom_etablissement = "Collège Lionel-Groulx";
+    $section_template->addText($nom_etablissement);
     
-    $section_template->addText("Placeholder pour le type d'enseignement", null, "style_align_right");
+    $section_template->addText($type_enseignement, null, "style_align_right");
     $section_template->addText( $programme_cours, null, "style_align_right" );
 
    
@@ -141,7 +171,6 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $table_identification->addCell($cell_width, $style_cellule_titre)->addText("Identification du cours", $style_font_titre, $style_align_center);
 
-
     $table_identification->addRow($style_row);   
     $table_identification->addCell($cell_width)->addText("Discipline", null, $style_align_center);
     $table_identification->addCell($cell_width)->addText($nom_cours, null, $style_align_center);
@@ -152,9 +181,12 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $table_identification->addCell($cell_width)->addText($nombre_unites_cours, null, $style_align_center);
     $table_identification->addCell($cell_width)->addText("test", null, $style_align_center);
 
-    //$section_template->addTextBreak();
+// Fin de la section de l'indentification du cours 
+// ----------------------------------------------
 
 
+// ----------------------------------------------
+// Section de la présentation du cours 
     $section_presentation = $php_word->addSection();
 
     $titre = "Présentation du cours";
@@ -171,10 +203,13 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $presentation);
 
     $section_presentation->addTextBreak();
+// Fin de la section de la présentation du cours 
+// ----------------------------------------------
+    
 
 
-
-
+// ----------------------------------------------
+// Section de l'objectif d'intégration 
     $section_integration = $php_word->addSection();
 
     $titre = "Objectif d'intégration";
@@ -191,9 +226,13 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $integration);
 
     $section_integration->addTextBreak();
+// Fin de la section de l'objectif d'intégration 
+// ----------------------------------------------
+    
 
-
-
+// ----------------------------------------------
+// Section de l'évaluation des apprentissages 
+    
     $section_evaluation = $php_word->addSection();
 
     $titre = 'Évaluation des apprentissages';
@@ -210,9 +249,14 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $evaluation);
 
     $section_evaluation->addPageBreak();
+    $section_evaluation->addPageBreak();
 
-
-
+// Fin de la section de l'évaluation des apprentissages 
+// ----------------------------------------------
+    
+// ----------------------------------------------
+// Section de l'énoncé des compétences
+    
     $section_competences = $php_word->addSection();
 
     $titre = "Énoncé des compétences";
@@ -229,8 +273,13 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $competences);
 
     $section_competences->addTextBreak();
+    $section_competences->addPageBreak();
+// Fin de la section de l'énoncé des compétences
+// ----------------------------------------------
+    
 
-
+// ----------------------------------------------
+// Section des objectifs d'apprentissage
 
     $section_apprentissage = $php_word->addSection();
 
@@ -248,7 +297,11 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $apprentissage);
 
     $section_apprentissage->addTextBreak();
+    $section_competences->addPageBreak();
 
+// Fin de la section des objectifs d'apprentissage
+// ----------------------------------------------
+    
 
     $plancadre = fetchPlanCadreElaboration_PlanCadre( $_POST['id_plancadre'] );
     $path_docx = "../plancadre/". $plancadre[0]['No_PlanCadre'] . "_" . $plancadre[0]['CodeCours'] . ".docx";
@@ -262,18 +315,10 @@ else if ( isset($_POST['open']) )
 }
 
 
-// convert html to docx
-// https://github.com/PHPOffice/PHPWord/issues/543
-/*
-function parseParagraph($node, $element, &$styles)
-{
-    $styles['paragraph'] = self::parseInlineStyle($node, $styles['paragraph']);
-    $newElement = $element->addTextRun($styles['paragraph']);
-    $newElement->addTextBreak(1);
 
-    return $newElement;
-}
-*/
+
+
+
 
 
 function getPlanCadre($id_plancadre)
@@ -317,11 +362,22 @@ function readFrom($path)
 
 
 
-    
+// convert html to docx
+// https://github.com/PHPOffice/PHPWord/issues/543
+/*
+function parseParagraph($node, $element, &$styles)
+{
+    $styles['paragraph'] = self::parseInlineStyle($node, $styles['paragraph']);
+    $newElement = $element->addTextRun($styles['paragraph']);
+    $newElement->addTextBreak(1);
+
+    return $newElement;
+}
+*/
 
 
    /*
-    code du template
+    code du template d'avant
     plus de besoin du template
     // création du fichier
     // fopen(path, write/read)

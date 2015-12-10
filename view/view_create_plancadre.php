@@ -91,7 +91,11 @@
                     echo '\'' . $_SESSION['id_plancadre'] . '\''; 
                 ?> 
             />  
-
+            <input type='hidden' name='TypeEnseignement' value = 
+                <?php 
+                    echo '\'' . $plancadre[0]["TypeCours"] . '\''; 
+                ?> 
+            />  
             <TABLE>
                 <tr>
                     <td>
@@ -116,7 +120,8 @@
                         Programme :
                         <br>
                         <?php
-                            $programme = $plancadre[0]["CodeProgramme"] . " " . $plancadre[0]["NomProgramme"];
+                            $programme = $plancadre[0]["NomProgramme"] . " " 
+                            .  "(" . $plancadre[0]["CodeProgramme"] . ")";
                             echo $programme;
                         ?>
                         <input type="hidden" name="Programme" value="<?php echo $programme; ?>">
