@@ -131,15 +131,6 @@ function showPlanCadre()
         foreach ($list as $row)
         {
         	$date_adoption = $row["DateAdoption"];
-        	if( !isset($date_adoption) ) 
-        	{
-        		$date_adoption = "pas adopté";
-        	}
-
-            else
-            {
-                echo $date_adoption;
-            }
 
             $path = $row["Presentation_Cours"];
         	if( !isset($path) ) 
@@ -167,9 +158,21 @@ function showPlanCadre()
                 echo "<td>".$row["Etat"]."</td>";
             }
 
-            echo    "<td>".$row["DateAjout"]."</td>".
-                    "<td>". $date_adoption ."</td>".
-                    "<td>" . $document_link . "</td>";
+            echo    "<td>".$row["DateAjout"]."</td>";
+
+            $date_adoption = $row["DateAdoption"];
+
+            if( !isset($date_adoption) ) 
+            {
+                echo "<td>pas adopté</td>";
+            }
+
+            else
+            {
+                echo "<td>". $date_adoption ."</td>";
+            }
+                    
+            echo  "<td>" . $document_link . "</td>";
 
             if( isset($_SESSION['user_type']) )
             {
