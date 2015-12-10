@@ -123,11 +123,11 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $section_template->addText("Placeholder pour le type d'enseignement", null, "style_align_right");
     $section_template->addText( $programme_cours, null, "style_align_right" );
 
-    $section_template->addText($saut_ligne);
+    //$section_template->addText($saut_ligne);
 
     $section_template->addText("Plan-cadre en élaboration", $style_font_titre, $style_align_center);
 
-    $section_template->addText($saut_ligne);
+    //$section_template->addText($saut_ligne);
 
 
     $table_identification = $section_template->addTable('style_table');
@@ -144,11 +144,13 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $table_identification->addCell($cell_width)->addText($nom_cours, null, $style_align_center);
     $table_identification->addCell($cell_width)->addText($code_cours, null, $style_align_center);
 
-
     $table_identification->addRow($style_row);
     $table_identification->addCell($cell_width)->addText($ponderation_cours, null, $style_align_center);
     $table_identification->addCell($cell_width)->addText($nombre_unites_cours, null, $style_align_center);
     $table_identification->addCell($cell_width)->addText("test", null, $style_align_center);
+
+    $section_template->addTextBreak();
+
 
 
 
@@ -166,6 +168,9 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $table_presentation->addRow($style_row);
     $cellule_contenu = $table_presentation->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $presentation);
+
+    $section_presentation->addTextBreak();
+
 
 
 
@@ -185,6 +190,8 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $cellule_contenu = $table_integration->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $integration);
 
+    $section_integration->addTextBreak();
+
 
 
     $section_evaluation = $php_word->addSection();
@@ -202,6 +209,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $cellule_contenu = $table_evaluation->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $evaluation);
 
+    $section_evaluation->addTextBreak();
 
 
 
@@ -220,6 +228,8 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $cellule_contenu = $table_competences->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $competences);
 
+    $section_competences->addTextBreak();
+
 
 
     $section_apprentissage = $php_word->addSection();
@@ -237,7 +247,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $cellule_contenu = $table_apprentissage->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $apprentissage);
 
-
+    $section_apprentissage->addTextBreak();
 
 
     $plancadre = fetchPlanCadreElaboration_PlanCadre( $_POST['id_plancadre'] );

@@ -379,6 +379,33 @@ function showAppropriateMenu()
         echo "</select>";
     }
 
+/*
+    Nom de la fonction : showPlanCadreElaboration
+    Fait par : Simon Roy
+    Cette fonction permet d'afficher une liste déroulante de tous 
+    les plans-cadres en élaboration
+*/
+    function showPlanCadreElaboration()
+    {
+        $list = selectPlanCadreElaboration();
+
+        echo "<select name=\"plan_cadre_elaboration_list\">";
+            echo "<option value=\"" . "\">" . "</option>";
+        
+        if(sizeof($list) > 0)
+        {
+            foreach ($list as $row)
+            {
+                echo "<option value=\"".$row["NoPlanCadre"]."\">". "(".$row["DateAjout"].")". " " 
+                .$row["CodeCours"]." ".$row["NomCours"]."</option>";
+            }
+        }
+        else
+        {
+            echo "<option>"."Aucun cours"."</option>";
+        }
+        echo "</select>";
+    }
 
 /*
     Nom de la fonction : showConsignePlanCadre

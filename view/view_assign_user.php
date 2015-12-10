@@ -22,7 +22,15 @@
         <link rel="Stylesheet" href="../assets/others.css">
 
         <script type="text/javascript" src="../assets/js_global.js" ></script>
-
+        <script type="text/javascript">
+            $(.choix).change(function()
+            {
+                if()
+                {
+                    
+                }
+            });
+        </script>
     </head>
     
 
@@ -40,13 +48,19 @@
             <fieldset>
                 <form action="../controller/controller_assign_user.php" method="post">
 
-                    Choisir un utilisateur :
+                    &nbsp &nbsp Choisir un utilisateur :
                     
                     <br>
+
+                    &nbsp &nbsp
                     <?php
                         showUserListAll();
                     ?>
 
+                    <br>
+                    <br>
+
+                    &nbsp &nbsp 
                     <input type="text" name="search_user" 
                     onKeyUp="arrayFilter(this.value, this.form.user_list_all)" 
                     onChange="arrayFilter(this.value, this.form.user_list_all)"
@@ -55,17 +69,40 @@
                     <br>
                     <br>
 
-                    Choisir un cours :
+                    &nbsp &nbsp 
+                    Assigner l'utilisateur à l'élaboration d'un nouveau plan-cadre pour le cours sélectionné :
 
                     <br>
-
+                    <input type="radio" name ="choix" value="assign" checked="checked"> 
                     <?php
                         showClassListAll();
                     ?>
-                    
+
+                    <br>
+                    <br>
+
+                    &nbsp &nbsp
                     <input type="text" name="search_class" 
                     onKeyUp="arrayFilter(this.value, this.form.class_list_all)" 
                     onChange="arrayFilter(this.value, this.form.class_list_all)"
+                    >
+
+                    <br>
+                    <br>
+
+                    &nbsp &nbsp
+                    Assigner l'utilisateur à l'élaboration d'un plan-cadre existant :
+                    <br>
+                    <input type="radio" name ="choix" value="create" > 
+                    <?php
+                        showPlanCadreElaboration();
+                    ?>
+                    <br>
+                    <br>
+                    &nbsp &nbsp
+                    <input type="text" name="search_plan_cadre_elaboration" 
+                    onKeyUp="arrayFilter(this.value, this.form.plan_cadre_elaboration_list)" 
+                    onChange="arrayFilter(this.value, this.form.plan_cadre_elaboration_list)"
                     >
 
                     <br>
