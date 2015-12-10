@@ -164,15 +164,11 @@ function showPlanCadre()
 
             if( !isset($date_adoption) ) 
             {
-                echo "<td>pas adopté</td>";
+                $date_adoption = "pas adopté";
             }
 
-            else
-            {
-                echo "<td>". $date_adoption ."</td>";
-            }
-                    
-            echo  "<td>" . $document_link . "</td>";
+            echo    "<td>". $date_adoption ."</td>".
+                    "<td>" . $document_link . "</td>";
 
             if( isset($_SESSION['user_type']) )
             {
