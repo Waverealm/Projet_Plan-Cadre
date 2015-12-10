@@ -18,9 +18,6 @@ if(isset($_GET['codecours']) && isset($_GET['versionplan']))
  	// On va chercher les informations du plan-cadre que l'on adopte
  	$result = fetchInformationPlanCadre($No_PlanCadre);
 
-	// Afin de refaire l'assignation de la copie, on doit aller récupérer le numéro de compte de l'élaborateur
- 	$plannerId = getAssignationPlanner($classCode, "Validé");
-
  	// On créé une copie qui restera en mode "Validé"
  	createPlanCadreCopy($classCode, $result[0][ "Etat" ], $result[0][ "Presentation_Cours" ], $result[0][ "Objectifs_Integration" ], $result[0][ "Evaluation_Apprentissage" ], $result[0][ "Enonce_Competences" ], $result[0][ "Objectifs_Apprentissage" ], $result[0][ "Manuel_Obligatoire" ], $result[0][ "Recommandation" ]);
 
@@ -39,12 +36,6 @@ if(isset($_GET['codecours']) && isset($_GET['versionplan']))
  	{
  		setPlanCadreOfficial($noOfficialPlanCadre[0]["No_PlanCadre"], 0);
  	}
-
- 	// On doit pouvoir recréer l'assignation pour la copie en allant chercher l'id du plan-cadre
- 	// puis on fait l'assignation
- 	$copyPlanCadreId = getPlanCadreIdByState($classCode, "Validé");
- 	if (!empty($copyPlanCadreId[0][ "No_PlanCadre" ]) && !empty($plannerId[0][ "Utilisateurs_NoUtilisateur" ]))
- 		assignUserPlanCadre($copyPlanCadreId[0][ "No_PlanCadre" ], $plannerId[0][ "Utilisateurs_NoUtilisateur" ]);
 
  	header('Location: ../view/view_search_plan_cadre.php');
  }

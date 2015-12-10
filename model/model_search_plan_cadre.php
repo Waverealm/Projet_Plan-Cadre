@@ -101,101 +101,125 @@ function showPlanCadre()
         }
     }
 
-    // Si la variable de session n'a pas encore été créé (c'est le cas lorsqu'on un utilisateur vient de se connecter), il faut traiter cette situation
+    // Si on a coché la checkbox, mais que la variable de session de recherche n'a pas encore été créé
+    // (c'est le cas lorsqu'on un utilisateur vient de se connecter)
+    // Pas le choix de géré cette condition, sinon l'affichage ne se modifie pas en fonction de la checkbox
+    else if(isset($_SESSION['official_only']) && $_SESSION['official_only'] == "checked")
+    {
+        $list = fetchAllPlanCadreOfficiel(1);
+    }
+
+    // Si la variable de session de recherche n'a pas encore été créé, il faut traiter cette situation
     else
     {
         $list = selectAllPlanCadre();
     }
 
-    echo "<table>".
-            "<tr>".
-                "<th>Code du cours</th>".
-                "<th>Nom du cours</th>".
-                "<th>Code du programme</th>".
-                "<th>Nom du programme</th>".
-                "<th>État</th>".
-                "<th>Date de création</th>".
-                "<th>Date d'adoption</th>".
-                "<th>Télécharger</th>";
-        if( isset($_SESSION['user_type']) )
-        {
-            if ($_SESSION['user_type'] != "Élaborateur")
-            {
-                echo "<th>Validation</th>".
-                     "<th>Adoption</th>";
 
-            }
-        }
-
-        echo "</tr>";
-        foreach ($list as $row)
-        {
-        	$date_adoption = $row["DateAdoption"];
-
-            $path = $row["Presentation_Cours"];
-        	if( !isset($path) ) 
-        	{
-        		$document_link = "lien manquant";
-        	}
-        	else
-        	{
-        		$document_link = makeLinkPlancadre($row);
-        	}
-
-            echo "<tr>".
-                    "<td>".$row["CodeCours"]."</td>".
-                    "<td>".$row["NomCours"]."</td>".
-                    "<td>".$row["CodeProgramme"]."</td>".
-                    "<td>".$row["NomProgramme"]."</td>";
-                    
-            if($row["Officiel"] == 1)
-            {
-                echo "<td>Version officielle</td>";
-            }
-
-            else
-            {
-                echo "<td>".$row["Etat"]."</td>";
-            }
-
-            echo    "<td>".$row["DateAjout"]."</td>";
-
-            $date_adoption = $row["DateAdoption"];
-
-            if( !isset($date_adoption) ) 
-            {
-                $date_adoption = "pas adopté";
-            }
-
-            echo    "<td>". $date_adoption ."</td>".
-                    "<td>" . $document_link . "</td>";
-
-            if( isset($_SESSION['user_type']) )
-            {
-                if ($_SESSION['user_type'] != "Élaborateur")
+    if(!empty($list))
+    {
+        echo "<table id='tab_recherche'>".
+                    "<tr>".
+                        "<th>Code du cours</th>".
+                        "<th>Nom du cours</th>".
+                        "<th>Code du programme</th>".
+                        "<th>Nom du programme</th>".
+                        "<th>État</th>".
+                        "<th>Date de création</th>".
+                        "<th>Date d'adoption</th>".
+                        "<th>Télécharger</th>";
+                if( isset($_SESSION['user_type']) )
                 {
-                    if ($row["Etat"] != "Validé" && $row["Etat"] != "Adopté")
+                    if ($_SESSION['user_type'] != "Élaborateur")
                     {
-                        // ****************       la date de soumission / autre serait plus approprié que celle de la clé primaire
-                        echo "<td><a href ='../controller/controller_validate_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["No_PlanCadre"]."'>Valider</a></td>";
+                        echo "<th>Validation</th>".
+                             "<th>Adoption</th>";
+
+                    }
+                }
+
+                    echo "<th>Élaborateur</th>";   
+
+                echo "</tr>";
+
+                foreach ($list as $row)
+                {
+                    $date_adoption = $row["DateAdoption"];
+
+                    $path = $row["Presentation_Cours"];
+                    if( !isset($path) ) 
+                    {
+                        $document_link = "lien manquant";
+                    }
+                    else
+                    {
+                        $document_link = makeLinkPlancadre($row);
                     }
 
-                    else if($row["Etat"] == "Validé")
+                    echo "<tr>".
+                            "<td>".$row["CodeCours"]."</td>".
+                            "<td>".$row["NomCours"]."</td>".
+                            "<td>".$row["CodeProgramme"]."</td>".
+                            "<td>".$row["NomProgramme"]."</td>";
+                            
+                    if($row["Officiel"] == 1)
                     {
-                        echo "<td>Déjà validé</td>";
-                        echo "<td><a href ='../controller/controller_adopt_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["No_PlanCadre"]."'>Adopter</a></td>";
+                        echo "<td>Version officielle</td>";
                     }
 
-                    else if($row["Etat"] == "Adopté")
+                    else
                     {
-                        echo "<td></td>";
-                        echo "<td>Déjà adopté</td>";
+                        echo "<td>".$row["Etat"]."</td>";
                     }
+
+                    echo    "<td>".$row["DateAjout"]."</td>";
+
+                    $date_adoption = $row["DateAdoption"];
+
+                    if( !isset($date_adoption) ) 
+                    {
+                        $date_adoption = "pas adopté";
+                    }
+
+                    echo    "<td>". $date_adoption ."</td>".
+                            "<td>" . $document_link . "</td>";
+
+                    if( isset($_SESSION['user_type']) )
+                    {
+                        if ($_SESSION['user_type'] != "Élaborateur")
+                        {
+                            if ($row["Etat"] != "Validé" && $row["Etat"] != "Adopté")
+                            {
+                                // ****************       la date de soumission / autre serait plus approprié que celle de la clé primaire
+                                echo "<td><a href ='../controller/controller_validate_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["No_PlanCadre"]."'>Valider</a></td>";
+                                echo "<td>//</td>";
+                            }
+
+                            else if($row["Etat"] == "Validé")
+                            {
+                                echo "<td>Déjà validé</td>";
+                                echo "<td><a href ='../controller/controller_adopt_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["No_PlanCadre"]."'>Adopter</a></td>";
+                            }
+
+                            else if($row["Etat"] == "Adopté")
+                            {
+                                echo "<td>//</td>";
+                                echo "<td>Déjà adopté</td>";
+                            }
+                        }
+                    }
+
+                        echo "<td>".$row["Prenom"]." ".$row["Nom"]."</td>";
                     echo "</tr>";
                 }
-            }
-        }
-    echo "</table>";
+            echo "</table>";
+    }
+
+    else
+    {
+        echo "Aucun plan-cadre correspond à vos critères de recherche";
+    }
+    
 }
 
 function showAllValidPlancadre()

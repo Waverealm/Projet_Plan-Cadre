@@ -20,25 +20,21 @@ if(isset($_GET['codecours']) && isset($_GET['versionplan']))
  	// On va chercher l'id de la dernière validation du plan-cadre (s'il a déjà été validé, $noValidatePlanCadre contiendra un résultat)
  	$noValidatePlanCadre = getPlanCadreIdByState($classCode, $state);
 
+ 	// Afin de refaire l'assignation de la copie, on doit aller récupérer le numéro de compte de l'élaborateur
+ 	$plannerId = getAssignationPlanner($classCode,"Élaboration");
+
  	// S'il existe déjà une version validée du plan-cadre
  	if (!empty($noValidatePlanCadre[0][ "No_PlanCadre" ]))
  	{
- 		// Afin de refaire l'assignation de la copie, on doit aller récupérer le numéro de compte de l'élaborateur
- 		$plannerId = getAssignationPlanner($classCode,$state);
-
- 		// Alors on le supprime ainsi que son assignation
- 		deleteAssignationPlanCadre($noValidatePlanCadre[0][ "No_PlanCadre" ]);
+ 		// Alors on le suprimme
  		deleteOldVersionPlanCadre($noValidatePlanCadre[0][ "No_PlanCadre" ]);
- 	}
-
- 	// S'il n'y a pas encore de copie validée
- 	else
- 	{
- 		$plannerId = getAssignationPlanner($classCode,"Élaboration");
  	}
 
  	// On change l'état de "Élaboration" à "Validé"
  	updatePlanCadreState($No_PlanCadre, $state);
+
+ 	// On enlève l'assignation de la version validée
+ 	deleteAssignationPlanCadre($No_PlanCadre);
 
  	// On créé une copie qui restera en mode "Élaboration"
  	createPlanCadreCopy($classCode, $result[0][ "Etat" ], $result[0][ "Presentation_Cours" ], $result[0][ "Objectifs_Integration" ], $result[0][ "Evaluation_Apprentissage" ], 

@@ -48,8 +48,6 @@
 
               <?php 
                 showPlancadre();
-
-                //echo "<script> alert('".$_SESSION['valid_only']."'); </script>";
               ?>
           </fieldset>
         </div>
