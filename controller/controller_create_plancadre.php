@@ -100,12 +100,13 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $style_cellule_titre = array('valign'=>'center',
         'gridspan'=> 3);
 
-    $style_row = array('cantSplit'=>true,
+    $style_row = array(
+        'cantSplit'=>true,
         'exactHeight'=>500
         );
-    $style_row_titre = array('cantSplit'=>true,
-        'exactHeight'=>500,
-        'tblHeader'=>true
+    $style_row_titre = array('tblHeader'=>false,
+        'cantSplit'=>true,
+        'exactHeight'=>500
         );
 
     $table_width = 10000;
@@ -123,11 +124,13 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $section_template->addText("Placeholder pour le type d'enseignement", null, "style_align_right");
     $section_template->addText( $programme_cours, null, "style_align_right" );
 
-    //$section_template->addText($saut_ligne);
+   
+    // espace avant et après le titre du document
+    $section_template->addText($saut_ligne);
 
     $section_template->addText("Plan-cadre en élaboration", $style_font_titre, $style_align_center);
 
-    //$section_template->addText($saut_ligne);
+    $section_template->addText($saut_ligne);
 
 
     $table_identification = $section_template->addTable('style_table');
@@ -149,9 +152,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $table_identification->addCell($cell_width)->addText($nombre_unites_cours, null, $style_align_center);
     $table_identification->addCell($cell_width)->addText("test", null, $style_align_center);
 
-    $section_template->addTextBreak();
-
-
+    //$section_template->addTextBreak();
 
 
     $section_presentation = $php_word->addSection();
@@ -170,7 +171,6 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $presentation);
 
     $section_presentation->addTextBreak();
-
 
 
 
@@ -209,7 +209,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $cellule_contenu = $table_evaluation->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $evaluation);
 
-    $section_evaluation->addTextBreak();
+    $section_evaluation->addPageBreak();
 
 
 
