@@ -316,9 +316,9 @@
       $query->CloseCursor();
   }
 
-  function createClass($bdd, $codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $progCours)
+  function createClass($codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $progCours)
   {
-      $insert = dbConnect()->prepare("CALL INSERT_COURS(?,?,?,?,?,?,?,?)");
+      $insert = dbConnect()->prepare("CALL INSERT_COURS(?,?,?,?,?,?,?)");
 
       $insert->bindParam(1, $codeCours, PDO::PARAM_STR);
       $insert->bindParam(2, $nomCours, PDO::PARAM_STR);
@@ -334,7 +334,7 @@
 
   function createCompetence($bdd, $codeCompetence, $nomCompetence, $descriptionCompetence, $dateAjoutCompetence)
   {
-      $insert = $bdd->prepare("CALL INSERT_COMPETENCE(?,?,?,?)");
+      $insert = dbConnect()->prepare("CALL INSERT_COMPETENCE(?,?,?,?)");
 
       $insert->bindParam(1, $codeCompetence, PDO::PARAM_STR);
       $insert->bindParam(2, $nomCompetence, PDO::PARAM_STR);

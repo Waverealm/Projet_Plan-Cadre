@@ -318,7 +318,7 @@ function showAppropriateMenu()
         $list = selectAllPrograms();
 
         echo "<div>";
-            echo '<select name="CodeProgram">';
+            echo '<select name="CodeProgramme">';
                 echo '<option value="">' . '</option>';
         foreach ($list as $row)
         {

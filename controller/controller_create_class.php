@@ -20,11 +20,12 @@
   $unites = NULL;
   $heures = NULL;
   $progCours = NULL;
-  $dateAjout = date('Y-m-d');
 
   //isset($var) vérifie que la variable a été créé et qu'elle n'est pas nulle
 
-  if(isset($_POST['CodeCours']) && isset($_POST['NomCours']) && isset($_POST['TypeCours']) && isset($_POST['Ponderation']) && isset($_POST['NombreUnites']) && isset($_POST['NombreHeures']) && isset($_POST['CodeProgramme']))
+  if(isset($_POST['CodeCours']) && isset($_POST['NomCours']) && isset($_POST['TypeCours']) 
+    && isset($_POST['Ponderation']) && isset($_POST['NombreUnites']) && isset($_POST['NombreHeures']) 
+    && isset($_POST['CodeProgramme']))
   {
     $codeCours = 	$_POST['CodeCours'];
     $nomCours = $_POST['NomCours'];
@@ -34,21 +35,21 @@
     $heures = $_POST['NombreHeures'];
     $codeProgramme = $_POST['CodeProgramme'];
   }
-     
+    
+/*     
   // On vérifie si des champs sont vides
   if (empty($codeCours) || empty($nomCours) || empty($typeCours) || empty($ponderation) || empty($unites) || empty($heures) || empty($codeProgramme))
   {
     $error_fieldsempty = "Un ou plusieurs champs de texte sont vides. Veuillez les remplir.";
     $i++;
   }
-
+*/
   
 
   // S'il n'y a aucune erreur
-  if ($i == 0)
+  if ($i === 0)
   {
-    $bdd = dbConnect();
-    createClass($bdd, $codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $codeProgramme, $dateAjout);
+    createClass($codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $codeProgramme);
 
     header('Location: ../view/view_index.php');
   }
