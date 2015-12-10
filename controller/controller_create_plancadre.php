@@ -89,10 +89,14 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
 // ----------------------------------------------
  
+
+
 /*
+    ----------------------------------------------
     Début de la création du document.
     Le code qui suit pourrait être considéré comme un template si 
     on arrive à le paramétrer correctement.
+     ----------------------------------------------
 */
     $php_word = new \PhpOffice\PhpWord\PhpWord();
 

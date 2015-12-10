@@ -316,7 +316,7 @@
       $query->CloseCursor();
   }
 
-  function createClass($bdd, $codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $progCours, $dateAjout)
+  function createClass($bdd, $codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $progCours)
   {
       $insert = dbConnect()->prepare("CALL INSERT_COURS(?,?,?,?,?,?,?,?)");
 
@@ -327,7 +327,6 @@
       $insert->bindParam(5, $unites, PDO::PARAM_STR);
       $insert->bindParam(6, $heures, PDO::PARAM_STR);
       $insert->bindParam(7, $progCours, PDO::PARAM_STR);
-      $insert->bindParam(8, $dateAjout, PDO::PARAM_STR);
 
       $insert->execute();
       $insert->CloseCursor();
@@ -346,7 +345,7 @@
       $insert->CloseCursor();
   }
 
-  function createProgram($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction, $dateAjoutProgramme)
+  function createProgram($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction)
   {
       $insert = dbConnect()->prepare("CALL INSERT_PROGRAMME(?,?,?,?,?)");
 
@@ -354,7 +353,6 @@
       $insert->bindParam(2, $nomProgramme, PDO::PARAM_STR);
       $insert->bindParam(3, $typeProgramme, PDO::PARAM_STR);
       $insert->bindParam(4, $typeSanction, PDO::PARAM_STR);
-      $insert->bindParam(5, $dateAjoutProgramme, PDO::PARAM_STR);
 
       $insert->execute();
       $insert->CloseCursor();
