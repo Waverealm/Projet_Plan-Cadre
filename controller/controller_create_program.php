@@ -40,7 +40,7 @@
   if ($i == 0)
   {
 
-    createProgram($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction, $dateAjoutProgramme);
+    createProgram($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction);
 
 
     header('Location: ../view/view_index.php');

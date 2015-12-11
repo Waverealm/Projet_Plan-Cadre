@@ -332,14 +332,13 @@
       $insert->CloseCursor();
   }
 
-  function createCompetence($bdd, $codeCompetence, $nomCompetence, $descriptionCompetence, $dateAjoutCompetence)
+  function createCompetence($codeCompetence, $nomCompetence, $descriptionCompetence)
   {
-      $insert = dbConnect()->prepare("CALL INSERT_COMPETENCE(?,?,?,?)");
+      $insert = dbConnect()->prepare("CALL INSERT_COMPETENCE(?,?,?)");
 
       $insert->bindParam(1, $codeCompetence, PDO::PARAM_STR);
       $insert->bindParam(2, $nomCompetence, PDO::PARAM_STR);
       $insert->bindParam(3, $descriptionCompetence, PDO::PARAM_STR);
-      $insert->bindParam(4, $dateAjoutCompetence, PDO::PARAM_STR);
 
       $insert->execute();
       $insert->CloseCursor();
@@ -347,7 +346,7 @@
 
   function createProgram($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction)
   {
-      $insert = dbConnect()->prepare("CALL INSERT_PROGRAMME(?,?,?,?,?)");
+      $insert = dbConnect()->prepare("CALL INSERT_PROGRAMME(?,?,?,?)");
 
       $insert->bindParam(1, $codeProgramme, PDO::PARAM_STR);
       $insert->bindParam(2, $nomProgramme, PDO::PARAM_STR);
