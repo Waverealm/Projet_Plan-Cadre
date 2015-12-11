@@ -93,3 +93,9 @@
 
   </body>
 </html>
+
+
+    <?php 
+        showSessionMessage("errors_add_program");
+        showSessionMessage("success_add_program");
+    ?>

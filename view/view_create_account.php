@@ -109,5 +109,5 @@
 </html>
 
     <?php 
-        showErrors("errors_create_user");
+        showSessionMessage("errors_create_user");
     ?>

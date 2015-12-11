@@ -219,6 +219,10 @@
   {
     return fetchId( $class_code, "CALL SELECT_CLASS(?)");
   }
+  function fetchProgram($program_code)
+  {
+    return fetchId( $program_code, "CALL SELECT_PROGRAM(?)");
+  }
   
   function getPassword($username)
   {

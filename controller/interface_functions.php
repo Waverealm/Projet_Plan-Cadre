@@ -539,7 +539,7 @@ function showAppropriateMenu()
         <?php
     }
 
-    function showErrors($errors)
+    function showSessionMessage($errors)
     {
         // On affiche les erreurs s'il y en a
         if( isset($_SESSION[ $errors ]) )

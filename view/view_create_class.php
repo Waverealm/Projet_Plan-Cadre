@@ -141,6 +141,6 @@
 </html>
 
     <?php 
-        showErrors("errors_add_class");
-        showErrors("success_add_class");
+        showSessionMessage("errors_add_class");
+        showSessionMessage("success_add_class");
     ?>

@@ -84,5 +84,5 @@
 </html>
 
     <?php 
-        showErrors("errors_update_instructions");
+        showSessionMessage("errors_update_instructions");
     ?>

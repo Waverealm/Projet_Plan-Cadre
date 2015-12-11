@@ -11,6 +11,7 @@
 
   // i est un compteur pour le nombre d'erreur
   $i = 0;
+  $error_program_already_exist = NULL;
 
 
   $codeProgramme = NULL;
@@ -29,12 +30,18 @@
     $typeSanction = $_POST['TypeSanction'];
   }
 
+  if (!empty(fetchProgram($codeProgramme)))
+  {
+    $error_program_already_exist = '- Ce programme existe déjà. Veuillez rentrez un autre code. \n';
+    $i++;
+  }
+
   // On vérifie si des champs sont vides
-  if (empty($codeProgramme) || empty($nomProgramme) || empty($typeProgramme) || empty($typeSanction))
+  /*if (empty($codeProgramme) || empty($nomProgramme) || empty($typeProgramme) || empty($typeSanction))
   {
     $error_fieldsempty = "Un ou plusieurs champs de texte sont vides. Veuillez les remplir.";
     $i++;
-  }
+  }*/
 
   // S'il n'y a aucune erreur
   if ($i == 0)
@@ -43,13 +50,19 @@
     createProgram($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction);
     $_SESSION["selected_CodeProgramme"] = $codeProgramme;
 
+    $_SESSION[ 'success_add_program' ] = "Programme ajouté avec succès";
+
     header('Location: ../view/view_create_program.php');
   }
   else 
   {
-    // setErrors();
+    setErrors();
     header('Location: ../view/view_create_program.php');
   }
 
-
+  function setErrors()
+  {
+    global $error_program_already_exist;
+    $_SESSION[ 'errors_add_program' ] = 'Une ou plusieurs erreurs se sont produites : \n\n'.$error_program_already_exist;
+  }
 ?>

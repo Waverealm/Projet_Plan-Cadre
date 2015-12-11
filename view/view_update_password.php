@@ -72,6 +72,6 @@
     </html>
 
     <?php 
-        showErrors("errors_update_password");
-        showErrors("success_update_password");
+        showSessionMessage("errors_update_password");
+        showSessionMessage("success_update_password");
     ?>
