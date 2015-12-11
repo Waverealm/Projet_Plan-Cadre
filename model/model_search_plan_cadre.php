@@ -23,7 +23,7 @@ function makeLinkPlancadre($plancadre)
 {
 
 	$path = "../plancadre/" . $plancadre['No_PlanCadre'] . "_" . $plancadre['CodeCours'] . ".docx";
-    if( file_exists($lien) )
+    if( file_exists($path) )
     {
         $lien = "aucune document";
     }
