@@ -396,7 +396,7 @@ function showAppropriateMenu()
     {
         $list = fetchAllClass();
 
-        echo "<select name=\"class_list_all\">";
+        echo "<select name='class_list_all' id='class_list_all'>";
             echo "<option value=\"" . "\">" . "</option>";
         
         if(sizeof($list) > 0)
@@ -438,7 +438,7 @@ function showAppropriateMenu()
     {
         $list = selectPlanCadreElaboration();
 
-        echo "<select name=\"plan_cadre_elaboration_list\">";
+        echo "<select name='plan_cadre_elaboration_list' id='plan_cadre_elaboration_list'>";
             echo "<option value=\"" . "\">" . "</option>";
         
         if(sizeof($list) > 0)

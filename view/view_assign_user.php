@@ -22,13 +22,32 @@
         <link rel="Stylesheet" href="../assets/others.css">
 
         <script type="text/javascript" src="../assets/js_global.js" ></script>
-        <script type="text/javascript">
-            $(.choix).change(function()
-            {
-                if()
-                {
-                    
-                }
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+        <script>
+            $(function () {
+                $('#assignation input[type=radio]').change(function(){
+                    if ($(this).val() == "assign" ) {
+                        $( "#class_list_all" ).prop( "disabled", false );
+                        $( "#search_class" ).prop( "disabled", false );
+                        $( "#plan_cadre_elaboration_list" ).prop( "disabled", true );
+                        $( "#plan_cadre_elaboration_list" ).val("China");
+                        $( "#search_plan_cadre_elaboration" ).prop( "disabled", true );
+                    }
+
+                    else if($(this).val() == "reassign") {
+                        $( "#class_list_all" ).prop( "disabled", true );
+                        $( "#class_list_all" ).val("China");
+                        $( "#search_class" ).prop( "disabled", true );
+                        $( "#plan_cadre_elaboration_list" ).prop( "disabled", false );
+                        $( "#search_plan_cadre_elaboration" ).prop( "disabled", false );
+                    }
+                })
+            })
+
+            $( window ).load(function() {
+                $( "#plan_cadre_elaboration_list" ).prop( "disabled", true );
+                $( "#search_plan_cadre_elaboration" ).prop( "disabled", true );
             });
         </script>
     </head>
@@ -45,7 +64,8 @@
 
             <br>
 
-            <fieldset>
+            <fieldset id="assignation">
+                <legend>Assignation : </legend>
                 <form action="../controller/controller_assign_user.php" method="post">
 
                     &nbsp &nbsp Choisir un utilisateur :
@@ -57,10 +77,6 @@
                         showUserListAll();
                     ?>
 
-                    <br>
-                    <br>
-
-                    &nbsp &nbsp 
                     <input type="text" name="search_user" 
                     onKeyUp="arrayFilter(this.value, this.form.user_list_all)" 
                     onChange="arrayFilter(this.value, this.form.user_list_all)"
@@ -77,15 +93,9 @@
                     <?php
                         showClassListAll();
                     ?>
-
-                    <br>
-                    <br>
-
-                    &nbsp &nbsp
-                    <input type="text" name="search_class" 
+                    <input type="text" name="search_class" id="search_class"
                     onKeyUp="arrayFilter(this.value, this.form.class_list_all)" 
-                    onChange="arrayFilter(this.value, this.form.class_list_all)"
-                    >
+                    onChange="arrayFilter(this.value, this.form.class_list_all)">
 
                     <br>
                     <br>
@@ -93,17 +103,13 @@
                     &nbsp &nbsp
                     Assigner l'utilisateur à l'élaboration d'un plan-cadre existant :
                     <br>
-                    <input type="radio" name ="choix" value="create" > 
+                    <input type="radio" name ="choix" value="reassign" > 
                     <?php
                         showPlanCadreElaboration();
                     ?>
-                    <br>
-                    <br>
-                    &nbsp &nbsp
-                    <input type="text" name="search_plan_cadre_elaboration" 
+                    <input type="text" name="search_plan_cadre_elaboration" id="search_plan_cadre_elaboration"
                     onKeyUp="arrayFilter(this.value, this.form.plan_cadre_elaboration_list)" 
-                    onChange="arrayFilter(this.value, this.form.plan_cadre_elaboration_list)"
-                    >
+                    onChange="arrayFilter(this.value, this.form.plan_cadre_elaboration_list)">
 
                     <br>
                     <br>
