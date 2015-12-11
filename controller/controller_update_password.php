@@ -54,6 +54,8 @@ if ($i == 0)
 {
     updatePassword($noUser, createHash($newPassword));
     header('Location: ../view/view_index.php');
+
+    $_SESSION[ 'success_update_password' ] = "Mot de passe modifié avec succès";
 }
 
 else

@@ -12,6 +12,7 @@
   // i est un compteur pour le nombre d'erreur
   $i = 0;
   $error_class_already_exist = NULL;
+  $error_program_code_missing = NULL;
 
   $codeCours = NULL;
   $nomCours = NULL;
@@ -50,6 +51,12 @@
     $error_class_already_exist = '- Ce cours existe déjà. Veuillez rentrez un autre code. \n';
     $i++;
   }
+
+  if(empty($codeProgramme))
+  {
+    $error_program_code_missing = '- Veuillez sélectionner un code de programme. \n';
+    $i++;
+  }
     
 
   // S'il n'y a aucune erreur
@@ -58,6 +65,8 @@
     createClass($codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $codeProgramme);
     $_SESSION["selected_CodeCours"] = $codeCours;
     header('Location: ../view/view_create_class.php');
+
+    $_SESSION[ 'success_add_class' ] = "Cours ajouté avec succès";
   }
   else 
   {
@@ -67,7 +76,7 @@
 
   function setErrors()
   {
-    global $error_class_already_exist;
-    $_SESSION[ 'errors_add_class' ] = 'Une ou plusieurs erreurs se sont produites : \n\n'.$error_class_already_exist;
+    global $error_class_already_exist, $error_program_code_missing;
+    $_SESSION[ 'errors_add_class' ] = 'Une ou plusieurs erreurs se sont produites : \n\n'.$error_class_already_exist.$error_program_code_missing;
   }
 ?>

@@ -73,4 +73,5 @@
 
     <?php 
         showErrors("errors_update_password");
+        showErrors("success_update_password");
     ?>

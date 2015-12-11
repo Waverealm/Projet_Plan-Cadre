@@ -142,4 +142,5 @@
 
     <?php 
         showErrors("errors_add_class");
+        showErrors("success_add_class");
     ?>
