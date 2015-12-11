@@ -1,1 +1,0 @@
-<p>Les comp&eacute;tences utilis&eacute;es dans ce cours seront ....</p><ul><li>1</li><li>2</li></ul><ol><li>comp&eacute;tences 1</li><li>comp&eacute;tences 2</li><li>comp&eacute;tences3</li><li>comp&eacute;tences4</li><li>comp&eacute;tences 5</li></ol><p>&nbsp;</p>

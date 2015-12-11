@@ -207,6 +207,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $presentation);
 
     $section_presentation->addTextBreak();
+    $section_presentation->addPageBreak();
 // Fin de la section de la présentation du cours 
 // ----------------------------------------------
     
@@ -230,6 +231,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $integration);
 
     $section_integration->addTextBreak();
+    $section_integration->addPageBreak();
 // Fin de la section de l'objectif d'intégration 
 // ----------------------------------------------
     
@@ -252,7 +254,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $cellule_contenu = $table_evaluation->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $evaluation);
 
-    $section_evaluation->addPageBreak();
+    $section_evaluation->addTextBreak();
     $section_evaluation->addPageBreak();
 
 // Fin de la section de l'évaluation des apprentissages 
@@ -301,7 +303,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $apprentissage);
 
     $section_apprentissage->addTextBreak();
-    $section_competences->addPageBreak();
+    $section_apprentissage->addPageBreak();
 
 // Fin de la section des objectifs d'apprentissage
 // ----------------------------------------------

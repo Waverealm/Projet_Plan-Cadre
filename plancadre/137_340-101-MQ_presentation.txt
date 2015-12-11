@@ -1,1 +1,0 @@
-<p>test de liste</p><ul><li>1</li><li>test 2</li><li>comp&eacute;tences requises</li></ul><p>fin de la liste</p>
