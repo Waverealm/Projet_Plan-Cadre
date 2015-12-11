@@ -217,7 +217,7 @@ function showPlanCadre()
 
     else
     {
-        echo "Aucun plan-cadre correspond à vos critères de recherche";
+        echo "Aucun plan-cadre ne correspond à vos critères de recherche";
     }
     
 }
