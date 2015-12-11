@@ -7,6 +7,11 @@
   include_once("../controller/interface_functions.php");
   include_once("../controller/pages_access.php");
 
+
+
+  include_once("../assets/constant.php");
+  include_once(INTERFACE_FUNCTIONS);
+
   verifyAccessPages();
   isPlanner();
   isAdmin();
@@ -21,7 +26,8 @@
       <link rel="Stylesheet" href="../assets/pure.css">
       <link rel="Stylesheet" href="../assets/styles.css">
       <link rel="Stylesheet" href="../assets/others.css">
-         
+
+      <script type="text/javascript" src="../assets/js_global.js" ></script>
     </head>
     <body> 
     <div class="container">
@@ -34,10 +40,20 @@
           <legend>Ajout de programme : </legend>
           </br>
 <form action="../controller/controller_create_program.php" method="post">
+
+
+        <label>Liste des programmes existant : </label>
+          <?php
+            showListProgramsWithSelected();
+          ?>
+        <br>
+
         <label>Code du programme : </label>
         <div>
             <input class="text-box single-line" data-val="true" id="CodeProgramme" name="CodeProgramme" 
               type="text" value="" 
+              onKeyUp="arrayFilter(this.value, this.form.program_list_all)"
+              onChange="arrayFilter(this.value, this.form.program_list_all)"
               required
             />
         </div>

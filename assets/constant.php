@@ -14,6 +14,7 @@
 	Les vues sont suivies de leur controlleur si elles en ont un.
 ------------------------------------------------------------------------------------
 */
+
 define("PAGE_ACCESS", "../controller/page_acces.php");
 define("INTERFACE_FUNCTIONS", "../controller/interface_functions.php");
 
@@ -41,7 +42,7 @@ define("VIEW_SEARCH_PLAN_CADRE", "../view/view_search_plan_cadre.php");
 
 // lien avec des données à entrer ou modifier
 define("VIEW_CREATE_PROGRAM", "../view/view_create_program.php");
-define("CONTROLLER_CREATE_PROGRAM", "../controller/controller_create_programe.php");
+define("CONTROLLER_CREATE_PROGRAM", "../controller/controller_create_program.php");
 
 
 define("VIEW_CREATE_CLASS", "../view/view_create_class.php");

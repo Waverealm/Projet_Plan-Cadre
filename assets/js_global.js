@@ -66,12 +66,13 @@ function loadInstruction() {
 
     La liste est réorganisée pour que les éléments qui contiennent le filtre se retrouvent
     en haut de la liste.
-	Il est suggérer de l'utiliser pour un select avec un input
-    exemple : <input type="text" name="uneZoneTexte" onchange="arrayFilter(this.value, this.form.CBX_nom)"
-	onKeyUp ="arrayFilter(this.value, this.form.CBX_nom)">
+	  Il est suggérer de l'utiliser pour un select avec un input
+    exemple : 
+    <input type="text" name="uneZoneTexte" onchange="arrayFilter(this.value, this.form.CBX_nom)"
+	  onKeyUp ="arrayFilter(this.value, this.form.CBX_nom)">
     <select name="selectName">
     <option></option>
-    <option value="valeurVoulue" ><*option>
+    <option value="valeurVoulue" ></option>
 
 	///////////////////////////////////////////////////////////////////////////
     // Tiré de : http://evolt.org/node/55035/

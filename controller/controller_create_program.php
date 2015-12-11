@@ -41,13 +41,15 @@
   {
 
     createProgram($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction);
+    $_SESSION["selected_CodeProgramme"] = $codeProgramme;
 
-
-    header('Location: ../view/view_index.php');
+    header('Location: ../view/view_create_program.php');
   }
   else 
   {
     // setErrors();
     header('Location: ../view/view_create_program.php');
   }
+
+
 ?>

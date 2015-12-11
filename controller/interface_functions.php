@@ -248,7 +248,7 @@ function showAppropriateMenu()
         $list = selectAllProgramCode();
 
         echo "<div>";
-            echo "<select name=\"CodeProgramme\">";
+            echo "<select name=\"program_list_all\">";
 
         // Affichage de la liste des codes des programmes dans une combo box.
         foreach ($list as $row)
@@ -324,7 +324,6 @@ function showAppropriateMenu()
         {
             echo '<option value="'.$row['CodeProgramme'].'">'.$row['CodeProgramme']. ' ' .$row['NomProgramme']. '</option>';
         }
-
             echo "</select>";
         echo "</div>";
     }
@@ -353,6 +352,41 @@ function showAppropriateMenu()
         echo "</form>";
     }
     
+
+
+    function showListProgramsWithSelected()
+    {
+        $list = selectAllPrograms();
+
+        echo "<div>";
+            echo '<select name="program_list_all">';
+                echo '<option value="">' . '</option>';
+        foreach ($list as $row)
+        {
+            if(isset($_SESSION["selected_CodeProgramme"]))
+            {
+                if($row["CodeProgramme"] == $_SESSION["selected_CodeProgramme"])
+                {
+                    echo '<option selected value="'.$row['CodeProgramme'].'">'.$row['CodeProgramme']. ' ' .$row['NomProgramme']. '</option>';
+                    unset($_SESSION["selected_CodeProgramme"]);
+                }
+                else
+                {
+                    echo '<option value="'.$row['CodeProgramme'].'">'.$row['CodeProgramme']. ' ' .$row['NomProgramme']. '</option>';
+                }
+            }
+            else
+            {
+                echo '<option value="'.$row['CodeProgramme'].'">'.$row['CodeProgramme']. ' ' .$row['NomProgramme']. '</option>';
+            }
+        }
+
+            echo "</select>";
+        echo "</div>";
+    }
+
+
+
 /*
     Nom de la fonction : showClassListAll
     Fait par : Simon Roy
@@ -369,7 +403,22 @@ function showAppropriateMenu()
         {
             foreach ($list as $row)
             {
-                echo "<option value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+                if(isset($_SESSION["selected_CodeCours"]) )
+                {
+                    if($row["CodeCours"] == $_SESSION["selected_CodeCours"])
+                    {
+                        echo "<option selected value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+                        unset($_SESSION["selected_CodeCours"]);
+                    }
+                    else
+                    {
+                        echo "<option value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+                    }
+                }
+                else
+                {
+                    echo "<option value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+                }
             }
         }
         else

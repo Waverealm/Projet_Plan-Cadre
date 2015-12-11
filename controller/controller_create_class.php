@@ -50,8 +50,8 @@
   if ($i === 0)
   {
     createClass($codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $codeProgramme);
-
-    header('Location: ../view/view_index.php');
+    $_SESSION["selected_CodeCours"] = $codeCours;
+    header('Location: ../view/view_create_class.php');
   }
   else 
   {
