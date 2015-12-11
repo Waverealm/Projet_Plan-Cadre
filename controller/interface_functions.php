@@ -403,21 +403,24 @@ function showAppropriateMenu()
         {
             foreach ($list as $row)
             {
-                if(isset($_SESSION["selected_CodeCours"]) )
+                if(empty(fetchPlanCadreClass($row["CodeCours"])))
                 {
-                    if($row["CodeCours"] == $_SESSION["selected_CodeCours"])
+                    if(isset($_SESSION["selected_CodeCours"]) )
                     {
-                        echo "<option selected value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
-                        unset($_SESSION["selected_CodeCours"]);
+                        if($row["CodeCours"] == $_SESSION["selected_CodeCours"])
+                        {
+                            echo "<option selected value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+                            unset($_SESSION["selected_CodeCours"]);
+                        }
+                        else
+                        {
+                            echo "<option value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+                        }
                     }
                     else
                     {
                         echo "<option value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
                     }
-                }
-                else
-                {
-                    echo "<option value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
                 }
             }
         }
@@ -445,7 +448,8 @@ function showAppropriateMenu()
         {
             foreach ($list as $row)
             {
-                echo "<option value=\"".$row["NoPlanCadre"]."\">". "(".$row["DateAjout"].")". " " 
+                
+                echo "<option value=\"".$row["No_PlanCadre"]."\">". "(".$row["DateAjout"].")". " " 
                 .$row["CodeCours"]." ".$row["NomCours"]."</option>";
             }
         }

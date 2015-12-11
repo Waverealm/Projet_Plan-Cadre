@@ -101,7 +101,7 @@
                     <br>
 
                     &nbsp &nbsp
-                    Assigner l'utilisateur à l'élaboration d'un plan-cadre existant :
+                    Assigner l'utilisateur à l'élaboration d'un plan-cadre déjà existant :
                     <br>
                     <input type="radio" name ="choix" value="reassign" > 
                     <?php
@@ -129,3 +129,15 @@
 
 </html>
 
+<?php 
+    if( isset($_SESSION[ 'info_assign' ]) )
+    {
+        ?>
+
+        <script>alert("<?php echo $_SESSION[ 'info_assign' ]; ?>");</script>
+
+        <?php
+
+        unset($_SESSION[ 'info_assign' ]);
+    }
+?>

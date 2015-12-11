@@ -4,28 +4,61 @@
    Créé par : Simon Roy
    Gestion de la vue view_assign_user.php
 */
-   	// erreur: A session had already been started
-    // code inutile à enlever/confirmer
-   	//session_start();
+
+   	if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 
 	include_once('../model/queries.php');
-	include_once('../controller/interface_functions.php');
 
 	// Si on a reçu les données d'un formulaire
-	if( isset( $_POST[ 'user_list_all' ] ) && isset( $_POST[ 'class_list_all' ] ) )
+	if( isset( $_POST[ 'user_list_all' ] ))
 	{
-
 		$user = $_POST["user_list_all"];
-		$codecours = $_POST["class_list_all"];
 
-		$etat = "Élaboration";
+		if(isset( $_POST[ 'class_list_all' ] ) && !empty( $_POST[ 'class_list_all' ] ))
+		{
+			$codecours = $_POST["class_list_all"];
 
-		$id = createPlanCadre($codecours, $etat);
-		
-		assignUserPlanCadre($id, $user);
+			$etat = "Élaboration";
 
-		header('Location: ../view/view_index.php');
-		exit;
+			$id = createPlanCadre($codecours, $etat);
+			
+			assignUserPlanCadre($id, $user);
+
+			$_SESSION[ 'info_assign' ] = 'Assignation effectuée avec succès';
+
+			header('Location: ../view/view_assign_user.php');
+		}
+
+		else if(isset( $_POST[ 'plan_cadre_elaboration_list' ] ) && !empty( $_POST[ 'plan_cadre_elaboration_list' ] ))
+		{
+
+			if(empty(getPlanCadreUser($_POST[ 'plan_cadre_elaboration_list' ], $user)))
+            {
+				// Lorsqu'on choisi cette option, cela ne supprime pas l'asssignation précédente, mais rajoute un nouvel
+				// élaborateur qui peut avoir accès à ce plan-cadre
+				assignUserPlanCadre($_POST[ 'plan_cadre_elaboration_list' ], $user);
+
+				$_SESSION[ 'info_assign' ] = 'Assignation effectuée avec succès';
+			}
+
+			else
+			{
+				$_SESSION[ 'info_assign' ] = 'Cet utilisateur est déjà assigné à ce plan-cadre';
+			}
+
+			header('Location: ../view/view_assign_user.php');
+
+		}
+
+		else
+		{
+			$_SESSION[ 'info_assign' ] = 'Vous devez sélectionné un cours ou un plan-cadre déjà existant';
+
+			header('Location: ../view/view_assign_user.php');
+		}
 	}
 
 ?>

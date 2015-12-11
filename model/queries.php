@@ -211,6 +211,10 @@
   {
     return fetchId( $officiel, "CALL SELECT_ALL_PLAN_CADRE_OFFICIEL(?)");
   }
+  function fetchPlanCadreClass($class_code)
+  {
+    return fetchId( $class_code, "CALL SELECT_PLAN_CADRE_CLASS(?)");
+  }
   
   function getPassword($username)
   {
@@ -274,6 +278,20 @@
 
     $query->bindParam(1, $classCode, PDO::PARAM_STR);
     $query->bindParam(2, $state, PDO::PARAM_STR);
+
+    $query->execute();
+    $result = $query->fetchAll();
+    $query->closeCursor();
+
+    return $result;
+  }
+
+  function getPlanCadreUser($noPlanCadre, $noUser)
+  {
+    $query = dbConnect()->prepare("CALL SELECT_PLAN_CADRE_USER(?,?)");
+
+    $query->bindParam(1, $noPlanCadre, PDO::PARAM_STR);
+    $query->bindParam(2, $noUser, PDO::PARAM_STR);
 
     $query->execute();
     $result = $query->fetchAll();
