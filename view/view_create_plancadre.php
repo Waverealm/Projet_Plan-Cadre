@@ -74,9 +74,9 @@
         </br>
         <form action="../controller/controller_create_plancadre.php" method="post">
             
-            <!-- bouton pour pouvoir tester sans avoir à scroll down -->
+            <!-- bouton pour pouvoir tester sans avoir à scroll down >
             <input name="save" type="submit" value="Sauvegarder..." class="btn btn-default" />
-            <!-- enlever après la phase de test -->
+            < enlever après la phase de test -->
 
             <input type='hidden' name='save_path' value = 
                 <?php 
@@ -251,7 +251,6 @@
             </br>
 
             <div class="col-md-offset-2 col-md-2">
-                <input name="submit" type="submit" value="Soumettre..." class="btn btn-default" />
                 <input name="save" type="submit" value="Sauvegarder..." class="btn btn-default" />
             </div>
 
