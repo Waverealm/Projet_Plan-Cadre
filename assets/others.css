@@ -22,3 +22,7 @@
  	table-layout: fixed;
  	width:100%;
 }
+
+.combo_box_disabled {
+	background-color: #DBDBDB;
+}

@@ -73,7 +73,7 @@ function getUserType ()
         $id = $_SESSION['no_user'];
         $list = fetchPlanCadreElaboration_User($id);
 
-        echo "<select name=\"plancadre_elaboration_list\">";
+        echo "<select name='plancadre_elaboration_list' id='plancadre_elaboration_list' >";
         
         if(sizeof($list) > 0)
         {
@@ -84,7 +84,7 @@ function getUserType ()
         }
         else
         {
-            echo "<option>" . "Aucun plan-cadre ne vous a été assigné." . "</option>";
+            echo "<option value='not_found'>" . "Aucun plan-cadre ne vous a été assigné." . "</option>";
         }
         echo "</select>";
     }

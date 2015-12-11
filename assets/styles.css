@@ -186,6 +186,25 @@ Single styles
 	background-color: green;
 }
 
+.btn-disabled
+{
+	color: #fff !important;
+	background-color: grey;
+	border-color: grey;
+	display: inline-block;
+	padding: .5em 1em;
+	margin-bottom: 0;
+	font-weight: 400;
+	line-height: 1.2;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid transparent;
+	border-radius: .2em;
+	text-decoration: none;
+}
+
 .btn:focus
 {
 	color: #fff !important;

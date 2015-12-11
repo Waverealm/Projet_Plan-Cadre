@@ -25,6 +25,17 @@
         <link rel="Stylesheet" href="../assets/others.css">
 
         <script type="text/javascript" src="../assets/js_global.js" ></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+        <script>
+          $( window ).load(function() {
+                if ($( "#plancadre_elaboration_list" ).val() == "not_found")
+                {
+                   $( "#btn_update" ).prop( "disabled", true );
+                   $( "#btn_update" ).removeClass('btn btn-default').addClass('btn-disabled');
+                }
+            });
+        </script>
 
     </head>
     <body>
@@ -60,7 +71,7 @@
                     <br>
 
                     <div class="col-md-offset-2 col-md-2">
-                            <input type="submit" value="Modifier ce plan-cadre" class="btn btn-default" /> 
+                            <input type="submit" value="Modifier ce plan-cadre" id='btn_update' class="btn btn-default" /> 
                             
                             <br>
                             <br>
