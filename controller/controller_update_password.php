@@ -53,7 +53,7 @@ if (strlen($newPassword) < 6 && !empty($newPassword))
 if ($i == 0)
 {
     updatePassword($noUser, createHash($newPassword));
-    header('Location: ../view/view_index.php');
+    header('Location: ../view/view_update_password.php');
 
     $_SESSION[ 'success_update_password' ] = "Mot de passe modifié avec succès";
 }
