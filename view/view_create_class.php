@@ -124,8 +124,8 @@
           <br>      
           <label><strong>Recherche d'un programme : </strong></label><br>
           <input type='text' name='search_program' value=''
-            onKeyUp="arrayFilter(this.value, this.form.CodeProgram)"
-            onChange="arrayFilter(this.value, this.form.CodeProgram)"
+            onKeyUp="arrayFilter(this.value, this.form.CodeProgramme)"
+            onChange="arrayFilter(this.value, this.form.CodeProgramme)"
           /><br>
           <br>
     
