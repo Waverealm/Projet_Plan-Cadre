@@ -21,9 +21,17 @@ include_once("../model/queries.php");
 //** à modifier
 function makeLinkPlancadre($plancadre)
 {
-	$lien = "../plancadre/" . $plancadre['No_PlanCadre'] . "_" . $plancadre['CodeCours'] . ".docx";
 
-    return '<a href ="' . $lien . '">Télécharger </a>';
+	$path = "../plancadre/" . $plancadre['No_PlanCadre'] . "_" . $plancadre['CodeCours'] . ".docx";
+    if( file_exists($lien) )
+    {
+        $lien = "aucune document";
+    }
+    else
+    {
+        $lien = '<a href ="' . $path . '">Télécharger </a>';
+    }
+    return $lien;
 }
 
 // Si la variable de session de la checkbox n'existe pas, alors on la créé
