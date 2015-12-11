@@ -215,6 +215,10 @@
   {
     return fetchId( $class_code, "CALL SELECT_PLAN_CADRE_CLASS(?)");
   }
+  function fetchClass($class_code)
+  {
+    return fetchId( $class_code, "CALL SELECT_CLASS(?)");
+  }
   
   function getPassword($username)
   {

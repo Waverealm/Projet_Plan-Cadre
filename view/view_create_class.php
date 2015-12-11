@@ -61,7 +61,7 @@
         <legend>Ajout de cours : </legend>
           <br>
         <form action="../controller/controller_create_class.php" method="post">
-            <label>Liste des cours qui existe déja : </label>
+            <label>Liste des cours qui existent déja : </label>
             <br>
             <?php
             showListClassWithSelected();
@@ -139,3 +139,7 @@
     </div>
   </body>
 </html>
+
+    <?php 
+        showErrors("errors_add_class");
+    ?>
