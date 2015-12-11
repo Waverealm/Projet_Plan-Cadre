@@ -61,10 +61,10 @@
         <legend>Ajout de cours : </legend>
           <br>
         <form action="../controller/controller_create_class.php" method="post">
-            <label>Cours qui existe déja : </label>
+            <label>Liste des cours qui existe déja : </label>
             <br>
             <?php
-            showClassListAll();
+            showListClassWithSelected();
             ?>
             <br>
             <br>

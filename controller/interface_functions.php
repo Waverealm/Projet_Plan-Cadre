@@ -385,13 +385,49 @@ function showAppropriateMenu()
         echo "</div>";
     }
 
-
-
 /*
-    Nom de la fonction : showClassListAll
+    Nom de la fonction : showListClassWithSelected
     Fait par : Simon Roy
     Cette fonction permet d'afficher une liste déroulante de tous les cours.
 */
+    function showListClassWithSelected()
+    {
+        $list = fetchAllClass();
+
+        echo "<select name='class_list_all' id='class_list_all'>";
+            echo "<option value=\"" . "\">" . "</option>";
+        
+        if(sizeof($list) > 0)
+        {
+            foreach ($list as $row)
+            {
+                if(isset($_SESSION["selected_CodeCours"]) )
+                {
+                    if($row["CodeCours"] == $_SESSION["selected_CodeCours"])
+                    {
+                        echo "<option selected value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+                        unset($_SESSION["selected_CodeCours"]);
+                    }
+                    else
+                    {
+                        echo "<option value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+                    }
+                }
+                else
+                {
+                     echo "<option value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+                }
+            }
+        }
+        else
+        {
+            echo "<option>"."Aucun cours"."</option>";
+        }
+        echo "</select>";
+    }
+
+
+
     function showClassListAll()
     {
         $list = fetchAllClass();
@@ -405,22 +441,7 @@ function showAppropriateMenu()
             {
                 if(empty(fetchPlanCadreClass($row["CodeCours"])))
                 {
-                    if(isset($_SESSION["selected_CodeCours"]) )
-                    {
-                        if($row["CodeCours"] == $_SESSION["selected_CodeCours"])
-                        {
-                            echo "<option selected value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
-                            unset($_SESSION["selected_CodeCours"]);
-                        }
-                        else
-                        {
-                            echo "<option value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
-                        }
-                    }
-                    else
-                    {
-                        echo "<option value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
-                    }
+                    echo "<option value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
                 }
             }
         }

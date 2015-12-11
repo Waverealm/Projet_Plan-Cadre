@@ -1,6 +1,6 @@
 <?php
 /*
-  queris.php
+  queries.php
 */
 
 
