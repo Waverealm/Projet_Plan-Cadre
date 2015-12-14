@@ -40,6 +40,7 @@ function readFrom($path)
 
 function getInfoPlanCadre($primary_key)
 {
+    // appler fetchPlanCadreElaboration_PlanCadre
 	$info_plancadre = fetchInformationPlanCadre($primary_key);
 
 	return $info_plancadre;

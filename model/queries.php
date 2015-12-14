@@ -174,7 +174,7 @@
     return fetchId( $id_user, "CALL SELECT_PLAN_CADRE_ELABORATION_USER(?)" );
   }
 /*
-   fetchPlanCadreElaboration_PlanCadre($id_user)
+   fetchPlanCadreElaboration_PlanCadre($id_plan_cadre)
    Cette fonction éxecute une procédure qui retourne les 
    données du plan-cadre qui possède l'identifiant passé 
    en paramètre.
