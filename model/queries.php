@@ -224,6 +224,12 @@
     return fetchId( $program_code, "CALL SELECT_PROGRAM(?)");
   }
   
+
+  function fetchAllInfoPlanCadre($id_plancadre)
+  {
+    return fetchId( $id_plancadre, "CALL SELECT_ALL_INFO_PLAN_CADRE_ID (?)");
+  }
+
   function getPassword($username)
   {
       $query = dbConnect()->prepare("CALL SELECT_PASSWORD(?)");

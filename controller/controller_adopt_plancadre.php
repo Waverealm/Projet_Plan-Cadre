@@ -36,7 +36,7 @@ if(isset($_GET['codecours']) && isset($_GET['versionplan']))
 
 
  	// refait le document sans le "en élobariont" dans le titre
- 	//buildPlanCadre($No_PlanCadre);
+ 	buildPlanCadre($No_PlanCadre);
 
 
  	// S'il existait déjà une autre version adoptée de ce plan-cadre, alors on lui enlève le statut de "Version officielle"

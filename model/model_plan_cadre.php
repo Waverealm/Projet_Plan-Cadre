@@ -36,16 +36,6 @@ function readFrom($path)
     }
 }
 
-
-
-function getInfoPlanCadre($primary_key)
-{
-    // appler fetchPlanCadreElaboration_PlanCadre
-	$info_plancadre = fetchInformationPlanCadre($primary_key);
-
-	return $info_plancadre;
-}
-
 /*
 	buildPlanCadre
 	Cette fonction permet de construire un document Word
@@ -56,22 +46,26 @@ function getInfoPlanCadre($primary_key)
 function buildPlanCadre($primary_key)
 {
 
-	$info_plancadre = getInfoPlanCadre($primary_key);
+	$info_plancadre = fetchAllInfoPlanCadre($primary_key);
 	
 	$id_plancadre = $primary_key;
 	$code_cours = $info_plancadre["CodeCours"];
-	$etat = $info_plancadre["Etat"];
+
 	$programme_cours = $info_plancadre["CodeProgramme"];
-	$type_enseignement = $info_plancadre[""];
+	$type_enseignement = $info_plancadre["TypeCours"];
 
 
+    $etat = $info_plancadre["Etat"];
 
-	$nom_cours = $_POST['NomCours'];
-    $code_cours = $_POST['CodeCours'];
-    $programme_cours = $_POST['Programme'];
-    $ponderation_cours = $_POST['Ponderation'];
-    $nombre_unites_cours = $_POST['NombreUnites'];
-    $prealable_cours = $_POST['Prealables'];
+	$nom_cours = $info_plancadre["NomCours"];
+    $code_cours = $info_plancadre["CodeCours"];
+    $nom_programme = $info_plancadre["NomProgramme"];
+    $code_programme = $info_plancadre["CodeProgramme"];
+    $programme_cours = $nom_programme ."(". $code_programme .")";
+    $ponderation_cours = $info_plancadre["Ponderation"];
+    $nombre_unites_cours = $info_plancadre["NombreUnites"];
+
+    $prealable_cours = "Aucun / Placeholder";
     $type_enseignement = $_POST['TypeEnseignement'];
 
 
