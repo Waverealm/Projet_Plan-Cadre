@@ -6,6 +6,9 @@
 
 include_once("../model/queries.php");
 
+include_once("../model/model_plan_cadre.php");
+
+
 if(isset($_GET['codecours']) && isset($_GET['versionplan']))
  {
  	// On récupère les données
@@ -30,6 +33,11 @@ if(isset($_GET['codecours']) && isset($_GET['versionplan']))
  	// Étant donné que le plan-cadre que l'utilisateur veut adopté sera la version la plus récente, elle sera nécessairement
  	// aussi la version officielle
  	setPlanCadreOfficial($No_PlanCadre, $officiel);
+
+
+ 	// refait le document sans le "en élobariont" dans le titre
+ 	//buildPlanCadre($No_PlanCadre);
+
 
  	// S'il existait déjà une autre version adoptée de ce plan-cadre, alors on lui enlève le statut de "Version officielle"
  	if(!empty($noOfficialPlanCadre[0]["No_PlanCadre"]))

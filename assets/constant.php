@@ -17,7 +17,7 @@
 
 define("PAGE_ACCESS", "../controller/page_acces.php");
 define("INTERFACE_FUNCTIONS", "../controller/interface_functions.php");
-
+define("REQUETES_BD", "../model/queries.php");
 
 // lien avec le compte utilisateur
 

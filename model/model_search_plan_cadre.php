@@ -23,13 +23,33 @@ function makeLinkPlancadre($plancadre)
 {
 
 	$path = "../plancadre/" . $plancadre['No_PlanCadre'] . "_" . $plancadre['CodeCours'] . ".docx";
+
+    switch ($plancadre["Etat"]) 
+    {
+        case 'Adopté':
+            if($plancadre["Officiel"] > 0)
+            {
+                $etat = "officiel";
+            }
+            else
+            {
+                $etat = "archive";
+            }
+            break;
+        case 'Validé':
+        case 'Élaboration':
+        default:
+            $etat = "Elaboration";
+            break;
+    }
+
     if( file_exists($path) )
     {
-        $lien = "aucun document";
+        $lien = '<a href ="'.$path.'"' . 'download="' . $plancadre['CodeCours'] . '_plancadre_' . $etat .'.docx"' .'">Télécharger </a>';
     }
     else
     {
-        $lien = '<a href ="' . $path . '">Télécharger </a>';
+         $lien = "aucun document";
     }
     return $lien;
 }
