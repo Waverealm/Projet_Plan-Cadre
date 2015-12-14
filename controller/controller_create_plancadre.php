@@ -13,6 +13,7 @@ if(!isset($_SESSION))
     session_start();
 }
 include_once('../model/queries.php');
+include_once('../model/plan_cadre.php');
 require_once '../assets/PHPWord-Master/src/PhpWord/Autoloader.php';
 \PhpOffice\PhpWord\Autoloader::register();   
    
@@ -321,36 +322,6 @@ function getPlanCadre($id_plancadre)
 function getPrealableCours($id_cours)
 {
     return fetchPrealableCours_Id($id_cours);;
-}
-
-/*
-    readFrom($path)
-    Cette fonction retourne le contenu du fichier texte qui se
-    trouve à l'emplacement spécifié sur le serveur. Si le fichier 
-    n'existe pas alors une chaine vide est retourné. Si le fichier 
-    n'a pas de contenu alors une chaine vide est retournée.
-*/
-function readFrom($path)
-{
-    if(file_exists($path))
-    {
-        if(filesize($path) > 0)
-        {
-            $handle = fopen($path, "rb");
-            $text = fread($handle, filesize($path));
-            return $text;
-        }
-        else
-        {
-            $fichier_vide = "";
-            return $fichier_vide;
-        }
-    }
-    else
-    {
-        $fichier_inexistant = "";
-        return $fichier_inexistant;
-    }
 }
 
 

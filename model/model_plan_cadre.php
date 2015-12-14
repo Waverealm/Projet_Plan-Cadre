@@ -6,10 +6,41 @@ require_once '../assets/PHPWord-Master/src/PhpWord/Autoloader.php';
 
 
 
+/*
+    readFrom($path)
+    Cette fonction retourne le contenu du fichier texte qui se
+    trouve à l'emplacement spécifié sur le serveur. Si le fichier 
+    n'existe pas alors une chaine vide est retourné. Si le fichier 
+    n'a pas de contenu alors une chaine vide est retournée.
+*/
+function readFrom($path)
+{
+    if(file_exists($path))
+    {
+        if(filesize($path) > 0)
+        {
+            $handle = fopen($path, "rb");
+            $text = fread($handle, filesize($path));
+            return $text;
+        }
+        else
+        {
+            $fichier_vide = "";
+            return $fichier_vide;
+        }
+    }
+    else
+    {
+        $fichier_inexistant = "";
+        return $fichier_inexistant;
+    }
+}
+
+
 
 function getInfoPlanCadre($primary_key)
 {
-	$info_plancadre = fetchPlanCadreElaboration_PlanCadre($primary_key);
+	$info_plancadre = fetchInformationPlanCadre($primary_key);
 
 	return $info_plancadre;
 }
@@ -29,6 +60,20 @@ function buildPlanCadre($primary_key)
 	$id_plancadre = $primary_key;
 	$code_cours = $info_plancadre["CodeCours"];
 	$etat = $info_plancadre["Etat"];
+	$programme_cours = $info_plancadre["CodeProgramme"];
+	$type_enseignement = $info_plancadre[""];
+
+
+
+	$nom_cours = $_POST['NomCours'];
+    $code_cours = $_POST['CodeCours'];
+    $programme_cours = $_POST['Programme'];
+    $ponderation_cours = $_POST['Ponderation'];
+    $nombre_unites_cours = $_POST['NombreUnites'];
+    $prealable_cours = $_POST['Prealables'];
+    $type_enseignement = $_POST['TypeEnseignement'];
+
+
 
     // le nom des fichiers textes serra :
     // clé primaire du plancadre + code ou le nom du cours + le nom de la section
@@ -39,6 +84,13 @@ function buildPlanCadre($primary_key)
     $path_evalutation = "../plancadre/". $id_plancadre . "_" . $code_cours . "evaluation" . ".txt";
     $path_competences = "../plancadre/". $id_plancadre . "_" . $code_cours . "competences" . ".txt";
     $path_apprentissage = "../plancadre/". $id_plancadre . "_" . $code_cours . "apprentissage" . ".txt";
+
+
+    $presentation = ReadFrom($path_presentation);
+    $integration = ReadFrom($path_integration);
+    $evaluation = ReadFrom($path_evalutation);
+    $competences = ReadFrom($path_competences);
+    $apprentissage = ReadFrom($path_apprentissage);
 
 /*
     ----------------------------------------------
@@ -105,22 +157,22 @@ function buildPlanCadre($primary_key)
     $section_template->addText($type_enseignement, null, "style_align_right");
     $section_template->addText( $programme_cours, null, "style_align_right" );
 
-	switch ($plancadre["Etat"]) 
+	switch ($info_plancadre["Etat"]) 
     {
         case 'Adopté':
-            if($plancadre["Officiel"] > 0)
+            if($info_plancadre["Officiel"] > 0)
             {
-                $etat = "officiel";
+                $titre_documentt = "Plan-cadre officiel";
             }
             else
             {
-                $etat = "archive";
+                $titre_document = "Plan-cadre en archive";
             }
             break;
         case 'Validé':
         case 'Élaboration':
         default:
-            $etat = "Elaboration";
+            $titre_document = "Plan-cadre en élaboration";
             break;
     }
 

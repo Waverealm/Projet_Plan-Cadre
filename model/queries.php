@@ -199,9 +199,9 @@
   {
     return fetchId( $id_instruction, "CALL SELECT_DESCRIPTION_INSTRUCTION(?)" );
   }
-  function fetchInformationPlanCadre($class_code)
+  function fetchInformationPlanCadre($id_plancadre)
   {
-    return fetchId( $class_code, "CALL SELECT_PLAN_CADRE_INFOS(?)");
+    return fetchId( $id_plancadre, "CALL SELECT_PLAN_CADRE_INFOS(?)");
   }
   function fetchPlanCadreProgram($code_programme)
   {
