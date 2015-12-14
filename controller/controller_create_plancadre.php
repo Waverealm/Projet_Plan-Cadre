@@ -13,7 +13,7 @@ if(!isset($_SESSION))
     session_start();
 }
 include_once('../model/queries.php');
-include_once('../model/plan_cadre.php');
+include_once('../model/model_plan_cadre.php');
 require_once '../assets/PHPWord-Master/src/PhpWord/Autoloader.php';
 \PhpOffice\PhpWord\Autoloader::register();   
    

@@ -46,14 +46,9 @@ function readFrom($path)
 function buildPlanCadre($primary_key)
 {
 
-	$info_plancadre = fetchAllInfoPlanCadre($primary_key);
-	
+	$result = fetchAllInfoPlanCadre($primary_key);
+	$info_plancadre = $result[0];
 	$id_plancadre = $primary_key;
-	$code_cours = $info_plancadre["CodeCours"];
-
-	$programme_cours = $info_plancadre["CodeProgramme"];
-	$type_enseignement = $info_plancadre["TypeCours"];
-
 
     $etat = $info_plancadre["Etat"];
 
