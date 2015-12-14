@@ -11,6 +11,9 @@
   verifyAccessPages();
   isPlanner();
   isAdmin();
+
+  $currentConseiller = 'searchplancadre';
+  $currentAdmin = 'searchplancadre';
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,27 +30,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <script>
-      function validate() {
-        // pour une validation plus custom
-        //http://www.w3.org/TR/WCAG20-TECHS/SCR18.html
-        // initialize error message
-        var msg = "";
-        
-        //validate name
-        var pattern = /^[a-zA-Z\s]+$/;
-        var el = document.getElementById("name");
-        if (!pattern.test(el.value))  msg += "Name can only have letters and spaces. ";
-        
-        // validate number
-        var pattern = /^[\d\-+\.\s]+$/;
-        var el = document.getElementById("tel");
-        if (!pattern.test(el.value))  msg += "Telephone number can only have digits and separators. ";
-        
-        if (msg != "") {
-          alert(msg);
-          return false;
-        } else return true;
-      }
     </script>
   </head>
   <body>
@@ -58,10 +40,10 @@
       ?>
       <br>
       <fieldset>
-        <legend>Ajout de cours : </legend>
+        <legend>Modification de cours : </legend>
           <br>
-        <form action="../controller/controller_create_class.php" method="post">
-            <label>Liste des cours qui existent déjà : </label>
+        <form action="../controller/controller_update_class.php" method="post">
+            <label>Liste des cours existants : </label>
             <br>
             <?php
             showListClassWithSelected();
@@ -74,7 +56,11 @@
               onChange="arrayFilter(this.value, this.form.class_list_all)"
             /><br>
             <br>
-          <label>Code du cours : </label>
+
+          <input type="checkbox" name="valid_only" id="valid_only"> 
+          Je veux modifier le code de ce cours
+          <br>
+          <label>Nouveau code : </label>
           <div>
             <input data-val="true" id="CodeCours" name="CodeCours" type="text" value=""
               onkeypress="return filterClassCode(event);"

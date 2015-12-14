@@ -146,7 +146,7 @@ function showAppropriateMenu()
                         <a href="#" id="menuLink1" class="pure-menu-link">Gestion de l'information</a>
                         <ul class="pure-menu-children">
                             <li <?php if($currentConseiller == 'createclass') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
-                                <a href="<?php echo VIEW_CREATE_CLASS ?>" class="pure-menu-link">Ajouter un cours</a>
+                                <a href="<?php echo VIEW_MANAGE_CLASS ?>" class="pure-menu-link">Ajouter/Modifier un cours</a>
                             </li>
                             <li <?php if($currentConseiller == 'createprogram') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                                 <a href="<?php echo VIEW_CREATE_PROGRAM ?>" class="pure-menu-link">Ajouter un programme d'études</a>

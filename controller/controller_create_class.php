@@ -64,14 +64,14 @@
   {
     createClass($codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $codeProgramme);
     $_SESSION["selected_CodeCours"] = $codeCours;
-    header('Location: ../view/view_create_class.php');
+    header('Location: ../view/view_manage_class.php');
 
     $_SESSION[ 'success_add_class' ] = "Cours ajouté avec succès";
   }
   else 
   {
     setErrors();
-    header('Location: ../view/view_create_class.php');
+    header('Location: ../view/view_manage_class.php');
   }
 
   function setErrors()

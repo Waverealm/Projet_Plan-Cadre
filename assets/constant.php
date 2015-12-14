@@ -45,8 +45,10 @@ define("VIEW_CREATE_PROGRAM", "../view/view_create_program.php");
 define("CONTROLLER_CREATE_PROGRAM", "../controller/controller_create_program.php");
 
 
-define("VIEW_CREATE_CLASS", "../view/view_create_class.php");
+define("VIEW_MANAGE_CLASS", "../view/view_manage_class.php");
 define("CONTROLLER_CREATE_CLASS", "../controller/controller_create_class.php");
+define("CONTROLLER_UPDATE_CLASS", "../controller/controller_update_class.php");
+
 
 define("VIEW_UPDATE_INSTRUCTIONS", "../view/view_update_instructions.php");
 define("CONTROLLER_UPDATE_INSTRUCTIONS", "../controller/controller_update_instructions.php");
