@@ -33,13 +33,15 @@
                 <fieldset>
 
                     <legend>Modification de mot de passe :</legend>
-                    </br>
+                    <br>
 
                     <form action="<?php echo CONTROLLER_UPDATE_PASSWORD ?>" method="post">
 
                         <label>Nom d'usager :</label>
                         <?php showUserListAll(); ?>
-                        </br>
+                        <br>
+
+                        <br>
 
                         <label>Nouveau mot de passe :</label>
                         <div>
@@ -49,7 +51,7 @@
                                    id="NewPassword" name="NewPassword" type="password" value=""
                                 />
                         </div>
-                        </br>
+                        <br>
 
                         <label>Confirmation du nouveau mot de passe :</label>
                         <div>
@@ -59,10 +61,12 @@
                                    id="NewPasswordConfirm" name="NewPasswordConfirm" type="password" value=""
                                 />
                         </div>
-                        </br>
+                        <br>
 
                         <div>
-                            <input type="submit" value="Soumettre..." class="btn btn-default" /> <br /><br />
+                            <input type="submit" value="Soumettre..." class="btn btn-default" /> 
+                            <br>
+                            <br>
                         </div>
 
                     </form>

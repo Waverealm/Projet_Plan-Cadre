@@ -188,7 +188,6 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 // Fin de la section de l'indentification du cours 
 // ----------------------------------------------
 
-
 // ----------------------------------------------
 // Section de la présentation du cours 
     $section_presentation = $php_word->addSection();
@@ -206,8 +205,6 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $cellule_contenu = $table_presentation->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $presentation);
 
-    $section_presentation->addTextBreak();
-    $section_presentation->addPageBreak();
 // Fin de la section de la présentation du cours 
 // ----------------------------------------------
     
@@ -230,8 +227,6 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $cellule_contenu = $table_integration->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $integration);
 
-    $section_integration->addTextBreak();
-    $section_integration->addPageBreak();
 // Fin de la section de l'objectif d'intégration 
 // ----------------------------------------------
     
@@ -243,7 +238,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $titre = 'Évaluation des apprentissages';
 
-    $table_evaluation = $section_integration->addTable('style_table');
+    $table_evaluation = $section_evaluation->addTable('style_table');
     $nombre_colonnes = 1;
     $cell_width = $table_width / $nombre_colonnes;
     
@@ -253,9 +248,6 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $table_evaluation->addRow($style_row);
     $cellule_contenu = $table_evaluation->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $evaluation);
-
-    $section_evaluation->addTextBreak();
-    $section_evaluation->addPageBreak();
 
 // Fin de la section de l'évaluation des apprentissages 
 // ----------------------------------------------
@@ -267,7 +259,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $titre = "Énoncé des compétences";
 
-    $table_competences = $section_integration->addTable('style_table');
+    $table_competences = $section_competences->addTable('style_table');
     $nombre_colonnes = 1;
     $cell_width = $table_width / $nombre_colonnes;
     
@@ -278,8 +270,6 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $cellule_contenu = $table_competences->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $competences);
 
-    $section_competences->addTextBreak();
-    $section_competences->addPageBreak();
 // Fin de la section de l'énoncé des compétences
 // ----------------------------------------------
     
@@ -291,7 +281,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
 
     $titre = "Objectifs d'apprentissage";
 
-    $table_apprentissage = $section_integration->addTable('style_table');
+    $table_apprentissage = $section_apprentissage->addTable('style_table');
     $nombre_colonnes = 1;
     $cell_width = $table_width / $nombre_colonnes;
     
@@ -301,9 +291,6 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $table_apprentissage->addRow($style_row);
     $cellule_contenu = $table_apprentissage->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $apprentissage);
-
-    $section_apprentissage->addTextBreak();
-    $section_apprentissage->addPageBreak();
 
 // Fin de la section des objectifs d'apprentissage
 // ----------------------------------------------

@@ -61,19 +61,23 @@
         <legend>Ajout de cours : </legend>
           <br>
         <form action="../controller/controller_create_class.php" method="post">
-            <label>Liste des cours qui existent déja : </label>
+            <label>Liste des cours qui existent déjà : </label>
             <br>
             <?php
             showListClassWithSelected();
             ?>
             <br>
             <br>
+            <label><strong>Recherche d'un cours : </strong></label><br>
+            <input type='text' name='search_cours' value=''
+              onKeyUp="arrayFilter(this.value, this.form.class_list_all)"
+              onChange="arrayFilter(this.value, this.form.class_list_all)"
+            /><br>
+            <br>
           <label>Code du cours : </label>
           <div>
             <input data-val="true" id="CodeCours" name="CodeCours" type="text" value=""
               onkeypress="return filterClassCode(event);"
-              onKeyUp="arrayFilter(this.value, this.form.class_list_all)"
-              onChange="arrayFilter(this.value, this.form.class_list_all)"
               required
             />
          </div>
@@ -99,7 +103,7 @@
             />
           </div>
           <br>
-          <label>Nombre d'unites : </label>
+          <label>Nombre d'unités : </label>
           <div>
             <input data-val="true" id="NombreUnites" name="NombreUnites" type="Number" value="" 
             step="0.01"
