@@ -4,10 +4,10 @@
   include_once("../controller/interface_functions.php");
   include_once("../model/model_search_plan_cadre.php");
 
-  $currentVisitor = 'searchplancadre';
+  /*$currentVisitor = 'searchplancadre';
   $currentElaborator = 'searchplancadre';
   $currentConseiller = 'searchplancadre';
-  $currentAdmin = 'searchplancadre';
+  $currentAdmin = 'searchplancadre';*/
 
   setCheckboxSessionValue();
 ?>
@@ -33,7 +33,7 @@
           ?>
           <br>
           <fieldset>
-            <legend>Liste des plans-cadres : </legend>
+            <legend>Liste des plans-cadres officiels: </legend>
               <?php 
                 showAllOfficielPlancadre();
               ?>
