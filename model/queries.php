@@ -219,6 +219,10 @@
   {
     return fetchId( $class_code, "CALL SELECT_CLASS(?)");
   }
+  function fetchClassInfos($class_code)
+  {
+    return fetchId( $class_code, "CALL SELECT_CLASS_INFOS(?)");
+  }
   function fetchProgram($program_code)
   {
     return fetchId( $program_code, "CALL SELECT_PROGRAM(?)");
@@ -472,8 +476,7 @@
 
 function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $competences, $apprentissage, $id)
 {
-  $bdd = dbConnect();
-  $update = $bdd->prepare("CALL UPDATE_PLAN_CADRE_FICHIERS (?,?,?,?,?,?)");
+  $update = dbConnect()->prepare("CALL UPDATE_PLAN_CADRE_FICHIERS (?,?,?,?,?,?)");
 
   $update->bindParam(1, $presentation, PDO::PARAM_STR);
   $update->bindParam(2, $integration, PDO::PARAM_STR);
@@ -495,8 +498,7 @@ function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $co
 */
 function updateInstruction($id, $enonce, $description)
 {
-  $bdd = dbConnect();
-  $update = $bdd->prepare("CALL UPDATE_INSTRUCTION (?,?,?)");
+  $update = dbConnect()->prepare("CALL UPDATE_INSTRUCTION (?,?,?)");
 
   $update->bindParam(1, $id, PDO::PARAM_STR);
   $update->bindParam(2, $enonce, PDO::PARAM_STR);
@@ -540,6 +542,23 @@ function setPlanCadreOfficial($noPlanCadre,$official)
 
     $query->execute();
     $query->CloseCursor();
+}
+
+function updateClass($codeCours, $nomCours,  $typeCours, $ponderation, $nombreUnites, $nombreHeures, codeProg)
+{
+  $update = dbConnect()->>prepare("CALL UPDATE_CLASS(?,?,?,?,?,?,?)");
+
+  $update->bindParam(1, $codeCours, PDO::PARAM_STR);
+  $update->bindParam(2, $nomCours, PDO::PARAM_STR);
+  $update->bindParam(3, $typeCours, PDO::PARAM_STR);
+  $update->bindParam(4, $ponderation, PDO::PARAM_STR);
+  $update->bindParam(5, $nombreUnites, PDO::PARAM_STR);
+  $update->bindParam(6, $nombreHeures, PDO::PARAM_STR);
+  $update->bindParam(7, $codeProg, PDO::PARAM_STR);
+
+  $update->execute();
+
+  $update->closeCursor();
 }
 
 

@@ -59,6 +59,7 @@
             $("#label_code_class").hide();
             $('#label_code_class').next('br').remove();
 
+            // Affiche le tooltip
             $(".masterTooltip").show();
 
             // Active de nouveau le champ de texte du code du cours
@@ -75,6 +76,8 @@
             // Affiche et décoche le checkbox
             $("#change_code").show();
             $('#change_code').attr('checked', false);
+
+            // Cache le tooltip
             $(".masterTooltip").hide();
 
             // Affiche le label
@@ -255,4 +258,7 @@
     <?php 
         showSessionMessage("errors_add_class");
         showSessionMessage("success_add_class");
+
+        showSessionMessage("errors_update_class");
+        showSessionMessage("success_update_class");
     ?>
