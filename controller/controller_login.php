@@ -28,7 +28,7 @@
 		  unset($_SESSION[ 'username' ]);
 		  $_SESSION[ 'username_usager' ] = $username;
 		  $_SESSION[ 'connected' ] = true;
-		  header('Location: ../view/view_index.php');
+		  header('Location: ../view/view_search_officiel_plan_cadre.php');
 	   }
 	   else
 	   {

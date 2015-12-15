@@ -120,6 +120,10 @@
   {
     return selectWithNoParam("CALL SELECT_ALL_PLAN_CADRE ()");
   }
+  function selectAllOfficielPlanCadre()
+  {
+    return selectWithNoParam("CALL SELECT_ALL_OFFICIEL_PLAN_CADRE()");
+  }
   function selectPlanCadreElaboration()
   {
     return selectWithNoParam("CALL SELECT_PLAN_CADRE_ELABORATION ()");
