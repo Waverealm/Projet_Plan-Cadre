@@ -38,12 +38,11 @@
 
     </script>
 
-    <!--style>
-        table, th, td, tr{
-            text-align: center;
-            border: 1px solid black;
+    <style>
+        .toggler{
+            color: #3561E1;
         }
-    </style -->
+    </style>
 </head>
 <body>
 <div class="container">
