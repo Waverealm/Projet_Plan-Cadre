@@ -55,7 +55,6 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     // fopen(path, write/read)
 // ----------------------------------------------
 // sauvegarde des données entrées dans des fichiers textes
-
 /*
     ouverture du fichier ave fopen(path, option)
     "w" ouvre le fichier en write only pour le reste des options voir la documentation

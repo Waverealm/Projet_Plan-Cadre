@@ -5,43 +5,60 @@ require_once '../assets/PHPWord-Master/src/PhpWord/Autoloader.php';
 \PhpOffice\PhpWord\Autoloader::register();   
 
 
+// ----------------------------------------------
+// début de la définition des différents styles
+// possibilité d'exporter cela dans un autre document
+// pour mieux paramétrer le
+// http://phpword.readthedocs.org/en/latest/styles.html
+
+    $GLOBALS["style_font_titre"] = array('size'=> 14,
+        'bold'=>true);
+
+    $GLOBALS["style_font_texte"] = array('size'=>12);
+
+    $GLOBALS["style_align_right"] = array("align"=>"right");
+
+
+    $GLOBALS["style_align_center"] = array("align"=>"center");
+
+    $GLOBALS["style_table"] = array('width'=> 50000,
+        'borderSize'=>6,
+        'cellMargin'=>100,
+        'align'=>'center');
+
+    $GLOBALS["style_cellule_titre"] = array('valign'=>'center',
+        'gridspan'=> 3);
+
+    $GLOBALS["style_row"] = array(
+        'cantSplit'=>true,
+        'exactHeight'=>500
+        );
+    $GLOBALS["style_row_titre"] = array('tblHeader'=>false,
+        'cantSplit'=>true,
+        'exactHeight'=>500
+        );
+
+    // à vérifier si ça fait quelque chose
+    $GLOBALS["table_width"] = 10000;
+
+    // variable avec nom significatif pour son utilisation
+    // à confirmer
+    $GLOBALS["saut_ligne"] = "";
+
+// Fin de la définiton des styles
+// ----------------------------------------------
+
+
+
 
 /*
-    readFrom($path)
-    Cette fonction retourne le contenu du fichier texte qui se
-    trouve à l'emplacement spécifié sur le serveur. Si le fichier 
-    n'existe pas alors une chaine vide est retourné. Si le fichier 
-    n'a pas de contenu alors une chaine vide est retournée.
-*/
-function readFrom($path)
-{
-    if(file_exists($path))
-    {
-        if(filesize($path) > 0)
-        {
-            $handle = fopen($path, "rb");
-            $text = fread($handle, filesize($path));
-            return $text;
-        }
-        else
-        {
-            $fichier_vide = "";
-            return $fichier_vide;
-        }
-    }
-    else
-    {
-        $fichier_inexistant = "";
-        return $fichier_inexistant;
-    }
-}
-
-/*
-	buildPlanCadre
+----------------------------------------------
+	buildPlanCadre ($primary_key)
 	Cette fonction permet de construire un document Word
 	et de le sauvegarder. Les données utilisées dépendent
 	des documents liés à la clé primaire du plan-cadre qui
 	a été passé en paramètre.
+----------------------------------------------
 */
 function buildPlanCadre($primary_key)
 {
@@ -61,7 +78,7 @@ function buildPlanCadre($primary_key)
     $nombre_unites_cours = "Nombre d'unité(s) : " . $info_plancadre["NombreUnites"];
 
     $prealable_cours = "Préalable(s) : " . "Aucun";
-    $type_enseignement = $_POST['TypeEnseignement'];
+    $type_enseignement = $info_plancadre['TypeCours'];
 
 
 
@@ -91,50 +108,15 @@ function buildPlanCadre($primary_key)
 */
     $php_word = new \PhpOffice\PhpWord\PhpWord();
 
-// ----------------------------------------------
-// début de la définition des différents styles
-// possibilité d'exporter cela dans un autre document
-// pour mieux paramétrer le
-// http://phpword.readthedocs.org/en/latest/styles.html
+    // ----------------------------------------------
+    // ajout des styles au document
+    $php_word->addParagraphStyle( "style_align_right", $GLOBALS["style_align_right"] );
+    $php_word->addParagraphStyle( "style_align_center", $GLOBALS["style_align_center"] );
+    
+    $php_word->addTableStyle('style_table', $GLOBALS["style_table"]);
+    // ----------------------------------------------
 
-    $style_font_titre = array('size'=> 14,
-        'bold'=>true);
 
-    $style_font_texte = array('size'=>12);
-
-    $style_align_right = array("align"=>"right");
-    $php_word->addParagraphStyle( "style_align_right", $style_align_right);
-
-    $style_align_center = array("align"=>"center");
-    $php_word->addParagraphStyle( "style_align_center", $style_align_center);
-
-    $style_table = array('width'=> 50000,
-        'borderSize'=>6,
-        'cellMargin'=>100,
-        'align'=>'center');
-    $php_word->addTableStyle('style_table', $style_table);
-
-    //$style_first_row = array('bgcolor'=>'66BBFF');
-
-    $style_cellule_titre = array('valign'=>'center',
-        'gridspan'=> 3);
-
-    $style_row = array(
-        'cantSplit'=>true,
-        'exactHeight'=>500
-        );
-    $style_row_titre = array('tblHeader'=>false,
-        'cantSplit'=>true,
-        'exactHeight'=>500
-        );
-
-    $table_width = 10000;
-
-    // variable avec nom significatif pour son utilisation
-    $saut_ligne = "";
-
-// Fin de la définiton des styles
-// ----------------------------------------------
 
 // ----------------------------------------------
 // Section de l'indentification du cours 
@@ -146,6 +128,8 @@ function buildPlanCadre($primary_key)
     
     $section_template->addText($type_enseignement, null, "style_align_right");
     $section_template->addText( $programme_cours, null, "style_align_right" );
+
+
 
 	switch ($info_plancadre["Etat"]) 
     {
@@ -170,18 +154,20 @@ function buildPlanCadre($primary_key)
     // espace avant et après le titre du document
     $section_template->addText($saut_ligne);
 
-    $section_template->addText($titre_document, $style_font_titre, $style_align_center);
+    $section_template->addText( $titre_document, $GLOBALS["style_font_titre"], $GLOBALS["style_align_center"] );
 
-    $section_template->addText($saut_ligne);
+    $section_template->addText(GLOBALS["$saut_ligne"]);
 
 
     $table_identification = $section_template->addTable('style_table');
+
     $nombre_colonnes = 3;
     $cell_width = $table_width / $nombre_colonnes;
 
     $table_identification->addRow($style_row);
 
-    $table_identification->addCell($cell_width, $style_cellule_titre)->addText("Identification du cours", $style_font_titre, $style_align_center);
+    $table_identification->addCell($cell_width, $GLOBALS["style_cellule_titre"])->addText("Identification du cours", 
+        $GLOBALS["style_font_titre"], $GLOBALS["style_align_center"]);
 
     $table_identification->addRow($style_row);   
     $table_identification->addCell($cell_width)->addText("Discipline", null, $style_align_center);
@@ -300,6 +286,8 @@ function buildPlanCadre($primary_key)
     $cellule_contenu = $table_apprentissage->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $apprentissage);
 
+    addSection($php_word, $titre_section, $apprentissage);
+
 // Fin de la section des objectifs d'apprentissage
 // ----------------------------------------------
     
@@ -308,11 +296,54 @@ function buildPlanCadre($primary_key)
     $php_word->save($path_docx);
 }
 
+function addSection($php_word, $titre_section, $contenu_section)
+{
+    $section = $php_word->addSection();
+
+    $table_apprentissage = $section_apprentissage->addTable('style_table');
+    $nombre_colonnes = 1;
+    $cell_width = $table_width / $nombre_colonnes;
+    
+    $table_apprentissage->addRow($style_row_titre);
+    $cellule_titre = $table_apprentissage->addCell($cell_width)->addText($titre_section, $style_font_titre, $style_align_center);
+
+    $table_apprentissage->addRow($style_row);
+    $cellule_contenu = $table_apprentissage->addCell($cell_width);
+    \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $contenu_section);
+}
 
 
 
 
-
+/*
+    readFrom($path)
+    Cette fonction retourne le contenu du fichier texte qui se
+    trouve à l'emplacement spécifié sur le serveur. Si le fichier 
+    n'existe pas alors une chaine vide est retourné. Si le fichier 
+    n'a pas de contenu alors une chaine vide est retournée.
+*/
+function readFrom($path)
+{
+    if(file_exists($path))
+    {
+        if(filesize($path) > 0)
+        {
+            $handle = fopen($path, "rb");
+            $text = fread($handle, filesize($path));
+            return $text;
+        }
+        else
+        {
+            $fichier_vide = "";
+            return $fichier_vide;
+        }
+    }
+    else
+    {
+        $fichier_inexistant = "";
+        return $fichier_inexistant;
+    }
+}
 
 
 
