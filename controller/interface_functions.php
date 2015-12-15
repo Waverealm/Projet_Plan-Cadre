@@ -346,7 +346,7 @@ function showAppropriateMenu()
             }
             echo "</select>";
 
-            echo "<input type='submit' value='Valider'>";
+            echo "<input type='submit' value='Rechercher'>";
         echo "</form>";
     }
     

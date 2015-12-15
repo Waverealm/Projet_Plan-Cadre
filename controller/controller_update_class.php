@@ -78,7 +78,7 @@
   	// S'il n'y a aucune erreur
 	if ($i == 0)
 	{
-	  updateClass($codeCours, $nomCours, $typeCours, $ponderation, $unites, $heures, $codeProgramme);
+	  //updateClass($codeCours, $nomCours, $typeCours, $ponderation, $unites, $heures, $codeProgramme);
 	 
 	  $_SESSION[ 'success_update_class' ] = "Cours modifié avec succès";
 

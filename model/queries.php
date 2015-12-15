@@ -544,7 +544,7 @@ function setPlanCadreOfficial($noPlanCadre,$official)
     $query->CloseCursor();
 }
 
-function updateClass($codeCours, $nomCours,  $typeCours, $ponderation, $nombreUnites, $nombreHeures, codeProg)
+/*function updateClass($codeCours, $nomCours,  $typeCours, $ponderation, $nombreUnites, $nombreHeures, codeProg)
 {
   $update = dbConnect()->>prepare("CALL UPDATE_CLASS(?,?,?,?,?,?,?)");
 
@@ -559,7 +559,7 @@ function updateClass($codeCours, $nomCours,  $typeCours, $ponderation, $nombreUn
   $update->execute();
 
   $update->closeCursor();
-}
+}*/
 
 
 
