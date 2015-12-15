@@ -184,7 +184,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $table_identification->addRow($style_row);
     $table_identification->addCell($cell_width)->addText($ponderation_cours, null, $style_align_center);
     $table_identification->addCell($cell_width)->addText($nombre_unites_cours, null, $style_align_center);
-    $table_identification->addCell($cell_width)->addText("test", null, $style_align_center);
+    $table_identification->addCell($cell_width)->addText($prealable_cours, null, $style_align_center);
 
 // Fin de la section de l'indentification du cours 
 // ----------------------------------------------
