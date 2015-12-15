@@ -52,15 +52,15 @@ function buildPlanCadre($primary_key)
 
     $etat = $info_plancadre["Etat"];
 
-	$nom_cours = $info_plancadre["NomCours"];
-    $code_cours = $info_plancadre["CodeCours"];
+	$nom_cours = "Titre du cours : " . $info_plancadre["NomCours"];
+    $code_cours = "Numéro du cours : " . $info_plancadre["CodeCours"];
     $nom_programme = $info_plancadre["NomProgramme"];
     $code_programme = $info_plancadre["CodeProgramme"];
     $programme_cours = $nom_programme ."(". $code_programme .")";
-    $ponderation_cours = $info_plancadre["Ponderation"];
-    $nombre_unites_cours = $info_plancadre["NombreUnites"];
+    $ponderation_cours = "Pondération : " . $info_plancadre["Ponderation"];
+    $nombre_unites_cours = "Nombre d'unité(s) : " . $info_plancadre["NombreUnites"];
 
-    $prealable_cours = "Aucun / Placeholder";
+    $prealable_cours = "Préalable(s) : " . "Aucun";
     $type_enseignement = $_POST['TypeEnseignement'];
 
 
