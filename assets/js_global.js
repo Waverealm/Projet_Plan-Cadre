@@ -131,5 +131,14 @@ function arrayFilter(search, list){
 	list.selectedIndex=0;
 }
 
+// Active/désactive le champ de texte du code du cours selon si la checkbox est cochée ou non
+function checkboxInterraction() {
+  if (document.getElementById('change_code').checked) {
+    document.getElementById('CodeCours').disabled = false;
+  } else {
+    document.getElementById('CodeCours').disabled = true;
+  }
+}
+
 
 			

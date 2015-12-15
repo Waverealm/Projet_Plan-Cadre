@@ -52,13 +52,29 @@
         $('#manage_class input[type=radio]').change(function(){
           if ($(this).val() == "add_class" ) {
             $('#form_manage_class').attr('action', '../controller/controller_create_class.php');
+            $("#change_code").hide();
+            $("#label_code_class").hide();
+            $('#label_code_class').next('br').remove();
+            $( "#CodeCours" ).prop( "disabled", false );
           }
 
           else if($(this).val() == "update_class") {
             $('#form_manage_class').attr('action', '../controller/controller_update_class.php');
+            $("#change_code").show();
+            $('#change_code').attr('checked', false);
+            $("#label_code_class").show();
+            $( "<br>" ).insertAfter( "#label_code_class" );
+            $( "#CodeCours" ).prop( "disabled", true );
           }
         })
       })
+
+
+      $( window ).load(function() {
+        $("#change_code").hide();
+        $("#label_code_class").hide();
+        $( "#CodeCours" ).prop( "disabled", false );
+      });
 
     </script>
   </head>
@@ -82,19 +98,29 @@
         <br><br>
 
         <form action="../controller/controller_create_class.php" method="post" id="form_manage_class">
-            <label>Liste des cours qui existent déjà : </label>
+            <label>Liste des cours existants : </label>
+
             <br>
+
             <?php
             showListClassWithSelected();
             ?>
+
             <br>
             <br>
+
             <label><strong>Recherche d'un cours : </strong></label><br>
             <input type='text' name='search_cours' value=''
               onKeyUp="arrayFilter(this.value, this.form.class_list_all)"
               onChange="arrayFilter(this.value, this.form.class_list_all)"
-            /><br>
+            />
+
             <br>
+            <br>
+
+          <input type="checkbox" name="change_code" id="change_code" onchange="checkboxInterraction()"> 
+          <label id="label_code_class">Je souhaite changer le code du cours sélectionné</label>
+
           <label>Code du cours : </label>
           <div>
             <input data-val="true" id="CodeCours" name="CodeCours" type="text" value=""
@@ -102,13 +128,17 @@
               required
             />
          </div>
+
           <br>
+
           <label>Nom du cours : </label>
           <div>
             <input data-val="true" id="NomCours" name="NomCours" type="text" value="" 
             />
           </div>
+
           <br>
+
           <label>Type du cours : </label>
           <div>
             <select name='TypeCours' required>
@@ -116,14 +146,18 @@
               <option value='Formation continue'> Formation continue </option>
             </select>
           </div>
+
           <br>
+
           <label>Ponderation du cours : </label>
           <div>
             <input data-val="true" id="Ponderation" name="Ponderation" type="text" value="" 
             pattern="\d{1,2}-\d{1,2}-\d{1,2}"
             />
           </div>
+
           <br>
+
           <label>Nombre d'unités : </label>
           <div>
             <input data-val="true" id="NombreUnites" name="NombreUnites" type="Number" value="" 
@@ -132,6 +166,7 @@
             max="10"
             />
           </div>
+
           <br>
           <label>Nombre d'heures : </label>
           <div >
@@ -141,24 +176,29 @@
             max="200"
             />
           </div>
+
           <br>
+
           <label>Programme du cours : </label><br>
             <?php 
               showListPrograms(); 
             ?>
-          <br>      
+
+          <br>    
+
           <label><strong>Recherche d'un programme : </strong></label><br>
           <input type='text' name='search_program' value=''
             onKeyUp="arrayFilter(this.value, this.form.CodeProgramme)"
             onChange="arrayFilter(this.value, this.form.CodeProgramme)"
-          /><br>
-          <br>
-    
+          />
 
+          <br>
+          <br>
 
           <div>
             <input type="submit" value="Soumettre..." class="btn btn-default" /> <br /><br />
           </div>
+
         </form> 
       </fieldset>
     </div>
