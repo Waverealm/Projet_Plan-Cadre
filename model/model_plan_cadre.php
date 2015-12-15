@@ -136,7 +136,7 @@ function buildPlanCadre($primary_key)
         case 'Adopté':
             if($info_plancadre["Officiel"] > 0)
             {
-                $titre_documentt = "Plan-cadre officiel";
+                $titre_document = "Plan-cadre officiel";
             }
             else
             {
@@ -152,52 +152,41 @@ function buildPlanCadre($primary_key)
 
 
     // espace avant et après le titre du document
-    $section_template->addText($saut_ligne);
+    $section_template->addText($GLOBALS["saut_ligne"]);
 
     $section_template->addText( $titre_document, $GLOBALS["style_font_titre"], $GLOBALS["style_align_center"] );
 
-    $section_template->addText(GLOBALS["$saut_ligne"]);
+    $section_template->addText($GLOBALS["saut_ligne"]);
 
 
     $table_identification = $section_template->addTable('style_table');
 
     $nombre_colonnes = 3;
-    $cell_width = $table_width / $nombre_colonnes;
+    $cell_width = $GLOBALS["table_width"] / $nombre_colonnes;
 
-    $table_identification->addRow($style_row);
+    $table_identification->addRow($GLOBALS["style_row"]);
 
     $table_identification->addCell($cell_width, $GLOBALS["style_cellule_titre"])->addText("Identification du cours", 
         $GLOBALS["style_font_titre"], $GLOBALS["style_align_center"]);
 
-    $table_identification->addRow($style_row);   
-    $table_identification->addCell($cell_width)->addText("Discipline", null, $style_align_center);
-    $table_identification->addCell($cell_width)->addText($nom_cours, null, $style_align_center);
-    $table_identification->addCell($cell_width)->addText($code_cours, null, $style_align_center);
+    $table_identification->addRow($GLOBALS["style_row"]);   
+    $table_identification->addCell($cell_width)->addText("Discipline", null, $GLOBALS["style_align_center"]);
+    $table_identification->addCell($cell_width)->addText($nom_cours, null, $GLOBALS["style_align_center"]);
+    $table_identification->addCell($cell_width)->addText($code_cours, null, $GLOBALS["style_align_center"]);
 
-    $table_identification->addRow($style_row);
-    $table_identification->addCell($cell_width)->addText($ponderation_cours, null, $style_align_center);
-    $table_identification->addCell($cell_width)->addText($nombre_unites_cours, null, $style_align_center);
-    $table_identification->addCell($cell_width)->addText("test", null, $style_align_center);
+    $table_identification->addRow($GLOBALS["style_row"]);
+    $table_identification->addCell($cell_width)->addText($ponderation_cours, null, $GLOBALS["style_align_center"]);
+    $table_identification->addCell($cell_width)->addText($nombre_unites_cours, null, $GLOBALS["style_align_center"]);
+    $table_identification->addCell($cell_width)->addText("test", null, $GLOBALS["style_align_center"]);
 
 // Fin de la section de l'indentification du cours 
 // ----------------------------------------------
 
 // ----------------------------------------------
 // Section de la présentation du cours 
-    $section_presentation = $php_word->addSection();
-
     $titre = "Présentation du cours";
 
-    $table_presentation = $section_presentation->addTable('style_table');
-    $nombre_colonnes = 1;
-    $cell_width = $table_width / $nombre_colonnes;
-    
-    $table_presentation->addRow($style_row_titre);
-    $cellule_titre = $table_presentation->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
-
-    $table_presentation->addRow($style_row);
-    $cellule_contenu = $table_presentation->addCell($cell_width);
-    \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $presentation);
+    addSection($php_word, $titre, $presentation);
 
 // Fin de la section de la présentation du cours 
 // ----------------------------------------------
@@ -206,20 +195,9 @@ function buildPlanCadre($primary_key)
 
 // ----------------------------------------------
 // Section de l'objectif d'intégration 
-    $section_integration = $php_word->addSection();
-
     $titre = "Objectif d'intégration";
 
-    $table_integration = $section_integration->addTable('style_table');
-    $nombre_colonnes = 1;
-    $cell_width = $table_width / $nombre_colonnes;
-    
-    $table_integration->addRow($style_row_titre);
-    $cellule_titre = $table_integration->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
-
-    $table_integration->addRow($style_row);
-    $cellule_contenu = $table_integration->addCell($cell_width);
-    \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $integration);
+    addSection($php_word, $titre, $integration);
 
 // Fin de la section de l'objectif d'intégration 
 // ----------------------------------------------
@@ -227,42 +205,19 @@ function buildPlanCadre($primary_key)
 
 // ----------------------------------------------
 // Section de l'évaluation des apprentissages 
-    
-    $section_evaluation = $php_word->addSection();
 
     $titre = 'Évaluation des apprentissages';
-
-    $table_evaluation = $section_evaluation->addTable('style_table');
-    $nombre_colonnes = 1;
-    $cell_width = $table_width / $nombre_colonnes;
-    
-    $table_evaluation->addRow($style_row_titre);
-    $cellule_titre = $table_evaluation->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
-
-    $table_evaluation->addRow($style_row);
-    $cellule_contenu = $table_evaluation->addCell($cell_width);
-    \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $evaluation);
+    addSection($php_word, $titre, $evaluation);
 
 // Fin de la section de l'évaluation des apprentissages 
 // ----------------------------------------------
     
 // ----------------------------------------------
 // Section de l'énoncé des compétences
-    
-    $section_competences = $php_word->addSection();
 
-    $titre = "Énoncé des compétences";
+    $titre_section = "Énoncé des compétences";
 
-    $table_competences = $section_competences->addTable('style_table');
-    $nombre_colonnes = 1;
-    $cell_width = $table_width / $nombre_colonnes;
-    
-    $table_competences->addRow($style_row_titre);
-    $cellule_titre = $table_competences->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
-
-    $table_competences->addRow($style_row);
-    $cellule_contenu = $table_competences->addCell($cell_width);
-    \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $competences);
+    addSection($php_word, $titre, $competences);
 
 // Fin de la section de l'énoncé des compétences
 // ----------------------------------------------
@@ -270,23 +225,8 @@ function buildPlanCadre($primary_key)
 
 // ----------------------------------------------
 // Section des objectifs d'apprentissage
-
-    $section_apprentissage = $php_word->addSection();
-
     $titre = "Objectifs d'apprentissage";
-
-    $table_apprentissage = $section_apprentissage->addTable('style_table');
-    $nombre_colonnes = 1;
-    $cell_width = $table_width / $nombre_colonnes;
-    
-    $table_apprentissage->addRow($style_row_titre);
-    $cellule_titre = $table_apprentissage->addCell($cell_width)->addText($titre, $style_font_titre, $style_align_center);
-
-    $table_apprentissage->addRow($style_row);
-    $cellule_contenu = $table_apprentissage->addCell($cell_width);
-    \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $apprentissage);
-
-    addSection($php_word, $titre_section, $apprentissage);
+    addSection($php_word, $titre, $apprentissage);
 
 // Fin de la section des objectifs d'apprentissage
 // ----------------------------------------------
@@ -300,15 +240,16 @@ function addSection($php_word, $titre_section, $contenu_section)
 {
     $section = $php_word->addSection();
 
-    $table_apprentissage = $section_apprentissage->addTable('style_table');
+    $table = $section->addTable('style_table');
     $nombre_colonnes = 1;
-    $cell_width = $table_width / $nombre_colonnes;
+    $cell_width = $GLOBALS["table_width"] / $nombre_colonnes;
     
-    $table_apprentissage->addRow($style_row_titre);
-    $cellule_titre = $table_apprentissage->addCell($cell_width)->addText($titre_section, $style_font_titre, $style_align_center);
+    $table->addRow($GLOBALS["style_row_titre"]);
+    $cellule_titre = $table->addCell($cell_width)->addText($titre_section, 
+        $GLOBALS["style_font_titre"], $GLOBALS["style_align_center"]);
 
-    $table_apprentissage->addRow($style_row);
-    $cellule_contenu = $table_apprentissage->addCell($cell_width);
+    $table->addRow($GLOBALS["style_row"]);
+    $cellule_contenu = $table->addCell($cell_width);
     \PhpOffice\PhpWord\Shared\Html::addHtml($cellule_contenu, $contenu_section);
 }
 
