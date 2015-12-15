@@ -317,15 +317,13 @@ function showAppropriateMenu()
     {
         $list = selectAllPrograms();
 
-        echo "<div>";
-            echo '<select name="CodeProgramme">';
-                echo '<option value="">' . '</option>';
+        echo '<select name="CodeProgramme">';
+            echo '<option value="">' . '</option>';
         foreach ($list as $row)
         {
             echo '<option value="'.$row['CodeProgramme'].'">'.$row['CodeProgramme']. ' ' .$row['NomProgramme']. '</option>';
         }
-            echo "</select>";
-        echo "</div>";
+        echo "</select>";
     }
 
     function showProgramListAll()

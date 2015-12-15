@@ -51,31 +51,78 @@
       $(function () {
         $('#manage_class input[type=radio]').change(function(){
           if ($(this).val() == "add_class" ) {
+            // Si on veut ajouter un cours, alors l'action du form sera changé pour appeler le bon controller
             $('#form_manage_class').attr('action', '../controller/controller_create_class.php');
+            
+            // Cache le checkbox et le label
             $("#change_code").hide();
             $("#label_code_class").hide();
             $('#label_code_class').next('br').remove();
+
+            $(".masterTooltip").show();
+
+            // Active de nouveau le champ de texte du code du cours
             $( "#CodeCours" ).prop( "disabled", false );
+
+            // Change le texte du label précédant la liste déroulante des cours
+            $("#label_class_list").text("Liste des cours déjà existants :");
           }
 
           else if($(this).val() == "update_class") {
+            // Même chose que dans le if ci-dessus
             $('#form_manage_class').attr('action', '../controller/controller_update_class.php');
+
+            // Affiche et décoche le checkbox
             $("#change_code").show();
             $('#change_code').attr('checked', false);
+            $(".masterTooltip").hide();
+
+            // Affiche le label
             $("#label_code_class").show();
             $( "<br>" ).insertAfter( "#label_code_class" );
+
+            // Désactive le champ du texte du code du cours
             $( "#CodeCours" ).prop( "disabled", true );
+
+            // Change le texte du label précédant la liste déroulante des cours
+            $("#label_class_list").text("Sélectionnez le cours que vous souhaitez modifier :");
           }
         })
       })
 
 
       $( window ).load(function() {
+        // Lorsque la page est chargée, le checkbox et le label sont cachés par défaut
+        // et le champ de texte du code du cours est activé
         $("#change_code").hide();
         $("#label_code_class").hide();
         $( "#CodeCours" ).prop( "disabled", false );
       });
 
+    </script>
+    <script>
+      // Ressource : http://www.alessioatzeni.com/blog/simple-tooltip-with-jquery-only-text/
+      $(document).ready(function() {
+        // Tooltip only Text
+        $('.masterTooltip').hover(function(){
+                // Hover over code
+                var title = $(this).attr('title');
+                $(this).data('tipText', title).removeAttr('title');
+                $('<p class="tooltip"></p>')
+                .text(title)
+                .appendTo('body')
+                .fadeIn('slow');
+        }, function() {
+                // Hover out code
+                $(this).attr('title', $(this).data('tipText'));
+                $('.tooltip').remove();
+        }).mousemove(function(e) {
+                var mousex = e.pageX + 20; //Get X coordinates
+                var mousey = e.pageY + 10; //Get Y coordinates
+                $('.tooltip')
+                .css({ top: mousey, left: mousex })
+        });
+      });
     </script>
   </head>
   <body>
@@ -98,7 +145,9 @@
         <br><br>
 
         <form action="../controller/controller_create_class.php" method="post" id="form_manage_class">
-            <label>Liste des cours existants : </label>
+            <img src="../images/tooltip_icon.png" class="masterTooltip" title='Lorsque vous ajoutez un nouveau cours, cette liste
+        déroulante existe seulement afin de vous montrer les cours déjà existants et éviter ainsi que créer deux fois le même.' />
+            <label id="label_class_list">Liste des cours déjà existants : </label>
 
             <br>
 
@@ -106,10 +155,9 @@
             showListClassWithSelected();
             ?>
 
-            <br>
-            <br>
+            &nbsp &nbsp
 
-            <label><strong>Recherche d'un cours : </strong></label><br>
+            <label>Rechercher : </label>
             <input type='text' name='search_cours' value=''
               onKeyUp="arrayFilter(this.value, this.form.class_list_all)"
               onChange="arrayFilter(this.value, this.form.class_list_all)"
@@ -179,20 +227,19 @@
 
           <br>
 
-          <label>Programme du cours : </label><br>
-            <?php 
-              showListPrograms(); 
-            ?>
+          <label>Programme du cours : </label>
+          <div>
+          <?php showListPrograms(); ?>
 
-          <br>    
+          &nbsp &nbsp
 
-          <label><strong>Recherche d'un programme : </strong></label><br>
+          <label>Rechercher :</label>
           <input type='text' name='search_program' value=''
             onKeyUp="arrayFilter(this.value, this.form.CodeProgramme)"
             onChange="arrayFilter(this.value, this.form.CodeProgramme)"
           />
+          </div>
 
-          <br>
           <br>
 
           <div>

@@ -26,3 +26,16 @@
 .combo_box_disabled {
 	background-color: #DBDBDB;
 }
+
+
+/* Ressource utilisée : http://www.alessioatzeni.com/blog/simple-tooltip-with-jquery-only-text/; */
+.tooltip {
+	display:none;
+	position:absolute;
+	border:1px solid #9C9C9C;
+	background-color:#F2F2F2;
+	border-radius:5px;
+	padding:10px;
+	color:#4D4D4D;
+	font-size:12px Arial;
+}

@@ -42,7 +42,7 @@
 <form action="../controller/controller_create_program.php" method="post">
 
 
-        <label>Liste des programmes existant : </label>
+        <label>Liste des programmes déjà existants : </label>
           <?php
             showListProgramsWithSelected();
           ?>
