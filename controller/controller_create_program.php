@@ -57,6 +57,12 @@
   else 
   {
     setErrors();
+
+    $_SESSION['CodeProgramme'] =  $_POST['CodeProgramme'];
+    $_SESSION['NomProgramme'] = $_POST['NomProgramme'];
+    $_SESSION['TypeProgramme'] = $_POST['TypeProgramme'];
+    $_SESSION['TypeSanction'] = $_POST['TypeSanction'];
+
     header('Location: ../view/view_create_program.php');
   }
 

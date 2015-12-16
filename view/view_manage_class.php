@@ -174,9 +174,17 @@
 
           <label>Code du cours : </label>
           <div>
-            <input data-val="true" id="CodeCours" name="CodeCours" type="text" value=""
+            <input data-val="true" id="CodeCours" name="CodeCours" type="text" 
               onkeypress="return filterClassCode(event);"
               required
+              value="<?php 
+              if( isset($_SESSION['CodeCours']) )
+              {
+                echo $_SESSION['CodeCours'];
+                unset($_SESSION['CodeCours']);
+              } 
+              ?>"
+              
             />
          </div>
 
@@ -184,7 +192,14 @@
 
           <label>Nom du cours : </label>
           <div>
-            <input data-val="true" id="NomCours" name="NomCours" type="text" value="" 
+            <input data-val="true" id="NomCours" name="NomCours" type="text" 
+            value="<?php 
+              if( isset($_SESSION['NomCours']) )
+              {
+                echo $_SESSION['NomCours'];
+                unset($_SESSION['NomCours']);
+              } 
+              ?>" 
             />
           </div>
 
@@ -193,8 +208,53 @@
           <label>Type du cours : </label>
           <div>
             <select name='TypeCours' required>
-              <option value='Enseignement régulier'> Enseignement régulier </option>
-              <option value='Formation continue'> Formation continue </option>
+              <?php 
+                if( isset($_SESSION['TypeCours']) )
+                {
+                  switch ($_SESSION['TypeCours']) 
+                  {
+                    case 'Enseignement régulier':
+                      $type_enseignement = 
+                      "<option selected value='Enseignement régulier'>" .
+                        " Enseignement régulier" .
+                      "</option>" .
+                      "<option value='Formation continue'>" . 
+                        "Formation continue" . 
+                      "</option>";
+                      break;
+                    case 'Formation continue':
+                      $type_enseignement = 
+                      "<option value='Enseignement régulier'>" .
+                        " Enseignement régulier" .
+                      "</option>" .
+                      "<option selected value='Formation continue'>" . 
+                        "Formation continue" . 
+                      "</option>";
+                      break;
+                    default :
+                      $type_enseignement = 
+                      "<option value='Enseignement régulier'>" .
+                        " Enseignement régulier" .
+                      "</option>" .
+                      "<option value='Formation continue'>" . 
+                        "Formation continue" . 
+                      "</option>";
+                      break; 
+                  }
+                }
+                else
+                {
+                  $type_enseignement = 
+                      "<option value='Enseignement régulier'>" .
+                        " Enseignement régulier" .
+                      "</option>" .
+                      "<option value='Formation continue'>" . 
+                        "Formation continue" . 
+                      "</option>";
+                }
+                echo $type_enseignement;
+                unset($_SESSION['TypeCours']);
+              ?>
             </select>
           </div>
 
@@ -202,8 +262,15 @@
 
           <label>Ponderation du cours : </label>
           <div>
-            <input data-val="true" id="Ponderation" name="Ponderation" type="text" value="" 
+            <input data-val="true" id="Ponderation" name="Ponderation" type="text" 
             pattern="\d{1,2}-\d{1,2}-\d{1,2}"
+            value="<?php 
+              if( isset($_SESSION['Ponderation']) )
+              {
+                echo $_SESSION['Ponderation'];
+                unset($_SESSION['Ponderation']);
+              } 
+              ?>" 
             />
           </div>
 
@@ -211,23 +278,37 @@
 
           <label>Nombre d'unités : </label>
           <div>
-            <input data-val="true" id="NombreUnites" name="NombreUnites" type="Number" value="" 
+            <input data-val="true" id="NombreUnites" name="NombreUnites" type="Number" 
             step="0.01"
             min="0"
             max="10"
+            value="<?php 
+              if( isset($_SESSION['NombreUnites']) )
+              {
+                echo $_SESSION['NombreUnites'];
+                unset($_SESSION['NombreUnites']);
+              } 
+              ?>"
             />
           </div>
 
           <br>
           <label>Nombre d'heures : </label>
           <div >
-            <input data-val="true" id="NombreHeures" name="NombreHeures" type="Number" value="" 
+            <input data-val="true" id="NombreHeures" name="NombreHeures" type="Number"
             step="10"
             min="50"
             max="200"
+            value="<?php 
+              if( isset($_SESSION['NombreHeures']) )
+              {
+                echo $_SESSION['NombreHeures'];
+                unset($_SESSION['NombreHeures']);
+              } 
+              ?>" 
             />
           </div>
-
+          
           <br>
 
           <label>Programme du cours : </label>
@@ -237,9 +318,16 @@
           &nbsp &nbsp
 
           <label>Rechercher :</label>
-          <input type='text' name='search_program' value=''
+          <input type='text' name='search_program' 
             onKeyUp="arrayFilter(this.value, this.form.CodeProgramme)"
             onChange="arrayFilter(this.value, this.form.CodeProgramme)"
+            value='<?php 
+              if( isset($_SESSION['search_program']) )
+              {
+                echo $_SESSION['search_program'];
+                unset($_SESSION['search_program']);
+              } 
+              ?>'
           />
           </div>
 

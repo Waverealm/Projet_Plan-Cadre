@@ -46,38 +46,104 @@
           <?php
             showListProgramsWithSelected();
           ?>
-        <br>
 
+        <label>Rechercher :</label>
+          <input type='text' name='search_program' 
+            onKeyUp="arrayFilter(this.value, this.form.CodeProgramme)"
+            onChange="arrayFilter(this.value, this.form.CodeProgramme)"
+            value='<?php 
+              if( isset($_SESSION['search_program']) )
+              {
+                echo $_SESSION['search_program'];
+              } 
+              ?>'
+          />
+        <br>
         <label>Code du programme : </label>
+
         <div>
             <input class="text-box single-line" data-val="true" id="CodeProgramme" name="CodeProgramme" 
-              type="text" value="" 
+              type="text" 
               onKeyUp="arrayFilter(this.value, this.form.program_list_all)"
               onChange="arrayFilter(this.value, this.form.program_list_all)"
               required
+              value="<?php 
+              if( isset($_SESSION['CodeProgramme']) )
+              {
+                echo $_SESSION['CodeProgrammes'];
+                unset($_SESSION['CodeProgramme']);
+              } 
+              ?>" 
             />
         </div>
         </br>
         <label>Nom du programme : </label>
         <div>
-            <input data-val="true" id="NomProgramme" name="NomProgramme" type="text" value="" 
+            <input data-val="true" id="NomProgramme" name="NomProgramme" type="text" 
               required
+              value="<?php 
+              if( isset($_SESSION['NomProgramme']) )
+              {
+                echo $_SESSION['NomProgrammes'];
+                unset($_SESSION['NomProgramme']);
+              } 
+              ?>"
             />
         </div>
         </br>
         <label>Type du programme : </label>
+
         <div>
             <select name="TypeProgramme" class="required">
-              <option value='Technique'>Technique</option>
-              <option value='Pré-universitaire'>Pré-universitaire</option>
-              <option value="Attestation d'études collégiales">Attestation d'études collégiales</option>
+
+              <?php 
+                if( isset($_SESSION["TypeProgramme"]) )
+                {
+                  switch ($_SESSION["TypeProgramme"]) 
+                  {
+                    case 'Technique':
+                      $type_programme = 
+                      "<option selected value='Technique'>Technique</option>" .
+                      "<option value='Pré-universitaire'>Pré-universitaire</option>" .
+                      "<option value=\"Attestation d'études collégiales\">Attestation d'études collégiales</option>";
+                      break;
+                    case 'Pré-universitaire':
+                      $type_programme = 
+                      "<option value='Technique'>Technique</option>" .
+                      "<option selected value='Pré-universitaire'>Pré-universitaire</option>" .
+                      "<option value=\"Attestation d'études collégiales\">Attestation d'études collégiales</option>";
+                      break;
+                      case "Attestation d'études collégiales":
+                      $type_programme = 
+                      "<option value='Technique'>Technique</option>" .
+                      "<option value='Pré-universitaire'>Pré-universitaire</option>" .
+                      "<option value=\"Attestation d'études collégiales\">Attestation d'études collégiales</option>";
+                        break;
+                    default :
+                      $type_programme = 
+                      "<option value='Technique'>Technique</option>" .
+                      "<option value='Pré-universitaire'>Pré-universitaire</option>" .
+                      "<option selected value=\"Attestation d'études collégiales\">Attestation d'études collégiales</option>";
+                      break; 
+                  }
+                  unset($_SESSION["TypeProgramme"]);
+                }
+                else
+                {
+                  $type_programme = 
+                  "<option value='Technique'>Technique</option>" .
+                  "<option value='Pré-universitaire'>Pré-universitaire</option>" .
+                  "<option value=\"Attestation d'études collégiales\">Attestation d'études collégiales</option>";
+                }
+                echo $type_programme;
+                ?>
             </select>
         </div>
         </br>
         <label>Type de sanction: </label>
         <div>
             <select name="TypeSanction">
-              <option value="Diplôme d'étude collégialese"> Diplôme d'étude collégiales </option>
+              <option value="Diplôme d'études collégiales"> Diplôme d'étude collégiales </option>
               <option value="Attestation d'études collégiales"> Attestation d'études collégiales </option>
             </select>
         </div>

@@ -57,6 +57,16 @@
   else 
   {
     setErrors();
+    $_SESSION['CodeCours'] =  $_POST['CodeCours'];
+    $_SESSION['NomCours'] = $_POST['NomCours'];
+    $_SESSION['TypeCours'] = $_POST['TypeCours'];
+    $_SESSION['Ponderation'] = $_POST['Ponderation'];
+    $_SESSION['NombreUnites'] = $_POST['NombreUnites'];
+    $_SESSION['NombreHeures'] = $_POST['NombreHeures'];
+    $_SESSION['CodeProgramme'] = $_POST['CodeProgramme'];
+    $_SESSION['search_program'] = $_POST['search_program'];
+    
+
     header('Location: ../view/view_manage_class.php');
   }
 
