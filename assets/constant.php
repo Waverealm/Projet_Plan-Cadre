@@ -19,6 +19,13 @@ define("PAGE_ACCESS", "../controller/page_acces.php");
 define("INTERFACE_FUNCTIONS", "../controller/interface_functions.php");
 define("REQUETES_BD", "../model/queries.php");
 
+
+define("MODEL_PAGE", "../model/model_page.php");
+define("MODEL_COURS", "../model/model_cours.php");
+define("MODEL_PROGRAMME", "../model/model_programme.php");
+
+
+
 // lien avec le compte utilisateur
 
 define("VIEW_LOGIN", "../view/view_login.php");

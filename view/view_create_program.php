@@ -4,13 +4,16 @@
 
   $currentConseiller = 'createprogram';
 
-  include_once("../controller/interface_functions.php");
   include_once("../controller/pages_access.php");
 
 
 
   include_once("../assets/constant.php");
-  include_once(INTERFACE_FUNCTIONS);
+
+  include_once(MODEL_PAGE);
+  include_once(MODEL_PROGRAMME);
+
+
 
   verifyAccessPages();
   isPlanner();
@@ -43,34 +46,42 @@
 
 
         <label>Liste des programmes déjà existants : </label>
+        <br>
           <?php
             showListProgramsWithSelected();
           ?>
-
+        &nbsp &nbsp
         <label>Rechercher :</label>
           <input type='text' name='search_program' 
-            onKeyUp="arrayFilter(this.value, this.form.CodeProgramme)"
-            onChange="arrayFilter(this.value, this.form.CodeProgramme)"
+            onKeyUp="arrayFilter(this.value, this.form.program_list_all)"
+            onChange="arrayFilter(this.value, this.form.program_list_all)"
             value='<?php 
               if( isset($_SESSION['search_program']) )
               {
                 echo $_SESSION['search_program'];
+                unset($_SESSION['search_program']);
               } 
               ?>'
           />
         <br>
+        <br>
+
         <label>Code du programme : </label>
 
         <div>
             <input class="text-box single-line" data-val="true" id="CodeProgramme" name="CodeProgramme" 
               type="text" 
+              <?php
+              /*
               onKeyUp="arrayFilter(this.value, this.form.program_list_all)"
-              onChange="arrayFilter(this.value, this.form.program_list_all)"
+              onChange="arrayFilter(this.value, this.form.program_list_all)" 
+              */
+              ?>
               required
               value="<?php 
               if( isset($_SESSION['CodeProgramme']) )
               {
-                echo $_SESSION['CodeProgrammes'];
+                echo $_SESSION['CodeProgramme'];
                 unset($_SESSION['CodeProgramme']);
               } 
               ?>" 
@@ -84,7 +95,7 @@
               value="<?php 
               if( isset($_SESSION['NomProgramme']) )
               {
-                echo $_SESSION['NomProgrammes'];
+                echo $_SESSION['NomProgramme'];
                 unset($_SESSION['NomProgramme']);
               } 
               ?>"

@@ -18,7 +18,7 @@
   $nomProgramme = NULL;
   $typeProgramme = NULL;
   $typeSanction = NULL;
-  $dateAjoutProgramme = date('Y-m-d');
+  //$dateAjoutProgramme = date('Y-m-d');
 
   //isset($var) vérifie que la variable a été créé et qu'elle n'est pas nulle
 
