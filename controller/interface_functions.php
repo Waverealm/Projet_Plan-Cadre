@@ -73,12 +73,15 @@ function showAppropriateMenu()
         ?>
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list">
-                    <li <?php if($currentVisitor == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
+                    <li <?php if($currentVisitor == 'searchplancadreofficiel') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
                         <a href="<?php echo VIEW_SEARCH_OFFICIEL_PLAN_CADRE ?>" class="pure-menu-link">Accueil</a>
                     </li>
                     <li <?php if($currentVisitor == 'searchplancadre') {echo 'class="pure-menu-item pure-menu-allow-hover pure-menu-selected"';} ?> class="pure-menu-item pure-menu-allow-hover">
                         <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
 
+                    </li>
+                    <li <?php if($currentVisitor == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
+                        <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">À propos</a>
                     </li>
                 </ul>
                 <a href="<?php echo VIEW_LOGIN ?>" class="login_field">Se Connecter</a>
@@ -91,7 +94,7 @@ function showAppropriateMenu()
         ?>
         <div class="pure-menu pure-menu-horizontal">
             <ul class="pure-menu-list">
-                <li <?php if($currentElaborator == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
+                <li <?php if($currentElaborator == 'searchplancadreofficiel') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
                     <a href="<?php echo VIEW_SEARCH_OFFICIEL_PLAN_CADRE ?>" class="pure-menu-link">Accueil</a>
                 </li>
                 <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
@@ -101,9 +104,12 @@ function showAppropriateMenu()
                             <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" class="pure-menu-link">Rechercher</a>
                         </li>
                         <li <?php if($currentElaborator == 'elaborationplancadre') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
-                            <a href="<?php echo VIEW_ELABORATION_PLANCADRE ?>" class="pure-menu-link">Créer</a>
+                            <a href="<?php echo VIEW_ELABORATION_PLANCADRE ?>" class="pure-menu-link">Modifier un Plan-cadre</a>
                         </li>
                     </ul>
+                </li>
+                <li <?php if($currentElaborator == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
+                    <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">À propos</a>
                 </li>
             </ul>
             <div class="login_field"><?php echo $_SESSION['last_name'].", ".$_SESSION['first_name']."   "; ?>
@@ -128,7 +134,7 @@ function showAppropriateMenu()
         ?>
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list">
-                    <li <?php if($currentConseiller == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
+                    <li <?php if($currentConseiller == 'searchplancadreofficiel') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
                         <a href="<?php echo VIEW_SEARCH_OFFICIEL_PLAN_CADRE ?>" class="pure-menu-link">Accueil</a>
                     </li>
                     <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
@@ -138,7 +144,7 @@ function showAppropriateMenu()
                             <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" class="pure-menu-link">Recherche</a>
                         </li>
                         <li <?php if($currentConseiller == 'elaborationplancadre') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
-                           <a href="<?php echo VIEW_ELABORATION_PLANCADRE ?>" class="pure-menu-link">Créer un plan-cadre</a>
+                           <a href="<?php echo VIEW_ELABORATION_PLANCADRE ?>" class="pure-menu-link">Modifier un Plan-cadre</a>
                         </li>
                         </ul>
                     </li>
@@ -170,6 +176,9 @@ function showAppropriateMenu()
                             </li>
                         </ul>
                     </li>
+                    <li <?php if($currentConseiller == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
+                        <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">À propos</a>
+                    </li>
                 </ul>
                 <div class="login_field"><?php echo $_SESSION['last_name'].", ".$_SESSION['first_name']."   "; ?>
                     <a href="<?php echo CONTROLLER_LOGOUT ?>">Se déconnecter</a>
@@ -183,7 +192,7 @@ function showAppropriateMenu()
         ?>
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list">
-                    <li <?php if($currentAdmin == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
+                    <li <?php if($currentAdmin == 'searchplancadreofficiel') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
                         <a href="<?php echo VIEW_SEARCH_OFFICIEL_PLAN_CADRE ?>" class="pure-menu-link">Accueil</a>
                     </li>
                     <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
@@ -193,7 +202,7 @@ function showAppropriateMenu()
                                 <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" class="pure-menu-link">Recherche</a>
                             </li>
                             <li <?php if($currentAdmin == 'elaborationplancadre') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
-                                <a href="<?php echo VIEW_ELABORATION_PLANCADRE ?>" class="pure-menu-link">Créer un plan-cadre</a>
+                                <a href="<?php echo VIEW_ELABORATION_PLANCADRE ?>" class="pure-menu-link">Modifier un Plan-cadre</a>
                             </li>
                         </ul>
                     </li>
@@ -210,6 +219,9 @@ function showAppropriateMenu()
                                 <a href="<?php echo VIEW_UPDATE_PASSWORD ?>" class="pure-menu-link">Modification mot de passe</a>
                             </li>
                         </ul>
+                    </li>
+                    <li <?php if($currentAdmin == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
+                        <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">À propos</a>
                     </li>
                 </ul>
                 <div class="login_field"><?php echo $_SESSION['last_name'].", ".$_SESSION['first_name']."   "; ?>
@@ -551,6 +563,5 @@ function showAppropriateMenu()
             unset($_SESSION[ $errors ]);
         }
     }
-
 
 ?>

@@ -4,10 +4,10 @@
   include_once("../controller/interface_functions.php");
   include_once("../model/model_search_plan_cadre.php");
 
-  /*$currentVisitor = 'searchplancadre';
-  $currentElaborator = 'searchplancadre';
-  $currentConseiller = 'searchplancadre';
-  $currentAdmin = 'searchplancadre';*/
+  $currentVisitor = 'searchplancadreofficiel';
+  $currentElaborator = 'searchplancadreofficiel';
+  $currentConseiller = 'searchplancadreofficiel';
+  $currentAdmin = 'searchplancadreofficiel';
 
   setCheckboxSessionValue();
 ?>
