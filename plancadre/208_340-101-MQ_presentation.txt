@@ -1,1 +1,1 @@
-<p>texte</p><ol><li>comp&eacute;tences</li></ol>
+<p>texte</p><ol><li>comp&eacute;tences</li><li>test</li><li>troisi&egrave;me comp&eacute;tences</li></ol>
