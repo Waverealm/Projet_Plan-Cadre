@@ -2,14 +2,13 @@
   session_start();
 
   include_once("../controller/interface_functions.php");
-  include_once("../model/model_search_plan_cadre.php");
+  include_once("../model/model_plan_cadre_official_index.php");
 
+  // Variables utilisées pour le menu interractif
   $currentVisitor = 'searchplancadreofficiel';
   $currentElaborator = 'searchplancadreofficiel';
   $currentConseiller = 'searchplancadreofficiel';
   $currentAdmin = 'searchplancadreofficiel';
-
-  setCheckboxSessionValue();
 ?>
 
 <!DOCTYPE html>

@@ -7,6 +7,7 @@ include_once("../controller/interface_functions.php");
 include_once("../model/queries.php");
 
 // Fonction pour afficher la liste des plans-cadres officiels sur la page d'accueil
+// La fonction est en théorie presque la même que showPlanCadre() dans model_search_plan_cadre.php
 function showAllOfficielPlancadre()
 {
     $list = selectAllOfficielPlanCadre();
