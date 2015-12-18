@@ -1,5 +1,5 @@
 /* 
-   Nom : others.css
+   Nom : js_global.js
    Créé par Léa
    Contient des fonctions javascript nécessaires au site
 */
