@@ -32,7 +32,7 @@ if( isset($_POST['submit']) || isset($_POST['save']) )
     $prealable_cours = $_POST['Prealables'];
     $type_enseignement = $_POST['TypeEnseignement'];
 
-    // le texte
+    // le texte des sections
     $presentation = $_POST['Presentation'];
     $integration = $_POST['ObjectifsIntegration'];
     $evaluation = $_POST['Evaluation'];
