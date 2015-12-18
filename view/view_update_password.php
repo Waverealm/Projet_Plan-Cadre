@@ -1,6 +1,9 @@
 <?php
 
-    session_start();
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 
     include_once("../controller/interface_functions.php");
   include_once("../model/model_pages_access.php");

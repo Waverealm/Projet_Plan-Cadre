@@ -72,7 +72,7 @@ if(!$email_free)
 // Vérification du format de l'adresse email
 if (!preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$#", $email) && !empty($email))
 {
-  $error_emailformat = '- L'adresse courriel n\'a pas un format valide. \n';
+  $error_emailformat = '- L\'adresse courriel n\'a pas un format valide. \n';
   $i++;
 }
   

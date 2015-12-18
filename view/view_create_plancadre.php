@@ -9,7 +9,9 @@
     } 
 
     include_once("../controller/interface_functions.php");
+    include_once("../controller/controller_create_plancadre.php");
     include_once("../model/model_pages_access.php");
+    include_once("../model/queries.php");
 
     verifyAccessPages();
     isAdmin();
