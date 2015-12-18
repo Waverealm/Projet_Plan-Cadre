@@ -1,12 +1,14 @@
 <?php
 /*
-  queries.php
+  Nom : queries.php
+  Fait par Simon Roy, Antoine Latendresse & Léa Kelly
+  Contient toutes les requêtes que le site utilise pour manipuler la base de données
 */
 
 
 
 /*
-  fonction : dbConnect()
+  Fonction : dbConnect()
   Cette fonction retourne une instance d'une connexion à la base de données
 
 */
@@ -24,6 +26,7 @@
     }
   }
 
+
 /*
   ------------------------------------------------------------------------------------
   début des selects
@@ -31,6 +34,12 @@
 */
 
 
+/*
+  Nom de la fonction : getUser($username)
+  Fait par Léa Kelly
+  Va chercher dans la base de données les informations de l'utilisateur
+  envoyé en paramètre
+*/
   function getUser($username)
   {
       $query = dbConnect()->prepare("CALL SELECT_USER(?)");
@@ -46,12 +55,16 @@
   }
 
 
-  // Compte le nombre d'utilisateurs avec le nom d'utilisateur envoyé. Le résultait devrait toujours être 0 ou 1
-  // 0 pour nom d'utilisateur disponible
-  // 1 pour nom d'utilisateur déjà utilisé
+/*
+  Nom de la fonction : countUsersSpecificUsername($username)
+  Fait par Léa Kelly
+  Compte le nombre d'utilisateurs avec le nom d'utilisateur envoyé. Le résultait devrait toujours être 0 ou 1
+  0 pour nom d'utilisateur disponible
+  1 pour nom d'utilisateur déjà utilisé
+*/
   function countUsersSpecificUsername ($bdd, $username)
   {
-      $query = $bdd->prepare("CALL COUNT_USER_SPECIFIC_USERNAME(?)");
+      $query = dbConnect()->prepare("CALL COUNT_USER_SPECIFIC_USERNAME(?)");
 
       $query->bindParam(1, $username, PDO::PARAM_STR);
 
@@ -63,13 +76,17 @@
       return $username_free;
   }
 
-  // Compte le nombre d'utilisateurs avec l'adresse courriel envoyée. Le résultait devrait toujours être 0 ou 1
-  // 0 pour adresse email disponible
-  // 1 pour adresse email déjà utilisée
+/*
+  Nom de la fonction : countUsersSpecificEmail($email)
+  Fait par Léa Kelly
+  Compte le nombre d'utilisateurs avec l'adresse courriel envoyée. Le résultait devrait toujours être 0 ou 1
+  0 pour adresse email disponible
+  1 pour adresse email déjà utilisée
+*/
   function countUsersSpecificEmail ($bdd, $email)
   {
 
-      $query = $bdd->prepare("CALL COUNT_USER_SPECIFIC_EMAIL(?)");
+      $query = dbConnect() ->prepare("CALL COUNT_USER_SPECIFIC_EMAIL(?)");
 
       $query->bindParam(1, $email, PDO::PARAM_STR);
 
@@ -84,12 +101,12 @@
 
 /* 
   Nom de la fonction : selectWithNoParam($call_select)
-  Fait par : Simon Roy
+  Fait par Simon Roy
   Prend un string en paramètre, le string représente une procédure stockée 
   dans la base de données qui serra éxécutée. La valeur de retour est un 
   array qui contient le résultat du select.
 
-  Cette fonction ne devrait pas prendre être utilisé pour éxécuter autre chose 
+  Cette fonction ne devrait être utilisée pour éxécuter autre chose 
   que des selects.
 */
   function selectWithNoParam($call_select)
@@ -146,11 +163,12 @@
     début des fonctions qui appellent fetchId($id, $call_select)
   ------------------------------------------------------------------------------------
     Nom de la fonction : fetchId($id, $call_select)
+    Fait par Simon Roy
     Prend un string en paramètre, le string représente une procédure stockée 
     dans la base de données qui serra éxécutée. La variable id est pour limiter
     la recherche à l'identifiant choisi.
 
-    La valeur de retour est un array qui contient le résultat du select
+    La valeur de retour est un array qui contient le résultat du select.
 */
 
   function fetchId($id, $call_select)
@@ -168,7 +186,8 @@
   }
 
 /*
-   fetchPlanCadreElaboration_User($id_user)
+   Nom : fetchPlanCadreElaboration_User($id_user)
+   Fait par Simon Roy
    Cette fonction éxecute une procédure qui retourne tous 
    les plans-cadres qui ont l'utilisateur passé
    en paramètre parmi ses élaborateurs.
@@ -177,8 +196,10 @@
   {
     return fetchId( $id_user, "CALL SELECT_PLAN_CADRE_ELABORATION_USER(?)" );
   }
+
 /*
-   fetchPlanCadreElaboration_PlanCadre($id_plan_cadre)
+   Nom : fetchPlanCadreElaboration_PlanCadre($id_plan_cadre)
+   Fait par Simon Roy
    Cette fonction éxecute une procédure qui retourne les 
    données du plan-cadre qui possède l'identifiant passé 
    en paramètre.
@@ -187,57 +208,145 @@
   {
     return fetchId( $id_plancadre, "CALL SELECT_PLAN_CADRE_ID(?)" );
   }
+
+/*
+   Nom : fetchPrealableCours_Id($id_cours)
+   Fait par Simon Roy
+   Va récupérer les préalables du cours passé en paramètre
+*/
   function fetchPrealableCours_Id($id_cours)
   {
     return fetchId( $id_cours, "CALL SELECT_PREALABLE_COURS_ID(?)" );
   }
+
+/*
+   Nom : fetchConsignesPlanCadre_Id($id_consigne)
+   Fait par Simon Roy
+   Va récupérer la consigne correspondant à l'id passé en paramètre
+*/  
   function fetchConsignesPlanCadre_Id($id_consigne)
   {
     return fetchId( $id_consigne, "CALL SELECT_CONSIGNE_PLAN_CADRE_ID(?)" );
   }
+
+/*
+   Nom : fetchAllPlanners($user_type)
+   Fait par Léa Kelly
+   Va sélectionner tous les élaborateur parmi les utilisateurs
+   $user_type contient essentiellement le terme "Élaborateur"
+*/ 
   function fetchAllPlanners($user_type)
   {
     return fetchId( $user_type, "CALL SELECT_ALL_PLANNERS(?)" );
   }
+
+/*
+   Nom : fetchDescriptionInstruction($id_instruction)
+   Fait par Léa Kelly
+   Va récupérer la description correspondant à l'id de la consigne passé en paramètre
+*/ 
   function fetchDescriptionInstruction($id_instruction)
   {
     return fetchId( $id_instruction, "CALL SELECT_DESCRIPTION_INSTRUCTION(?)" );
   }
+
+/*
+   Nom : fetchInformationPlanCadre($id_plancadre)
+   Fait par Léa Kelly
+   Va récupérer toutes les informations du plan-cadre correspondant à l'id passé en paramètre
+*/ 
   function fetchInformationPlanCadre($id_plancadre)
   {
     return fetchId( $id_plancadre, "CALL SELECT_PLAN_CADRE_INFOS(?)");
   }
+
+/*
+   Nom : fetchPlanCadreProgram($code_programme)
+   Fait par Léa Kelly
+   Va récupérer toutes les versions de tous les plans-cadres appartenant au programme dont le code
+   est envoyé en paramètre
+*/ 
   function fetchPlanCadreProgram($code_programme)
   {
     return fetchId( $code_programme, "CALL SELECT_PLAN_CADRE_PROGRAM(?)");
   }
+
+/*
+   Nom : fetchAllPlanCadreOfficiel($officiel)
+   Fait par Léa Kelly
+   Va récupérer tous les plans-cadre officiels eixistants
+*/ 
    function fetchAllPlanCadreOfficiel($officiel)
   {
     return fetchId( $officiel, "CALL SELECT_ALL_PLAN_CADRE_OFFICIEL(?)");
   }
+
+/*
+   Nom : fetchPlanCadreClass($class_code)
+   Fait par Léa Kelly
+   Va récupérer toutes les versions du plan-cadre appartenant au cours dont le code est envoyé
+   en paramètre
+*/ 
   function fetchPlanCadreClass($class_code)
   {
     return fetchId( $class_code, "CALL SELECT_PLAN_CADRE_CLASS(?)");
   }
+
+/*
+   Nom : fetchClass($class_code)
+   Fait par Léa Kelly
+   Va récupérer le numéro du cours dont le code est passé en paramètre
+*/ 
   function fetchClass($class_code)
   {
     return fetchId( $class_code, "CALL SELECT_CLASS(?)");
   }
+
+/*
+   Nom : fetchClassInfos($class_code)
+   Fait par Léa Kelly
+   Va récupérer toutes les informations du cours dont le code est passé
+   en paramètre
+*/ 
   function fetchClassInfos($class_code)
   {
     return fetchId( $class_code, "CALL SELECT_CLASS_INFOS(?)");
   }
+
+/*
+   Nom : fetchProgram($program_code)
+   Fait par Léa Kelly
+   Va récupérer le code du programme dans la BD selon selui qu'on envoit en paramètre
+   Cette requête est surtout utilisée afin de vérifier si un programme existe déjà ou non
+*/ 
   function fetchProgram($program_code)
   {
     return fetchId( $program_code, "CALL SELECT_PROGRAM(?)");
   }
   
-
+/*
+   Nom : fetchAllInfoPlanCadre($id_plancadre)
+   Fait par Simon Roy
+   Va récupérer toutes les informations d'un plan-cadre, incluant les informations du cours
+   auquel il appartient
+*/ 
   function fetchAllInfoPlanCadre($id_plancadre)
   {
     return fetchId( $id_plancadre, "CALL SELECT_ALL_INFO_PLAN_CADRE_ID (?)");
   }
 
+/*
+  ------------------------------------------------------------------------------------
+    fin des fonctions qui appellent fetchId($id, $call_select)
+  ------------------------------------------------------------------------------------
+*/
+
+/*
+  Nom : getPassword($username)
+  Fait par Léa Kelly
+  Va récupérer dans la BD le mot de passe de l'utilisateur passé en paramètre puis
+  retourne ce dit mot de passe
+*/
   function getPassword($username)
   {
       $query = dbConnect()->prepare("CALL SELECT_PASSWORD(?)");
@@ -252,6 +361,12 @@
       return $result[0][ "MotDePasse" ];
   }
 
+/*
+  Nom : getPassword($username)
+  Fait par Léa Kelly
+  Va récupérer dans la BD le mot de passe de l'utilisateur passé en paramètre puis
+  retourne ce dit mot de passe
+*/
   function getPlanCadreOfficielProgram($etat, $code_programme)
   {
     $query = dbConnect()->prepare("CALL SELECT_PLAN_CADRE_OFFICIEL_PROGRAM(?,?)");
@@ -266,6 +381,13 @@
     return $result;
   }
 
+/*
+  Nom : getPlanCadreOfficialState($classCode, $officiel)
+  Fait par Léa Kelly
+  Va récupérer le numéro du plan-cadre officiel du cours reçu en paramètre
+  Cette requête est en fait utilisée afin de voir si un plan-cadre officiel existe déjà
+  pour le cours ou non
+*/
     function getPlanCadreOfficialState($classCode, $officiel)
   {
     $query = dbConnect()->prepare("CALL SELECT_PLAN_CADRE_OFFICIAL_CLASS(?,?)");
@@ -280,6 +402,11 @@
     return $result;
   }
 
+/*
+  Nom : getAssignationPlanner($classCode, $state)
+  Fait par Léa Kelly
+  Va récupérer l'élaborateur d'un plan-cadre en particulier
+*/
   function getAssignationPlanner($classCode, $state)
   {
     $query = dbConnect()->prepare("CALL SELECT_ELABORATEUR_ASSIGNATION(?,?)");
@@ -294,6 +421,12 @@
     return $result;
   }
 
+/*
+  Nom : getPlanCadreIdByState($classCode, $state)
+  Fait par Léa Kelly
+  Va récupérer le plan-cadre correspondant au code du cours et l'état reçus en paramètres
+  Considérez que $state sera toujours "Élaborateur" pour l'utilisation que l'on en fait
+*/
   function getPlanCadreIdByState($classCode, $state)
   {
     $query = dbConnect()->prepare("CALL SELECT_VERSION_PLAN_CADRE_BY_STATE(?,?)");
@@ -308,6 +441,13 @@
     return $result;
   }
 
+/*
+  Nom : getPlanCadreUser($noPlanCadre, $noUser)
+  Fait par Léa Kelly
+  Va récupérer le numéro de l'utilisateur correspondant au numéro de plan-cadre et au numéro de
+  l'utilisateur envoyé
+  Cette fonction va venir servir en fait à savoir si une assignation existe déjà (empty())
+*/
   function getPlanCadreUser($noPlanCadre, $noUser)
   {
     $query = dbConnect()->prepare("CALL SELECT_PLAN_CADRE_USER(?,?)");
@@ -328,6 +468,8 @@
   ------------------------------------------------------------------------------------
   fin des selects
   ------------------------------------------------------------------------------------
+
+
   ------------------------------------------------------------------------------------
   début des insertions (create)
   ------------------------------------------------------------------------------------

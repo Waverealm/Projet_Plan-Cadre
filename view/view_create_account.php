@@ -37,7 +37,7 @@
 
                             <label>Nom d'utilisateur :</label>
                             <div>
-                                <input class="field" id="UserName" name="UserName" type="text" 
+                                <input class="field" id="username" name="username" type="text" 
                                 value="<?php if (isset($_SESSION[ 'new_account_username' ])) echo htmlentities(trim($_SESSION[ 'new_account_username' ])); ?>" 
                                 class="text-box single-line" 
                                 required
@@ -47,7 +47,7 @@
 
                             <label>Mot de passe :</label>
                             <div>
-                                <input class="field" id="Password" name="Password" type="password" 
+                                <input class="field" id="password" name="password" type="password" 
                                 value="" class="text-box single-line password" 
                                 required
                                 />
@@ -56,7 +56,7 @@
 
                             <label>Confirmer le mot de passe :</label>
                             <div>
-                                <input class="field" id="PasswordConfirmation" name="PasswordConfirmation" 
+                                <input class="field" id="pass_confirm" name="pass_confirm" 
                                 type="password" value="" class="text-box single-line password" 
                                 required
                                 />
@@ -65,7 +65,7 @@
 
                             <label>Adresse courriel :</label>
                             <div>
-                                <input class="field" id="Email" name="Email" type="email" 
+                                <input class="field" id="email" name="email" type="email" 
                                 value="<?php if (isset($_SESSION[ 'new_account_email' ])) echo htmlentities(trim($_SESSION[ 'new_account_email' ])); ?>" 
                                 class="text-box single-line" 
                                 required
@@ -75,7 +75,7 @@
 
                             <label>Nom :</label>
                             <div>
-                                <input class="field" id="LastName" name="LastName" type="text" 
+                                <input class="field" id="last_name" name="last_name" type="text" 
                                 value="<?php if (isset($_SESSION[ 'new_account_last_name' ])) echo htmlentities(trim($_SESSION[ 'new_account_last_name' ])); ?>"
                                 class="text-box single-line" onkeypress="return alphaOnly(event);"
                                 required
@@ -85,7 +85,7 @@
 
                             <label>Prenom :</label>
                             <div>
-                                <input class="field" id="FirstName" name="FirstName" type="text" 
+                                <input class="field" id="first_name" name="first_name" type="text" 
                                 value="<?php if (isset($_SESSION[ 'new_account_first_name' ])) echo htmlentities(trim($_SESSION[ 'new_account_first_name' ])); ?>" 
                                 class="text-box single-line" onkeypress="return alphaOnly(event);" 
                                 required

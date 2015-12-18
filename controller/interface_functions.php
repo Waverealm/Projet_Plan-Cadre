@@ -277,7 +277,7 @@ function showAppropriateMenu()
         ?>
 
         <div>
-             <select class="field" name="UserType" >
+             <select class="field" name="user_type" >
                 <option value="Élaborateur">Élaborateur</option>
                 <?php 
                 if ($_SESSION[ "user_type" ] == "Administrateur")
