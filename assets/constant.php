@@ -2,6 +2,7 @@
 /* 
 	constant.php définie toutes les constantes qui 
 	seront utilitées par le site.
+	Fait par Antoine Latendresse
 */
 
 

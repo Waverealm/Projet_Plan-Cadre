@@ -62,7 +62,7 @@
   0 pour nom d'utilisateur disponible
   1 pour nom d'utilisateur déjà utilisé
 */
-  function countUsersSpecificUsername ($bdd, $username)
+  function countUsersSpecificUsername ($username)
   {
       $query = dbConnect()->prepare("CALL COUNT_USER_SPECIFIC_USERNAME(?)");
 
@@ -83,7 +83,7 @@
   0 pour adresse email disponible
   1 pour adresse email déjà utilisée
 */
-  function countUsersSpecificEmail ($bdd, $email)
+  function countUsersSpecificEmail ($email)
   {
 
       $query = dbConnect() ->prepare("CALL COUNT_USER_SPECIFIC_EMAIL(?)");
@@ -111,8 +111,7 @@
 */
   function selectWithNoParam($call_select)
   {
-    $bdd = dbConnect();
-    $query = $bdd->prepare($call_select);
+    $query = dbConnect()->prepare($call_select);
 
     $query->execute();
 
@@ -173,8 +172,7 @@
 
   function fetchId($id, $call_select)
   {
-    $bdd = dbConnect();
-    $query = $bdd->prepare($call_select);
+    $query = dbConnect()->prepare($call_select);
 
     $query->bindParam(1, $id, PDO::PARAM_STR);
 
@@ -332,7 +330,7 @@
 */ 
   function fetchAllInfoPlanCadre($id_plancadre)
   {
-    return fetchId( $id_plancadre, "CALL SELECT_ALL_INFO_PLAN_CADRE_ID (?)");
+    return fetchId( $id_plancadre, "CALL SELECT_ALL_INFO_COURS_PLAN_CADRE_ID (?)");
   }
 
 /*
@@ -463,7 +461,6 @@
   }
 
 
-
 /*
   ------------------------------------------------------------------------------------
   fin des selects
@@ -476,8 +473,12 @@
 */
 
 
-
-  function createUser($bdd, $userName, $pass, $email, $lastName, $firstName, $userType)
+/*
+  Nom : createUser($userName, $pass, $email, $lastName, $firstName, $userType)
+  Fait par Léa Kelly
+  Insère un nouvel utilisateur dans la BD
+*/
+  function createUser($userName, $pass, $email, $lastName, $firstName, $userType)
   {
       $state = "Actif";
       $query = dbConnect()->prepare("CALL INSERT_USER(?,?,?,?,?,?,?)");
@@ -492,12 +493,18 @@
 
       $message = " Confirmation de création de compte. Merci de choisir Projet Plan-Cadre.";
 
+      // EMAIL DE CONFIRMATION NON-TESTÉ
       //mail($email,"Plan-Cadre confirmation de courriel", $message, "From: DoNotReply@PlanCadre.com");
 
       $query->execute();
       $query->CloseCursor();
   }
 
+/*
+  Nom : createClass($codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $progCours)
+  Fait par Simon Roy
+  Insère un nouveau cours dans la BD
+*/
   function createClass($codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $progCours)
   {
       $insert = dbConnect()->prepare("CALL INSERT_COURS(?,?,?,?,?,?,?)");
@@ -514,6 +521,12 @@
       $insert->CloseCursor();
   }
 
+/*
+  Nom : createCompetence($codeCompetence, $nomCompetence, $descriptionCompetence)
+  Fait par Simon Roy
+  Insère une nouvelle compétence dans la BD
+  Les compétences ne sont présentements pas utilisées
+
   function createCompetence($codeCompetence, $nomCompetence, $descriptionCompetence)
   {
       $insert = dbConnect()->prepare("CALL INSERT_COMPETENCE(?,?,?)");
@@ -525,7 +538,13 @@
       $insert->execute();
       $insert->CloseCursor();
   }
+  */
 
+/*
+  Nom : createProgram($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction)
+  Fait par Simon Roy
+  Insère un nouveau programme dans la BD
+*/
   function createProgram($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction)
   {
       $insert = dbConnect()->prepare("CALL INSERT_PROGRAMME(?,?,?,?)");
@@ -539,6 +558,11 @@
       $insert->CloseCursor();
   }
 
+/*
+  Nom : createPlanCadre($codecours, $etat)
+  Fait par Simon Roy
+  Insère un nouveau plan-cadre dans la BD
+*/
   function createPlanCadre($codecours, $etat)
   {
       $connection = dbConnect();
@@ -559,21 +583,12 @@
 
       return $id;
   }
-  
-  function createConsignesPlanCadre($id, $enonce, $description)
-  {      
-    $connection = dbConnect();
-    $insert = $connection->prepare("CALL INSERT_CONSIGNE_PLAN_CADRE(?,?,?)");
 
-    $insert->bindParam(1, $id, PDO::PARAM_STR);
-    $insert->bindParam(2, $enonce, PDO::PARAM_STR);
-    $insert->bindParam(3, $description, PDO::PARAM_STR);
-    
-    $insert->execute();
-
-    $insert->CloseCursor();
-  }
-
+/*
+  Nom : createPlanCadre($codecours, $etat)
+  Fait par Simon Roy
+  Assigne un utilisateur au plan-cadre d'un cours
+*/
   function assignUserPlanCadre($id, $user)
   {
     $insert = dbConnect()->prepare("CALL INSERT_ELABORATEUR_PLAN_CADRE(?,?)");
@@ -585,6 +600,14 @@
     $insert->CloseCursor();
   }
 
+/*
+  Nom : createPlanCadreCopy($codeCours, $etat, $presentationCours, $objectifsIntegration, $evaluationApprentissage, $enonceCompetence,
+                               $objectifsApprentissage, $manuelObligatoire, $recommandation)
+  Fait par Léa Kelly
+  Créé la copie d'un plan-cadre
+  Cette fonction est utilisée lorsqu'on valide et adopte un plan-cadre et reçoit les informations du plan-cadre déjà
+  existant dont on souhaite faire la copie
+*/
   function createPlanCadreCopy($codeCours, $etat, $presentationCours, $objectifsIntegration, $evaluationApprentissage, $enonceCompetence,
                                $objectifsApprentissage, $manuelObligatoire, $recommandation)
   {
@@ -613,7 +636,7 @@
 
 /*
   Nom de la fonction : updatePlanCadre_Fichiers
-  Fait par : Simon Roy
+  Fait par Simon Roy
   Cette fonction éxécute une modification (requête update) sur 
   un plan-cadre qui est encore en élaboration.
 
@@ -638,7 +661,7 @@ function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $co
 
 /*
   Nom de la fonction : updateInstruction
-  Fait par : Simon Roy
+  Fait par Simon Roy
   Cette fonction éxécute une modification (requête update) sur 
   une des consignes de la table consignesplancadre.
 */
@@ -655,7 +678,11 @@ function updateInstruction($id, $enonce, $description)
   $update->closeCursor();
 }
 
-// change to updatePassword
+/*
+  Nom : updatePassword($user,$newPassword)
+  Fait par Léa Kelly
+  Modifie le mot de passe d'un utilisateur
+*/
 function updatePassword($user,$newPassword)
 {
     $query = dbConnect()->prepare( "CALL UPDATE_PASSWORD_USER(?,?)" );
@@ -667,7 +694,11 @@ function updatePassword($user,$newPassword)
     $query->CloseCursor();
 }
 
-// Change l'état du plan-cadre pour "validé"
+/*
+  Nom : updatePassword($user,$newPassword)
+  Fait par Léa Kelly
+  Change l'état d'un plan-cadre pour l'état reçu en paramètre
+*/
 function updatePlanCadreState($idPlanCadre,$state)
 {
     $query = dbConnect()->prepare( "CALL UPDATE_STATE_PLANCADRE(?,?)" );
@@ -679,6 +710,11 @@ function updatePlanCadreState($idPlanCadre,$state)
     $query->CloseCursor();
 }
 
+/*
+  Nom : updatePassword($user,$newPassword)
+  Fait par Léa Kelly
+  Change l'état d'un plan-cadre pour l'état reçu en paramètre
+*/
 function setPlanCadreOfficial($noPlanCadre,$official)
 {
     $query = dbConnect()->prepare( "CALL UPDATE_OFFICIAL_PLANCADRE(?,?)" );
@@ -690,7 +726,9 @@ function setPlanCadreOfficial($noPlanCadre,$official)
     $query->CloseCursor();
 }
 
-/*function updateClass($codeCours, $nomCours,  $typeCours, $ponderation, $nombreUnites, $nombreHeures, codeProg)
+/*
+LA MODIFICATION D'UN COURS N'A PAS FINI D'ÊTRE IMPÉMENTÉE
+function updateClass($codeCours, $nomCours,  $typeCours, $ponderation, $nombreUnites, $nombreHeures, codeProg)
 {
   $update = dbConnect()->>prepare("CALL UPDATE_CLASS(?,?,?,?,?,?,?)");
 
@@ -708,12 +746,13 @@ function setPlanCadreOfficial($noPlanCadre,$official)
 }*/
 
 
-
 /* 
 ------------------------------------------------------------------------------------
   fin des updates
 ------------------------------------------------------------------------------------
 */
+
+
 
 /* 
 ------------------------------------------------------------------------------------
@@ -722,17 +761,9 @@ function setPlanCadreOfficial($noPlanCadre,$official)
 */
 
 /*
-// Supprimer une vieille version validé d'un plan-cadre
-  on devrait mettre une "protection", un plancadre adopté ne devrait jamais être effacé
-
-  genre on pourrait placer un if pour confirmer qu'on efface pas un plan-cadre adopté et 
-  on pourrait aussi enlever l'option d'appeler la fonction avec l'état en paramètre pour 
-  limiter son accès. Dans tous les cas il faudra mettre des commentaires détaillés.
-
-  // Léa : La fonction n'est appelé que pour supprimer des plans-cadre validés. Des plans-cadre
-  // adoptés de leur côté ne seront jamais supprimés. On appelle pas la fonction dans controller_adopt_plancadre,
-  // donc je ne vois pas le danger, mais si tu crois qu'il est nécessaire de faire un if, on pourra toujours
-  // y penser avant de remettre notre projet.
+  Nom : deleteOldVersionPlanCadre($noValidatePlanCadre)
+  Fait par Léa Kelly
+  Supprime le plan-cadre dont le numéro est celui reçu en paramètre
 */
 function deleteOldVersionPlanCadre($noValidatePlanCadre)
 {
@@ -744,8 +775,12 @@ function deleteOldVersionPlanCadre($noValidatePlanCadre)
     $query->CloseCursor();
 }
 
-// Lorsqu'une version d'un plan-sacre est supprimée, cette fonction vient également supprimer l'assignation
-// reliée à ce plan-cadre
+/*
+  Nom : deleteAssignationPlanCadre($noValidatePlanCadre)
+  Fait par Léa Kelly
+  Lorsqu'une version d'un plan-sacre est supprimée, cette fonction vient également supprimer l'assignation
+  reliée à ce plan-cadre
+*/
 function deleteAssignationPlanCadre($noValidatePlanCadre)
 {
     $query = dbConnect()->prepare( "CALL DELETE_ASSIGNATION_PLAN_CADRE(?)" );
@@ -763,11 +798,7 @@ function deleteAssignationPlanCadre($noValidatePlanCadre)
 */
 
 
-
-
-
-
-
+// LA CONFIRMATION PAR COURRIEL N'A PAS ÉTÉ TESTÉ
   /*function createUser($UserName, $MotDePasse, $PasswordConfirmation, $Email)
   {
       if($UserName && $MotDePasse && $PasswordConfirmation)

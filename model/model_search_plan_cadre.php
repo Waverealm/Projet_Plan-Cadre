@@ -1,24 +1,18 @@
 <?php
 
-
+// Nom : model_search_plan_cadre.php
+// Fait par Simon Roy et Léa Kelly
+// Contient les différentes fonctions d'affichage pour la page de recherche
+// de plans-cadre
 
 include_once("../controller/interface_functions.php");
 include_once("../model/queries.php");
 
 
-// default order by codeCours pour la procédure select
-
 /*
-	showAllPlancadre
-	cette fonction permet d'afficher tout les plans-cadres dans un tableau
-
-	
-	le tableau aura l'option de télécharger le plan-cadre ou de le consulter en ligne
-	- faire une page qui servira de template pour afficher un plan-cadre
-	- 
+    Nom : makeLinkPlancadre($plancadre)
+	Cette fonction génère le lien de téléchargement d'un plan-cadre
 */
-
-//** à modifier
 function makeLinkPlancadre($plancadre)
 {
 
@@ -54,7 +48,10 @@ function makeLinkPlancadre($plancadre)
     return $lien;
 }
 
-// Si la variable de session de la checkbox n'existe pas, alors on la créé
+/*
+    Nom : setCheckboxSessionValue()
+    Si la variable de session de la checkbox n'existe pas, on l'initialise
+*/
 function setCheckboxSessionValue()
 {
     if (!(isset($_SESSION["official_only"])))
@@ -63,7 +60,10 @@ function setCheckboxSessionValue()
     }
 }
 
-// Coche ou décoche la checkbox selon la valeur de la variable de sesssion
+/*
+    Nom : updateCheckbox()
+    Fait en sorte de garder l'état de la checkbox
+*/
 function updateCheckbox()
 {
     if($_SESSION["official_only"] == "checked")
@@ -77,15 +77,12 @@ function updateCheckbox()
     }
 }
 
-// Fonction appelée lorsqu'une recherche a été effectuée
-function unsetSearchProgram()
-{
-    unset($_SESSION["recherche_code_programme"]);
-}
-
-// Fonction faisant en sorte de mettre la valeur de la combo box
-// sur la valeur actuelle de la variable de session pour la
-// recherche d'un programme
+/*
+    Nom : isSelected($selectedValue)
+    Fonction faisant en sorte de mettre la valeur de la combo box
+    sur la valeur actuelle de la variable de session pour la
+    recherche d'un programme
+*/
 function isSelected($selectedValue)
 {
     if (isset($_SESSION['recherche_code_programme']) && $_SESSION['recherche_code_programme'] == $selectedValue)
@@ -94,6 +91,10 @@ function isSelected($selectedValue)
     }
 }
 
+/*
+    Nom : isSelected($selectedValue)
+    Fonction qui s'occupe de l'affichage du tableau dans la page de recherche des plans-cadres
+*/
 function showPlanCadre()
 {
     $list = null;
@@ -144,6 +145,7 @@ function showPlanCadre()
     }
 
 
+    // Génération de l'affichage du tableau
     if(!empty($list))
     {
         echo "<table id='tab_recherche'>".
@@ -182,11 +184,13 @@ function showPlanCadre()
                             "<td>".$row["CodeProgramme"]."</td>".
                             "<td>".$row["NomProgramme"]."</td>";
                             
+                    // Si le plan-cadre est officiel, alors on l'indique
                     if($row["Officiel"] == 1)
                     {
                         echo "<td>Version officielle</td>";
                     }
 
+                    // Sinon on affiche l'état actuel
                     else
                     {
                         echo "<td>".$row["Etat"]."</td>";
@@ -206,11 +210,11 @@ function showPlanCadre()
 
                     if( isset($_SESSION['user_type']) )
                     {
+                        // Si on n'est pas élaborateur, alors on ne peut pas valider/adopter un plan-cadre
                         if ($_SESSION['user_type'] != "Élaborateur")
                         {
                             if ($row["Etat"] != "Validé" && $row["Etat"] != "Adopté")
                             {
-                                // ****************       la date de soumission / autre serait plus approprié que celle de la clé primaire
                                 echo "<td><a href ='../controller/controller_validate_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["No_PlanCadre"]."'>Valider</a></td>";
                                 echo "<td>//</td>";
                             }
@@ -240,104 +244,4 @@ function showPlanCadre()
         echo "Aucun plan-cadre ne correspond à vos critères de recherche";
     }
     
-}
-
-function showAllOfficielPlancadre()
-{
-    $list = selectAllOfficielPlanCadre();
-
-    if(!empty($list))
-    {
-        echo "<table id='tab_recherche'>".
-            "<tr>".
-            "<th>Code du cours</th>".
-            "<th>Nom du cours</th>".
-            "<th>Code du programme</th>".
-            "<th>Nom du programme</th>".
-            "<th>État</th>".
-            "<th>Date de création</th>".
-            "<th>Date d'adoption</th>".
-            "<th>Télécharger</th>";
-        
-        if( isset($_SESSION['user_type']) )
-        {
-            if ($_SESSION['user_type'] != "Élaborateur")
-            {
-                echo "<th>Validation</th>".
-                    "<th>Adoption</th>";
-
-            }
-        }
-
-
-        echo "</tr>";
-
-        foreach ($list as $row)
-        {
-            $date_adoption = $row["DateAdoption"];
-
-            $document_link = makeLinkPlancadre($row);
-
-            echo "<tr>".
-                "<td>".$row["CodeCours"]."</td>".
-                "<td>".$row["NomCours"]."</td>".
-                "<td>".$row["CodeProgramme"]."</td>".
-                "<td>".$row["NomProgramme"]."</td>";
-
-            if($row["Officiel"] == 1)
-            {
-                echo "<td>Version officielle</td>";
-            }
-
-            else
-            {
-                echo "<td>".$row["Etat"]."</td>";
-            }
-
-            echo    "<td>".$row["DateAjout"]."</td>";
-
-            $date_adoption = $row["DateAdoption"];
-
-            if( !isset($date_adoption) )
-            {
-                $date_adoption = "pas adopté";
-            }
-
-            echo    "<td>". $date_adoption ."</td>".
-                "<td>" . $document_link . "</td>";
-
-            if( isset($_SESSION['user_type']) )
-            {
-                if ($_SESSION['user_type'] != "Élaborateur")
-                {
-                    if ($row["Etat"] != "Validé" && $row["Etat"] != "Adopté")
-                    {
-                        // ****************       la date de soumission / autre serait plus approprié que celle de la clé primaire
-                        echo "<td><a href ='../controller/controller_validate_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["No_PlanCadre"]."'>Valider</a></td>";
-                        echo "<td>//</td>";
-                    }
-
-                    else if($row["Etat"] == "Validé")
-                    {
-                        echo "<td>Déjà validé</td>";
-                        echo "<td><a href ='../controller/controller_adopt_plancadre.php?codecours=".$row["CodeCours"]."&versionplan=".$row["No_PlanCadre"]."'>Adopter</a></td>";
-                    }
-
-                    else if($row["Etat"] == "Adopté")
-                    {
-                        echo "<td>//</td>";
-                        echo "<td>Déjà adopté</td>";
-                    }
-                }
-            }
-
-            echo "</tr>";
-        }
-        echo "</table>";
-    }
-
-    else
-    {
-        echo "Aucun plan-cadre ne correspond à vos critères de recherche";
-    }
 }

@@ -4,11 +4,13 @@
   include_once("../controller/interface_functions.php");
   include_once("../model/model_search_plan_cadre.php");
 
+  // Variables utilisées pour le menu interractif
   $currentVisitor = 'searchplancadre';
   $currentElaborator = 'searchplancadre';
   $currentConseiller = 'searchplancadre';
   $currentAdmin = 'searchplancadre';
 
+  // Initialise la variable de session de la checkbox si elle n'existe pas.
   setCheckboxSessionValue();
 ?>
 
