@@ -1,4 +1,12 @@
 <?php
+/*
+ *  controller_create_class.php
+ *  
+ *  S'occupe de la gestion de la création d'un nouveau cours
+ *  et de la vérification de la validité des variables
+ *
+ */
+
   session_start();
 
   include_once('../model/queries.php');
@@ -18,6 +26,8 @@
 
   //isset($var) vérifie que la variable a été créé et qu'elle n'est pas nulle
 
+  // on vérifie que les variables nécessaires à la création d'un cours ont bien été
+  // envoyées au serveur
   if(isset($_POST['CodeCours']) && isset($_POST['NomCours']) && isset($_POST['TypeCours']) 
     && isset($_POST['Ponderation']) && isset($_POST['NombreUnites']) && isset($_POST['NombreHeures']) 
     && isset($_POST['CodeProgramme']))
@@ -47,9 +57,10 @@
   // S'il n'y a aucune erreur
   if ($i == 0)
   {
+    // on peut créer un nouveau cours
     createClass($codeCours, $nomCours, $typeCours, $ponderation, $unites,  $heures, $codeProgramme);
     $_SESSION["selected_CodeCours"] = $codeCours;
-
+    // message de confirmation pour l'utilisateur
     $_SESSION[ 'success_add_class' ] = "Cours ajouté avec succès";
 
     header('Location: ../view/view_manage_class.php');

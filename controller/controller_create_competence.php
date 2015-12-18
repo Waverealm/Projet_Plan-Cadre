@@ -1,5 +1,8 @@
 <?php
   /**
+   *
+   *non inclu et non fonctionnel pour ce projet
+   *
    * Created by PhpStorm.
    * User: 201087112//AntoineLatendresse
    * Date: 2015-10-21

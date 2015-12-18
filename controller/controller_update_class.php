@@ -4,6 +4,8 @@
 // Fait par Léa Kelly
 // Contrôleur appelé lorsque l'utilisateur modifie un cours
 
+
+
   session_start();
 
   include_once('../model/queries.php');

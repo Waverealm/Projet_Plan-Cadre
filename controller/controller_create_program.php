@@ -18,10 +18,10 @@
   $nomProgramme = NULL;
   $typeProgramme = NULL;
   $typeSanction = NULL;
-  //$dateAjoutProgramme = date('Y-m-d');
 
   //isset($var) vérifie que la variable a été créé et qu'elle n'est pas nulle
 
+  // on vérifie que les variables ont bien été envoyées au serveur
   if(isset($_POST['CodeProgramme']) && isset($_POST['NomProgramme']) && isset($_POST['TypeProgramme']) && isset($_POST['TypeSanction']))
   {
     $codeProgramme = 	$_POST['CodeProgramme'];
@@ -37,11 +37,11 @@
   }
 
   // On vérifie si des champs sont vides
-  /*if (empty($codeProgramme) || empty($nomProgramme) || empty($typeProgramme) || empty($typeSanction))
+  if (empty($codeProgramme) || empty($nomProgramme) || empty($typeProgramme) || empty($typeSanction))
   {
     $error_fieldsempty = "Un ou plusieurs champs de texte sont vides. Veuillez les remplir.";
     $i++;
-  }*/
+  }
 
   // S'il n'y a aucune erreur
   if ($i == 0)

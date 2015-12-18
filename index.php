@@ -1,6 +1,5 @@
 <?php
-
 	session_start();
 
-	header('Location'. VIEW_INDEX');
+	header('Location: view/view_index.php');
 ?>
