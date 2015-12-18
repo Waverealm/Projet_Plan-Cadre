@@ -13,5 +13,5 @@
    session_destroy();
    unset( $_SESSION );
    
-   header('Location: ' . VIEW_SEARCH_OFFICIEL_PLAN_CADRE);
+   header('Location: ' . VIEW_INDEX);
 ?>

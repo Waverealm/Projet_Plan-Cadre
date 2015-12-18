@@ -42,7 +42,7 @@ define("CONTROLLER_LOGOUT", "../controller/controller_logout.php");
 
 //accueil
 define("VIEW_INDEX", "../view/view_index.php");
-
+define("ABOUT", "../view/about.php");
 
 define("VIEW_SEARCH_PLAN_CADRE", "../view/view_search_plan_cadre.php");
 
@@ -77,7 +77,6 @@ define("CONTROLLER_ELABORATION_PLANCADRE", "../controller/controller_elaboration
 
 define("VIEW_CREATE_PLANCADRE", "../view/view_create_plancadre.php");
 define("CONTROLLER_CREATE_PLANCADRE", "../controller/controller_create_plancadre.php");
-define("VIEW_SEARCH_OFFICIEL_PLAN_CADRE", "../view/view_search_officiel_plan_cadre.php");
 
 // ** à confirmer pourrait être inutile **
 define("CONTROLLER_SEND_FILE", "../controller/controller_send_file.php");

@@ -74,14 +74,14 @@ function showAppropriateMenu()
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list">
                     <li <?php if($currentVisitor == 'searchplancadreofficiel') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
-                        <a href="<?php echo VIEW_SEARCH_OFFICIEL_PLAN_CADRE ?>" class="pure-menu-link">Accueil</a>
+                        <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
                     </li>
                     <li <?php if($currentVisitor == 'searchplancadre') {echo 'class="pure-menu-item pure-menu-allow-hover pure-menu-selected"';} ?> class="pure-menu-item pure-menu-allow-hover">
                         <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
 
                     </li>
                     <li <?php if($currentVisitor == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
-                        <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">À propos</a>
+                        <a href="<?php echo ABOUT ?>" class="pure-menu-link">À propos</a>
                     </li>
                 </ul>
                 <a href="<?php echo VIEW_LOGIN ?>" class="login_field">Se Connecter</a>
@@ -95,7 +95,7 @@ function showAppropriateMenu()
         <div class="pure-menu pure-menu-horizontal">
             <ul class="pure-menu-list">
                 <li <?php if($currentElaborator == 'searchplancadreofficiel') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
-                    <a href="<?php echo VIEW_SEARCH_OFFICIEL_PLAN_CADRE ?>" class="pure-menu-link">Accueil</a>
+                    <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
                 </li>
                 <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                     <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
@@ -109,7 +109,7 @@ function showAppropriateMenu()
                     </ul>
                 </li>
                 <li <?php if($currentElaborator == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
-                    <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">À propos</a>
+                    <a href="<?php echo ABOUT ?>" class="pure-menu-link">À propos</a>
                 </li>
             </ul>
             <div class="login_field"><?php echo $_SESSION['last_name'].", ".$_SESSION['first_name']."   "; ?>
@@ -135,7 +135,7 @@ function showAppropriateMenu()
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list">
                     <li <?php if($currentConseiller == 'searchplancadreofficiel') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
-                        <a href="<?php echo VIEW_SEARCH_OFFICIEL_PLAN_CADRE ?>" class="pure-menu-link">Accueil</a>
+                        <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
                     </li>
                     <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                         <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
@@ -177,7 +177,7 @@ function showAppropriateMenu()
                         </ul>
                     </li>
                     <li <?php if($currentConseiller == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
-                        <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">À propos</a>
+                        <a href="<?php echo ABOUT ?>" class="pure-menu-link">À propos</a>
                     </li>
                 </ul>
                 <div class="login_field"><?php echo $_SESSION['last_name'].", ".$_SESSION['first_name']."   "; ?>
@@ -193,7 +193,7 @@ function showAppropriateMenu()
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list">
                     <li <?php if($currentAdmin == 'searchplancadreofficiel') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
-                        <a href="<?php echo VIEW_SEARCH_OFFICIEL_PLAN_CADRE ?>" class="pure-menu-link">Accueil</a>
+                        <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
                     </li>
                     <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                         <a href="#" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
@@ -221,7 +221,7 @@ function showAppropriateMenu()
                         </ul>
                     </li>
                     <li <?php if($currentAdmin == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item ">
-                        <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">À propos</a>
+                        <a href="<?php echo ABOUT ?>" class="pure-menu-link">À propos</a>
                     </li>
                 </ul>
                 <div class="login_field"><?php echo $_SESSION['last_name'].", ".$_SESSION['first_name']."   "; ?>
