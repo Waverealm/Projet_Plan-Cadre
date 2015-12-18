@@ -19,6 +19,9 @@
 
 		if(isset( $_POST[ 'class_list_all' ] ) && !empty( $_POST[ 'class_list_all' ] ))
 		{
+			// on crée un plan-cadre en élaboration pour un cours qui n'a pas
+			// déjà de plan-cadre en élaboration
+			// puis on lui assigne l'utilisateur choisi
 			$codecours = $_POST["class_list_all"];
 
 			$etat = "Élaboration";
@@ -34,6 +37,7 @@
 
 		else if(isset( $_POST[ 'plan_cadre_elaboration_list' ] ) && !empty( $_POST[ 'plan_cadre_elaboration_list' ] ))
 		{
+			// on ajoute un élaborateur à un plan-cadre en élaboration
 
 			if(empty(getPlanCadreUser($_POST[ 'plan_cadre_elaboration_list' ], $user)))
             {
