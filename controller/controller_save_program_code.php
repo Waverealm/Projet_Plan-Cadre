@@ -4,7 +4,10 @@
 // Fichier appelé lorsqu'on veut rechercher les plans-cadre associés au code d'un programme.
 // Le code du programme est sauvegardé dans une variable de session afin d'actualiser l'affichage en fonction
 
-	session_start();
+	if(!isset($_SESSION)) 
+	{ 
+	    session_start(); 
+	} 
 
 	if (isset($_POST['CodeProgramme']))
 	{

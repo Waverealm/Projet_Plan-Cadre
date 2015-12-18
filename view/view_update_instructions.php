@@ -1,12 +1,16 @@
 <?php
 
-  session_start();
-
-  $currentConseiller = 'updateinstructions';
+  if(!isset($_SESSION)) 
+  { 
+      session_start(); 
+  } 
 
   include_once("../assets/constant.php");
   include_once("../controller/interface_functions.php");
-  include_once("../controller/pages_access.php");
+  include_once("../model/model_pages_access.php");
+
+  // Variable utilisée pour le menu interractif
+  $currentConseiller = 'updateinstructions';
 
   verifyAccessPages();
   isAdmin();

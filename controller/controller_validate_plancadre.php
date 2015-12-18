@@ -4,6 +4,10 @@
 // Fait par Léa Kelly
 // Traitement lorsqu'un utilisateur valide un plan-cadre
 
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
 
 include_once("../model/queries.php");
 

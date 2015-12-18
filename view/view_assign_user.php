@@ -1,12 +1,15 @@
 <?php
-  session_start();
-
-  $currentConseiller = 'assignuser';
-  $currentAdmin = 'assignuser';
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 
   include_once("../controller/interface_functions.php");
-  include_once("../controller/pages_access.php");
-  include_once("../controller/controller_assign_user.php");
+  include_once("../model/model_pages_access.php");
+
+  // Variables utilisées pour le menu interractif
+  $currentConseiller = 'assignuser';
+  $currentAdmin = 'assignuser';
 
   verifyAccessPages();
   isPlanner();

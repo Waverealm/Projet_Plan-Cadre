@@ -1,16 +1,19 @@
 <?php
 
-  session_start();
-
+  if(!isset($_SESSION)) 
+  { 
+      session_start(); 
+  } 
+  
+  include_once("../controller/interface_functions.php");
+  include_once("../model/model_pages_access.php");
+  include_once("../model/model_user_session.php");
+  
+  // Variables utilisées pour le menu interractif
   $currentElaborator = 'elaborationplancadre';
   $currentConseiller = 'elaborationplancadre';
   $currentAdmin = 'elaborationplancadre';
-  
-  include_once("../controller/interface_functions.php");
-  include_once("../controller/pages_access.php");
-  include_once("../controller/controller_elaboration_plancadre.php");
-  include_once("../model/model_user_session.php");
-  
+
   verifyAccessPages();
   isAdmin();
 ?>

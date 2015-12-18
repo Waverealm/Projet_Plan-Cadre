@@ -6,8 +6,11 @@
    Fait le traitement lorsqu'un utilisateur tente de se connecter sur le site
 */
 
-	// Initialisation de la session
-	session_start();
+	// Initialisation de la session si elle n'existe pas encore
+	if(!isset($_SESSION)) 
+	{ 
+	    session_start(); 
+	} 
 
 	include_once('../model/queries.php');
 	include_once('password_functions.php');
@@ -45,12 +48,9 @@
 
 	function verification( $username, $password )
 	{
-	    //$connected = false;// ligne inutile parce que php don't care about that
-
 		// On va récupérer l'utilisateur précis
 		$reponse = getUser($username);
    
-
 	   	// On vérifie si l'adresse email et mot de passe correspondent
 	   	if (validatePassword($username, $password)) //($reponse[0][ "MotDePasse" ] == $password)
 		{

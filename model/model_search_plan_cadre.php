@@ -5,6 +5,12 @@
 // Contient les différentes fonctions d'affichage pour la page de recherche
 // de plans-cadre
 
+
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
+
 include_once("../controller/interface_functions.php");
 include_once("../model/queries.php");
 

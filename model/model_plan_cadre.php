@@ -1,4 +1,12 @@
 <?php
+
+
+
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
+
 include_once("../assets/constant.php");
 include_once("../model/queries.php");
 require_once '../assets/PHPWord-Master/src/PhpWord/Autoloader.php';

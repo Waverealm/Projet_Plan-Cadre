@@ -1,12 +1,16 @@
 <?php
 
-    session_start();
-
-    $currentConseiller = 'createaccount';
-    $currentAdmin = 'createaccount';
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 
     include_once("../controller/interface_functions.php");
-    include_once("../controller/pages_access.php");
+    include_once("../model/model_pages_access.php");
+
+    // Variables utilisées pour le menu interractif
+    $currentConseiller = 'createaccount';
+    $currentAdmin = 'createaccount';
 
     verifyAccessPages();
     isPlanner();

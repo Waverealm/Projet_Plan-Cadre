@@ -6,10 +6,14 @@
    Traitement si l'utilisateur se déconnecte
 */
 
-   session_start();
+	if(!isset($_SESSION)) 
+	{ 
+	    session_start(); 
+	} 
 
    include_once("../assets/constant.php");
 
+   // On détruit la session
    session_destroy();
    unset( $_SESSION );
    

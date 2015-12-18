@@ -5,7 +5,10 @@
  * Date: 2015-11-03
  * Time: 12:38
  */
-session_start();
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
 
 header("Content-type: text/html; charset=UTF-8");
 ini_set('mbstring.internal_encoding', 'UTF-8');
@@ -37,12 +40,14 @@ if (empty($newPassword) || empty($newPasswordConfirm))
     $i++;
 }
 
+// Si le mot de passe et sa confirmation ne correspondent pas
 if($newPassword != $newPasswordConfirm)
 {
     $error_passwordconfirm = '- Le mot de passe et sa confirmation sont différents. \n';
     $i++;
 }
 
+// Si le mot de passe est trop petit
 if (strlen($newPassword) < 6 && !empty($newPassword))
 {
   $error_passwordwrongsize = '- Votre mot de passe doit contenir au minimum huit caractères. \n';

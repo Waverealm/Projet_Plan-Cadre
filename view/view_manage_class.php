@@ -1,12 +1,16 @@
 <?php
 
 
-  session_start();
-
-  $currentConseiller = 'createclass';
+  if(!isset($_SESSION)) 
+  { 
+      session_start(); 
+  } 
 
   include_once("../controller/interface_functions.php");
-  include_once("../controller/pages_access.php");
+  include_once("../model/model_pages_access.php");
+
+  // Variable utilisée pour le menu interractif
+  $currentConseiller = 'createclass';
 
   verifyAccessPages();
   isPlanner();
@@ -26,6 +30,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <script>
+      // NOUS N'AVONS MALHEUREUSEMENT PAS ÉTÉ EN MESURE DE FAIRE FONCTIONNER LE CODE
+      // JQUERY EN LE MONTANT DANS UN FICHIER À PART ET EN L'INCLUANT ICI
+
       function validate() {
         // pour une validation plus custom
         //http://www.w3.org/TR/WCAG20-TECHS/SCR18.html

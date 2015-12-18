@@ -2,11 +2,12 @@
 
     session_start();
 
+    include_once("../controller/interface_functions.php");
+  include_once("../model/model_pages_access.php");
+
+    // Variables utilisées pour le menu interractif
     $currentConseiller = 'updatepassword';
     $currentAdmin = 'updatepassword';
-
-    include_once("../controller/interface_functions.php");
-    include_once("../controller/pages_access.php");
 
     verifyAccessPages();
     isPlanner();

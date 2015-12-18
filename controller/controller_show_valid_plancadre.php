@@ -1,10 +1,13 @@
 <?php
 // Nom : controller_show_valid_plancadre.php
 // Créé par Léa Kelly
-// Fichier appelé lorsqu'on veut rechercher des plans-cadre officiels
+// Fichier appelé lorsqu'on veut coche/décoche dans la checkbox dans la page de recherche de plans-cadres
 // Afin de s'assurer si on a coché la "checkbox" ou non, on gère la situation en conséquence à l'aide d'une variable de session
 
-	session_start();
+	if(!isset($_SESSION)) 
+	{ 
+	    session_start(); 
+	} 
 	
 	if (isset($_SESSION["official_only"]))
 	{

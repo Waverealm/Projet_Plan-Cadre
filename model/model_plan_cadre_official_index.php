@@ -1,5 +1,10 @@
 <?php
 
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
+
 // Nom : model_search_plan_cadre.php
 // Fait par Antoine Latendresse
 

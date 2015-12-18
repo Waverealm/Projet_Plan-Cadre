@@ -5,7 +5,10 @@
    * Date: 2015-10-21
    * Time: 10:48
    */
-  session_start();
+  if(!isset($_SESSION)) 
+  { 
+      session_start(); 
+  } 
 
   include_once('../model/queries.php');
 

@@ -4,10 +4,13 @@
 // Fait par Léa Kelly
 // Traitement lorsqu'un utilisateur adopte un plan-cadre
 
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
+
 include_once("../model/queries.php");
-
 include_once("../model/model_plan_cadre.php");
-
 
 if(isset($_GET['codecours']) && isset($_GET['versionplan']))
  {
@@ -35,7 +38,7 @@ if(isset($_GET['codecours']) && isset($_GET['versionplan']))
  	setPlanCadreOfficial($No_PlanCadre, $officiel);
 
 
- 	// refait le document sans le "en élobariont" dans le titre
+ 	// refait le document sans le "En élaboration" dans le titre
  	//buildPlanCadre($No_PlanCadre);
 
 

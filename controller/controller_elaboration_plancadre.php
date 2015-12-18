@@ -5,10 +5,10 @@
    Gestion de la vue view_elaboration_plancadre.php
 */
 
-if(!isset($_SESSION))
-{
-    session_start();
-}
+	if(!isset($_SESSION))
+	{
+	    session_start();
+	}
 
 	include_once('../model/queries.php');
 	include_once('../controller/interface_functions.php');

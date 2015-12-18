@@ -1,19 +1,18 @@
 <?php
 
-  session_start();
+  if(!isset($_SESSION)) 
+  { 
+    session_start(); 
+  } 
 
-  $currentConseiller = 'createprogram';
-
-  include_once("../controller/pages_access.php");
-
-
-
+  include_once("../model/model_pages_access.php");
   include_once("../assets/constant.php");
 
   include_once(MODEL_PAGE);
   include_once(MODEL_PROGRAMME);
 
-
+  // Variable utilisée pour le menu interractif
+  $currentConseiller = 'createprogram';
 
   verifyAccessPages();
   isPlanner();

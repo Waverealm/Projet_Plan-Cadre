@@ -1,10 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: 201087112//AntoineLatendresse
- * Date: 2015-10-21
- * Time: 10:48
- */
+/*
+// L'AJOUT DE COMPÉTENCES N'EST PRÉSENTEMENT PAS UTILISÉ
+
   session_start();
 
   $currentConseiller = 'createcompetence';
@@ -15,7 +12,6 @@
   verifyAccessPages();
   isPlanner();
   isAdmin();
-?>
 
 <!DOCTYPE html>
 <html>
@@ -77,3 +73,5 @@
 
   </body>
 </html>
+*/
+?>

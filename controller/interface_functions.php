@@ -1,5 +1,12 @@
 <?php
 
+
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+
+
     include_once("../assets/constant.php");
     include_once('../model/queries.php');
     include_once('../model/model_search_plan_cadre.php');

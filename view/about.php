@@ -1,6 +1,10 @@
 ﻿<?php
-  session_start();
-
+  if(!isset($_SESSION)) 
+  { 
+      session_start(); 
+  } 
+  
+  // Variables utilisées pour le menu interractif
   $currentVisitor = 'index';
   $currentElaborator = 'index';
   $currentConseiller = 'index';

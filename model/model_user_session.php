@@ -11,7 +11,10 @@
 */
 
 
-//session_start();
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
 
 include_once('../model/queries.php');
 include_once('../controller/password_functions.php');
