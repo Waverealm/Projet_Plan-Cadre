@@ -4,17 +4,22 @@
         session_start(); 
     } 
 
-  include_once("../controller/interface_functions.php");
-  include_once("../model/model_pages_access.php");
+    include_once("../assets/constant.php");
 
-  // Variables utilisées pour le menu interractif
-  $currentConseiller = 'assignuser';
-  $currentAdmin = 'assignuser';
+    //include_once(INTERFACE_FUNCTIONS);
+    
+    include_once(MODEL_PAGE_ACCESS);
+    include_once(MODEL_PAGE);
+    include_once(MODEL_COURS);
 
-  verifyAccessPages();
-  isPlanner();
+
+    // Variables utilisées pour le menu interractif
+    $currentConseiller = 'assignuser';
+    $currentAdmin = 'assignuser';
+
+    verifyAccessPages();
+    isPlanner();
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>

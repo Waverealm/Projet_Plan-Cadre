@@ -16,12 +16,12 @@
 ------------------------------------------------------------------------------------
 */
 
-define("PAGE_ACCESS", "../controller/page_acces.php");
 define("INTERFACE_FUNCTIONS", "../controller/interface_functions.php");
 define("REQUETES_BD", "../model/queries.php");
 
 
 define("MODEL_PAGE", "../model/model_page.php");
+define("MODEL_PAGE_ACCESS", "../model/model_pages_access.php");
 define("MODEL_COURS", "../model/model_cours.php");
 define("MODEL_PROGRAMME", "../model/model_programme.php");
 

@@ -5,9 +5,14 @@
   { 
       session_start(); 
   } 
+  include_once("../assets/constant.php");
 
-  include_once("../controller/interface_functions.php");
-  include_once("../model/model_pages_access.php");
+  //include_once(INTERFACE_FUNCTIONS);
+    
+  include_once(MODEL_PAGE_ACCESS);
+  include_once(MODEL_PAGE);
+  include_once(MODEL_COURS);
+  include_once(MODEL_PROGRAMME);
 
   // Variable utilisée pour le menu interractif
   $currentConseiller = 'createclass';
@@ -162,7 +167,7 @@
             <br>
 
             <?php
-            showListClassWithSelected();
+            showListeCours();
             ?>
 
             &nbsp &nbsp

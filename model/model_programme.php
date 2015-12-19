@@ -62,19 +62,3 @@
 
            echo "</select>";
     }
-
-
-    function showSessionMessage($errors)
-    {
-        // On affiche les erreurs s'il y en a
-        if( isset($_SESSION[ $errors ]) )
-        {
-            ?>
-
-            <script>alert("<?php echo $_SESSION[ $errors ]; ?>");</script>
-
-            <?php
-
-            unset($_SESSION[ $errors ]);
-        }
-    }

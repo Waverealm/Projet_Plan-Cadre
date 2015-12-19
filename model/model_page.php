@@ -5,6 +5,33 @@ if(!isset($_SESSION))
     session_start(); 
 } 
 
+
+
+
+
+
+
+
+    
+
+function showSessionMessage($errors)
+{
+    // On affiche les erreurs s'il y en a
+    if( isset($_SESSION[ $errors ]) )
+    {
+        ?>
+
+        <script>alert("<?php echo $_SESSION[ $errors ]; ?>");</script>
+
+        <?php
+        // une fois les erreurs ont été affichées on ne veut pas 
+        // qu'elles le soient la prochaine fois.
+        unset($_SESSION[ $errors ]);
+    }
+}
+
+
+
 function showHeader()
 {
     ?>
