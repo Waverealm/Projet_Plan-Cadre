@@ -11,7 +11,8 @@
     include_once(MODEL_PAGE_ACCESS);
     include_once(MODEL_PAGE);
     include_once(MODEL_COURS);
-
+    include_once(MODEL_UTILISATEUR);
+    include_once(MODEL_PLAN_CADRE);
 
     // Variables utilisées pour le menu interractif
     $currentConseiller = 'assignuser';

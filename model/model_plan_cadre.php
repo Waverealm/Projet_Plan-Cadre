@@ -11,6 +11,65 @@ require_once '../assets/PHPWord-Master/src/PhpWord/Autoloader.php';
 \PhpOffice\PhpWord\Autoloader::register();   
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    Nom de la fonction : showPlanCadreElaboration
+    Fait par : Simon Roy
+    Cette fonction permet d'afficher une liste déroulante de tous 
+    les plans-cadres en élaboration
+*/
+    function showPlanCadreElaboration()
+    {
+        $list = selectPlanCadreElaboration();
+
+        echo "<select name='plan_cadre_elaboration_list' id='plan_cadre_elaboration_list'>";
+            echo "<option value=\"" . "\">" . "</option>";
+        
+        if(sizeof($list) > 0)
+        {
+            foreach ($list as $row)
+            {
+                
+                echo "<option value=\"".$row["No_PlanCadre"]."\">". "(".$row["DateAjout"].")". " " 
+                .$row["CodeCours"]." ".$row["NomCours"]."</option>";
+            }
+        }
+        else
+        {
+            echo "<option>"."Aucun cours"."</option>";
+        }
+        echo "</select>";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*----------------------------------------------
+
+    Section sur la création du document Microsoft Word
+
+----------------------------------------------*/
 // ----------------------------------------------
 // début de la définition des différents styles
 // possibilité d'exporter cela dans un autre document
