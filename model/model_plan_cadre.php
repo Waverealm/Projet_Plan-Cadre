@@ -56,8 +56,20 @@ require_once '../assets/PHPWord-Master/src/PhpWord/Autoloader.php';
 
 
 
+function showInstructionToggle($codeInstruction)
+    {
+        $descriptionConsigne = fetchDescriptionInstruction($codeInstruction);
 
+        ?>
 
+        <br>
+        <a class="toggler">Afficher/masquer la consigne</a>
+        <p class="toggled"><?php echo $descriptionConsigne[0][ "DescriptionConsigne" ]; ?></p>
+        <br>
+        <br>
+
+        <?php
+    }
 
 
 
