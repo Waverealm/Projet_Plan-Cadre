@@ -25,12 +25,12 @@
   //isset($var) vérifie que la variable a été créé et qu'elle n'est pas nulle
 
   // on vérifie que les variables ont bien été envoyées au serveur
-  if(isset($_POST['CodeProgramme']) && isset($_POST['NomProgramme']) && isset($_POST['TypeProgramme']) && isset($_POST['TypeSanction']))
+  if( isset($_POST['CodeProgramme']) && isset($_POST['NomProgramme']) && isset($_POST['TypeProgramme']) )
   {
     $codeProgramme = 	$_POST['CodeProgramme'];
     $nomProgramme = $_POST['NomProgramme'];
     $typeProgramme = $_POST['TypeProgramme'];
-    $typeSanction = $_POST['TypeSanction'];
+    //$typeSanction = $_POST['TypeSanction'];
   }
 
   if (!empty(fetchProgram($codeProgramme)))
@@ -40,7 +40,7 @@
   }
 
   // On vérifie si des champs sont vides
-  if (empty($codeProgramme) || empty($nomProgramme) || empty($typeProgramme) || empty($typeSanction))
+  if ( empty($codeProgramme) || empty($nomProgramme) || empty($typeProgramme) )
   {
     $error_fieldsempty = "Un ou plusieurs champs de texte sont vides. Veuillez les remplir.";
     $i++;
@@ -49,7 +49,19 @@
   // S'il n'y a aucune erreur
   if ($i == 0)
   {
-
+    switch($typeProgramme)
+    {
+        case "Technique":
+        case "Pré-universitaire":
+            $typeSanction = "Diplôme d'études collégiales";
+            break;
+        case "Attestation d'études collégiales":
+            $typeSanction = "Attestation d'études collégiales";
+            break;
+        default:
+            $typeSanction = "Attestation d'études collégiales";
+    }
+    
     createProgram($codeProgramme, $nomProgramme, $typeProgramme, $typeSanction);
     $_SESSION["selected_CodeProgramme"] = $codeProgramme;
 

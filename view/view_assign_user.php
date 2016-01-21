@@ -4,15 +4,14 @@
         session_start(); 
     } 
 
-    include_once("../assets/constant.php");
+    include_once("../assets/constants.php");
 
-    //include_once(INTERFACE_FUNCTIONS);
-    
     include_once(MODEL_PAGE_ACCESS);
     include_once(MODEL_PAGE);
     include_once(MODEL_COURS);
     include_once(MODEL_UTILISATEUR);
     include_once(MODEL_PLAN_CADRE);
+    include_once( REQUETES_BD );
 
     // Variables utilisées pour le menu interractif
     $currentConseiller = 'assignuser';
@@ -20,6 +19,32 @@
 
     verifyAccessPages();
     isPlanner();
+    
+    if( isset($_POST["plan_cadre_elaboration"]) )
+    {
+        $plan_cadre_choisi = $_POST["plan_cadre_elaboration"];
+    }
+    else if ( isset($_POST["liste_plan_cadre_elaboration"]) )
+    {
+        if( !empty($_POST["liste_plan_cadre_elaboration"]) )
+        {
+            $plan_cadre_choisi = $_POST["liste_plan_cadre_elaboration"];
+        }
+    }
+    
+    if( !isset($plan_cadre_choisi) )
+    {
+        header('Location: ' . VIEW_ASSIGN_PLANCADRE);
+    }
+    else
+    {   
+        $plancadre = fetchPlanCadreElaboration_PlanCadre($plan_cadre_choisi);
+        if( empty($plancadre) )
+        {
+            header('Location: ' . VIEW_ASSIGN_PLANCADRE);
+        }
+    }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,37 +57,6 @@
 
         <script type="text/javascript" src="../assets/js_global.js" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script>
-            $(function () {
-                $('#assignation input[type=radio]').change(function(){
-                    if ($(this).val() == "assign" ) {
-                        $( "#class_list_all" ).prop( "disabled", false );
-                        $( "#class_list_all" ).removeClass('combo_box_disabled')
-                        $( "#search_class" ).prop( "disabled", false );
-                        $( "#plan_cadre_elaboration_list" ).prop( "disabled", true );
-                        $( "#plan_cadre_elaboration_list" ).addClass('combo_box_disabled');
-                        $( "#plan_cadre_elaboration_list" ).val("");
-                        $( "#search_plan_cadre_elaboration" ).prop( "disabled", true );
-                    }
-
-                    else if($(this).val() == "reassign") {
-                        $( "#class_list_all" ).prop( "disabled", true );
-                        $( "#class_list_all" ).addClass('combo_box_disabled');
-                        $( "#class_list_all" ).val("");
-                        $( "#search_class" ).prop( "disabled", true );
-                        $( "#plan_cadre_elaboration_list" ).prop( "disabled", false );
-                        $( "#plan_cadre_elaboration_list" ).removeClass('combo_box_disabled')
-                        $( "#search_plan_cadre_elaboration" ).prop( "disabled", false );
-                    }
-                })
-            })
-
-            $( window ).load(function() {
-                $( "#plan_cadre_elaboration_list" ).prop( "disabled", true );
-                $( "#search_plan_cadre_elaboration" ).prop( "disabled", true );
-                $( "#plan_cadre_elaboration_list" ).addClass('combo_box_disabled');
-            });
-        </script>
     </head>
     
 
@@ -77,13 +71,23 @@
                 <legend>Assignation : </legend>
                 <form action="../controller/controller_assign_user.php" method="post">
 
-                    &nbsp &nbsp Choisir un utilisateur :
+                    Le plan-cadre choisi :
+                    <?php
+                    
+                        echo "(" . " " . ")" . " " .
+                        $plancadre[0]["CodeCours"] . " " . $plancadre[0]["NomCours"];
+                    ?>
+                    <input name="id_plancadre" type="hidden" value="<?php echo $plan_cadre_choisi ?>" />
+                    <br>
+                    
+                    <br>
+                    
+                    Choisir un utilisateur :
                     
                     <br>
 
-                    &nbsp &nbsp
                     <?php
-                        showUserListAll();
+                        showUserList( getListeElaborateursDisponibles( $plan_cadre_choisi) );
                     ?>
 
                     <input type="text" name="search_user" 
@@ -93,36 +97,7 @@
 
                     <br>
                     <br>
-
-                    &nbsp &nbsp 
-                    Assigner l'utilisateur à l'élaboration d'un nouveau plan-cadre pour le cours sélectionné :
-
-                    <br>
-                    <input type="radio" name ="choix" value="assign" checked="checked"> 
-                    <?php
-                        showClassListAll();
-                    ?>
-                    <input type="text" name="search_class" id="search_class"
-                    onKeyUp="arrayFilter(this.value, this.form.class_list_all)" 
-                    onChange="arrayFilter(this.value, this.form.class_list_all)">
-
-                    <br>
-                    <br>
-
-                    &nbsp &nbsp
-                    Assigner l'utilisateur à l'élaboration d'un plan-cadre déjà existant :
-                    <br>
-                    <input type="radio" name ="choix" value="reassign" > 
-                    <?php
-                        showPlanCadreElaboration();
-                    ?>
-                    <input type="text" name="search_plan_cadre_elaboration" id="search_plan_cadre_elaboration"
-                    onKeyUp="arrayFilter(this.value, this.form.plan_cadre_elaboration_list)" 
-                    onChange="arrayFilter(this.value, this.form.plan_cadre_elaboration_list)">
-
-                    <br>
-                    <br>
-
+                    
                     <div class="col-md-offset-2 col-md-2">
                             <input type="submit" value="Assigner le plan-cadre" class="btn btn-default" /> 
                             

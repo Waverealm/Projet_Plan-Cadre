@@ -8,13 +8,13 @@
         session_start(); 
     } 
 
-    include_once("../assets/constant.php");
-    include_once(MODEL_PAGE);
-    //include_once("../controller/interface_functions.php");
-    include_once("../controller/controller_create_plancadre.php");
-    include_once("../model/model_pages_access.php");
-    include_once("../model/queries.php");
-
+    include_once("../assets/constants.php");
+    include_once( MODEL_PAGE );
+    include_once( CONTROLLER_CREATE_PLANCADRE );
+    include_once( MODEL_PAGE_ACCESS );
+    include_once( REQUETES_BD );
+    
+    
     verifyAccessPages();
     isAdmin();
 ?>
@@ -70,24 +70,27 @@
     }
     ?>
 
-    </br>
+    <br>
 
     <fieldset>
-        <legend>Creation Plan-Cadre</legend>
-        </br>
+        <legend>Création Plan-Cadre</legend>
+        <br>
         <form action="../controller/controller_create_plancadre.php" method="post">
             
             <!-- bouton pour pouvoir tester sans avoir à scroll down >
             <input name="save" type="submit" value="Sauvegarder..." class="btn btn-default" />
-            < enlever après la phase de test -->
+            <!-- enlever après la phase de test -->
 
-            <input type='hidden' name='save_path' value = 
+            <!-- ajouter un bouton sauvegarder ici -->
+
+
+            <input type='hidden' name='save_path' value =' 
                 <?php 
                     // le nom des fichiers textes serra :
                     // clé primaire du plancadre + code ou le nom du cours + le titre de la section
                     // exemple : 2_420-EDA-05_PresentationCours.txt
-                    echo '\'' . $save_path . '\''; 
-                ?> 
+                    echo $save_path; 
+                ?>' 
             />
             <input type='hidden' name='id_plancadre' value = 
                 <?php 
@@ -98,9 +101,28 @@
                 <?php 
                     echo '\'' . $plancadre[0]["TypeCours"] . '\''; 
                 ?> 
-            />  
+            />
+            <div>
+                Programme :
+                <br>
+                <?php
+                    $programme = $plancadre[0]["NomProgramme"] . " " 
+                     .  "(" . $plancadre[0]["CodeProgramme"] . ")";
+                    echo $programme;
+                ?>
+                <input type="hidden" name="Programme" value="<?php echo $programme; ?>">
+            </div>
             <TABLE>
                 <tr>
+                    <td>
+                        Discipline :
+                        <br>
+                        <?php
+                        
+                        // ajouter Discipline du cours 
+                        
+                        ?>
+                    </td>
                     <td>
                         Titre du cours : 
                         <br> 
@@ -111,7 +133,7 @@
                         <input type="hidden" name="NomCours" value="Titre du cours : <?php echo $nomCours; ?>">
                     </td>
                     <td>
-                        Numero du cours : 
+                        Code du cours : 
                         <br>
                         <?php
                             $codeCours = $plancadre[0]["CodeCours"];
@@ -119,16 +141,7 @@
                         ?>
                         <input type="hidden" name="CodeCours" value="Numéro du cours : <?php echo $codeCours; ?>">
                     </td>
-                    <td>
-                        Programme :
-                        <br>
-                        <?php
-                            $programme = $plancadre[0]["NomProgramme"] . " " 
-                            .  "(" . $plancadre[0]["CodeProgramme"] . ")";
-                            echo $programme;
-                        ?>
-                        <input type="hidden" name="Programme" value="<?php echo $programme; ?>">
-                    </td>
+
                 </tr>
                 <tr>
                     <td>
@@ -190,68 +203,68 @@
                 </tr>
             </TABLE>
 
-            </br>
+            <br>
 
             <label class="control-label col-md-2">Type d'enseignement : </label>
-            </br>
+            <br>
             <select>
                 <option value="Enseignement regulier">Enseignement regulier </option>
                 <option value="Formation continue">Formation continue </option>
             </select>
-            </br>
-            </br>
+            <br>
+            <br>
 
             <?php showInstructionToggle('1'); ?>
             <label class="control-label col-md-2">Presentation du cours : </label>
-            </br>
+            <br>
             <div class="col-md-10">
                 <textarea class="ckeditor" name="Presentation" rows="12" cols="50"><?php echo readFrom($path_presentation);
                     ?></textarea>
             </div>
-            </br>
+            <br>
 
             <?php showInstructionToggle('2'); ?>
             <label class="control-label col-md-2">Objectifs d'integration : </label>
-            </br>
+            <br>
             <div class="col-md-10">
                 <textarea class="ckeditor" name="ObjectifsIntegration" rows="12" cols="50"><?php
                         echo readFrom($path_integration); 
                     ?>
                 </textarea>
             </div>
-            </br>
+            <br>
 
             <?php showInstructionToggle('3'); ?>
             <label class="control-label col-md-2">Evaluation des apprentissages : </label>
-            </br>
+            <br>
             <div class="col-md-10">
                 <textarea class="ckeditor" name="Evaluation" rows="12" cols="50"><?php
                         echo readFrom($path_evalutation);
                     ?>
                 </textarea>
             </div>
-            </br>
+            <br>
 
             <?php showInstructionToggle('4'); ?>
             <label class="control-label col-md-2">Énoncé des compétences : </label>
-            </br>
+            <br>
             <div class="col-md-10">
                 <textarea class="ckeditor" name="EnonceCompetences" rows="12" cols="50"><?php
                         echo readFrom($path_competences);
                     ?>
                 </textarea>
             </div>
-            </br>
+            <br>
 
             <label class="control-label col-md-2">Objectifs d'apprentissage : </label>
-            </br>
+            <br>
             <div class="col-md-10">
                 <textarea class="ckeditor" name="ObjectifsApprentissage" rows="12" cols="50"><?php
                         echo readFrom($path_apprentissage);
                     ?>
                 </textarea>
             </div>
-            </br>
+            <br>
 
             <div class="col-md-offset-2 col-md-2">
                 <input name="save" type="submit" value="Sauvegarder..." class="btn btn-default" />
@@ -259,7 +272,6 @@
 
         </form>
     </fieldset>
-</div>
 </div>
 </body>
 </html>

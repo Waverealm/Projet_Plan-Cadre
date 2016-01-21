@@ -13,11 +13,14 @@ if(!isset($_SESSION))
     session_start();
 }
 
-include_once('../model/queries.php');
-include_once('../model/model_plan_cadre.php');
+include_once( "../assets/constants.php" );
+
+include_once( REQUETES_BD );
+include_once( MODEL_PLAN_CADRE );
+
 require_once '../assets/PHPWord-Master/src/PhpWord/Autoloader.php';
-\PhpOffice\PhpWord\Autoloader::register();   
-   
+\PhpOffice\PhpWord\Autoloader::register();
+
 
 if( isset($_POST['submit']) || isset($_POST['save']) ) 
 {
@@ -317,11 +320,11 @@ else if ( isset($_POST['open']) )
 
 function getPlanCadre($id_plancadre)
 {
-    return fetchPlanCadreElaboration_PlanCadre($id_plancadre);;
+    return fetchPlanCadreElaboration_PlanCadre($id_plancadre);
 }
 function getPrealableCours($id_cours)
 {
-    return fetchPrealableCours_Id($id_cours);;
+    return fetchPrealableCours_Id($id_cours);
 }
 
 

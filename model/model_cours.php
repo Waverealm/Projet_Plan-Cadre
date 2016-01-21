@@ -1,6 +1,6 @@
 <?php
 
-include_once("../assets/constant.php");
+include_once("../assets/constants.php");
 include_once(REQUETES_BD);
 
 if(!isset($_SESSION)) 
@@ -22,7 +22,7 @@ if(!isset($_SESSION))
     {
         $list = fetchAllClass();
 
-        echo "<select name='class_list_all' id='class_list_all'>";
+        echo "<select name='class_list_all' id='class_list_all' style='width: 300px'>";
             echo "<option value=\"" . "\">" . "</option>";
         
         if(sizeof($list) > 0)
@@ -57,7 +57,7 @@ if(!isset($_SESSION))
     {
         $list = fetchAllClass();
 
-        echo "<select name='class_list_all' id='class_list_all'>";
+        echo "<select name='class_list_all' id='class_list_all' style='width: 300px'>";
             echo "<option value=\"" . "\">" . "</option>";
         if(sizeof($list) > 0)
         {

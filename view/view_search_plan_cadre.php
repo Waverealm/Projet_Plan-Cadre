@@ -4,8 +4,12 @@
       session_start(); 
   } 
 
-  include_once("../controller/interface_functions.php");
-  include_once("../model/model_search_plan_cadre.php");
+  include_once("../assets/constants.php");
+  
+  include_once( MODEL_PAGE );
+  include_once( MODEL_PROGRAMME );
+  include_once( MODEL_SEARCH_PLAN_CADRE );
+  
 
   // Variables utilisées pour le menu interractif
   $currentVisitor = 'searchplancadre';

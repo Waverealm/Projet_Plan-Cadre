@@ -6,7 +6,7 @@
   } 
 
   include_once("../model/model_pages_access.php");
-  include_once("../assets/constant.php");
+  include_once("../assets/constants.php");
 
   include_once(MODEL_PAGE);
   include_once(MODEL_PROGRAMME);
@@ -149,14 +149,7 @@
                 ?>
             </select>
         </div>
-        </br>
-        <label>Type de sanction: </label>
-        <div>
-            <select name="TypeSanction">
-              <option value="Diplôme d'études collégiales"> Diplôme d'étude collégiales </option>
-              <option value="Attestation d'études collégiales"> Attestation d'études collégiales </option>
-            </select>
-        </div>
+
         </br>
       
       <div>

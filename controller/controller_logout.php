@@ -11,7 +11,7 @@
 	    session_start(); 
 	} 
 
-   include_once("../assets/constant.php");
+   include_once("../assets/constants.php");
 
    // On détruit la session
    session_destroy();

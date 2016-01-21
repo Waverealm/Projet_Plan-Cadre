@@ -5,19 +5,36 @@ if(!isset($_SESSION))
     session_start(); 
 } 
 
-include_once("../assets/constant.php");
-include_once("../model/queries.php");
+include_once("../assets/constants.php");
+include_once(REQUETES_BD);
 require_once '../assets/PHPWord-Master/src/PhpWord/Autoloader.php';
 \PhpOffice\PhpWord\Autoloader::register();   
 
-
-
-
-
-
-
-
-
+/*
+    Nom de la fonction : listerPlanCadre
+    Fait par : Simon Roy
+    Cette fonction permet d'afficher une liste déroulante des plans-cadres
+    contenues dans la liste passé en paramètre.
+*/
+function listerPlanCadre($list, $nom_liste = 'liste_plan_cadre')
+{
+    echo "<select name='".$nom_liste."' id='".$nom_liste."' style='width: 300px' >";
+        echo "<option value=\"" . "\">" . "</option>";
+    if(sizeof($list) > 0)
+    {
+        foreach ($list as $row)
+        {
+                
+            echo "<option value=\"".$row["No_PlanCadre"]."\">".
+            "(".$row["DateAjout"].")"." ".$row["CodeCours"]." ".$row["NomCours"]."</option>";
+        }
+    }
+    else
+    {
+        echo "<option>"."Aucun plan-cadre en élaboration"."</option>";
+    }
+    echo "</select>";
+}
 
 
 
@@ -25,53 +42,118 @@ require_once '../assets/PHPWord-Master/src/PhpWord/Autoloader.php';
 
 
 /*
+    Nom de la fonction : getPlanCadreElaboration
+    Fait par : Simon Roy
+    Cette fonction retourne une liste de tous les plans-cadres en élaboration
+*/
+function getPlanCadreElaboration()
+{
+    return selectPlanCadreElaboration();
+}
+
+function getSpecificPlanCadre( $id )
+{
+    return fetchPlanCadreElaboration_PlanCadre($id);
+}
+
+/*
     Nom de la fonction : showPlanCadreElaboration
     Fait par : Simon Roy
     Cette fonction permet d'afficher une liste déroulante de tous 
     les plans-cadres en élaboration
 */
-    function showPlanCadreElaboration()
+function showPlanCadreElaboration()
+{
+    listerPlanCadre( selectPlanCadreElaboration(), 'plan_cadre_elaboration_list' );
+}
+
+function showInfoPlancadre( $liste, $nom_tableau =  "tableau_plancadre" )
+{
+    if( !empty($liste) )
     {
-        $list = selectPlanCadreElaboration();
-
-        echo "<select name='plan_cadre_elaboration_list' id='plan_cadre_elaboration_list'>";
-            echo "<option value=\"" . "\">" . "</option>";
-        
-        if(sizeof($list) > 0)
+        echo "<table name='$nom_tableau' id='$nom_tableau'>";
+            echo "<thead>
+                <th>Date ajout du plan-cadre</th>
+                <th>Code du cours</th>
+                <th>Nom du cours</th>
+                </thead>";
+        foreach ($liste as $row)
         {
-            foreach ($list as $row)
-            {
-                
-                echo "<option value=\"".$row["No_PlanCadre"]."\">". "(".$row["DateAjout"].")". " " 
-                .$row["CodeCours"]." ".$row["NomCours"]."</option>";
-            }
+                echo "<tr>
+                    <td>" . $row["DateAjout"] . "</td>
+                    <td>" . $row["CodeCours"] . "</td>
+                    <td>" . $row["NomCours"] . "</td>
+                    
+                </tr>";
         }
-        else
-        {
-            echo "<option>"."Aucun cours"."</option>";
-        }
-        echo "</select>";
+        echo "</table>";
     }
+    else
+    {
+        echo "<b>Aucun plan-cadre</b>";
+    }
+}
 
 
 
+
+/*
+    Nom de la fonction : TableauPlanCadre
+    Fait par : Simon Roy
+    Cette fonction permet d'afficher un tableau des plans-cadres
+    contenues dans la liste passé en paramètre.
+*/
+function tableauPlanCadreElaboration( $nom_tableau = "plan_cadre_elaboration" )
+{
+    $liste = getPlanCadreElaboration();
+    if( !empty($liste) )
+    {
+        echo "<table name='$nom_tableau' id='$nom_tableau'>";
+            echo "<thead>
+                <th>Code du cours</th>
+                <th>Nom du cours</th>
+                <th>Date ajout</th>
+                <th>Ajouter un élaborateur</th>
+                </thead>";
+        foreach ($liste as $row)
+        {
+                echo "<tr>
+                    <td>" . $row["CodeCours"] . "</td>
+                    <td>" . $row["NomCours"] . "</td>
+                    <td>" . $row["DateAjout"] . "</td>
+                    <td>" . "<button name='plan_cadre_elaboration' type='submit'" .
+                    "value='" . $row["No_PlanCadre"] . "'> + </button>" . "</td>
+                </tr>";
+        }
+        echo "</table>";
+    }
+    else
+    {
+        echo "<b>Aucun plan-cadre en élaboration</b>";
+    }
+}
 
 function showInstructionToggle($codeInstruction)
-    {
-        $descriptionConsigne = fetchDescriptionInstruction($codeInstruction);
+{
+    $descriptionConsigne = fetchDescriptionInstruction($codeInstruction);
 
-        ?>
-
+    ?>
         <br>
         <a class="toggler">Afficher/masquer la consigne</a>
         <p class="toggled"><?php echo $descriptionConsigne[0][ "DescriptionConsigne" ]; ?></p>
         <br>
         <br>
+    <?php
+}
 
-        <?php
-    }
-
-
+function buildToggleString( $inside_toggle, $titre_toggle = "Afficher/Masquer" )
+{
+    return "<br>
+    <a class='toggler'>" . $titre_toggle . "</a>" .
+    "<p class='toggled'>" . $inside_toggle . "</p>".
+    "<br>
+    <br>";
+}
 
 
 
@@ -85,7 +167,7 @@ function showInstructionToggle($codeInstruction)
 // ----------------------------------------------
 // début de la définition des différents styles
 // possibilité d'exporter cela dans un autre document
-// pour mieux paramétrer le
+// pour mieux paramétrer le processus de création du document
 // http://phpword.readthedocs.org/en/latest/styles.html
 
     $GLOBALS["style_font_titre"] = array('size'=> 14,

@@ -1,4 +1,10 @@
 #va permettre de gérer les url
 # https://www.youtube.com/watch?v=Aw28-krO7ZM
 
-AddDefaultCharset UTF-8
+# http://anantgarg.com/2009/03/13/write-your-own-php-mvc-framework-part-1/
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteRule ^$ public/ [L]
+    RewriteRule (.*) public/$1 [L]
+</IfModule>

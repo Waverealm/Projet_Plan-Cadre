@@ -5,7 +5,7 @@
       session_start(); 
   } 
 
-  include_once("../assets/constant.php");
+  include_once("../assets/constants.php");
   include_once("../controller/interface_functions.php");
   include_once("../model/model_pages_access.php");
 
@@ -16,6 +16,8 @@
   isAdmin();
   isPlanner();
 ?>
+
+
 
 <!DOCTYPE html>
 <html>

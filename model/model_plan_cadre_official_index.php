@@ -8,7 +8,10 @@ if(!isset($_SESSION))
 // Nom : model_search_plan_cadre.php
 // Fait par Antoine Latendresse
 
-include_once("../controller/interface_functions.php");
+include_once("../assets/constants.php");
+include_once(MODEL_PAGE);
+include_once(MODEL_SEARCH_PLAN_CADRE);
+//include_once("../controller/interface_functions.php");
 include_once("../model/queries.php");
 
 // Fonction pour afficher la liste des plans-cadres officiels sur la page d'accueil

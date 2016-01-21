@@ -4,6 +4,18 @@
    Contient du css créé par nous-même
 */
 
+
+
+/* ne semble pas fonctionner, à rechercher*/
+div min-size{
+	min-width: 8000px;
+	width: auto !important;
+	white-space: nowrap;
+	overflow: scroll;
+	
+	
+}
+
 .login_field {
 	float: right;
 	margin: 0.5em 1.2em 0.5em 0.5em;
@@ -38,4 +50,11 @@
 	padding:10px;
 	color:#4D4D4D;
 	font-size:12px Arial;
+}
+
+/* permet de garder une partition et ses éléments sur une seule ligne*/
+div .inline-block {
+	white-space: nowrap;
+	overflow: scroll;
+	display: inline-block;
 }

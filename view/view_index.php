@@ -2,9 +2,11 @@
   if(!isset($_SESSION)) 
   { 
       session_start(); 
-  } 
-
-  include_once("../controller/interface_functions.php");
+  }
+  
+  
+  include_once("../assets/constants.php");
+  include_once(MODEL_PAGE);
   include_once("../model/model_plan_cadre_official_index.php");
 
   // Variables utilisées pour le menu interractif

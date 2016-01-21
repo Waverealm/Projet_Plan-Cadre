@@ -11,8 +11,8 @@ if(!isset($_SESSION))
     session_start(); 
 } 
 
-include_once("../controller/interface_functions.php");
-include_once("../model/queries.php");
+include_once("../assets/constants.php");
+include_once(REQUETES_BD);
 
 
 /*

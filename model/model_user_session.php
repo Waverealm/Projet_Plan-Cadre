@@ -18,7 +18,7 @@ if(!isset($_SESSION))
 
 include_once('../model/queries.php');
 include_once('../controller/password_functions.php');
-include_once("../assets/constant.php");
+include_once("../assets/constants.php");
 
 
 

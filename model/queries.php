@@ -122,39 +122,102 @@
   }
   function fetchAllUser()
   {
-    return selectWithNoParam("CALL SELECT_ALL_USERS ()");
+    try
+    {
+      return selectWithNoParam("CALL SELECT_ALL_USERS ()");
+    }
+    catch(Exception $ex)
+    {
+      throw($ex);
+    }
   }
   function fetchAllClass()
   {
-    return selectWithNoParam("CALL SELECT_ALL_CLASSES ()");
+    try
+    {
+      return selectWithNoParam("CALL SELECT_ALL_CLASSES ()");
+    }
+    catch(Exception $ex)
+    {
+      throw($ex);
+    }
   }
   function selectAllConsignesPlanCadre()
   {
-    return selectWithNoParam("CALL SELECT_ALL_CONSIGNES_PLAN_CADRE ()");
+    try
+    {
+      return selectWithNoParam("CALL SELECT_ALL_CONSIGNES_PLAN_CADRE ()");
+    }
+    catch(Exception $ex)
+    {
+      throw($ex);
+    }
   }
   function selectAllPlanCadre()
   {
-    return selectWithNoParam("CALL SELECT_ALL_PLAN_CADRE ()");
+    try
+    {
+      return selectWithNoParam("CALL SELECT_ALL_PLAN_CADRE ()");
+    }
+    catch(Exception $ex)
+    {
+      throw($ex);
+    }
   }
   function selectAllOfficielPlanCadre()
   {
-    return selectWithNoParam("CALL SELECT_ALL_OFFICIEL_PLAN_CADRE()");
+    try
+    {
+      return selectWithNoParam("CALL SELECT_ALL_OFFICIEL_PLAN_CADRE()");
+    }
+    catch(Exception $ex)
+    {
+      throw($ex);
+    }
   }
   function selectPlanCadreElaboration()
   {
-    return selectWithNoParam("CALL SELECT_PLAN_CADRE_ELABORATION ()");
+    try
+    {
+      return selectWithNoParam("CALL SELECT_PLAN_CADRE_ELABORATION ()");
+    }
+    catch(Exception $ex)
+    {
+      throw($ex);
+    }
   }
   function selectAllValidPlanCadre()
   {
-    return selectWithNoParam("CALL SELECT_ALL_VALID_PLAN_CADRE ()");
+    try
+    {
+      return selectWithNoParam("CALL SELECT_ALL_VALID_PLAN_CADRE ()");
+    } 
+    catch(Exception $ex)
+    {
+      throw($ex);
+    }
   }
   function selectAllProgramCode()
   {
-    return selectWithNoParam("CALL SELECT_ALL_PROGRAMS ()");
+    try
+    {
+      return selectWithNoParam("CALL SELECT_ALL_PROGRAMS ()");
+    }
+    catch(Exception $ex)
+    {
+      throw($ex);
+    }
   }
   function selectAllPrograms()
   {
-    return selectWithNoParam("CALL SELECT_ALL_PROGRAMS_WITH_NAME ()");
+    try
+    {
+      return selectWithNoParam("CALL SELECT_ALL_PROGRAMS_WITH_NAME ()");
+    }
+    catch(Exception $ex)
+    {
+      throw($ex);
+    }
   }
 
 /*
@@ -183,6 +246,13 @@
     return $result;
   }
 
+  
+  function getPublicUtilisateur( $id_utilisteur)
+  {
+     return fetchId( $id_utilisteur, "CALL SELECT_PUBLIC_INFORMATION_UTILISATEUR(?)");
+  }
+  
+  
 /*
    Nom : fetchPlanCadreElaboration_User($id_user)
    Fait par Simon Roy
@@ -195,6 +265,16 @@
     return fetchId( $id_user, "CALL SELECT_PLAN_CADRE_ELABORATION_USER(?)" );
   }
 
+  function getListeElaborateursDisponibles( $id_plancadre)
+  {
+    return fetchId( $id_plancadre, "CALL SELECT_LISTE_ELABORATEURS_DISPONIBLES(?)" );
+  }
+  function getListeElaborateursPlancadre( $id_plancadre )
+  {
+    return fetchId( $id_plancadre, "CALL SELECT_ELABORATEURS_PLANCADRE(?)" );
+  }
+  
+  
 /*
    Nom : fetchPlanCadreElaboration_PlanCadre($id_plan_cadre)
    Fait par Simon Roy

@@ -7,7 +7,7 @@
     } 
 
 
-    include_once("../assets/constant.php");
+    include_once("../assets/constants.php");
     include_once('../model/queries.php');
     include_once('../model/model_search_plan_cadre.php');
 
@@ -46,7 +46,7 @@ function showAppropriateMenu()
                             showAdminMenu();
                             break;
                         default:
-                            showVisitorMenu();
+                            showConnectedMenu();
                     }
                     $visiteur = false;
                 }
@@ -93,6 +93,27 @@ function showAppropriateMenu()
                 </ul>
                 <a href="<?php echo VIEW_LOGIN ?>" class="login_field">Se Connecter</a>
             </div>
+        <?php
+    }
+    function showConnectedMenu()
+    {
+        GLOBAL $currentVisitor;
+
+        ?>
+            <div class="pure-menu pure-menu-horizontal">
+                <ul class="pure-menu-list">
+                    <li <?php if($currentVisitor == 'index') {echo 'class="pure-menu-item pure-menu-selected"';} ?> class="pure-menu-item">
+                        <a href="<?php echo VIEW_INDEX ?>" class="pure-menu-link">Accueil</a>
+                    </li>
+                    <li <?php if($currentVisitor == 'searchplancadre') {echo 'class="pure-menu-item pure-menu-allow-hover pure-menu-selected"';} ?> class="pure-menu-item pure-menu-allow-hover">
+                        <a href="<?php echo VIEW_SEARCH_PLAN_CADRE ?>" id="menuLink1" class="pure-menu-link">Plan-cadre</a>
+
+                    </li>
+                </ul>
+                <div class="login_field"><?php echo $_SESSION['last_name'].", ".$_SESSION['first_name']."   "; ?>
+                <a href="<?php echo CONTROLLER_LOGOUT ?>">Se déconnecter</a>
+            </div>
+        </div>
         <?php
     }
     function showElaborateurMenu()
