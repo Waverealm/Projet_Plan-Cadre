@@ -16,9 +16,9 @@
   {
     try
     {
-      return new PDO('mysql:host=localhost;dbname=plan_cadre', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-      
-      //mysql_set_charset("utf8", PDO);
+      $connexion = new PDO('mysql:host=localhost;dbname=plan_cadre', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+      $connexion->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+      return $connexion;
     }
     catch (Exception $e)
     {

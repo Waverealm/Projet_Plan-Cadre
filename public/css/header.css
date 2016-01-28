@@ -1,0 +1,62 @@
+
+body{
+    background-color: #E3E9FA;
+}
+
+.container
+{
+	/* change le padding pour  */
+	background-color: #fff;
+    padding-bottom: 10px;
+}
+
+.navbar
+{
+	background-color: #C5CEE0;
+}
+
+
+.header
+{
+	color: #fff;
+	background: #6280C4;
+	padding: 1em 1.25em;
+	font-family: georgia;
+}
+
+.main_content{
+    padding-left: 10px;
+}
+
+.legend_default{
+    font-size: 1.2em !important;
+    width:auto;
+    border-bottom:none;
+    padding-top: 1em;
+}
+
+
+.fieldset_default{
+    border: 1px groove #ddd !important;
+    padding: 0 0 1.4em 1.4em !important;
+}
+
+
+/* permet de changer la couleur quand le input est valide */
+input:valid,
+input:in-range {
+    background:hsl(120, 50%, 90%);
+    border-color:hsl(120, 50%, 50%);
+}
+
+/* permet de changer la couleur quand le input est invvalide */
+input:invalid,
+input:out-of-range {
+    border-color:hsl(0, 50%, 50%);
+    background:hsl(0, 50%, 90%);
+}
+/* permet d'afficher un message d'aide */
+input:focus + .help,
+input:invalid + .help {
+    display:inline-block;
+}

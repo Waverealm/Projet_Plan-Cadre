@@ -1,10 +1,15 @@
-#va permettre de gérer les url
-# https://www.youtube.com/watch?v=Aw28-krO7ZM
-
-# http://anantgarg.com/2009/03/13/write-your-own-php-mvc-framework-part-1/
-
+# project/.htaccess
+# redirige tout les appels au dossier public/
+# chaque dossier devrait avoir son fichier .htaccess
 <IfModule mod_rewrite.c>
     RewriteEngine on
-    RewriteRule ^$ public/ [L]
-    RewriteRule (.*) public/$1 [L]
+    RewriteRule    ^$    public/    [L]
+    RewriteRule    (.*) public/$1    [L]
+ </IfModule>
+ 
+ # si on ne peut pas reécrire alors le site ne fonctionnera pas correctement,
+# pour portéger l'intégrité des données et maintenir un accès restreint il
+# est préférable que le site ne fonctionne pas.
+<IfModule !mod_rewrite.c>
+	ErrorDocument 404 index.php
 </IfModule>
