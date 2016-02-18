@@ -111,6 +111,7 @@
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<li><a href="<?php echo BASE_PATH . "/" . "public/create_document.php" ;?>"></span> test document </a></li>
 					<li><a href="<?php echo BASE_PATH . "/" . "utilisateurs" . "/" . "connexion" ;?>"><span class="glyphicon glyphicon-log-in"></span> Connexion </a></li>
 				</ul>
 			</div>

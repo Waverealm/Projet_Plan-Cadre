@@ -82,10 +82,10 @@
             <!-- enlever après la phase de test -->
 
             <!-- ajouter un bouton sauvegarder ici -->
+            <input name="save" type="submit" value="Sauvegarder..." class="btn btn-default" />
 
 
-            <input type='hidden' name='save_path' value =' 
-                <?php 
+            <input type='hidden' name='save_path' value ='<?php 
                     // le nom des fichiers textes serra :
                     // clé primaire du plancadre + code ou le nom du cours + le titre de la section
                     // exemple : 2_420-EDA-05_PresentationCours.txt

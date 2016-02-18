@@ -6,9 +6,9 @@ class UtilisateursController extends VanillaController {
 
 	}
 
-	function view($programmeId = null) {
+	function view($id = null) {
 
-		$this->Programme->id = $programmeId;
+		$this->Programme->id = $id;
 		$this->Programme->showHasMany();
 		$programme = $this->Programme->search();
 	
