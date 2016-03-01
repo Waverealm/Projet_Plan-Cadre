@@ -68,8 +68,8 @@ function loadInstruction() {
     en haut de la liste.
 	  Il est suggérer de l'utiliser pour un select avec un input
     exemple : 
-    <input type="text" name="uneZoneTexte" onchange="arrayFilter(this.value, this.form.CBX_nom)"
-	  onKeyUp ="arrayFilter(this.value, this.form.CBX_nom)">
+    <input type="text" name="uneZoneTexte" onchange="arrayFilter(this.value, this.form.selectName)"
+	  onKeyUp ="arrayFilter(this.value, this.form.selectName)">
     <select name="selectName">
     <option></option>
     <option value="valeurVoulue" ></option>
@@ -139,6 +139,7 @@ function checkboxInterraction() {
     document.getElementById('CodeCours').disabled = true;
   }
 }
+
 
 
 			

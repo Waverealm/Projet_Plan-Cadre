@@ -30,7 +30,7 @@
         <script type="text/javascript" src="../assets/js_global.js"></script>
       </head>
       <body >
-        <div class="container"  style="background-color: ghostwhite">
+        <div class="container"  >
           <?php
             showHeader();
             showAppropriateMenu();

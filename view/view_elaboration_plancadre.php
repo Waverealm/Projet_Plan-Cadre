@@ -5,7 +5,7 @@
       session_start(); 
   } 
   
-  include_once("../controller/interface_functions.php");
+  include_once("../model/model_page.php");
   include_once("../model/model_pages_access.php");
   include_once("../model/model_user_session.php");
   

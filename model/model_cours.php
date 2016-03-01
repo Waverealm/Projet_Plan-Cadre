@@ -14,7 +14,7 @@ if(!isset($_SESSION))
 /*
     Nom de la fonction : showListeCours
     Description :
-    Cette fonction permet d'afficher une liste déroulante de tous les cours.
+    Cette fonction permet d'afficher une liste déroulante de tous les cours qui n'ont pas de plan-cadre en élaboration
     Détails : 
     L'affichage montrera le code du cours
 */
@@ -25,17 +25,15 @@ if(!isset($_SESSION))
         echo "<select name='class_list_all' id='class_list_all' style='width: 300px'>";
             echo "<option value=\"" . "\">" . "</option>";
         
-        if(sizeof($list) > 0)
+
+        foreach ($list as $row)
         {
-            foreach ($list as $row)
+            if(empty(fetchPlanCadreClass($row["CodeCours"])))
             {
-                if(empty(fetchPlanCadreClass($row["CodeCours"])))
-                {
-                    echo "<option value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
-                }
+                echo "<option value=\"".$row["CodeCours"]."\">".$row["CodeCours"]." ".$row["NomCours"]."</option>";
             }
         }
-        else
+        if( empty($list) )
         {
             echo "<option>"."Aucun cours"."</option>";
         }

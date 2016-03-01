@@ -1,4 +1,0 @@
-Ce framework est fait avec le tutoriel de ANANT GARG.
-
-Lien vers le tutoriel : http://anantgarg.com/2009/03/13/write-your-own-php-mvc-framework-part-1/
-

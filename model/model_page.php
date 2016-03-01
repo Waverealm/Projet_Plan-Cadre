@@ -205,7 +205,10 @@ function showAppropriateMenu()
                                 <a href="<?php echo VIEW_CREATE_ACCOUNT ?>" class="pure-menu-link">Créer un compte</a>
                             </li>
                             <li <?php if($currentConseiller == 'assignuser') {echo getSelectedMenuClass();} ?> class="pure-menu-item">
-                                <a href="<?php echo VIEW_ASSIGN_USER ?>" class="pure-menu-link">Assigner un plan-cadre</a>
+                                <a href="../view/view_assign_plancadre.php" class="pure-menu-link">Assigner un plan-cadre</a>
+                            </li>
+                            <li <?php if($currentConseiller == 'nouvea_plancadre') {echo getSelectedMenuClass();} ?> class="pure-menu-item">
+                                <a href="../view/view_nouveau_plancadre.php" class="pure-menu-link">Ajouter un plan-cadre</a>
                             </li>
                             <li <?php if($currentConseiller == 'retirer_assignation') {echo getSelectedMenuClass();} ?> class="pure-menu-item">
                                 <a href="<?php echo "../view/view_retirer_assignation.php" ?>" class="pure-menu-link">Retirer une assignation</a>

@@ -11,40 +11,13 @@
     include_once(MODEL_COURS);
     include_once(MODEL_UTILISATEUR);
     include_once(MODEL_PLAN_CADRE);
-    include_once( REQUETES_BD );
 
     // Variables utilisées pour le menu interractif
-    $currentConseiller = 'assignuser';
-    $currentAdmin = 'assignuser';
+    $currentConseiller = 'nouvea_plancadre';
+    $currentAdmin = 'nouvea_plancadre';
 
     verifyAccessPages();
     isPlanner();
-    
-    if( isset($_POST["plan_cadre_elaboration"]) )
-    {
-        $_SESSION["assigner_plancadre"] = $_POST["plan_cadre_elaboration"];
-    }
-    else if ( isset($_POST["liste_plan_cadre_elaboration"]) )
-    {
-        if( !empty($_POST["liste_plan_cadre_elaboration"]) )
-        {
-            $_SESSION["assigner_plancadre"] = $_POST["liste_plan_cadre_elaboration"];
-        }
-    }
-    
-    if( !isset($_SESSION["assigner_plancadre"]) )
-    {
-        header('Location: ' . VIEW_ASSIGN_PLANCADRE);
-    }
-    else
-    {   
-        $plancadre = fetchPlanCadreElaboration_PlanCadre($_SESSION["assigner_plancadre"]);
-        if( empty($plancadre) )
-        {
-            header('Location: ' . VIEW_ASSIGN_PLANCADRE);
-        }
-    }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -57,6 +30,15 @@
 
         <script type="text/javascript" src="../assets/js_global.js" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            function filterBoth(search, first_list, second_list)
+            {
+                arrayFilter(search, first_list);
+                arrayFilter(search, second_list);
+                
+                
+            }
+        </script>
     </head>
     
 
@@ -68,43 +50,57 @@
             ?>
             <br>
             <fieldset id="assignation">
-                <legend>Assignation : </legend>
-                <form action="../controller/controller_assign_user.php" method="post">
+                <legend>Ajout d'un plan-cadre : </legend>
+                <form action="../controller/controller_nouveau_plancadre.php" method="post">
 
-                    Le plan-cadre choisi :
+                    <br>
+
+                    Ajouter un nouveau plan-cadre pour le cours sélectionner : 
+
+                    <br>
                     <?php
-                    
-                        echo "(" . $plancadre[0]["DateAjout"] . ")" . " " .
-                        $plancadre[0]["CodeCours"] . " " . $plancadre[0]["NomCours"];
+                        showClassListAll();
                     ?>
-                    <input name="id_plancadre" type="hidden" value="<?php echo $_SESSION["assigner_plancadre"] ?>" />
-                    <br>
-                    
-                    <br>
-                    
-                    Choisir un utilisateur :
-                    
-                    <br>
+                    <input type="text" name="search_class" id="search_class"
+                    onKeyUp="filterBoth(this.value, this.form.class_list_all, this.plan_cadre_elaboration_list)" 
+                    onChange="filterBoth(this.value, this.form.class_list_all, this.plan_cadre_elaboration_list)">
 
+                    <br>
+                    
+                    <br>
+                    
+                    Assigner un utilisateur immédiatement (optionnel) : 
+                    
+                    <br>
+                    
                     <?php
-                        showUserList( getListeElaborateursDisponibles( $_SESSION["assigner_plancadre"]) );
+                        showUserListAll();
                     ?>
 
                     <input type="text" name="search_user" 
                     onKeyUp="arrayFilter(this.value, this.form.user_list_all)" 
                     onChange="arrayFilter(this.value, this.form.user_list_all)"
                     >
-
-                    <br>
                     <br>
                     
+                    <br>
+                     
                     <div class="col-md-offset-2 col-md-2">
-                            <input type="submit" value="Assigner le plan-cadre" class="btn btn-default" /> 
+                            <input type="submit" value="Ajouter" class="btn btn-default" /> 
                             
                             <br>
                             <br>
                     </div>
+                     Liste des plans-cadres déjà en élaboration :
+                    <br>
+                    <?php
+                        showPlanCadreElaboration();
+                        showInfoPlanCadre(getPlanCadreElaboration());    
+                    
+                    ?>
+                    
                 </form>
+               
             </fieldset>
         </div>
     </body>

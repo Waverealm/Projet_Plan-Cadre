@@ -10,13 +10,21 @@ include_once(REQUETES_BD);
 require_once '../assets/PHPWord-Master/src/PhpWord/Autoloader.php';
 \PhpOffice\PhpWord\Autoloader::register();   
 
+
+
+
+
+
+
+
+
 /*
     Nom de la fonction : listerPlanCadre
     Fait par : Simon Roy
     Cette fonction permet d'afficher une liste déroulante des plans-cadres
     contenues dans la liste passé en paramètre.
 */
-function listerPlanCadre($list, $nom_liste = 'liste_plan_cadre')
+function listerPlanCadre($list, $nom_liste = 'liste_plan_cadre', $id_liste = 'liste_plan_cadre')
 {
     echo "<select name='".$nom_liste."' id='".$nom_liste."' style='width: 300px' >";
         echo "<option value=\"" . "\">" . "</option>";
@@ -67,7 +75,7 @@ function showPlanCadreElaboration()
     listerPlanCadre( selectPlanCadreElaboration(), 'plan_cadre_elaboration_list' );
 }
 
-function showInfoPlancadre( $liste, $nom_tableau =  "tableau_plancadre" )
+function showInfoPlancadre( $liste, $nom_tableau =  "tableau_plancadre")
 {
     if( !empty($liste) )
     {
@@ -219,12 +227,11 @@ function buildToggleString( $inside_toggle, $titre_toggle = "Afficher/Masquer" )
 	a été passé en paramètre.
 ----------------------------------------------
 */
-function buildPlanCadre($primary_key)
+function buildPlanCadre($id_plancadre)
 {
 
-	$result = fetchAllInfoPlanCadre($primary_key);
+	$result = fetchAllInfoPlanCadre($id_plancadre);
 	$info_plancadre = $result[0];
-	$id_plancadre = $primary_key;
 
     $etat = $info_plancadre["Etat"];
 
@@ -245,11 +252,11 @@ function buildPlanCadre($primary_key)
     // clé primaire du plancadre + code ou le nom du cours + le nom de la section
     // exemple : 2_420-EDA-05_PresentationCours.txt
 
-    $path_presentation = "../plancadre/". $id_plancadre . "_" . $code_cours . "presentation" . ".txt";
-    $path_integration = "../plancadre/". $id_plancadre . "_" . $code_cours . "integration" . ".txt";
-    $path_evalutation = "../plancadre/". $id_plancadre . "_" . $code_cours . "evaluation" . ".txt";
-    $path_competences = "../plancadre/". $id_plancadre . "_" . $code_cours . "competences" . ".txt";
-    $path_apprentissage = "../plancadre/". $id_plancadre . "_" . $code_cours . "apprentissage" . ".txt";
+    $path_presentation = "../plancadre/". $id_plancadre . "_" . $code_cours . "_" . "presentation" . ".txt";
+    $path_integration = "../plancadre/". $id_plancadre . "_" . $code_cours . "_" . "integration" . ".txt";
+    $path_evalutation = "../plancadre/". $id_plancadre . "_" . $code_cours . "_" . "evaluation" . ".txt";
+    $path_competences = "../plancadre/". $id_plancadre . "_" . $code_cours . "_" . "competences" . ".txt";
+    $path_apprentissage = "../plancadre/". $id_plancadre . "_" . $code_cours . "_" . "apprentissage" . ".txt";
 
 
     $presentation = ReadFrom($path_presentation);

@@ -24,9 +24,6 @@
 			header('Location: ../view/view_assign_user.php');
 		}
 	}
-
-	$_SESSION[ 'info_assign' ] = 'Vous devez sélectionné un cours ou un plan-cadre déjà existant';
-
 	header('Location: ../view/view_assign_user.php');
 
 ?>

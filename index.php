@@ -1,5 +1,5 @@
 <?php
+	session_start();
 
-require_once ('public' . DIRECTORY_SEPARATOR . 'index.php');
-
+	header('Location: view/view_index.php');
 ?>

@@ -16,9 +16,9 @@
   {
     try
     {
-      $connexion = new PDO('mysql:host=localhost;dbname=plan_cadre', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-      $connexion->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-      return $connexion;
+      return new PDO('mysql:host=localhost;dbname=plan_cadre', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+      
+      //mysql_set_charset("utf8", PDO);
     }
     catch (Exception $e)
     {
@@ -246,6 +246,16 @@
     return $result;
   }
 
+  
+  function getsections($id)
+  {
+    return fetchId( $id, "CALL SELECT_SECTIONS_PLANCADRES_ID(?)");
+  }
+  
+   function getcountsections($id)
+  {
+    return fetchId( $id, "CALL COUNT_SECTIONS_PLANCADREs(?)");
+  }
   
   function getPublicUtilisateur( $id_utilisteur)
   {
@@ -552,6 +562,18 @@
   ------------------------------------------------------------------------------------
 */
 
+  function insert_plancadres_sections($plancadre_id, $emplacement, $titre)
+  {
+      $state = "Actif";
+      $query = dbConnect()->prepare("CALL PLANCADRES_SECTIONS_INSERT(?,?,?)");
+
+      $query->bindParam(1, $plancadre_id, PDO::PARAM_STR);
+      $query->bindParam(2, $emplacement, PDO::PARAM_STR);
+      $query->bindParam(3, $titre, PDO::PARAM_STR);
+
+      $query->execute();
+      $query->CloseCursor();
+  }
 
 /*
   Nom : createUser($userName, $pass, $email, $lastName, $firstName, $userType)
@@ -680,6 +702,22 @@
     $insert->CloseCursor();
   }
 
+  function insert_section($plancadre_id, $emplacement, $titre , &$pdo='')
+  {
+    if( empty($pdo) )
+    {
+      $pdo = dbConnect();
+    }
+    $insert = $pdo->prepare("CALL INSERT_PLANCADRES_SECTIONS(?,?,?)");
+
+    $insert->bindParam(1, $plancadre_id, PDO::PARAM_STR);
+    $insert->bindParam(2, $emplacement, PDO::PARAM_STR);
+    $insert->bindParam(3, $titre, PDO::PARAM_STR);
+    
+    $insert->execute();
+    $insert->CloseCursor();
+  }
+  
 /*
   Nom : createPlanCadreCopy($codeCours, $etat, $presentationCours, $objectifsIntegration, $evaluationApprentissage, $enonceCompetence,
                                $objectifsApprentissage, $manuelObligatoire, $recommandation)
@@ -733,6 +771,23 @@ function updatePlanCadre_Fichiers($presentation, $integration,  $evaluation, $co
   $update->bindParam(4, $competences, PDO::PARAM_STR);
   $update->bindParam(5, $apprentissage, PDO::PARAM_STR);
   $update->bindParam(6, $id, PDO::PARAM_STR);
+
+  $update->execute();
+
+  $update->closeCursor();
+}
+
+function updatesection($id, $emplacement, $titre, &$pdo = '')
+{
+  if( empty($pdo) )
+  {
+    $pdo = dbConnect();
+  }
+  $update = $pdo->prepare("CALL UPDATE_PLANCADRES_SECTIONS (?,?,?)");
+
+  $update->bindParam(1, $id, PDO::PARAM_STR);
+  $update->bindParam(2, $emplacement, PDO::PARAM_STR);
+  $update->bindParam(3, $titre, PDO::PARAM_STR);
 
   $update->execute();
 
@@ -866,6 +921,22 @@ function deleteAssignationPlanCadre($noValidatePlanCadre)
     $query = dbConnect()->prepare( "CALL DELETE_ASSIGNATION_PLAN_CADRE(?)" );
 
     $query->bindParam(1, $noValidatePlanCadre, PDO::PARAM_STR);
+
+    $query->execute();
+    $query->CloseCursor();
+}
+
+
+
+function enleverSection($section_id, &$pdo = '')
+{
+    if( empty($pdo) )
+    {
+      $pdo = dbConnect();
+    }
+    $query = $pdo->prepare( "CALL PLANCADRES_SECTIONS_DELETE(?)" );
+
+    $query->bindParam(1, $section_id, PDO::PARAM_STR);
 
     $query->execute();
     $query->CloseCursor();
